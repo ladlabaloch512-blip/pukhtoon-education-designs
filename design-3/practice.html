@@ -620,6 +620,55 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .footer-strip{border-radius:14px}
 .hero{border-radius:18px}
 </style>
+<style>
+/* ===== MOBILE FIX ROUND (real-device audit): font-boost guard + phone layout fixes. Desktop above 860px is untouched. ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (max-width:860px){
+ body{overflow-x:hidden}
+ img,svg,video,iframe{max-width:100%}
+ input,select,textarea{font-size:16px}
+ .main>*,.tp-main>*,.tp-body>*,.topbar>*,.tp-head>*,.dash-cards>*,.two-col>*,.res-top>*,.band-flex>*{min-width:0}
+ .mobilebar{gap:10px;margin-bottom:12px}
+ .mobilebar .mplogo{padding:3px 6px}
+ .mobilebar .mplogo img{width:84px}
+ .brandplate{max-width:240px}
+ .login-left .brandplate{max-width:240px;margin-left:auto;margin-right:auto}
+ .sidebar .brandplate{max-width:212px;margin-left:auto;margin-right:auto}
+ .brandplate img{width:150px}
+ .login-left .brandplate img{width:150px}
+ .tp-body .passage-card{max-height:54vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ .btn{min-height:46px}
+ .tagchip{min-height:40px}
+ .tabs a,.tabs button{min-height:40px;display:inline-flex;align-items:center}
+ .del-btn{width:40px;height:40px;min-height:40px}
+ .view{display:inline-flex;align-items:center;min-height:40px}
+ .palette button{min-width:40px;min-height:40px}
+ .pp-nums button{min-width:40px;min-height:40px}
+ .pp-bar{flex-wrap:wrap;gap:10px}
+ .zbtn{min-height:40px}
+ .lang-x{min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+ .ob-chips{flex-wrap:wrap;gap:8px}
+ .form-row a,.switch-line a,.crumb a{display:inline-flex;align-items:center;min-height:36px}
+ .attempts td,.attempts th,.cmp td,.cmp th{font-size:14px}
+ .table-scroll,.cmp-scroll{max-width:100%}
+}
+@media (max-width:640px){
+ .target-banner{flex-wrap:wrap}
+ .cd-units{flex:1 1 100%;display:flex;gap:8px;margin-left:0}
+ .cd-unit{flex:1 1 0;padding:10px 2px}
+ .cd-unit b{font-size:23px}
+ .cd-unit span{font-size:10.5px;letter-spacing:.3px}
+ .module-card .sum{font-size:14px}
+ .mod-card .det{font-size:13.5px}
+ .tense-form{font-size:13.5px}
+ .hub-badge{font-size:12.5px}
+ .badge{font-size:13px}
+ .fm-step{font-size:14px}
+ .support-box{font-size:14px}
+ p,li{overflow-wrap:break-word}
+ .hero .btn{margin:0 8px 10px 0}
+}
+</style>
 </head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
