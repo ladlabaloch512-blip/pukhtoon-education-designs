@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard - Pukhtoon Education</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -15,8 +16,8 @@
   /* App shell (shared, identical on dashboard, results and attempt detail) */
   .layout { display:grid; grid-template-columns:272px 1fr; min-height:100vh; }
   aside { background:#fff; border-right:1px solid #E7EAED; padding:22px 14px; display:flex; flex-direction:column; }
-  .side-logo { text-align:center; padding:0 10px 18px; }
-  .side-logo img { height:118px; }
+  .side-logo { text-align:center; padding:0 6px 16px; }
+  .side-logo img { height:124px; }
   .side-nav { display:flex; flex-direction:column; gap:4px; }
   .side-nav a { display:flex; align-items:center; gap:14px; font-size:18.5px; font-weight:600; color:#22262C; padding:14px 16px; border-radius:9px; transition:background .2s ease; }
   .side-nav a:hover { background:#F6F8F9; }
@@ -115,6 +116,21 @@
     .skill-row { grid-template-columns:118px 48px 1fr 52px; gap:8px; }
     .days { font-size:32px; }
   }
+
+  /* Scroll reveal (safe): start state applies only when JS runs; script force-reveals all after 1.5s */
+  html.js .rv { opacity:.85; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  html.js .rv.in { opacity:1; transform:none; }
+  html.js .rv .band-track i { transform:scaleX(0); transform-origin:left center; transition:transform 1.1s ease .15s; }
+  html.js .rv.in .band-track i { transform:scaleX(1); }
+  body { overflow-x:clip; }
+
+  /* Fix round: compact app cards on phones */
+  @media (max-width:560px){
+    .card { padding:20px 16px; }
+    .cont-bar { width:130px; }
+    .topbar { flex-wrap:wrap; }
+    .search-box { flex:1 1 100%; }
+  }
 </style>
 </head>
 <body>
@@ -157,7 +173,7 @@
     <h1>IELTS Student Dashboard</h1>
 
     <div class="grid">
-      <div class="card anim">
+      <div class="card anim rv">
         <h2>Target Band Score</h2>
         <div class="target-flex">
           <div>
@@ -172,7 +188,7 @@
         </div>
       </div>
 
-      <div class="card anim">
+      <div class="card anim rv">
         <div class="count-head">
           <h2>Test Countdown</h2>
           <span class="date-pill">Official Test: Nov 25, 2024</span>
@@ -182,7 +198,7 @@
         <div class="count-bar bar-anim"><i></i><span class="tick"></span></div>
       </div>
 
-      <div class="card">
+      <div class="card rv">
         <div class="skill-head">
           <h2>Skill Progress</h2>
           <span class="target">Target: 7.5</span>
@@ -213,7 +229,7 @@
         </div>
       </div>
 
-      <div class="full-mock">
+      <div class="full-mock rv">
         <div class="full-mock-in">
           <h2>Full Mock Test</h2>
           <p>Simulate the real IELTS exam (2 hours 40 mins) to assess your actual level.</p>
@@ -222,7 +238,7 @@
       </div>
     </div>
 
-    <div class="card wide-row">
+    <div class="card wide-row rv">
       <h2>Continue Learning</h2>
       <div class="cont-item">
         <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg></span>
@@ -247,7 +263,7 @@
       </div>
     </div>
 
-    <div class="card wide-row">
+    <div class="card wide-row rv">
       <h2>Recent Test Attempts</h2>
       <div class="att-row">
         <span class="an">Mock Test #5</span>
@@ -287,5 +303,21 @@
   });
 </script>
 
+
+<script>
+  // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden
+  (function(){
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+    function all(){ els.forEach(function(el){ el.classList.add('in'); }); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold:.1, rootMargin:'0px 0px -30px 0px' });
+      els.forEach(function(el){ io.observe(el); });
+    } else { all(); }
+    setTimeout(all, 1500);
+  })();
+</script>
 </body>
 </html>
