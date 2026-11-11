@@ -224,8 +224,46 @@ details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
 footer.site{background:#0C0C0F;border-top:1px solid #232329}
 .chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
+
+/* ==== MOBILE FIX ROUND: global guards + shared chrome (620px and below only) ==== */
+@media (max-width:620px){
+html,body{overflow-x:clip}
+img,svg,video,iframe{max-width:100%}
+.wrap{padding:0 16px}
+.sec{padding:44px 0 6px}
+.hbar{gap:14px;padding:10px 0}
+.logo-chip img{height:44px}
+.logo-chip.sm img{height:38px}
+.burger{padding:12px 8px}
+nav.main{padding:8px 16px 14px}
+nav.main a{padding:13px 2px;font-size:16px}
+nav.main .hbtns{flex-wrap:wrap;gap:10px;margin:12px 0 4px}
+nav.main .hbtns .btn{flex:1 1 120px;text-align:center;padding:11px 10px}
+.hbtns{gap:10px;flex-wrap:wrap}
+.foot-grid{gap:24px}
+.foot-grid>*{min-width:0}
+footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
+.copy{padding:16px 6px 2px}
+.tblwrap{max-width:100%;-webkit-overflow-scrolling:touch}
+}
+
+/* ==== MOBILE FIX ROUND: dashboard ==== */
+@media (max-width:620px){
+.tgtcard{padding:22px 18px;gap:18px}
+.tgtcard .tv{font-size:38px}
+.cdown{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-left:0}
+.cdbox{min-width:0;padding:12px 4px 9px}
+.cdbox b{font-size:25px}
+.cal:before{left:34%;right:34%}
+.dgrid{gap:18px}
+.recent{padding:15px 16px}
+.recent .score{font-size:23px}
+.vidrow{gap:12px}
+.vidrow .vi{min-width:0}
+.vidrow .btn{padding:9px 16px}
+}
 </style>
-</head>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 <header class="site"><div class="wrap hbar">
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>

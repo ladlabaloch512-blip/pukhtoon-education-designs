@@ -247,8 +247,40 @@ details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
 footer.site{background:#0C0C0F;border-top:1px solid #232329}
 .chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
+
+/* ==== MOBILE FIX ROUND: global guards + shared chrome (620px and below only) ==== */
+@media (max-width:620px){
+html,body{overflow-x:clip}
+img,svg,video,iframe{max-width:100%}
+.wrap{padding:0 16px}
+.sec{padding:44px 0 6px}
+.hbar{gap:14px;padding:10px 0}
+.logo-chip img{height:44px}
+.logo-chip.sm img{height:38px}
+.burger{padding:12px 8px}
+nav.main{padding:8px 16px 14px}
+nav.main a{padding:13px 2px;font-size:16px}
+nav.main .hbtns{flex-wrap:wrap;gap:10px;margin:12px 0 4px}
+nav.main .hbtns .btn{flex:1 1 120px;text-align:center;padding:11px 10px}
+.hbtns{gap:10px;flex-wrap:wrap}
+.foot-grid{gap:24px}
+.foot-grid>*{min-width:0}
+footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
+.copy{padding:16px 6px 2px}
+.tblwrap{max-width:100%;-webkit-overflow-scrolling:touch}
+}
+
+/* ==== MOBILE FIX ROUND: onboarding steps were colliding ==== */
+@media (max-width:620px){
+.obsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;text-align:center;font-size:12px;letter-spacing:.4px;margin-bottom:24px}
+.obsteps span{display:block}
+.obnav{flex-wrap:wrap;gap:12px}
+.obnav .btn{flex:1 1 130px;text-align:center}
+.chips{gap:8px}
+input[type=range]{width:100%}
+}
 </style>
-</head>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 <header class="obhead"><div class="wrap"><a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div></header>
 <main class="obwrap"><div class="gcard anim"><span class="tick"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Account created with Google</b><span>Your Google account is connected. Finish these six quick steps to personalise your dashboard.</span></div></div><div class="obcard anim d2"><h1>Set Up Your Student Profile</h1><p class="sub">Six quick steps and your dashboard is ready.</p><div class="obprog"><i id="obBar"></i></div><div class="obsteps"><span class="on" data-sl="1">1. Student</span><span data-sl="2">2. Source</span><span data-sl="3">3. Country</span><span data-sl="4">4. Experience</span><span data-sl="5">5. Journey</span><span data-sl="6">6. Goal</span></div>
