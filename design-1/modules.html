@@ -174,8 +174,40 @@
   footer h4 { letter-spacing:.01em; }
   footer a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
   .copyright { letter-spacing:.01em; }
+
+/* ===== MOBILE FIX ROUND (rendered audit fixes, 760px and below only) ===== */
+@media (max-width:760px){
+body{overflow-wrap:break-word}
+img,video,iframe,svg{max-width:100%}
+.wrap{padding:0 16px}
+section{padding:44px 0 8px}
+.hero-in{padding:38px 16px 42px}
+.hero-btns{gap:12px}
+.hero-btns .btn{flex:1 1 148px}
+.stats-in{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stats-in>*{min-width:0}
+.band-row{grid-template-columns:auto minmax(0,1fr);gap:6px 14px;padding:16px 18px}
+.band-row>div{grid-column:1/-1}
+.cta-band{padding:44px 18px 48px}
+.cta-band .btn{display:inline-block;padding:15px 34px;font-size:17px;line-height:1.25;min-height:50px}
+.grid,.courses,.modules,.why-grid,.results-grid,.steps-grid,.track-row,.plans,.detail-grid,.learn-grid,.cards,.goal-grid,.track-grid{grid-template-columns:minmax(0,1fr)}
+.grid>*,.courses>*,.modules>*,.why-grid>*,.results-grid>*,.steps-grid>*,.track-row>*,.plans>*,.detail-grid>*,.learn-grid>*,.cards>*,.goal-grid>*,.track-grid>*{min-width:0}
+.mod-card,.why-card,.step-card,.plan{padding:20px 18px}
+.course-banner{height:auto;min-height:116px;padding:14px 16px}
+.course-banner .big{font-size:23px;max-width:60%}
+.lock-ic{width:46px;height:46px;left:auto;right:14px;top:50%;transform:translateY(-50%)}
+.buy-card{max-width:100%;padding:22px 18px}
+.summary-row{grid-template-columns:minmax(0,1fr);gap:3px}
+.conditional{margin-top:16px}
+.q-label{display:block;margin-bottom:8px}
+.chips{flex-wrap:wrap;gap:10px}
+table{font-size:14px}
+th,td{padding:10px 12px}
+.btn{min-height:44px}
+.chip{min-height:40px}
+}
 </style>
-</head>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 
 <header>

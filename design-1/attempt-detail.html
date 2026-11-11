@@ -164,8 +164,50 @@
   .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
   .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
   .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
+
+/* ===== MOBILE FIX ROUND (rendered audit fixes, 760px and below only) ===== */
+@media (max-width:760px){
+body{overflow-wrap:break-word}
+img,video,iframe,svg{max-width:100%}
+main{min-width:0}
+.layout{grid-template-columns:minmax(0,1fr)}
+.layout>*{min-width:0}
+.card{min-width:0;padding:20px 16px}
+.grid,.history-grid,.top-grid,.exam-grid,.hub-grid,.summary-grid,.pgrid,.learn-grid{grid-template-columns:minmax(0,1fr)}
+.grid>*,.history-grid>*,.top-grid>*,.exam-grid>*,.hub-grid>*,.summary-grid>*,.pgrid>*,.learn-grid>*{min-width:0}
+.stats-grid,.history-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.analysis-grid,.time-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.test-grid,.tips-grid{grid-template-columns:minmax(0,1fr)}
+.test-grid>*,.tips-grid>*{min-width:0}
+.tense-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+.tool-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.trainer-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.count-units{grid-template-columns:repeat(2,minmax(0,1fr))}
+.count-units>*{min-width:0}
+.stepper{grid-template-columns:minmax(0,1fr)}
+.stepper>*{min-width:0}
+.topbar{flex-wrap:wrap}
+.search-box{flex:1 1 190px;min-width:0}
+.date-pill{white-space:normal;max-width:100%}
+.count-head{flex-wrap:wrap}
+.target-flex{flex-wrap:wrap;gap:14px}
+.target-flex svg{width:148px;height:148px}
+.big-score{font-size:56px}
+.skill-row{grid-template-columns:102px 42px minmax(0,1fr) 46px;gap:8px}
+.breakdown-row{grid-template-columns:minmax(0,1fr) 52px;gap:10px}
+.part-row{grid-template-columns:104px minmax(0,1fr) 54px;gap:10px}
+.att-row,.video-row{gap:10px}
+.cont-bar{width:110px}
+table{font-size:14px}
+th,td{padding:10px 12px}
+.filter-tabs,.chips-row{flex-wrap:wrap;gap:8px}
+.btn{min-height:44px}
+.fchip{min-height:40px}
+.step-box.current .step-icon{color:#fff}
+.side-nav a{min-height:44px}
+}
 </style>
-</head>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 
 <input type="checkbox" id="menuToggle" class="menu-check">
