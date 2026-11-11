@@ -226,8 +226,8 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 /* ---------- test player ---------- */
 .tp-shell{display:flex;min-height:100vh;background:#eef0f2}
 .tp-side{width:94px;flex:0 0 94px;background:linear-gradient(180deg,#15161d,#0b0c10);display:flex;flex-direction:column;align-items:center;padding:18px 10px;gap:8px;position:fixed;top:0;bottom:0;left:0;z-index:50}
-.tp-side .tp-logo{background:#fff;border-radius:10px;padding:6px;margin-bottom:22px}
-.tp-side .tp-logo img{width:62px;display:block}
+.tp-side .tp-logo{background:#fff;border-radius:10px;padding:5px;margin-bottom:22px}
+.tp-side .tp-logo img{width:74px;display:block}
 .tp-ic{width:52px;height:52px;border-radius:12px;color:#9aa1ab;display:flex;align-items:center;justify-content:center}
 .tp-ic.active{background:#23242c;color:var(--red)}
 .tp-ic:hover{color:#fff}
@@ -298,6 +298,20 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
  .passage-card{max-height:none}
  .band-flex{flex-direction:column}
  .steps{grid-template-columns:1fr}
+}
+
+@media (max-width:640px){
+ body{overflow-x:hidden}
+ .tp-head{padding:12px 14px;gap:10px}
+ .tp-head h1{font-size:17px}
+ .timer-chip{font-size:15px;padding:9px 14px}
+ .tp-body{padding:12px;gap:14px}
+ .passage-card{padding:18px}
+ .passage-card h2{font-size:19px}
+ .passage-card p{font-size:15px}
+ .q-card{padding:18px}
+ .palette{grid-template-columns:repeat(5,1fr);gap:6px}
+ .q-actions .btn{flex:1 1 42%}
 }
 </style>
 </head>
