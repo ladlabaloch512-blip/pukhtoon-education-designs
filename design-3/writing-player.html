@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Practice Test - Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+*{box-sizing:border-box}
+:root{--red:#e2231a;--red-d:#b30f14;--red-soft:#fdeceb;--ink:#14181d;--side:#101116;--bg:#f3f5f7;--line:#e2e6ea;--mut:#5c6670;--green:#1da851;--dark:#23272e}
+html,body{margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.app{display:flex;min-height:100vh}
+/* ---------- sidebar ---------- */
+.sidebar{width:254px;flex:0 0 254px;background:linear-gradient(180deg,#15161d 0%,#0b0c10 100%);color:#c9ced6;position:fixed;top:0;bottom:0;left:0;z-index:60;display:flex;flex-direction:column;padding:24px 18px 18px;overflow-y:auto}
+.brandplate{background:#fff;border-radius:14px;padding:12px 14px;text-align:center;margin-bottom:26px}
+.brandplate img{width:158px;display:block;margin:0 auto}
+.side-nav{display:flex;flex-direction:column;gap:4px}
+.side-nav a{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:10px;color:#c9ced6;font-size:15.5px}
+.side-nav a svg{flex:0 0 20px}
+.side-nav a:hover{background:#1e202a;color:#fff}
+.side-nav a.active{background:var(--red);color:#fff;font-weight:600}
+.side-foot{margin-top:auto;padding-top:18px}
+.side-user{display:flex;align-items:center;gap:11px;padding:10px 6px;color:#e8eaee;font-size:15px}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#3a3f4a,#191b21);border:2px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:0 0 40px}
+.logout-btn{display:block;text-align:center;border:1px solid #3a3d47;border-radius:10px;padding:11px;color:#e8eaee;font-size:15px;margin-top:6px}
+.logout-btn:hover{border-color:var(--red);color:#fff}
+.support-box{color:#9aa1ab;font-size:13.5px;line-height:1.55;padding:0 6px}
+.support-box b{color:#e8eaee;display:block;font-size:14px}
+/* ---------- layout ---------- */
+.main{flex:1;margin-left:254px;padding:28px 36px 40px;min-width:0}
+.topbar{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+.topbar .spacer{flex:1}
+.searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
+.searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
+.bell{position:relative;color:#3c434c;display:flex}
+.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
+.page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
+.crumb{color:#8a929c;font-size:16px;margin-bottom:20px}
+.crumb b{color:var(--ink);font-weight:600}
+/* mobile bar */
+#navtoggle{display:none}
+.mobilebar{display:none;align-items:center;gap:14px;margin-bottom:20px}
+.mobilebar .mplogo{background:#fff;border-radius:10px;padding:5px 10px}
+.mobilebar .mplogo img{width:104px;display:block}
+.burger{width:44px;height:44px;border-radius:10px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.scrim{display:none}
+/* ---------- generic cards / buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:9px;padding:12px 22px;font-size:15.5px;font-weight:600;cursor:pointer;border:1px solid transparent}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-d)}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:#101216}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-outline{background:#fff;color:var(--red);border-color:var(--red)}
+.btn-outline:hover{background:var(--red-soft)}
+.btn-block{width:100%}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;color:#fff;letter-spacing:.3px}
+.badge-free{background:var(--green)}
+.badge-paid{background:var(--dark)}
+.badge-paid-red{background:var(--red)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.tabs{display:flex;gap:34px;border-bottom:1px solid var(--line);margin:8px 0 24px}
+.tabs a{font-size:17px;color:#6a727d;padding:0 2px 12px}
+.tabs a.on{color:var(--ink);font-weight:700;border-bottom:3px solid var(--red);margin-bottom:-1px}
+.stars{color:#f5a623;font-size:15px;letter-spacing:1px}
+.progress{height:9px;border-radius:99px;background:#e6e9ec;overflow:hidden}
+.progress i{display:block;height:100%;border-radius:99px;background:var(--ink)}
+.progress.red i{background:var(--red)}
+.tagchip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 18px;font-size:15px;color:#2b3138}
+.tagchip.on{background:#e9ebee;font-weight:600}
+/* ---------- home ---------- */
+.hero{background:linear-gradient(96deg,#160404 0%,#5f0a10 42%,#c8102e 78%,#e2231a 100%);border-radius:16px;color:#fff;padding:44px 46px;margin-bottom:30px;position:relative;overflow:hidden}
+.hero h1{font-size:42px;margin:0 0 10px;font-weight:800;letter-spacing:-.5px}
+.hero p{font-size:20px;margin:0 0 24px;color:#ffd9d6}
+.hero .btn{margin-right:12px}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.75);color:#fff}
+.section-title{font-size:27px;font-weight:800;margin:30px 0 16px}
+.modules{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.module-card{background:#fff;border:1.5px solid #f2b8b4;border-radius:12px;padding:20px}
+.module-card .ic{width:44px;height:44px;border-radius:10px;background:var(--red-soft);color:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.module-card h3{margin:0 0 8px;font-size:19px;display:inline-block}
+.module-card p{color:#3f4750;font-size:14.5px;line-height:1.5;margin:0 0 16px;min-height:66px}
+.module-card .btn{padding:9px 26px}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feat-card{background:#14161c;border-radius:12px;padding:20px;color:#fff;min-height:158px;display:flex;flex-direction:column;position:relative}
+.feat-card h4{margin:0 40px 6px 0;font-size:18.5px;line-height:1.3}
+.feat-card p{margin:auto 0 0;color:#aeb4bd;font-size:14px}
+.feat-card .badge{position:absolute;top:14px;right:14px}
+.feat-card .lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--red)}
+.feat-card .play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px}
+.step{display:flex;align-items:center;gap:13px;font-weight:700;font-size:16.5px}
+.step .n{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:var(--red-soft);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px}
+.step-arrow{color:#9aa3ad;font-size:22px}
+.footer-strip{margin-top:30px;background:#14161c;color:#c9ced6;border-radius:12px;padding:18px 26px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:14.5px}
+.footer-strip b{color:#fff}
+/* ---------- courses ---------- */
+.course-tools{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.course-tools .searchbox{width:420px;padding:13px 18px}
+.filter-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 20px;font-size:15.5px;font-weight:600}
+.pop-label{font-size:16.5px;margin-left:12px}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.course-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.thumb{height:172px;position:relative;display:flex;align-items:center;justify-content:center;color:#fff}
+.thumb .playb{width:58px;height:58px;border-radius:50%;background:rgba(20,22,28,.82);display:flex;align-items:center;justify-content:center;color:#fff}
+.thumb .badge{position:absolute;top:12px;right:12px}
+.thumb .price-chip{position:absolute;top:44px;right:12px;background:#14161c;color:#fff;font-weight:700;font-size:14.5px;padding:4px 10px;border-radius:7px}
+.thumb .big{font-size:30px;font-weight:800;text-align:center;padding:0 18px;line-height:1.25}
+.course-body{padding:18px 20px 20px}
+.course-body h3{margin:0 0 12px;font-size:19.5px}
+.course-meta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rate{font-size:15.5px;color:#2b3138}
+.rate .cnt{color:#6a727d}
+.course-meta .btn{padding:10px 24px}
+/* ---------- mock tests ---------- */
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mock-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.mock-top{display:flex;gap:20px}
+.icon-tile{width:104px;height:104px;flex:0 0 104px;border-radius:14px;background:#fbdcdc;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.mock-info{flex:1;min-width:0}
+.mock-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mock-head h3{margin:2px 0 12px;font-size:24px}
+.mock-meta{display:flex;justify-content:space-between;color:#2b3138;font-size:16.5px;margin-bottom:14px}
+.mock-meta .lft{display:flex;align-items:center;gap:8px;color:#3f4750}
+.mock-card .btn{margin-top:20px;padding:15px;font-size:17px}
+/* ---------- login ---------- */
+.login-wrap{display:flex;min-height:100vh}
+.login-left{flex:1;background:linear-gradient(160deg,#c8102e 0%,#a50d24 55%,#8f0a1f 100%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 40px;position:relative;overflow:hidden}
+.login-left .brandplate{max-width:340px;width:100%;padding:18px;margin-bottom:34px}
+.login-left h1{font-size:38px;line-height:1.25;margin:0 0 14px;font-weight:800}
+.login-left p{font-size:19px;color:#ffd9d6;margin:0;line-height:1.5}
+.login-right{flex:1;background:#fff;display:flex;flex-direction:column;padding:26px 40px}
+.lang-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;color:#2b3138;font-size:15px}
+.lang-chip{border:1px solid var(--line);border-radius:8px;padding:8px 14px;background:#f7f8f9}
+.lang-x{font-size:22px;color:#2b3138;margin-left:8px;line-height:1}
+.login-form{max-width:470px;width:100%;margin:auto}
+.auth-tabs{display:flex;gap:44px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.auth-tabs a{font-size:20px;color:#8a929c;padding-bottom:12px}
+.auth-tabs a.on{color:var(--ink);font-weight:700;border-bottom:3px solid var(--ink);margin-bottom:-1px}
+.login-form h2{font-size:32px;margin:0 0 8px;font-weight:800}
+.login-form .sub{color:#3f4750;font-size:16.5px;margin:0 0 26px}
+.field{margin-bottom:18px}
+.field input{width:100%;border:1.5px solid #c9ced6;border-radius:10px;padding:15px 17px;font-size:16px;outline:0}
+.field input:focus{border-color:var(--ink)}
+.form-row{display:flex;justify-content:space-between;align-items:center;margin:4px 0 22px;font-size:15px}
+.form-row label{display:flex;gap:9px;align-items:center;color:#2b3138}
+.form-row a{color:var(--red);font-weight:600}
+.or-row{display:flex;align-items:center;gap:16px;color:#3f4750;margin:24px 0 18px;font-size:15px}
+.or-row:before,.or-row:after{content:"";flex:1;height:1px;background:var(--line)}
+.social-row{display:flex;gap:16px;justify-content:center;margin-bottom:26px}
+.social-btn{width:58px;height:52px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800;cursor:pointer}
+.switch-line{text-align:center;font-size:16px;color:#2b3138}
+.switch-line a{color:var(--red);font-weight:700}
+/* ---------- dashboard ---------- */
+.dash-cards{display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:22px;margin-bottom:24px}
+.dash-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.dash-card h3{margin:0 0 14px;font-size:21px}
+.gauge-wrap{text-align:center}
+.gauge-num{font-size:21px}
+.gauge-num b{font-size:44px;display:block}
+.gauge-sub{text-align:center;margin-top:10px}
+.gauge-sub b{font-size:18px}
+.gauge-sub span{display:block;color:#3f4750;margin-top:4px}
+.count-mid{text-align:center;padding-top:8px}
+.count-big{color:var(--red);font-size:42px;font-weight:800;margin:12px 0 2px}
+.count-word{font-size:29px;font-weight:800;letter-spacing:1px}
+.count-date{text-align:center;color:#2b3138;margin-top:26px;font-size:16.5px}
+.fullmock{background:linear-gradient(160deg,#c8102e,#9c0b21);border-radius:14px;color:#fff;padding:28px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.fullmock h3{font-size:31px;line-height:1.25;margin:6px 0 16px;font-weight:800}
+.fullmock .playc{width:62px;height:62px;border-radius:50%;background:#fff;color:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
+.fullmock .fm-foot{background:rgba(0,0,0,.22);border-radius:8px;padding:9px 14px;font-size:14.5px;width:100%}
+.modprog{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.modprog h3{margin:0 0 18px;font-size:22px}
+.mod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mod-card{border:1px solid var(--line);border-radius:12px;padding:18px}
+.mod-card .mh{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.mod-card .mh .ic{width:42px;height:42px;border-radius:50%;background:var(--red-soft);color:var(--red);display:flex;align-items:center;justify-content:center}
+.mod-card .mh h4{margin:0;font-size:18.5px}
+.mod-card .pct{text-align:right;font-size:16.5px;margin-bottom:6px}
+.mod-card .det{font-size:15px;color:#2b3138;margin:12px 0 14px}
+/* ---------- results ---------- */
+.res-top{display:grid;grid-template-columns:430px 1fr;gap:24px;margin-bottom:24px}
+.band-card{background:#fff;border:2px solid var(--red);border-radius:14px;padding:24px 28px}
+.band-card h3{margin:0 0 16px;font-size:22px}
+.band-flex{display:flex;gap:26px}
+.band-big{font-size:88px;font-weight:800;color:var(--red);line-height:1;align-self:center}
+.band-list{border-left:1px solid var(--line);padding-left:24px;flex:1}
+.band-list h4{margin:0 0 12px;font-size:18px}
+.band-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:16.5px}
+.band-row .sc{background:#e9ebee;border-radius:7px;padding:3px 12px;font-weight:700}
+.perf-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 28px}
+.perf-card h3{margin:0 0 22px;font-size:22px}
+.perf-row{display:grid;grid-template-columns:120px 1fr 74px;align-items:center;gap:16px;margin-bottom:20px;font-size:16.5px}
+.perf-track{position:relative;height:12px;border-radius:99px;background:#e6e9ec}
+.perf-fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--ink)}
+.perf-fill.red{background:var(--red)}
+.perf-mile{color:#6a727d;font-size:14px;text-align:right}
+table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.attempts th{background:#191c22;color:#fff;text-align:left;padding:15px 20px;font-size:16px}
+.attempts td{padding:15px 20px;font-size:16px;border-top:1px solid #eef0f2}
+.attempts tr.alt td{background:#eef0f3}
+.attempts .view{color:var(--red);font-weight:700}
+.table-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.table-card h3{margin:0 0 18px;font-size:22px}
+.table-scroll{overflow-x:auto}
+/* ---------- packages ---------- */
+.notice{background:#fdeceb;border:1px solid #f3a49f;border-radius:10px;padding:16px 22px;font-size:17px;display:flex;align-items:center;gap:12px;margin-bottom:34px;flex-wrap:wrap}
+.notice .n-ic{color:var(--red);display:flex}
+.notice a{color:var(--red);font-weight:700}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.pkg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px 30px 26px;text-align:center;position:relative;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(16,24,40,.05)}
+.pkg-card.pop{border-color:#cfd4da;box-shadow:0 10px 26px rgba(16,24,40,.10)}
+.pop-tag{position:absolute;top:-17px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-weight:700;padding:7px 26px;border-radius:8px;font-size:16px}
+.pkg-card h3{font-size:24px;margin:8px 0 10px}
+.pkg-price{font-size:29px;margin-bottom:20px}
+.pkg-price b{font-size:33px}
+.pkg-card ul{list-style:none;margin:0 0 26px;padding:0;text-align:left}
+.pkg-card li{padding:7px 0 7px 22px;position:relative;font-size:16.5px;color:#23282f}
+.pkg-card li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ink);position:absolute;left:2px;top:15px}
+.pkg-card .btn{margin-top:auto;padding:13px;font-size:16.5px;border-radius:999px}
+/* ---------- test player ---------- */
+.tp-shell{display:flex;min-height:100vh;background:#eef0f2}
+.tp-side{width:94px;flex:0 0 94px;background:linear-gradient(180deg,#15161d,#0b0c10);display:flex;flex-direction:column;align-items:center;padding:18px 10px;gap:8px;position:fixed;top:0;bottom:0;left:0;z-index:50}
+.tp-side .tp-logo{background:#fff;border-radius:10px;padding:5px;margin-bottom:22px}
+.tp-side .tp-logo img{width:74px;display:block}
+.tp-ic{width:52px;height:52px;border-radius:12px;color:#9aa1ab;display:flex;align-items:center;justify-content:center}
+.tp-ic.active{background:#23242c;color:var(--red)}
+.tp-ic:hover{color:#fff}
+.tp-side .avatar{margin-top:auto}
+.tp-main{flex:1;margin-left:94px;display:flex;flex-direction:column;min-width:0}
+.tp-head{background:#fff;border-bottom:1px solid var(--line);padding:16px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tp-head h1{font-size:21px;margin:0;font-weight:800;letter-spacing:.2px}
+.tp-head .spacer{flex:1}
+.timer-chip{background:var(--red);color:#fff;font-weight:700;font-size:17px;border-radius:9px;padding:11px 20px}
+.tp-body{flex:1;display:grid;grid-template-columns:1.25fr 1fr;gap:22px;padding:22px 26px;align-items:start}
+.passage-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 30px;max-height:calc(100vh - 130px);overflow-y:auto}
+.passage-card h2{font-size:23px;margin:0 0 18px}
+.passage-card p{font-size:16.5px;line-height:1.65;color:#23282f;margin:0 0 16px}
+.tp-right{display:flex;flex-direction:column;gap:20px}
+.palette-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.palette{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.palette button{border:0;border-radius:7px;background:#d4d7db;color:#23282f;font-size:14.5px;font-weight:600;padding:9px 0;cursor:pointer}
+.palette button.done{background:#35a852;color:#fff}
+.palette button.marked{background:var(--red);color:#fff}
+.palette button.current{background:#2f7fe0;color:#fff;outline:2px solid #2f7fe0;outline-offset:1px}
+.q-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px}
+.q-card h3{margin:0 0 12px;font-size:20px}
+.q-card .qtext{font-size:17px;line-height:1.5;margin:0 0 18px}
+.opt{display:flex;align-items:center;gap:12px;padding:10px 6px;font-size:16.5px;cursor:pointer;border-radius:8px}
+.opt:hover{background:#f5f6f8}
+.opt input{width:19px;height:19px;accent-color:var(--red)}
+.q-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.q-actions .btn{padding:11px 18px;font-size:14.5px}
+.anim{animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:.85;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #eef0f2;font-size:13px;color:#3f4750}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.legend .lg-done{background:#35a852}.legend .lg-marked{background:#e2231a}.legend .lg-cur{background:#2f7fe0}.legend .lg-todo{background:#d4d7db}
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+ .modules{grid-template-columns:repeat(2,1fr)}
+ .feat-grid{grid-template-columns:repeat(2,1fr)}
+ .course-grid{grid-template-columns:repeat(2,1fr)}
+ .dash-cards{grid-template-columns:1fr 1fr}
+ .mod-grid{grid-template-columns:repeat(2,1fr)}
+ .res-top{grid-template-columns:1fr}
+ .steps{grid-template-columns:1fr 1fr;gap:16px}
+ .step-arrow{display:none}
+}
+@media (max-width:860px){
+ .sidebar{transform:translateX(-105%);transition:transform .25s ease;box-shadow:0 0 40px rgba(0,0,0,.35)}
+ #navtoggle:checked ~ .app .sidebar{transform:none}
+ #navtoggle:checked ~ .scrim{display:block;position:fixed;inset:0;background:rgba(10,10,14,.5);z-index:55}
+ .main{margin-left:0;padding:18px 16px 30px}
+ .mobilebar{display:flex}
+ .topbar{flex-wrap:wrap}
+ .searchbox{width:100%}
+ h1.page-title{font-size:27px}
+ .hero{padding:30px 24px}
+ .hero h1{font-size:31px}
+ .mock-grid{grid-template-columns:1fr}
+ .course-grid{grid-template-columns:1fr}
+ .dash-cards{grid-template-columns:1fr}
+ .pkg-grid{grid-template-columns:1fr}
+ .login-wrap{flex-direction:column}
+ .login-left{padding:34px 24px}
+ .login-left h1{font-size:29px}
+ .login-right{padding:20px 18px 34px}
+ .tp-side{display:none}
+ .tp-main{margin-left:0}
+ .tp-body{grid-template-columns:1fr;padding:16px}
+ .passage-card{max-height:none}
+ .band-flex{flex-direction:column}
+ .steps{grid-template-columns:1fr}
+}
+
+@media (max-width:640px){
+ body{overflow-x:hidden}
+ .tp-head{padding:12px 14px;gap:10px}
+ .tp-head h1{font-size:17px}
+ .timer-chip{font-size:15px;padding:9px 14px}
+ .tp-body{padding:12px;gap:14px}
+ .passage-card{padding:18px}
+ .passage-card h2{font-size:19px}
+ .passage-card p{font-size:15px}
+ .q-card{padding:18px}
+ .palette{grid-template-columns:repeat(5,1fr);gap:6px}
+ .q-actions .btn{flex:1 1 42%}
+}
+
+.hide{display:none!important}
+.wtabs{display:flex;gap:10px;margin-bottom:18px}
+.wtab{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 22px;font-size:15.5px;font-weight:700;cursor:pointer;font:inherit}
+.wtab.on{background:var(--red);border-color:var(--red);color:#fff}
+.wnote{display:inline-block;background:var(--red-soft);color:var(--red);border-radius:8px;padding:6px 13px;font-weight:700;font-size:14px;margin-top:12px}
+.wtext{width:100%;min-height:340px;border:1.5px solid #c9ced6;border-radius:10px;padding:16px 18px;font-size:16px;line-height:1.6;font-family:inherit;outline:0;resize:vertical}
+.wtext:focus{border-color:var(--red)}
+.wcount{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:15px;color:#3f4750;flex-wrap:wrap;gap:8px}
+.wcount b{color:var(--ink);font-size:17px}
+.chart-legend{display:flex;gap:18px;font-size:13.5px;color:#3f4750;margin-top:8px}
+.chart-legend span{display:inline-flex;align-items:center;gap:7px}
+.chart-legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+</style>
+</head>
+<body>
+
+<div class="tp-shell">
+<aside class="tp-side">
+<div class="tp-logo"><img src="logo.jpg" alt="Pukhtoon Education logo"></div>
+<a class="tp-ic" href="index.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a><a class="tp-ic active" href="writing-player.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></a><a class="tp-ic" href="mock-tests.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></a><a class="tp-ic" href="results.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></a><a class="tp-ic" href="dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/></svg></a>
+<span class="avatar">A</span>
+</aside>
+<div class="tp-main">
+<div class="tp-head"><h1>Writing Practice Test</h1><div class="spacer"></div>
+<span class="timer-chip">Time Remaining: <span id="timer">60:00</span></span><a class="btn btn-dark" href="results.html">Submit Test</a></div>
+<div class="mobilebar" style="padding:14px 16px 0"><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
+<a class="btn btn-red" href="mock-tests.html" style="padding:9px 16px">All Tests</a></div>
+<div class="tp-body"><div><div class="passage-card anim" style="max-height:none"><div class="wtabs"><button type="button" class="wtab on" id="tab1">Task 1</button><button type="button" class="wtab" id="tab2">Task 2</button></div><div id="wp1"><h2>Writing Task 1</h2><p>The chart below shows the percentage of households in owned and rented accommodation in a UK city between 1918 and 2011.</p><p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p><svg viewBox="0 0 470 250" width="100%" role="img" aria-label="Bar chart of owned and rented accommodation"><line x1="45" y1="218" x2="455" y2="218" stroke="#c9ced6" stroke-width="2"/><rect x="70" y="105" width="26" height="112" rx="3" fill="#e2231a"/><rect x="100" y="193" width="26" height="25" rx="3" fill="#23272e"/><text x="98" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1918</text><text x="83" y="100" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">90%</text><text x="113" y="187" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">20%</text><rect x="170" y="86" width="26" height="131" rx="3" fill="#e2231a"/><rect x="200" y="165" width="26" height="52" rx="3" fill="#23272e"/><text x="198" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1961</text><text x="183" y="81" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">105%</text><text x="213" y="160" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">42%</text><rect x="270" y="45" width="26" height="172" rx="3" fill="#e2231a"/><rect x="300" y="140" width="26" height="77" rx="3" fill="#23272e"/><text x="298" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2001</text><text x="283" y="40" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">138%</text><text x="313" y="135" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">62%</text><rect x="370" y="40" width="26" height="177" rx="3" fill="#e2231a"/><rect x="400" y="135" width="26" height="82" rx="3" fill="#23272e"/><text x="398" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2011</text><text x="383" y="35" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">142%</text><text x="413" y="130" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">66%</text></svg><div class="chart-legend"><span><i style="background:#e2231a"></i>Owned</span><span><i style="background:#23272e"></i>Rented</span></div><span class="wnote">Minimum 150 words &bull; Suggested time: 20 minutes</span></div><div id="wp2" class="hide"><h2>Writing Task 2</h2><p>Some people believe that university education should be free for all students.</p><p><b>To what extent do you agree or disagree?</b></p><p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p><span class="wnote">Minimum 250 words &bull; Suggested time: 40 minutes</span></div></div></div><div class="tp-right"><div class="q-card anim"><h3>Your Answer</h3><textarea class="wtext" id="wtext1" placeholder="Write your Task 1 answer here..."></textarea><textarea class="wtext hide" id="wtext2" placeholder="Write your Task 2 essay here..."></textarea><div class="wcount"><span>Words: <b id="wcount">0</b></span><span>Minimum for this task: <b id="wmin">150</b> words</span></div><div class="progress red" style="margin-top:10px"><i id="wbar" style="width:0%"></i></div></div><div class="palette-card anim"><h3 style="margin:0 0 10px;font-size:18px">Writing Tips</h3><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Spend the first 3 minutes planning. Examiners reward a clear structure.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Paraphrase the question in your first sentence, never copy it word for word.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Leave 3 minutes at the end to check spelling, punctuation and word count.</span></div></div></div></div>
+</div>
+</div>
+<script>
+(function(){
+var total = 3600, el = document.getElementById('timer');
+setInterval(function(){ if(total > 0){ total--; }
+var m = Math.floor(total/60), s = total%60;
+el.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s; }, 1000);
+
+  var task = 1;
+  var areas = {1: document.getElementById('wtext1'), 2: document.getElementById('wtext2')};
+  var mins = {1: 150, 2: 250};
+  function words(t){ var v = t.trim(); return v ? v.split(/\s+/).length : 0; }
+  function draw(){
+    var n = words(areas[task].value);
+    document.getElementById('wcount').textContent = n;
+    document.getElementById('wmin').textContent = mins[task];
+    document.getElementById('wbar').style.width = Math.min(100, n / mins[task] * 100) + '%';
+  }
+  function setTask(t){
+    task = t;
+    document.getElementById('tab1').classList.toggle('on', t === 1);
+    document.getElementById('tab2').classList.toggle('on', t === 2);
+    document.getElementById('wp1').classList.toggle('hide', t !== 1);
+    document.getElementById('wp2').classList.toggle('hide', t !== 2);
+    areas[1].classList.toggle('hide', t !== 1);
+    areas[2].classList.toggle('hide', t !== 2);
+    draw();
+  }
+  document.getElementById('tab1').addEventListener('click', function(){ setTask(1); });
+  document.getElementById('tab2').addEventListener('click', function(){ setTask(2); });
+  areas[1].addEventListener('input', draw);
+  areas[2].addEventListener('input', draw);
+  draw();
+})();
+</script>
+</body></html>
