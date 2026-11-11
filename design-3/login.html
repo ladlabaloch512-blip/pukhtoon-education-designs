@@ -555,6 +555,55 @@ html.js .bandx.in .bandx-bar i{transform:scaleX(1)}
  html.js .faq details.open .faq-body{padding-bottom:14px}
 }
 </style>
+<style>
+/* ---------- design polish pass ---------- */
+body{line-height:1.55}
+h1.page-title{line-height:1.12;letter-spacing:-.02em}
+.section-title{letter-spacing:-.01em;line-height:1.2;margin-top:38px}
+.page-sub{line-height:1.55}
+h2,h3,h4{line-height:1.25}
+.sidebar{padding:26px 18px 20px}
+.brandplate{padding:10px 12px;box-shadow:0 4px 14px rgba(0,0,0,.25);margin-bottom:24px}
+.side-nav{gap:6px}
+.side-nav a{padding:12px 14px;border-radius:11px;transition:background .18s ease,color .18s ease}
+.side-nav a.active{box-shadow:0 8px 18px -8px rgba(226,35,26,.55)}
+.side-foot{border-top:1px solid #23242c;padding-top:16px}
+.side-user{background:#17181f;border:1px solid #23242c;border-radius:12px;padding:10px 12px}
+.logout-btn{margin-top:10px;border-radius:11px}
+.card,.panel,.dash-card,.table-card,.palette-card,.q-card,.passage-card{border-color:#e3e7ec;box-shadow:0 1px 2px rgba(16,24,40,.04),0 10px 26px -20px rgba(16,24,40,.28)}
+.panel,.dash-card,.table-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.pkg-card,.hub-card,.hub-big,.module-card,.cat-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.cat-card,.module-card,.hub-card{transition:transform .18s ease,box-shadow .18s ease}
+@media (hover:hover) and (pointer:fine){
+.mock-card:hover,.course-card:hover,.prac-card:hover,.tense-card:hover,.fm-card:hover,.cat-card:hover,.module-card:hover,.hub-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(16,24,40,.30)}
+}
+.btn{border-radius:10px;letter-spacing:.1px;transition:background .15s ease,box-shadow .15s ease}
+.btn-red{box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.btn-dark{box-shadow:0 8px 16px -12px rgba(16,24,40,.6)}
+.tagchip{border-radius:999px}
+.tagchip.on{box-shadow:inset 0 0 0 1px #c9ced6}
+.badge{letter-spacing:.4px}
+.progress{height:10px;background:#e8ebee}
+.progress i{transition:width .8s ease}
+table{font-variant-numeric:tabular-nums}
+.attempts th{background:#14161c;font-size:13.5px;letter-spacing:.6px;text-transform:uppercase;padding:14px 20px}
+.attempts td{padding:14px 20px}
+.attempts tr:hover td{background:#f6f8fa}
+.field input:focus,.finput:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(226,35,26,.12);outline:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tp-side{padding-top:20px}
+.tp-logo{box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.tp-ic{border-radius:13px;transition:background .15s ease,color .15s ease}
+.tp-ic.active{box-shadow:inset 0 0 0 1px #3a3b46}
+.tp-head{padding:18px 26px}
+.timer-chip{border-radius:10px;box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.palette button{border-radius:8px;transition:transform .12s ease,background .12s ease}
+@media (hover:hover) and (pointer:fine){.palette button:hover{transform:translateY(-1px)}}
+.palette-card,.q-card,.passage-card{border-radius:14px}
+.stat b{font-variant-numeric:tabular-nums}
+.footer-strip{border-radius:14px}
+.hero{border-radius:18px}
+</style>
 </head>
 <body>
 <div class="login-wrap"><div class="login-left anim"><div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div><h1>Welcome to<br>Pukhtoon Education</h1><p>Empowering communities through<br>knowledge and heritage.</p><ul class="login-feats"><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Timed IELTS mock tests with instant band scores</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Video courses you can watch anytime</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Full results history and progress tracking</li></ul></div><div class="login-right"><div class="lang-row">Language <span class="lang-chip">English / Pashto &#9662;</span><a class="lang-x" href="index.html" aria-label="Close">&times;</a></div><div class="login-form anim" style="animation-delay:.1s"><div class="auth-tabs"><a href="login.html" class="on">Sign In</a><a href="onboarding.html">Sign Up</a></div><h2>Welcome back<br>Login to your account</h2><p class="sub">Enter your credentials to continue</p><form action="dashboard.html"><div class="field"><input type="text" placeholder="Email or Username" required></div><div class="field"><input type="password" placeholder="Password" required></div><div class="form-row"><label><input type="checkbox"> Remember me</label><a href="login.html">Forgot Password?</a></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Sign In</button></form><a href="onboarding.html" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #c9ced6;border-radius:10px;padding:13px;font-size:16px;font-weight:600;margin-top:14px;background:#fff;color:#14181d"><span style="color:#4285F4;font-weight:800;font-size:19px">G</span> Continue with Google</a><div class="or-row">or continue with</div><div class="social-row"><a class="social-btn" href="onboarding.html" style="color:#4285F4">G</a><button class="social-btn" type="button" style="color:#1877f2">f</button><button class="social-btn" type="button" style="color:#14181d">&#63743;</button></div><p class="switch-line">Don't have an account? <a href="onboarding.html">Sign Up</a></p></div></div></div>

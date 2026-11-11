@@ -327,6 +327,70 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 .chart-legend span{display:inline-flex;align-items:center;gap:7px}
 .chart-legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
 </style>
+<style>
+.dlg-wrap{position:fixed;inset:0;background:rgba(10,10,14,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.dlg-wrap.open{display:flex}
+.dlg{background:#fff;border-radius:16px;max-width:500px;width:100%;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.dlg h3{margin:0 0 12px;font-size:22px}
+.dlg-list{margin:0 0 20px;padding-left:20px}
+.dlg-list li{font-size:15.5px;line-height:1.6;color:#2b3138;margin-bottom:8px}
+.dlg-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.warn-chip{background:#fdf3f2;border:1px solid #f3a49f;color:#b30f14;font-weight:700;font-size:14px;border-radius:9px;padding:10px 14px}
+.wswitch{display:flex;gap:10px;flex-wrap:wrap}
+.ws-btn{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;font-size:15px;font-weight:600;cursor:pointer;color:#2b3138}
+.ws-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ws-btn b{color:var(--red)}
+.ws-btn.on b{color:#ffb3ae}
+</style>
+<style>
+/* ---------- design polish pass ---------- */
+body{line-height:1.55}
+h1.page-title{line-height:1.12;letter-spacing:-.02em}
+.section-title{letter-spacing:-.01em;line-height:1.2;margin-top:38px}
+.page-sub{line-height:1.55}
+h2,h3,h4{line-height:1.25}
+.sidebar{padding:26px 18px 20px}
+.brandplate{padding:10px 12px;box-shadow:0 4px 14px rgba(0,0,0,.25);margin-bottom:24px}
+.side-nav{gap:6px}
+.side-nav a{padding:12px 14px;border-radius:11px;transition:background .18s ease,color .18s ease}
+.side-nav a.active{box-shadow:0 8px 18px -8px rgba(226,35,26,.55)}
+.side-foot{border-top:1px solid #23242c;padding-top:16px}
+.side-user{background:#17181f;border:1px solid #23242c;border-radius:12px;padding:10px 12px}
+.logout-btn{margin-top:10px;border-radius:11px}
+.card,.panel,.dash-card,.table-card,.palette-card,.q-card,.passage-card{border-color:#e3e7ec;box-shadow:0 1px 2px rgba(16,24,40,.04),0 10px 26px -20px rgba(16,24,40,.28)}
+.panel,.dash-card,.table-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.pkg-card,.hub-card,.hub-big,.module-card,.cat-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.cat-card,.module-card,.hub-card{transition:transform .18s ease,box-shadow .18s ease}
+@media (hover:hover) and (pointer:fine){
+.mock-card:hover,.course-card:hover,.prac-card:hover,.tense-card:hover,.fm-card:hover,.cat-card:hover,.module-card:hover,.hub-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(16,24,40,.30)}
+}
+.btn{border-radius:10px;letter-spacing:.1px;transition:background .15s ease,box-shadow .15s ease}
+.btn-red{box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.btn-dark{box-shadow:0 8px 16px -12px rgba(16,24,40,.6)}
+.tagchip{border-radius:999px}
+.tagchip.on{box-shadow:inset 0 0 0 1px #c9ced6}
+.badge{letter-spacing:.4px}
+.progress{height:10px;background:#e8ebee}
+.progress i{transition:width .8s ease}
+table{font-variant-numeric:tabular-nums}
+.attempts th{background:#14161c;font-size:13.5px;letter-spacing:.6px;text-transform:uppercase;padding:14px 20px}
+.attempts td{padding:14px 20px}
+.attempts tr:hover td{background:#f6f8fa}
+.field input:focus,.finput:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(226,35,26,.12);outline:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tp-side{padding-top:20px}
+.tp-logo{box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.tp-ic{border-radius:13px;transition:background .15s ease,color .15s ease}
+.tp-ic.active{box-shadow:inset 0 0 0 1px #3a3b46}
+.tp-head{padding:18px 26px}
+.timer-chip{border-radius:10px;box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.palette button{border-radius:8px;transition:transform .12s ease,background .12s ease}
+@media (hover:hover) and (pointer:fine){.palette button:hover{transform:translateY(-1px)}}
+.palette-card,.q-card,.passage-card{border-radius:14px}
+.stat b{font-variant-numeric:tabular-nums}
+.footer-strip{border-radius:14px}
+.hero{border-radius:18px}
+</style>
 </head>
 <body>
 
@@ -338,28 +402,37 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 </aside>
 <div class="tp-main">
 <div class="tp-head"><h1>Writing Practice Test</h1><div class="spacer"></div>
-<span class="timer-chip">Time Remaining: <span id="timer">60:00</span></span><a class="btn btn-dark" href="results.html">Submit Test</a></div>
+<span class="timer-chip">Time Remaining: <span id="timer">20:00</span></span><span class="warn-chip" id="wWarn" style="display:none"></span><a class="btn btn-dark" href="results.html">Submit Test</a></div>
 <div class="mobilebar" style="padding:14px 16px 0"><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
 <a class="btn btn-red" href="mock-tests.html" style="padding:9px 16px">All Tests</a></div>
-<div class="tp-body"><div><div class="passage-card anim" style="max-height:none"><div class="wtabs"><button type="button" class="wtab on" id="tab1">Task 1</button><button type="button" class="wtab" id="tab2">Task 2</button></div><div id="wp1"><h2>Writing Task 1</h2><p>The chart below shows the percentage of households in owned and rented accommodation in a UK city between 1918 and 2011.</p><p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p><svg viewBox="0 0 470 250" width="100%" role="img" aria-label="Bar chart of owned and rented accommodation"><line x1="45" y1="218" x2="455" y2="218" stroke="#c9ced6" stroke-width="2"/><rect x="70" y="105" width="26" height="112" rx="3" fill="#e2231a"/><rect x="100" y="193" width="26" height="25" rx="3" fill="#23272e"/><text x="98" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1918</text><text x="83" y="100" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">90%</text><text x="113" y="187" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">20%</text><rect x="170" y="86" width="26" height="131" rx="3" fill="#e2231a"/><rect x="200" y="165" width="26" height="52" rx="3" fill="#23272e"/><text x="198" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1961</text><text x="183" y="81" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">105%</text><text x="213" y="160" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">42%</text><rect x="270" y="45" width="26" height="172" rx="3" fill="#e2231a"/><rect x="300" y="140" width="26" height="77" rx="3" fill="#23272e"/><text x="298" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2001</text><text x="283" y="40" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">138%</text><text x="313" y="135" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">62%</text><rect x="370" y="40" width="26" height="177" rx="3" fill="#e2231a"/><rect x="400" y="135" width="26" height="82" rx="3" fill="#23272e"/><text x="398" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2011</text><text x="383" y="35" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">142%</text><text x="413" y="130" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">66%</text></svg><div class="chart-legend"><span><i style="background:#e2231a"></i>Owned</span><span><i style="background:#23272e"></i>Rented</span></div><span class="wnote">Minimum 150 words &bull; Suggested time: 20 minutes</span></div><div id="wp2" class="hide"><h2>Writing Task 2</h2><p>Some people believe that university education should be free for all students.</p><p><b>To what extent do you agree or disagree?</b></p><p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p><span class="wnote">Minimum 250 words &bull; Suggested time: 40 minutes</span></div></div></div><div class="tp-right"><div class="q-card anim"><h3>Your Answer</h3><textarea class="wtext" id="wtext1" placeholder="Write your Task 1 answer here..."></textarea><textarea class="wtext hide" id="wtext2" placeholder="Write your Task 2 essay here..."></textarea><div class="wcount"><span>Words: <b id="wcount">0</b></span><span>Minimum for this task: <b id="wmin">150</b> words</span></div><div class="progress red" style="margin-top:10px"><i id="wbar" style="width:0%"></i></div></div><div class="palette-card anim"><h3 style="margin:0 0 10px;font-size:18px">Writing Tips</h3><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Spend the first 3 minutes planning. Examiners reward a clear structure.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Paraphrase the question in your first sentence, never copy it word for word.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Leave 3 minutes at the end to check spelling, punctuation and word count.</span></div></div></div></div>
+<div class="tp-body"><div><div class="passage-card anim" style="max-height:none"><div class="wtabs"><button type="button" class="wtab on" id="tab1">Task 1 &middot; 20 min</button><button type="button" class="wtab" id="tab2">Task 2 &middot; 40 min</button></div><div id="wp1"><h2>Writing Task 1</h2><p>The chart below shows the percentage of households in owned and rented accommodation in a UK city between 1918 and 2011.</p><p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p><svg viewBox="0 0 470 250" width="100%" role="img" aria-label="Bar chart of owned and rented accommodation"><line x1="45" y1="218" x2="455" y2="218" stroke="#c9ced6" stroke-width="2"/><rect x="70" y="105" width="26" height="112" rx="3" fill="#e2231a"/><rect x="100" y="193" width="26" height="25" rx="3" fill="#23272e"/><text x="98" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1918</text><text x="83" y="100" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">90%</text><text x="113" y="187" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">20%</text><rect x="170" y="86" width="26" height="131" rx="3" fill="#e2231a"/><rect x="200" y="165" width="26" height="52" rx="3" fill="#23272e"/><text x="198" y="240" font-size="13" fill="#3f4750" text-anchor="middle">1961</text><text x="183" y="81" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">105%</text><text x="213" y="160" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">42%</text><rect x="270" y="45" width="26" height="172" rx="3" fill="#e2231a"/><rect x="300" y="140" width="26" height="77" rx="3" fill="#23272e"/><text x="298" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2001</text><text x="283" y="40" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">138%</text><text x="313" y="135" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">62%</text><rect x="370" y="40" width="26" height="177" rx="3" fill="#e2231a"/><rect x="400" y="135" width="26" height="82" rx="3" fill="#23272e"/><text x="398" y="240" font-size="13" fill="#3f4750" text-anchor="middle">2011</text><text x="383" y="35" font-size="12" font-weight="700" fill="#e2231a" text-anchor="middle">142%</text><text x="413" y="130" font-size="12" font-weight="700" fill="#23272e" text-anchor="middle">66%</text></svg><div class="chart-legend"><span><i style="background:#e2231a"></i>Owned</span><span><i style="background:#23272e"></i>Rented</span></div><span class="wnote">Minimum 150 words &bull; Suggested time: 20 minutes</span></div><div id="wp2" class="hide"><h2>Writing Task 2</h2><p>Some people believe that university education should be free for all students.</p><p><b>To what extent do you agree or disagree?</b></p><p>Give reasons for your answer and include any relevant examples from your own knowledge or experience.</p><span class="wnote">Minimum 250 words &bull; Suggested time: 40 minutes</span></div></div></div><div class="tp-right"><div class="q-card anim"><h3>Your Answer</h3><textarea class="wtext" id="wtext1" placeholder="Write your Task 1 answer here..."></textarea><textarea class="wtext hide" id="wtext2" placeholder="Write your Task 2 essay here..."></textarea><div class="wcount"><span>Words: <b id="wcount">0</b></span><span>Minimum for this task: <b id="wmin">150</b> words</span></div><div class="progress red" style="margin-top:10px"><i id="wbar" style="width:0%"></i></div></div><div class="wswitch anim"><button type="button" class="ws-btn on" id="wb1">Task 1: <b id="wc1">0</b> words</button><button type="button" class="ws-btn" id="wb2">Task 2: <b id="wc2">0</b> words</button></div><div class="palette-card anim"><h3 style="margin:0 0 10px;font-size:18px">Writing Tips</h3><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Spend the first 3 minutes planning. Examiners reward a clear structure.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Paraphrase the question in your first sentence, never copy it word for word.</span></div><div class="tip"><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Leave 3 minutes at the end to check spelling, punctuation and word count.</span></div></div></div></div>
 </div>
 </div>
-<script>
+<div class="dlg-wrap open" id="wDlg"><div class="dlg"><h3>Writing Test Instructions</h3><ul class="dlg-list"><li>Answer both parts of the test: Task 1 and Task 2.</li><li>Part 2 counts twice as much as Part 1, so give it more of your time.</li><li>Suggested time: 20 minutes for Task 1 and 40 minutes for Task 2. Each task has its own countdown timer, shown at the top.</li><li>You will see a warning when 10 minutes and again when 5 minutes are left for the task you are working on.</li></ul><div class="dlg-actions"><a class="btn btn-outline" href="mock-tests.html">Cancel</a><button class="btn btn-red" type="button" id="wStart">Start Test</button></div></div></div><script>
 (function(){
-var total = 3600, el = document.getElementById('timer');
-setInterval(function(){ if(total > 0){ total--; }
-var m = Math.floor(total/60), s = total%60;
-el.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s; }, 1000);
-
+  var started = false;
+  var remain = {1: 1200, 2: 2400};
   var task = 1;
   var areas = {1: document.getElementById('wtext1'), 2: document.getElementById('wtext2')};
   var mins = {1: 150, 2: 250};
+  var el = document.getElementById('timer');
+  var warn = document.getElementById('wWarn');
   function words(t){ var v = t.trim(); return v ? v.split(/\s+/).length : 0; }
+  function fmt(s){ var m = Math.floor(s / 60), ss = s % 60; return (m < 10 ? '0' : '') + m + ':' + (ss < 10 ? '0' : '') + ss; }
   function draw(){
     var n = words(areas[task].value);
     document.getElementById('wcount').textContent = n;
     document.getElementById('wmin').textContent = mins[task];
     document.getElementById('wbar').style.width = Math.min(100, n / mins[task] * 100) + '%';
+    document.getElementById('wc1').textContent = words(areas[1].value);
+    document.getElementById('wc2').textContent = words(areas[2].value);
+  }
+  function drawTimer(){
+    el.textContent = fmt(remain[task]);
+    if(started && remain[task] === 0){ warn.style.display = ''; warn.textContent = 'Time is up for Task ' + task; }
+    else if(started && remain[task] <= 300){ warn.style.display = ''; warn.textContent = '5 minutes left for Task ' + task; }
+    else if(started && remain[task] <= 600){ warn.style.display = ''; warn.textContent = '10 minutes left for Task ' + task; }
+    else { warn.style.display = 'none'; }
   }
   function setTask(t){
     task = t;
@@ -369,13 +442,23 @@ el.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s; }, 1000);
     document.getElementById('wp2').classList.toggle('hide', t !== 2);
     areas[1].classList.toggle('hide', t !== 1);
     areas[2].classList.toggle('hide', t !== 2);
-    draw();
+    document.getElementById('wb1').classList.toggle('on', t === 1);
+    document.getElementById('wb2').classList.toggle('on', t === 2);
+    draw(); drawTimer();
   }
   document.getElementById('tab1').addEventListener('click', function(){ setTask(1); });
   document.getElementById('tab2').addEventListener('click', function(){ setTask(2); });
+  document.getElementById('wb1').addEventListener('click', function(){ setTask(1); });
+  document.getElementById('wb2').addEventListener('click', function(){ setTask(2); });
   areas[1].addEventListener('input', draw);
   areas[2].addEventListener('input', draw);
-  draw();
+  setInterval(function(){ if(started && remain[task] > 0){ remain[task]--; drawTimer(); } }, 1000);
+  document.getElementById('wStart').addEventListener('click', function(){
+    started = true;
+    document.getElementById('wDlg').classList.remove('open');
+    drawTimer();
+  });
+  draw(); drawTimer();
 })();
 </script>
 </body></html>

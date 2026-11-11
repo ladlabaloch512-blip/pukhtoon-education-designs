@@ -314,6 +314,65 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
  .q-actions .btn{flex:1 1 42%}
 }
 </style>
+<style>
+.dlg-wrap{position:fixed;inset:0;background:rgba(10,10,14,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.dlg-wrap.open{display:flex}
+.dlg{background:#fff;border-radius:16px;max-width:470px;width:100%;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.dlg h3{margin:0 0 10px;font-size:22px}
+.dlg p{font-size:15.5px;line-height:1.6;color:#2b3138;margin:0 0 20px}
+.dlg-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.markchk{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;padding:10px 8px;cursor:pointer}
+.markchk input{width:18px;height:18px;accent-color:var(--red)}
+</style>
+<style>
+/* ---------- design polish pass ---------- */
+body{line-height:1.55}
+h1.page-title{line-height:1.12;letter-spacing:-.02em}
+.section-title{letter-spacing:-.01em;line-height:1.2;margin-top:38px}
+.page-sub{line-height:1.55}
+h2,h3,h4{line-height:1.25}
+.sidebar{padding:26px 18px 20px}
+.brandplate{padding:10px 12px;box-shadow:0 4px 14px rgba(0,0,0,.25);margin-bottom:24px}
+.side-nav{gap:6px}
+.side-nav a{padding:12px 14px;border-radius:11px;transition:background .18s ease,color .18s ease}
+.side-nav a.active{box-shadow:0 8px 18px -8px rgba(226,35,26,.55)}
+.side-foot{border-top:1px solid #23242c;padding-top:16px}
+.side-user{background:#17181f;border:1px solid #23242c;border-radius:12px;padding:10px 12px}
+.logout-btn{margin-top:10px;border-radius:11px}
+.card,.panel,.dash-card,.table-card,.palette-card,.q-card,.passage-card{border-color:#e3e7ec;box-shadow:0 1px 2px rgba(16,24,40,.04),0 10px 26px -20px rgba(16,24,40,.28)}
+.panel,.dash-card,.table-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.pkg-card,.hub-card,.hub-big,.module-card,.cat-card{border-radius:16px}
+.mock-card,.course-card,.prac-card,.tense-card,.fm-card,.cat-card,.module-card,.hub-card{transition:transform .18s ease,box-shadow .18s ease}
+@media (hover:hover) and (pointer:fine){
+.mock-card:hover,.course-card:hover,.prac-card:hover,.tense-card:hover,.fm-card:hover,.cat-card:hover,.module-card:hover,.hub-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(16,24,40,.30)}
+}
+.btn{border-radius:10px;letter-spacing:.1px;transition:background .15s ease,box-shadow .15s ease}
+.btn-red{box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.btn-dark{box-shadow:0 8px 16px -12px rgba(16,24,40,.6)}
+.tagchip{border-radius:999px}
+.tagchip.on{box-shadow:inset 0 0 0 1px #c9ced6}
+.badge{letter-spacing:.4px}
+.progress{height:10px;background:#e8ebee}
+.progress i{transition:width .8s ease}
+table{font-variant-numeric:tabular-nums}
+.attempts th{background:#14161c;font-size:13.5px;letter-spacing:.6px;text-transform:uppercase;padding:14px 20px}
+.attempts td{padding:14px 20px}
+.attempts tr:hover td{background:#f6f8fa}
+.field input:focus,.finput:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(226,35,26,.12);outline:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tp-side{padding-top:20px}
+.tp-logo{box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.tp-ic{border-radius:13px;transition:background .15s ease,color .15s ease}
+.tp-ic.active{box-shadow:inset 0 0 0 1px #3a3b46}
+.tp-head{padding:18px 26px}
+.timer-chip{border-radius:10px;box-shadow:0 8px 16px -10px rgba(226,35,26,.7)}
+.palette button{border-radius:8px;transition:transform .12s ease,background .12s ease}
+@media (hover:hover) and (pointer:fine){.palette button:hover{transform:translateY(-1px)}}
+.palette-card,.q-card,.passage-card{border-radius:14px}
+.stat b{font-variant-numeric:tabular-nums}
+.footer-strip{border-radius:14px}
+.hero{border-radius:18px}
+</style>
 </head>
 <body>
 
@@ -330,7 +389,7 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 <div class="tp-main">
 <div class="tp-head"><h1>Reading Practice Test</h1><div class="spacer"></div>
 <span class="timer-chip">Time Remaining: <span id="timer">59:47</span></span>
-<a class="btn btn-dark" href="results.html">Submit Test</a></div>
+<button class="btn btn-dark" type="button" id="submitBtn">Submit Test</button></div>
 <div class="mobilebar" style="padding:14px 16px 0"><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
 <a class="btn btn-red" href="mock-tests.html" style="padding:9px 16px">All Tests</a></div>
 <div class="tp-body">
@@ -353,7 +412,7 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 </form>
 <div class="q-actions">
 <button class="btn btn-red" type="button" id="prevBtn">Previous</button>
-<button class="btn btn-dark" type="button" id="markBtn">Mark for Review</button>
+<button class="btn btn-dark" type="button" id="markBtn">Mark for Review</button><label class="markchk"><input type="checkbox" id="markChk"> Mark for review</label>
 <button class="btn btn-red" type="button" id="clearBtn">Clear Response</button>
 <button class="btn btn-dark" type="button" id="nextBtn">Next &amp; Save</button>
 </div></div>
@@ -361,7 +420,7 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 </div>
 </div>
 </div>
-<script>
+<div class="dlg-wrap" id="submitDlg"><div class="dlg"><h3>Submit Test?</h3><p id="dlgText"></p><div class="dlg-actions"><button class="btn btn-outline" type="button" id="dlgCancel">Cancel</button><a class="btn btn-red" href="results.html">Submit Test</a></div></div></div><script>
 (function(){
   var total = 59*60 + 47, el = document.getElementById('timer');
   setInterval(function(){ if(total > 0){ total--; }
@@ -379,4 +438,47 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
   paint();
 })();
 </script>
-</body></html>
+<script>(function(){
+  var palBtns = Array.prototype.slice.call(document.querySelectorAll('#palette button'));
+  var chk = document.getElementById('markChk');
+  var curQ = 1;
+  var qn = document.getElementById('qnum');
+  if(qn && parseInt(qn.textContent, 10)){ curQ = parseInt(qn.textContent, 10); }
+  else { palBtns.forEach(function(b){ if(b.classList.contains('current')){ curQ = parseInt(b.getAttribute('data-q'), 10); } }); }
+  function syncChk(){ if(chk && palBtns[curQ - 1]){ chk.checked = palBtns[curQ - 1].classList.contains('marked'); } }
+  palBtns.forEach(function(b){ b.addEventListener('click', function(){ curQ = parseInt(b.getAttribute('data-q'), 10); syncChk(); }); });
+  function nav(d){ return function(){ curQ = Math.min(40, Math.max(1, curQ + d)); syncChk(); }; }
+  var nb = document.getElementById('nextBtn'), pb = document.getElementById('prevBtn');
+  if(nb){ nb.addEventListener('click', nav(1)); }
+  if(pb){ pb.addEventListener('click', nav(-1)); }
+  var mb = document.getElementById('markBtn');
+  if(mb){ mb.addEventListener('click', function(){ setTimeout(syncChk, 0); }); }
+  if(chk){ chk.addEventListener('change', function(){
+    var b = palBtns[curQ - 1]; if(!b){ return; }
+    if(chk.checked){ b.classList.add('marked'); b.classList.remove('done'); } else { b.classList.remove('marked'); }
+  }); }
+  syncChk();
+  var dlg = document.getElementById('submitDlg'), txt = document.getElementById('dlgText');
+  var sb = document.getElementById('submitBtn');
+  if(sb){ sb.addEventListener('click', function(){
+    var un = palBtns.filter(function(b){ return !b.classList.contains('done'); }).length;
+    txt.textContent = un > 0
+      ? ('You have ' + un + ' unanswered questions out of 40. Are you sure you want to submit? This will be recorded as a completed attempt.')
+      : 'You have answered all 40 questions. Are you sure you want to submit? This will be recorded as a completed attempt.';
+    dlg.classList.add('open');
+  }); }
+  var dc = document.getElementById('dlgCancel');
+  if(dc){ dc.addEventListener('click', function(){ dlg.classList.remove('open'); }); }
+  if(dlg){ dlg.addEventListener('click', function(e){ if(e.target === dlg){ dlg.classList.remove('open'); } }); }
+  var vs = document.getElementById('volSlider'), vv = document.getElementById('volVal'), mbtn = document.getElementById('muteBtn');
+  if(vs){
+    var lastVol = 80;
+    function drawVol(){ vv.textContent = (parseInt(vs.value, 10) === 0) ? 'Muted' : 'Volume: ' + vs.value + '%'; }
+    vs.addEventListener('input', function(){ if(parseInt(vs.value, 10) > 0){ lastVol = parseInt(vs.value, 10); } drawVol(); });
+    if(mbtn){ mbtn.addEventListener('click', function(){
+      if(parseInt(vs.value, 10) > 0){ lastVol = parseInt(vs.value, 10); vs.value = 0; } else { vs.value = lastVol; }
+      drawVol();
+    }); }
+    drawVol();
+  }
+})();</script></body></html>
