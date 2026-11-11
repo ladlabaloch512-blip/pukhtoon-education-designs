@@ -256,6 +256,149 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 .opt input{width:19px;height:19px;accent-color:var(--red)}
 .q-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .q-actions .btn{padding:11px 18px;font-size:14.5px}
+
+/* ---------- animations & new components ---------- */
+html{scroll-behavior:smooth}
+@keyframes fadeUp{from{opacity:.85;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .7s ease both}
+@keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.progress i,.perf-fill{transform-origin:left center;animation:growX 1.2s ease .25s both}
+.lift{transition:transform .25s ease,box-shadow .25s ease}
+.side-nav a{transition:background .2s ease,color .2s ease,transform .2s ease}
+.side-nav a:hover{transform:translateX(4px)}
+.btn{transition:background .2s ease,transform .2s ease}
+.support-box{margin-top:14px}
+@media (hover:hover) and (pointer:fine){
+ .lift:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(16,24,40,.12)}
+ .btn:hover{transform:translateY(-1px)}
+}
+/* marquee */
+.marquee{background:#14161c;border-radius:12px;overflow:hidden;padding:13px 0;margin-bottom:6px}
+.marquee-track{display:flex;width:max-content;animation:scrollX 30s linear infinite}
+.mq-group{display:flex;align-items:center;gap:30px;padding-right:30px;color:#e8eaee;font-weight:700;font-size:15.5px;white-space:nowrap}
+.mq-group .dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex:0 0 8px}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+@media (hover:hover) and (pointer:fine){.marquee:hover .marquee-track{animation-play-state:paused}}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:26px 0 4px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center}
+.stat b{font-size:37px;color:var(--red);display:block;line-height:1.1}
+.stat span{color:var(--mut);font-size:15px}
+/* why / features */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.why-card .ic{width:46px;height:46px;border-radius:11px;background:var(--red-soft);color:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.why-card h3{margin:0 0 8px;font-size:19.5px}
+.why-card p{margin:0;color:#3f4750;font-size:15px;line-height:1.6}
+/* band explainer */
+.bandx{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 28px}
+.bandx p{color:#3f4750;font-size:15.5px;line-height:1.65;margin:0 0 16px}
+.bandx-row{display:flex;align-items:center;gap:18px;padding:11px 0;border-top:1px solid #eef0f2;font-size:15.5px}
+.bandx-row .bv{background:var(--ink);color:#fff;font-weight:800;border-radius:8px;padding:5px 0;width:56px;text-align:center;flex:0 0 56px}
+.bandx-row .bv.red{background:var(--red)}
+.bandx-row b{min-width:150px}
+.bandx-row span{color:#3f4750}
+/* achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ach-card{background:#14161c;color:#fff;border-radius:14px;padding:22px 24px}
+.ach-card .ab{font-size:40px;font-weight:800;color:#ff5a4e;line-height:1}
+.ach-card h4{margin:8px 0 4px;font-size:17.5px}
+.ach-card p{margin:0;color:#aeb4bd;font-size:14px;line-height:1.5}
+/* faq */
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:17px 22px;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;transition:transform .25s ease}
+.faq details[open ] summary:after{transform:rotate(45deg)}
+.faq .faq-body{padding:0 22px 18px;color:#3f4750;font-size:15px;line-height:1.65;animation:fadeUp .35s ease both}
+/* steps with text */
+.step small{display:block;font-weight:400;color:var(--mut);font-size:13.5px;margin-top:3px;line-height:1.45}
+/* activity + tips */
+.two-col{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;margin-top:24px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.panel h3{margin:0 0 16px;font-size:21px}
+.act-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid #eef0f2;font-size:15.5px}
+.act-row:first-of-type{border-top:0}
+.act-row .grow{flex:1;min-width:0}
+.act-row .grow b{display:block;font-size:16px}
+.act-row .grow span{color:var(--mut);font-size:13.5px}
+.band-chip{background:var(--red-soft);color:var(--red);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
+.act-row .view{color:var(--red);font-weight:700;flex:0 0 auto}
+.tip{display:flex;gap:12px;padding:10px 0;border-top:1px solid #eef0f2;font-size:15px;line-height:1.55;color:#2b3138}
+.tip:first-of-type{border-top:0}
+.tip .ck{color:var(--green);flex:0 0 20px;margin-top:1px}
+.fullmock-banner{margin-top:24px;background:linear-gradient(96deg,#160404,#8f0a1f 55%,#e2231a);border-radius:14px;color:#fff;padding:24px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fullmock-banner h3{margin:0;font-size:23px}
+.fullmock-banner p{margin:4px 0 0;color:#ffd9d6;font-size:15px}
+.fullmock-banner .spacer{flex:1}
+/* course card extras */
+.course-body .cdesc{color:#3f4750;font-size:14.5px;line-height:1.55;margin:0 0 14px;min-height:66px}
+.course-specs{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:13.5px;margin-bottom:14px}
+.course-specs span{display:inline-flex;align-items:center;gap:6px}
+/* comparison table */
+.cmp-scroll{overflow-x:auto}
+table.cmp{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:640px}
+.cmp th,.cmp td{padding:14px 18px;font-size:15.5px;text-align:center;border-top:1px solid #eef0f2}
+.cmp th{background:#191c22;color:#fff;text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:600}
+.cmp td .ck{color:var(--green)}
+.cmp td .no{color:#b7bec6;font-weight:700}
+.cmp td.hl{background:#fdf3f2;font-weight:700}
+/* detail pages */
+.meta-chips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.mchip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;color:#2b3138}
+.video-ph{background:#14161c;border-radius:14px;aspect-ratio:16/7;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:12px;position:relative;overflow:hidden;text-align:center;padding:20px}
+.video-ph .playb{width:74px;height:74px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff}
+.video-ph h3{margin:0;font-size:21px}
+.video-ph p{margin:0;color:#aeb4bd;font-size:14.5px}
+.video-ph .dur{position:absolute;bottom:14px;right:16px;background:rgba(255,255,255,.16);border-radius:7px;padding:4px 11px;font-size:13.5px;font-weight:700}
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.learn-item{display:flex;gap:11px;font-size:15.5px;line-height:1.5;padding:7px 0}
+.learn-item .ck{color:var(--green);flex:0 0 20px;margin-top:1px}
+.curr-row{display:flex;align-items:center;gap:15px;padding:14px 4px;border-top:1px solid #eef0f2;font-size:15.5px}
+.curr-row:first-of-type{border-top:0}
+.curr-row .n{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--red-soft);color:var(--red);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14.5px}
+.curr-row .grow{flex:1;min-width:0}
+.curr-row .dur{color:var(--mut);font-size:14px}
+.curr-row .pv{color:var(--green);font-weight:700;font-size:13.5px}
+.enrol-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:22px}
+.enrol-card .price{font-size:30px;font-weight:800;color:var(--green);margin-bottom:6px}
+.enrol-card ul{list-style:none;margin:16px 0 0;padding:0}
+.enrol-card li{display:flex;gap:10px;padding:6px 0;font-size:15px;color:#2b3138}
+.enrol-card li .ck{color:var(--green);flex:0 0 20px}
+.note-box{background:#fdf3f2;border:1px solid #f3a49f;border-radius:12px;padding:16px 20px;font-size:14.5px;line-height:1.6;color:#4a2320}
+.note-box a{color:var(--red);font-weight:700}
+.inst{display:flex;gap:16px;align-items:center}
+.inst .avatar{width:58px;height:58px;flex:0 0 58px;font-size:21px}
+.inst h4{margin:0 0 3px;font-size:18px}
+.inst p{margin:0;color:var(--mut);font-size:14px;line-height:1.5}
+/* review table */
+.res-chip{display:inline-block;border-radius:999px;padding:4px 13px;font-size:13.5px;font-weight:700;color:#fff}
+.res-ok{background:var(--green)}
+.res-bad{background:var(--red)}
+table.review td .wrong{color:var(--red);font-weight:600}
+/* test player legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #eef0f2;font-size:13px;color:#3f4750}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.legend .lg-done{background:#35a852}.legend .lg-marked{background:var(--red)}.legend .lg-cur{background:#2f7fe0}.legend .lg-todo{background:#d4d7db}
+/* login extras */
+.login-feats{list-style:none;margin:30px 0 0;padding:0;text-align:left}
+.login-feats li{display:flex;gap:11px;align-items:center;padding:7px 0;font-size:16.5px;color:#ffe3e1}
+.login-feats .ck{color:#fff;flex:0 0 22px}
+@media (max-width:1180px){
+ .why-grid{grid-template-columns:1fr}
+ .ach-grid{grid-template-columns:1fr}
+ .two-col{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .learn-grid{grid-template-columns:1fr}
+ .bandx-row{flex-wrap:wrap;gap:8px}
+ .bandx-row b{min-width:0}
+ .fullmock-banner{padding:20px}
+}
+
 /* ---------- responsive ---------- */
 @media (max-width:1180px){
  .modules{grid-template-columns:repeat(2,1fr)}
@@ -296,33 +439,5 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 </style>
 </head>
 <body>
-
-<div class="login-wrap">
-<div class="login-left">
-<div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div>
-<h1>Welcome to<br>Pukhtoon Education</h1>
-<p>Empowering communities through<br>knowledge and heritage.</p>
-</div>
-<div class="login-right">
-<div class="lang-row">Language <span class="lang-chip">English / Pashto &#9662;</span><a class="lang-x" href="index.html" aria-label="Close">&times;</a></div>
-<div class="login-form">
-<div class="auth-tabs"><a href="login.html" class="on">Sign In</a><a href="login.html">Sign Up</a></div>
-<h2>Welcome back<br>Login to your account</h2>
-<p class="sub">Enter your credentials to continue</p>
-<form action="dashboard.html">
-<div class="field"><input type="text" placeholder="Email or Username" required></div>
-<div class="field"><input type="password" placeholder="Password" required></div>
-<div class="form-row"><label><input type="checkbox"> Remember me</label><a href="login.html">Forgot Password?</a></div>
-<button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Sign In</button>
-</form>
-<div class="or-row">or continue with</div>
-<div class="social-row">
-<button class="social-btn" type="button" style="color:#ea4335">G</button>
-<button class="social-btn" type="button" style="color:#1877f2">f</button>
-<button class="social-btn" type="button" style="color:#14181d">&#63743;</button>
-</div>
-<p class="switch-line">Don't have an account? <a href="login.html">Sign Up</a></p>
-</div>
-</div>
-</div>
+<div class="login-wrap"><div class="login-left anim"><div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div><h1>Welcome to<br>Pukhtoon Education</h1><p>Empowering communities through<br>knowledge and heritage.</p><ul class="login-feats"><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Timed IELTS mock tests with instant band scores</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Video courses you can watch anytime</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Full results history and progress tracking</li></ul></div><div class="login-right"><div class="lang-row">Language <span class="lang-chip">English / Pashto &#9662;</span><a class="lang-x" href="index.html" aria-label="Close">&times;</a></div><div class="login-form anim" style="animation-delay:.1s"><div class="auth-tabs"><a href="login.html" class="on">Sign In</a><a href="login.html">Sign Up</a></div><h2>Welcome back<br>Login to your account</h2><p class="sub">Enter your credentials to continue</p><form action="dashboard.html"><div class="field"><input type="text" placeholder="Email or Username" required></div><div class="field"><input type="password" placeholder="Password" required></div><div class="form-row"><label><input type="checkbox"> Remember me</label><a href="login.html">Forgot Password?</a></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Sign In</button></form><div class="or-row">or continue with</div><div class="social-row"><button class="social-btn" type="button" style="color:#ea4335">G</button><button class="social-btn" type="button" style="color:#1877f2">f</button><button class="social-btn" type="button" style="color:#14181d">&#63743;</button></div><p class="switch-line">Don't have an account? <a href="login.html">Sign Up</a></p></div></div></div>
 </body></html>

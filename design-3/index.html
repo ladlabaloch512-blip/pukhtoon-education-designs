@@ -256,6 +256,149 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 .opt input{width:19px;height:19px;accent-color:var(--red)}
 .q-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .q-actions .btn{padding:11px 18px;font-size:14.5px}
+
+/* ---------- animations & new components ---------- */
+html{scroll-behavior:smooth}
+@keyframes fadeUp{from{opacity:.85;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .7s ease both}
+@keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.progress i,.perf-fill{transform-origin:left center;animation:growX 1.2s ease .25s both}
+.lift{transition:transform .25s ease,box-shadow .25s ease}
+.side-nav a{transition:background .2s ease,color .2s ease,transform .2s ease}
+.side-nav a:hover{transform:translateX(4px)}
+.btn{transition:background .2s ease,transform .2s ease}
+.support-box{margin-top:14px}
+@media (hover:hover) and (pointer:fine){
+ .lift:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(16,24,40,.12)}
+ .btn:hover{transform:translateY(-1px)}
+}
+/* marquee */
+.marquee{background:#14161c;border-radius:12px;overflow:hidden;padding:13px 0;margin-bottom:6px}
+.marquee-track{display:flex;width:max-content;animation:scrollX 30s linear infinite}
+.mq-group{display:flex;align-items:center;gap:30px;padding-right:30px;color:#e8eaee;font-weight:700;font-size:15.5px;white-space:nowrap}
+.mq-group .dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex:0 0 8px}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+@media (hover:hover) and (pointer:fine){.marquee:hover .marquee-track{animation-play-state:paused}}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:26px 0 4px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center}
+.stat b{font-size:37px;color:var(--red);display:block;line-height:1.1}
+.stat span{color:var(--mut);font-size:15px}
+/* why / features */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.why-card .ic{width:46px;height:46px;border-radius:11px;background:var(--red-soft);color:var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.why-card h3{margin:0 0 8px;font-size:19.5px}
+.why-card p{margin:0;color:#3f4750;font-size:15px;line-height:1.6}
+/* band explainer */
+.bandx{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 28px}
+.bandx p{color:#3f4750;font-size:15.5px;line-height:1.65;margin:0 0 16px}
+.bandx-row{display:flex;align-items:center;gap:18px;padding:11px 0;border-top:1px solid #eef0f2;font-size:15.5px}
+.bandx-row .bv{background:var(--ink);color:#fff;font-weight:800;border-radius:8px;padding:5px 0;width:56px;text-align:center;flex:0 0 56px}
+.bandx-row .bv.red{background:var(--red)}
+.bandx-row b{min-width:150px}
+.bandx-row span{color:#3f4750}
+/* achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ach-card{background:#14161c;color:#fff;border-radius:14px;padding:22px 24px}
+.ach-card .ab{font-size:40px;font-weight:800;color:#ff5a4e;line-height:1}
+.ach-card h4{margin:8px 0 4px;font-size:17.5px}
+.ach-card p{margin:0;color:#aeb4bd;font-size:14px;line-height:1.5}
+/* faq */
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:17px 22px;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;transition:transform .25s ease}
+.faq details[open ] summary:after{transform:rotate(45deg)}
+.faq .faq-body{padding:0 22px 18px;color:#3f4750;font-size:15px;line-height:1.65;animation:fadeUp .35s ease both}
+/* steps with text */
+.step small{display:block;font-weight:400;color:var(--mut);font-size:13.5px;margin-top:3px;line-height:1.45}
+/* activity + tips */
+.two-col{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;margin-top:24px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.panel h3{margin:0 0 16px;font-size:21px}
+.act-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid #eef0f2;font-size:15.5px}
+.act-row:first-of-type{border-top:0}
+.act-row .grow{flex:1;min-width:0}
+.act-row .grow b{display:block;font-size:16px}
+.act-row .grow span{color:var(--mut);font-size:13.5px}
+.band-chip{background:var(--red-soft);color:var(--red);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
+.act-row .view{color:var(--red);font-weight:700;flex:0 0 auto}
+.tip{display:flex;gap:12px;padding:10px 0;border-top:1px solid #eef0f2;font-size:15px;line-height:1.55;color:#2b3138}
+.tip:first-of-type{border-top:0}
+.tip .ck{color:var(--green);flex:0 0 20px;margin-top:1px}
+.fullmock-banner{margin-top:24px;background:linear-gradient(96deg,#160404,#8f0a1f 55%,#e2231a);border-radius:14px;color:#fff;padding:24px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fullmock-banner h3{margin:0;font-size:23px}
+.fullmock-banner p{margin:4px 0 0;color:#ffd9d6;font-size:15px}
+.fullmock-banner .spacer{flex:1}
+/* course card extras */
+.course-body .cdesc{color:#3f4750;font-size:14.5px;line-height:1.55;margin:0 0 14px;min-height:66px}
+.course-specs{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:13.5px;margin-bottom:14px}
+.course-specs span{display:inline-flex;align-items:center;gap:6px}
+/* comparison table */
+.cmp-scroll{overflow-x:auto}
+table.cmp{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:640px}
+.cmp th,.cmp td{padding:14px 18px;font-size:15.5px;text-align:center;border-top:1px solid #eef0f2}
+.cmp th{background:#191c22;color:#fff;text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:600}
+.cmp td .ck{color:var(--green)}
+.cmp td .no{color:#b7bec6;font-weight:700}
+.cmp td.hl{background:#fdf3f2;font-weight:700}
+/* detail pages */
+.meta-chips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.mchip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;color:#2b3138}
+.video-ph{background:#14161c;border-radius:14px;aspect-ratio:16/7;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:12px;position:relative;overflow:hidden;text-align:center;padding:20px}
+.video-ph .playb{width:74px;height:74px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff}
+.video-ph h3{margin:0;font-size:21px}
+.video-ph p{margin:0;color:#aeb4bd;font-size:14.5px}
+.video-ph .dur{position:absolute;bottom:14px;right:16px;background:rgba(255,255,255,.16);border-radius:7px;padding:4px 11px;font-size:13.5px;font-weight:700}
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}
+.learn-item{display:flex;gap:11px;font-size:15.5px;line-height:1.5;padding:7px 0}
+.learn-item .ck{color:var(--green);flex:0 0 20px;margin-top:1px}
+.curr-row{display:flex;align-items:center;gap:15px;padding:14px 4px;border-top:1px solid #eef0f2;font-size:15.5px}
+.curr-row:first-of-type{border-top:0}
+.curr-row .n{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--red-soft);color:var(--red);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14.5px}
+.curr-row .grow{flex:1;min-width:0}
+.curr-row .dur{color:var(--mut);font-size:14px}
+.curr-row .pv{color:var(--green);font-weight:700;font-size:13.5px}
+.enrol-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:22px}
+.enrol-card .price{font-size:30px;font-weight:800;color:var(--green);margin-bottom:6px}
+.enrol-card ul{list-style:none;margin:16px 0 0;padding:0}
+.enrol-card li{display:flex;gap:10px;padding:6px 0;font-size:15px;color:#2b3138}
+.enrol-card li .ck{color:var(--green);flex:0 0 20px}
+.note-box{background:#fdf3f2;border:1px solid #f3a49f;border-radius:12px;padding:16px 20px;font-size:14.5px;line-height:1.6;color:#4a2320}
+.note-box a{color:var(--red);font-weight:700}
+.inst{display:flex;gap:16px;align-items:center}
+.inst .avatar{width:58px;height:58px;flex:0 0 58px;font-size:21px}
+.inst h4{margin:0 0 3px;font-size:18px}
+.inst p{margin:0;color:var(--mut);font-size:14px;line-height:1.5}
+/* review table */
+.res-chip{display:inline-block;border-radius:999px;padding:4px 13px;font-size:13.5px;font-weight:700;color:#fff}
+.res-ok{background:var(--green)}
+.res-bad{background:var(--red)}
+table.review td .wrong{color:var(--red);font-weight:600}
+/* test player legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #eef0f2;font-size:13px;color:#3f4750}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.legend .lg-done{background:#35a852}.legend .lg-marked{background:var(--red)}.legend .lg-cur{background:#2f7fe0}.legend .lg-todo{background:#d4d7db}
+/* login extras */
+.login-feats{list-style:none;margin:30px 0 0;padding:0;text-align:left}
+.login-feats li{display:flex;gap:11px;align-items:center;padding:7px 0;font-size:16.5px;color:#ffe3e1}
+.login-feats .ck{color:#fff;flex:0 0 22px}
+@media (max-width:1180px){
+ .why-grid{grid-template-columns:1fr}
+ .ach-grid{grid-template-columns:1fr}
+ .two-col{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .learn-grid{grid-template-columns:1fr}
+ .bandx-row{flex-wrap:wrap;gap:8px}
+ .bandx-row b{min-width:0}
+ .fullmock-banner{padding:20px}
+}
+
 /* ---------- responsive ---------- */
 @media (max-width:1180px){
  .modules{grid-template-columns:repeat(2,1fr)}
@@ -297,22 +440,25 @@ table.attempts{width:100%;border-collapse:separate;border-spacing:0;background:#
 </head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
-<div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div>
-<nav class="side-nav"><a href="dashboard.html" class="active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a><a href="courses.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>My Courses</span></a><a href="mock-tests.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Interactive Modules</span></a><a href="mock-tests.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Assessments</span></a><a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg><span>Messages</span></a><a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/></svg><span>Settings</span></a></nav>
-
-</aside><main class="main"><div class="mobilebar"><label class="burger" for="navtoggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span></div>
-<div class="topbar"><div class="spacer"></div>
-<label class="searchbox"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input type="text" placeholder="Search"></label>
-<span class="bell"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="dot"></span></span>
-<span class="userchip"><span class="avatar">A</span></span></div>
-<section class="hero"><h1>Empower Your Future</h1><p>Welcome to Pukhtoon Education Portal</p>
-<a class="btn btn-white" href="dashboard.html">Get Started</a><a class="btn btn-ghost" href="courses.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg> Watch Intro</a></section>
-<h2 class="section-title">Interactive Modules</h2>
-<div class="modules"><div class="module-card"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><h3>Listening</h3><p>Listen to conversations and lectures and sharpen your listening with timed practice.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h3>Reading</h3><p>Read academic passages and answer questions about the main ideas and details.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></span><h3>Writing</h3><p>Write a short report and an essay with clear structure and accurate grammar.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span><h3>Speaking</h3><p>Practise speaking on familiar topics and express your ideas with confidence.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div></div>
-<h2 class="section-title">Feature Courses &amp; Video Lessons</h2>
-<div class="feat-grid"><div class="feat-card"><span class="badge" style="background:#fff;color:#14181d">Free</span><h4>Introduction &amp; Basics</h4><span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><p>Introduction &amp; Basics</p></div><div class="feat-card"><span class="badge badge-paid-red">Paid</span><h4>Advanced Grammar Masterclass</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>Advanced Grammar Masterclass</p></div><div class="feat-card"><span class="badge badge-paid-red">Paid</span><h4>Fluent Speaking Exercises</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>Fluent Speaking Exercises</p></div><div class="feat-card"><span class="badge badge-paid-red">Paid</span><h4>IELTS &amp; Exams Preparation</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>IELTS &amp; Exams Preparation</p></div></div>
-<h2 class="section-title">How It Works</h2>
-<div class="steps"><div class="step"><span class="n">1</span>Join Platform</div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">2</span>Choose Module</div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">3</span>Attend Video Lessons</div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">4</span>Track Progress</div></div>
-<div class="footer-strip"><span>&copy; 2024 Pukhtoon Education. All rights reserved.</span>
-<span><b>Contact:</b> fazalbari665@gmail.com &nbsp;|&nbsp; <b>WhatsApp</b> 0314-1513815</span></div>
-</main></div></body></html>
+<div class="brandplate"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div>
+<nav class="side-nav"><a href="dashboard.html" class="active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a><a href="courses.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>My Courses</span></a><a href="mock-tests.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg><span>Mock Tests</span></a><a href="results.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg><span>Results</span></a><a href="packages.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.5 13 7 22 12 19 17 22 15.5 13"/></svg><span>Packages</span></a><a href="dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg><span>Messages</span></a><a href="dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/></svg><span>Settings</span></a><a href="index.html#faq"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>Help</span></a></nav>
+<div class="side-foot"><div class="side-user"><span class="avatar">A</span>Ahmad Khan</div><a class="logout-btn" href="login.html">Log Out</a><div class="support-box"><b>Support:</b>fazalbari665@gmail.com</div></div>
+</aside><main class="main"><div class="mobilebar"><label class="burger" for="navtoggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span></div><div class="topbar"><div class="spacer"></div><label class="searchbox"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input type="text" placeholder="Search"></label><span class="bell"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="dot"></span></span><span class="userchip"><span class="avatar">A</span>Ahmad Khan</span></div><section class="hero anim"><h1>Empower Your Future</h1><p>Welcome to Pukhtoon Education Portal</p><p style="font-size:16.5px;color:#ffb3ae;margin:-12px 0 26px">Prepare for IELTS with timed mock tests, video lessons and instant band scores, all in one student portal.</p><a class="btn btn-white" href="dashboard.html">Get Started</a><a class="btn btn-ghost" href="course-detail.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg> Watch Intro</a></section><div class="marquee anim" style="animation-delay:.15s"><div class="marquee-track"><div class="mq-group"><span>Listening</span><span class="dot"></span><span>Reading</span><span class="dot"></span><span>Writing</span><span class="dot"></span><span>Speaking</span><span class="dot"></span><span>Timed Mock Tests</span><span class="dot"></span><span>Instant Band Scores</span><span class="dot"></span><span>Video Lessons</span><span class="dot"></span><span>Band 9.0 Scale</span><span class="dot"></span></div><div class="mq-group" aria-hidden="true"><span>Listening</span><span class="dot"></span><span>Reading</span><span class="dot"></span><span>Writing</span><span class="dot"></span><span>Speaking</span><span class="dot"></span><span>Timed Mock Tests</span><span class="dot"></span><span>Instant Band Scores</span><span class="dot"></span><span>Video Lessons</span><span class="dot"></span><span>Band 9.0 Scale</span><span class="dot"></span></div></div></div><div class="stats"><div class="stat lift"><b data-count="4">4</b><span>IELTS Modules</span></div><div class="stat lift"><b data-count="45">45</b><span>Mock Tests</span></div><div class="stat lift"><b data-count="6">6</b><span>Video Courses</span></div><div class="stat lift"><b data-count="40">40</b><span>Questions in Every Test</span></div></div><h2 class="section-title">Interactive Modules</h2><div class="modules"><div class="module-card lift anim" style="animation-delay:0s"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><h3>Listening</h3><p>Listen to conversations, lectures and everyday talk, then answer questions under a real timer. Regular listening practice trains your ear for different accents and helps you catch answers the first time you hear them.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card lift anim" style="animation-delay:.08s"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h3>Reading</h3><p>Read academic passages and answer questions about main ideas, details and the writer's views. You will practise skimming, scanning and managing your time across three passages, just like the real test.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card lift anim" style="animation-delay:.16s"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg></span><h3>Writing</h3><p>Write a short report for Task 1 and a full essay for Task 2. Lessons show you how to plan your answer, organise paragraphs and use accurate grammar so your writing reaches a higher band.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div><div class="module-card lift anim" style="animation-delay:.24s"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span><h3>Speaking</h3><p>Practise speaking on familiar topics, then move to longer answers and discussion questions. Timed speaking practice builds fluency and confidence for all three parts of the speaking test.</p><a class="btn btn-dark" href="mock-tests.html">Start</a></div></div><h2 class="section-title">Feature Courses &amp; Video Lessons</h2><div class="feat-grid"><a class="feat-card lift anim" href="course-detail.html"><span class="badge" style="background:#fff;color:#14181d">Free</span><h4>Introduction &amp; Basics</h4><span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><p>Start learning today, free for every student</p></a><a class="feat-card lift anim" style="animation-delay:.08s" href="packages.html"><span class="badge badge-paid-red">Paid</span><h4>Advanced Grammar Masterclass</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>Unlock with a package</p></a><a class="feat-card lift anim" style="animation-delay:.16s" href="packages.html"><span class="badge badge-paid-red">Paid</span><h4>Fluent Speaking Exercises</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>Unlock with a package</p></a><a class="feat-card lift anim" style="animation-delay:.24s" href="packages.html"><span class="badge badge-paid-red">Paid</span><h4>IELTS &amp; Exams Preparation</h4><span class="lock"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p>Unlock with a package</p></a></div><h2 class="section-title">How It Works</h2><div class="steps anim"><div class="step"><span class="n">1</span><div>Join Platform<small>Create your free account and set your target band score.</small></div></div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">2</span><div>Choose Module<small>Pick Listening, Reading, Writing or Speaking and start practising.</small></div></div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">3</span><div>Attend Video Lessons<small>Watch lessons, take timed mock tests and review your answers.</small></div></div><span class="step-arrow">&#8594;</span><div class="step"><span class="n">4</span><div>Track Progress<small>See your band score history and watch yourself improve.</small></div></div></div><h2 class="section-title">Why Pukhtoon Education</h2><div class="why-grid"><div class="why-card lift anim"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>Real Exam Timing</h3><p>Every mock test runs on the same clock as the real IELTS exam, with the same number of questions. When you finish a test here, you know exactly how the real test day will feel, and there are no surprises.</p></div><div class="why-card lift anim" style="animation-delay:.08s"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span><h3>Instant Band Scores</h3><p>The moment you submit a test, your answers are checked and your band score appears on screen. Your full attempt history is saved, so you can compare tests and see your progress week by week.</p></div><div class="why-card lift anim" style="animation-delay:.16s"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></span><h3>Video Lessons Anytime</h3><p>Course lessons are recorded videos that you can watch on your phone, tablet or computer, as many times as you like. Pause, rewind and repeat the parts you find difficult until they are clear.</p></div><div class="why-card lift anim" style="animation-delay:.24s"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></span><h3>Teacher Support on WhatsApp</h3><p>Stuck on a question or confused about a package? Message the teacher on WhatsApp at 0314-1513815 and get guidance directly. Paid packages are confirmed on WhatsApp and activated by the admin, personally.</p></div></div><h2 class="section-title">What Your Band Score Means</h2><div class="bandx anim"><p>IELTS scores are reported on a 9-band scale, from Band 1 (non-user) to Band 9 (expert user). Each module, Listening, Reading, Writing and Speaking, gets its own band score, and your overall score is the average of the four. Most universities ask for Band 6.0 to 7.5, so knowing what each band means helps you set a clear target.</p><div class="bandx-row"><span class="bv red">9.0</span><b>Expert user</b><span>Full command of English. Accurate, fluent and completely understood in every situation.</span></div><div class="bandx-row"><span class="bv red">8.0</span><b>Very good user</b><span>Handles complex language very well, with only occasional small mistakes.</span></div><div class="bandx-row"><span class="bv">7.0</span><b>Good user</b><span>Good command of English and can handle detailed arguments, with some inaccuracies.</span></div><div class="bandx-row"><span class="bv">6.0</span><b>Competent user</b><span>Generally effective command of English despite some mistakes and misunderstandings.</span></div><div class="bandx-row"><span class="bv">5.0</span><b>Modest user</b><span>Partial command of English. Can handle basic communication in familiar situations.</span></div></div><h2 class="section-title">Recent Band Scores on the Platform</h2><div class="ach-grid"><div class="ach-card lift anim"><div class="ab">7.5</div><h4>Overall Band</h4><p>IELTS Practice Test 4, full attempt with all four modules completed in one sitting.</p></div><div class="ach-card lift anim" style="animation-delay:.08s"><div class="ab">8.0</div><h4>Listening Band</h4><p>Listening Mock Test, 40 questions answered inside the 40 minute limit.</p></div><div class="ach-card lift anim" style="animation-delay:.16s"><div class="ab">7.5</div><h4>Reading Band</h4><p>Reading Module 2, three passages completed with time to spare.</p></div></div><h2 class="section-title" id="faq">Frequently Asked Questions</h2><div class="faq"><details><summary>Is Pukhtoon Education free to join?</summary><div class="faq-body">Yes. Creating an account is free, and free courses and free mock tests are open to every student. Paid courses and paid mock tests unlock when you buy a package.</div></details><details><summary>How do I pay for a package?</summary><div class="faq-body">Payment is manual and simple. Choose a package on the Packages page, then confirm your payment on WhatsApp at 0314-1513815. The admin activates your access after confirmation.</div></details><details><summary>How is my band score calculated?</summary><div class="faq-body">Listening and Reading answers are checked instantly against the official style conversion tables. Writing and Speaking are reviewed by the teacher, and every result is saved in your Results and History page.</div></details><details><summary>Can I retake a test?</summary><div class="faq-body">Yes. You can retake any test from the Mock Tests page, and every attempt is saved separately so you can compare your scores over time.</div></details><details><summary>Which IELTS test should I take, Academic or General Training?</summary><div class="faq-body">Choose Academic if you plan to study at a university, and General Training if you plan to migrate or work abroad. If you are not sure, ask the teacher on WhatsApp before you book your test.</div></details></div><div class="footer-strip"><span>&copy; 2024 Pukhtoon Education. All rights reserved.</span><span><b>Contact:</b> fazalbari665@gmail.com &nbsp;|&nbsp; <b>WhatsApp</b> 0314-1513815</span></div></main></div><script>
+(function(){
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = parseFloat(el.getAttribute('data-count')), dec = parseInt(el.getAttribute('data-dec') || '0'), start = null;
+    function step(ts){ if(!start) start = ts; var p = Math.min((ts - start) / 1200, 1);
+      el.textContent = (target * p).toFixed(dec);
+      if(p < 1){ requestAnimationFrame(step); } else { el.textContent = target.toFixed(dec); } }
+    requestAnimationFrame(step);
+  });
+  document.querySelectorAll('.arc').forEach(function(el){
+    var L = parseFloat(el.getAttribute('data-len')), C = parseFloat(el.getAttribute('data-c'));
+    el.style.strokeDasharray = '0 ' + C;
+    void el.getBoundingClientRect();
+    el.style.transition = 'stroke-dasharray 1.3s ease .15s';
+    el.style.strokeDasharray = L + ' ' + C;
+  });
+})();
+</script>
+</body></html>
