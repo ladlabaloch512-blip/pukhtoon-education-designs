@@ -120,6 +120,9 @@ html.js .anim.in{opacity:1;transform:translateY(0)}
 details.faq{transition:height .38s ease}
 details.faq summary::after{transition:transform .35s ease}
 details.faq[open] summary::after,details.faq.is-open summary::after{transform:rotate(45deg)}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#fff;color:#1F1F23;font-weight:700;font-size:16.5px;border-radius:9px;padding:14px;border:2px solid #fff;transition:transform .3s ease,box-shadow .3s ease}
+.gbtn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,255,255,.14)}
+.gbtn .g{color:#4285F4;font-weight:900;font-size:20px;line-height:1}
 .course{cursor:pointer}
 .tcard[data-href]{cursor:pointer}
 .fchips{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 2px}
@@ -182,9 +185,11 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <label class="field"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#9A9AA3"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#9A9AA3" stroke-width="2.2"/></svg><input type="password" placeholder="Password" value="........"></label>
 <div class="frow"><label style="display:flex;gap:9px;align-items:center"><input type="checkbox" style="width:18px;height:18px;accent-color:var(--red)"> Remember me</label><a href="login.html">Forgot Password?</a></div>
 <button class="btn" type="submit">LOG IN</button>
+<div style="display:flex;align-items:center;gap:14px;margin:22px 0;color:#7C7C86;font-size:14px"><span style="flex:1;height:1px;background:#2A2A31"></span>OR<span style="flex:1;height:1px;background:#2A2A31"></span></div>
+<a class="gbtn" href="onboarding.html"><span class="g">G</span> Continue with Google</a>
 <p class="switch">Don't have an account? <a href="login.html">Sign Up</a></p>
 </form>
-<form class="authcard anim d2" action="dashboard.html" method="get">
+<form class="authcard anim d2" action="onboarding.html" method="get">
 <div class="logobox"><img src="logo.jpg" alt="Pukhtoon Education logo"></div>
 <h2>Sign Up</h2><p class="sub">Create a new account to get started.</p>
 <label class="field"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#9A9AA3"/><path d="M4 20c1.5-3.6 4.5-5 8-5s6.5 1.4 8 5" fill="#9A9AA3"/></svg><input type="text" placeholder="Full Name"></label>

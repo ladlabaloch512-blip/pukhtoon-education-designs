@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Test | Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
+.logo-chip img{height:52px;width:auto;display:block}
+.logo-chip.sm img{height:42px}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
+.btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
+.btn.ghost:hover{border-color:#fff;background:transparent}
+.btn.redtext{background:transparent;color:var(--red)}
+.btn.redtext:hover{background:rgba(226,35,26,.08)}
+header.site{position:sticky;top:0;z-index:50;background:rgba(13,13,16,.97);border-bottom:1px solid #1E1E23}
+.hbar{display:flex;align-items:center;gap:28px;padding:14px 0}
+nav.main{display:flex;gap:30px;margin-left:auto;align-items:center}
+nav.main a{font-size:16.5px;color:#EDEDF0;padding:6px 2px;border-bottom:3px solid transparent}
+nav.main a.active{color:var(--red);border-bottom-color:var(--red)}
+nav.main a:hover{color:var(--red)}
+.hbtns{display:flex;gap:12px;align-items:center;margin-left:8px}
+.hbtns .btn{padding:10px 22px;font-size:15.5px}
+#menu-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
+.burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
+.sec{padding:64px 0 8px}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
+footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
+footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+footer.site li{list-style:none;color:#D8D8DE;margin-bottom:9px;font-size:15.5px}
+footer.site a:hover{color:var(--red)}
+.copy{text-align:center;color:var(--mut2);font-size:14px;padding:18px 0 4px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#3A3A42;border:2px solid #55555F;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
+.bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
+.progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
+.tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
+.tag.free{background:#111;color:#fff;border:1px solid #444}
+.tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{transform:rotate(45deg)}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
+@media(max-width:900px){
+ .burger{display:block}
+ nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
+ nav.main a{padding:12px 2px;border-bottom:1px solid #222228}
+ #menu-toggle:checked ~ nav.main{display:flex}
+ .hbtns{display:none}
+ nav.main .hbtns{display:flex;margin:12px 0 4px}
+ .foot-grid{grid-template-columns:1fr}
+}
+
+.tphead{background:#101013;border-bottom:1px solid #222228}
+.tpbar{display:flex;align-items:center;gap:26px;padding:14px 0;flex-wrap:wrap}
+.tpbar .ttl h2{font-size:23px;letter-spacing:.4px}
+.tpbar .ttl .time{font-size:19px;color:#E8E8EC}
+.tpbar .ttl .time b{color:#FF5A1F}
+.pal{margin-left:auto;text-align:left}
+.pal small{display:block;font-size:16.5px;margin-bottom:7px;color:#E8E8EC}
+.palnums{display:flex;gap:6px;flex-wrap:wrap}
+.palnums button{width:37px;height:37px;border-radius:7px;border:1px solid #3A3A42;background:#26262C;color:#C9C9D1;font-size:15.5px;cursor:pointer;font-family:inherit;transition:transform .2s ease,background .2s ease}
+.palnums button:hover{transform:translateY(-2px)}
+.palnums button.done{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.palnums button.cur{background:#1A1A1E;border:2px solid #fff;color:#fff;font-weight:800}
+.tpgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:22px 0 8px;align-items:stretch}
+.tpanel{background:var(--panel);border:1px solid #222228;border-radius:14px;padding:28px 30px}
+.tpanel h3{font-size:23px;margin-bottom:18px}
+.passage p{font-size:18.5px;color:#EDEDF0;margin-bottom:18px;line-height:1.62}
+.qprog{height:9px;background:#33333B;border-radius:6px;overflow:hidden;flex:1}
+.qprog i{display:block;height:100%;width:26%;background:#fff;transform-origin:left center;animation:barGrow 1.2s ease both}
+.qhead{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.qhead h3{margin:0}
+.qtext{font-size:20px;line-height:1.5;margin-bottom:26px}
+.opt{display:flex;gap:14px;align-items:flex-start;padding:13px 6px;cursor:pointer;font-size:18.5px;border-radius:9px;transition:background .25s ease}
+.opt:hover{background:#1C1C21}
+.opt input{width:23px;height:23px;margin-top:3px;accent-color:var(--red);flex:none;cursor:pointer}
+.tpfoot{display:flex;justify-content:flex-end;gap:14px;padding:14px 0 26px}
+.tpfoot .btn{min-width:150px}
+@media(max-width:860px){.tpgrid{grid-template-columns:1fr}.pal{margin-left:0}.tpanel{padding:22px 18px}.passage p,.qtext{font-size:17px}}
+
+
+
+.miclist{list-style:none;margin:6px 0 18px}
+.miclist li{color:#D8D8DE;font-size:16px;padding:7px 0 7px 26px;position:relative}
+.miclist li:before{content:"";position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:50%;background:var(--green)}
+.eq{display:none;gap:5px;align-items:flex-end;height:30px;margin:14px 0 4px}
+.eq i{width:7px;background:var(--green);border-radius:3px;animation:eqB 0.9s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.15s}.eq i:nth-child(3){animation-delay:.3s}.eq i:nth-child(4){animation-delay:.45s}.eq i:nth-child(5){animation-delay:.6s}
+@keyframes eqB{0%,100%{height:8px}50%{height:28px}}
+.eq.live{display:flex}
+.micstatus{color:var(--mut);font-size:15.5px;min-height:24px}
+.micstatus.ok{color:#5BD97F;font-weight:700}
+.partsteps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.pstep{border:1.5px solid #3A3A42;color:#C9C9D1;border-radius:999px;padding:9px 20px;font-size:14.5px;font-weight:700;letter-spacing:.4px}
+.pstep.on{background:var(--red);border-color:var(--red);color:#fff}
+.cue{list-style:none;margin:12px 0 4px}
+.cue li{color:#D8D8DE;font-size:16.5px;padding:5px 0 5px 22px;position:relative}
+.cue li:before{content:"";position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.recrow{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
+.recbtn{width:64px;height:64px;border-radius:50%;background:var(--red);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none;transition:transform .25s ease}
+.recbtn:hover{transform:scale(1.06)}
+.recbtn.rec{animation:pulseGlow 1.6s ease-in-out infinite}
+.recdot{width:13px;height:13px;border-radius:50%;background:var(--red);display:none}
+.recdot.live{display:inline-block;animation:eqB 1s ease-in-out infinite}
+.recstatus{font-size:17px;color:#EDEDF0}
+.playback{display:none;margin-top:22px;background:#1C1C21;border:1px solid #2A2A31;border-radius:12px;padding:16px 18px;align-items:center;gap:16px}
+.playback.on{display:flex}
+.pbplay{width:46px;height:46px;flex:none;border-radius:50%;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pbtrack{flex:1;height:9px;background:#33333B;border-radius:6px;overflow:hidden}
+.pbtrack i{display:block;height:100%;width:0%;background:var(--red)}
+.savedchip{display:none;margin-top:16px}
+.savedchip.on{display:inline-block;background:rgba(47,168,79,.16);color:#5BD97F;border:1px solid rgba(47,168,79,.5);font-weight:800;font-size:13px;padding:6px 14px;border-radius:6px;letter-spacing:.4px}
+
+</style>
+<style>
+/* fix round: bigger logo, scroll reveal, animated faq, band bars, clickable cards, mobile compact */
+body{overflow-x:clip}
+.logo-chip{padding:3px 6px}
+.logo-chip img{height:72px}
+.logo-chip.sm img{height:58px}
+.logo-chip.big{padding:4px 7px}
+.logo-chip.big img{height:108px;width:auto}
+html.js .anim:not(.pulse){animation:none;opacity:.85;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+html.js .anim.in{opacity:1;transform:translateY(0)}
+details.faq{transition:height .38s ease}
+details.faq summary::after{transition:transform .35s ease}
+details.faq[open] summary::after,details.faq.is-open summary::after{transform:rotate(45deg)}
+.course{cursor:pointer}
+.tcard[data-href]{cursor:pointer}
+.fchips{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 2px}
+.fchip{background:#26262C;color:#EDEDF0;border:none;border-radius:999px;padding:11px 22px;font-size:15.5px;cursor:pointer;font-family:inherit;transition:background .3s ease,transform .3s ease}
+.fchip:hover{background:#33333B;transform:translateY(-2px)}
+.fchip.on{background:var(--red);color:#fff;font-weight:700}
+.catrow{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:26px}
+.catcard{background:var(--card);border:1.5px solid rgba(226,35,26,.55);border-radius:14px;padding:26px 28px;display:flex;flex-direction:column}
+.catcard .catk{color:var(--red);font-weight:800;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase}
+.catcard h3{font-size:23px;margin:8px 0 9px}
+.catcard p{color:var(--mut);font-size:15px;line-height:1.6;margin-bottom:18px}
+.catcard .go{margin-top:auto;color:var(--red);font-weight:700;font-size:15.5px}
+.modgrid{align-items:stretch}
+.modcard{flex-direction:column;align-items:flex-start;height:100%}
+.modcard .ic{width:60px;height:60px;margin-bottom:18px}
+.modcard .sum{color:var(--mut);font-size:14.5px;line-height:1.55;margin-bottom:13px}
+.modcard ul{list-style:none;margin-bottom:18px}
+.modcard li{color:#D8D8DE;font-size:14.5px;padding:5px 0 5px 22px;position:relative}
+.modcard li:before{content:"";position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.modcard .go{margin-top:auto;color:var(--red);font-weight:700;font-size:15px}
+.bandtxt{flex:1;min-width:0}
+.bandbar{height:10px;background:#2A2A31;border-radius:6px;margin-top:12px;overflow:hidden}
+.bandbar i{display:block;height:100%;background:linear-gradient(90deg,#A81710,var(--red));border-radius:6px}
+html.js .bandrow .bandbar i{transform:scaleX(0);transform-origin:left center;transition:transform 1.1s ease .2s}
+html.js .bandrow.in .bandbar i{transform:scaleX(1)}
+@media(max-width:900px){.catrow{grid-template-columns:1fr}}
+@media(max-width:620px){
+ .wrap{padding:0 16px}
+ .sec{padding:42px 0 4px}
+ .sec-title{font-size:22px}
+ .logo-chip img{height:54px}
+ .logo-chip.big img{height:88px}
+ .modcard{padding:20px 18px}
+ .modcard li{display:none}
+ .modcard ul{margin-bottom:10px}
+ .course .desc{display:none}
+ .rescard p{display:none}
+ .bandrow{gap:12px;padding:14px 16px}
+ .bandrow p{display:none}
+ .bandrow .b{width:60px;font-size:18px}
+ .tcard{padding:24px 18px}
+ .tcard .big svg{width:70px;height:70px}
+ .stat .num{font-size:34px}
+ .pk{padding:28px 22px 26px}
+ .rcard{padding:22px 18px}
+ .authcard .logobox img{height:118px}
+ .catcard{padding:22px 20px}
+}
+
+</style>
+</head>
+<body>
+<header class="tphead"><div class="wrap tpbar">
+<a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
+<div class="ttl"><h2>SPEAKING TEST</h2><p class="time"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> Time Left: <b id="timer">15:00</b></p></div>
+
+<button class="btn" id="submitBtn" type="button">Submit Test</button>
+</div></header>
+<main class="wrap"><div class="tpgrid"><section class="tpanel anim"><h3>Before You Start</h3><p style="color:#EDEDF0;font-size:17px;margin-bottom:14px">Check your microphone and headphones before the speaking test begins.</p><ul class="miclist"><li>Headphones connected and volume up</li><li>Microphone close to your mouth</li><li>A quiet room with no background noise</li></ul><button class="btn" id="micBtn" type="button">Test Microphone</button><div class="eq" id="eqBars"><i></i><i></i><i></i><i></i><i></i></div><p class="micstatus" id="micStatus">Press Test Microphone and say a few words.</p></section><section class="tpanel anim d2"><div class="partsteps"><span class="pstep on" data-part="1">Part 1</span><span class="pstep" data-part="2">Part 2</span><span class="pstep" data-part="3">Part 3</span></div><div class="qhead"><h3>Question <span id="sqNum">1</span> of 3</h3><div class="qprog"><i id="sqProg" style="width:33%"></i></div></div><div id="sqBody"></div><div class="recrow"><button class="recbtn" id="recBtn" type="button" aria-label="Record or stop"><svg id="recIcon" width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="9" y="2.5" width="6" height="11" rx="3" fill="#fff"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" stroke="#fff" stroke-width="1.6"/></svg></button><span class="recdot" id="recDot"></span><span class="recstatus" id="recStatus">Tap the microphone to record your answer.</span></div><div class="playback" id="playback"><button class="pbplay" id="pbBtn" type="button" aria-label="Play recording"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#141418"/></svg></button><div class="pbtrack"><i id="pbBar"></i></div><span style="color:#C9C9D1;font-size:14.5px">Your recording</span></div><span class="savedchip" id="savedChip">Recording is saved to your attempt</span></section></div><div class="tpfoot"><button class="btn" id="nextQ" type="button">Next Question</button></div></main>
+<script>
+var total = 900, timerEl = document.getElementById('timer');
+setInterval(function(){ if(total>0){ total--; var m = Math.floor(total/60), s = total%60; timerEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; } }, 1000);
+document.getElementById('submitBtn').addEventListener('click', function(){ window.location.href = 'results.html'; });
+var SQ = [
+  { part: 1, html: '<p class="qtext">Do you work, or are you a student?</p><p style="color:var(--mut);font-size:16px">Part 1 questions are about you and familiar topics. Answer in two or three sentences.</p>' },
+  { part: 2, html: '<p class="qtext">Describe a city you would like to visit.</p><p style="color:var(--mut);font-size:16px">You should say:</p><ul class="cue"><li>where the city is</li><li>how you learned about it</li><li>what you would do there</li><li>and explain why you would like to visit it</li></ul><p style="color:var(--mut);font-size:16px;margin-top:10px">You have one minute to prepare and up to two minutes to speak.</p>' },
+  { part: 3, html: '<p class="qtext">How has travel changed in your country in the last 20 years?</p><p style="color:var(--mut);font-size:16px">Part 3 questions are more abstract. Give your opinion and support it with reasons and examples.</p>' }
+];
+var sqIdx = 0, recOn = false, recSecs = 0, recTimer = null;
+var sqBody = document.getElementById('sqBody');
+function renderQ(){
+  sqBody.innerHTML = SQ[sqIdx].html;
+  document.getElementById('sqNum').textContent = sqIdx + 1;
+  document.getElementById('sqProg').style.width = ((sqIdx + 1) / 3 * 100) + '%';
+  document.querySelectorAll('.pstep').forEach(function(s){ s.classList.toggle('on', +s.dataset.part === SQ[sqIdx].part); });
+  stopRec(false);
+  document.getElementById('playback').classList.remove('on');
+  document.getElementById('savedChip').classList.remove('on');
+  document.getElementById('nextQ').textContent = sqIdx === 2 ? 'Restart Questions' : 'Next Question';
+}
+function stopRec(markSaved){
+  if(recTimer){ clearInterval(recTimer); recTimer = null; }
+  if(recOn && markSaved){
+    document.getElementById('playback').classList.add('on');
+    document.getElementById('savedChip').classList.add('on');
+    document.getElementById('recStatus').textContent = 'Recording stopped. Listen back, or move to the next question.';
+  }
+  recOn = false;
+  document.getElementById('recBtn').classList.remove('rec');
+  document.getElementById('recDot').classList.remove('live');
+}
+document.getElementById('recBtn').addEventListener('click', function(){
+  if(recOn){ stopRec(true); return; }
+  recOn = true; recSecs = 0;
+  document.getElementById('recBtn').classList.add('rec');
+  document.getElementById('recDot').classList.add('live');
+  document.getElementById('recStatus').textContent = 'Recording 0:00';
+  recTimer = setInterval(function(){
+    recSecs++;
+    var m = Math.floor(recSecs / 60), s = recSecs % 60;
+    document.getElementById('recStatus').textContent = 'Recording ' + m + ':' + (s < 10 ? '0' : '') + s;
+  }, 1000);
+});
+document.getElementById('nextQ').addEventListener('click', function(){
+  sqIdx = (sqIdx + 1) % 3;
+  renderQ();
+});
+var pbTimer = null;
+document.getElementById('pbBtn').addEventListener('click', function(){
+  var bar = document.getElementById('pbBar'), w = 0;
+  if(pbTimer){ clearInterval(pbTimer); }
+  bar.style.width = '0%';
+  pbTimer = setInterval(function(){
+    w += 2;
+    bar.style.width = Math.min(w, 100) + '%';
+    if(w >= 100){ clearInterval(pbTimer); pbTimer = null; }
+  }, 60);
+});
+document.getElementById('micBtn').addEventListener('click', function(){
+  document.getElementById('eqBars').classList.add('live');
+  var st = document.getElementById('micStatus');
+  st.textContent = 'Microphone is working. Your voice is clear.';
+  st.classList.add('ok');
+  this.textContent = 'Test Again';
+});
+renderQ();
+
+</script>
+<script>
+(function(){
+  var els = Array.prototype.slice.call(document.querySelectorAll('.anim'));
+  function show(el){ if(!el.classList.contains('in')){ el.classList.add('in'); setTimeout(function(){ el.classList.remove('anim'); }, 900); } }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } }); }, {threshold:.05, rootMargin:'0px 0px 60px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(show); }
+  setTimeout(function(){ els.forEach(show); }, 1500);
+  document.querySelectorAll('details.faq').forEach(function(d){
+    var summary = d.querySelector('summary'), body = d.querySelector('.fans');
+    if(!summary || !body) return;
+    summary.addEventListener('click', function(ev){
+      ev.preventDefault();
+      if(d.dataset.busy) return;
+      d.dataset.busy = '1';
+      if(d.open){
+        d.classList.remove('is-open');
+        var h = body.offsetHeight;
+        var a = body.animate([{height:h+'px'},{height:'0px'}], {duration:340, easing:'ease'});
+        a.onfinish = function(){ d.open = false; delete d.dataset.busy; };
+      } else {
+        d.open = true; d.classList.add('is-open');
+        var h2 = body.offsetHeight;
+        var a2 = body.animate([{height:'0px'},{height:h2+'px'}], {duration:340, easing:'ease'});
+        a2.onfinish = function(){ delete d.dataset.busy; };
+      }
+    });
+  });
+  document.querySelectorAll('.course').forEach(function(c){
+    c.addEventListener('click', function(e){ if(e.target.closest('a')) return; window.location.href = 'course-detail.html'; });
+  });
+  document.querySelectorAll('[data-href]').forEach(function(el){
+    el.addEventListener('click', function(e){ if(e.target.closest('a')) return; window.location.href = el.getAttribute('data-href'); });
+  });
+  var fchips = document.querySelectorAll('.fchip');
+  if(fchips.length){
+    var tcards = document.querySelectorAll('.tcard[data-track]');
+    fchips.forEach(function(ch){ ch.addEventListener('click', function(){
+      fchips.forEach(function(c){ c.classList.remove('on'); });
+      ch.classList.add('on');
+      var f = ch.getAttribute('data-f');
+      tcards.forEach(function(card){ card.style.display = (f === 'all' || card.getAttribute('data-track') === f) ? '' : 'none'; });
+    }); });
+  }
+})();
+</script>
+</body></html>
