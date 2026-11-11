@@ -13,23 +13,30 @@
   .card { background:#fff; border-radius:16px; box-shadow:0 18px 46px rgba(20,24,30,.18); width:100%; max-width:472px; padding:42px 44px 38px; }
   .logo { text-align:center; margin-bottom:26px; }
   .logo img { height:168px; width:auto; }
-  .tabs { display:flex; border-bottom:1.6px solid #E1E5E8; margin-bottom:28px; }
+  .tabs { display:flex; border-bottom:1.6px solid #E1E5E8; margin-bottom:26px; }
   .tabs a { flex:1; text-align:center; font-size:21px; font-weight:800; letter-spacing:.6px; padding:12px 0; color:#9AA1A8; }
   .tabs a.active { color:#16181D; border-bottom:4px solid #E2231A; margin-bottom:-1.6px; }
+  .btn-google { display:flex; align-items:center; justify-content:center; gap:13px; width:100%; background:#fff; border:1.6px solid #C4C9CD; border-radius:9px; padding:13px 16px; font-size:18.5px; font-weight:700; color:#2A2E33; transition:border-color .2s ease, box-shadow .2s ease, transform .25s ease; }
+  .btn-google:hover { border-color:#9AA1A8; box-shadow:0 8px 18px rgba(20,24,30,.12); transform:translateY(-2px); }
+  .g-mark { width:30px; height:30px; flex:0 0 30px; border-radius:50%; border:1.6px solid #E1E5E8; display:flex; align-items:center; justify-content:center; font-family:Arial, Helvetica, sans-serif; font-size:19px; font-weight:700; color:#4285F4; background:#fff; }
+  .divider { display:flex; align-items:center; gap:14px; margin:22px 0 24px; color:#8A9096; font-size:15.5px; font-weight:600; }
+  .divider::before, .divider::after { content:""; flex:1; border-top:1.4px solid #E1E5E8; }
+  html.js .auth-panel { display:none; }
+  html.js .auth-panel.on { display:block; }
   label.field-label { display:block; font-size:17.5px; font-weight:600; margin-bottom:9px; }
   .pass-row { display:flex; justify-content:space-between; align-items:baseline; }
   .forgot { color:#C0272D; font-size:16.5px; font-weight:600; }
   .input-wrap { position:relative; margin-bottom:22px; }
-  input[type=email], input[type=password] { width:100%; border:1.6px solid #C4C9CD; border-radius:8px; padding:15px 16px; font-size:17px; outline:none; color:#16181D; background:#fff; }
+  input[type=email], input[type=password], input[type=text] { width:100%; border:1.6px solid #C4C9CD; border-radius:8px; padding:15px 16px; font-size:17px; outline:none; color:#16181D; background:#fff; font-family:inherit; }
   input:focus { border-color:#E2231A; }
   .eye { position:absolute; right:14px; top:50%; transform:translateY(-50%); }
   .remember { display:flex; align-items:center; gap:11px; font-size:17px; margin:2px 0 24px; cursor:pointer; }
   .remember input { width:21px; height:21px; accent-color:#E2231A; }
-  .btn-login { display:block; width:100%; background:#E2231A; color:#fff; font-size:20px; font-weight:800; letter-spacing:.8px; text-align:center; padding:16px; border-radius:9px; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
+  .btn-login { display:block; width:100%; background:#E2231A; color:#fff; font-size:20px; font-weight:800; letter-spacing:.8px; text-align:center; padding:16px; border-radius:9px; border:none; cursor:pointer; font-family:inherit; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
   .btn-login:hover { background:#C41B14; transform:translateY(-2px); box-shadow:0 10px 22px rgba(20,24,30,.2); }
   @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
   .card { animation:riseIn .7s ease both; }
-  input[type=email], input[type=password] { transition:border-color .2s ease, box-shadow .2s ease; }
+  input[type=email], input[type=password], input[type=text] { transition:border-color .2s ease, box-shadow .2s ease; }
   input:focus { box-shadow:0 0 0 3px rgba(226,35,26,.15); }
   .signup-line { text-align:center; font-size:17.5px; margin-top:24px; }
   .signup-line a { color:#C0272D; font-weight:700; }
@@ -37,6 +44,8 @@
   @media (max-width:520px){
     .card { padding:30px 22px 28px; }
     .logo img { height:134px; }
+    .tabs a { font-size:18px; }
+    .btn-google { font-size:16.5px; }
   }
 
   /* Scroll reveal (safe): start state applies only when JS runs; script force-reveals all after 1.5s */
@@ -53,34 +62,85 @@
   <div class="logo"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a></div>
 
   <div class="tabs">
-    <a href="login.html" class="active">LOG IN</a>
-    <a href="login.html">SIGN UP</a>
+    <a href="#login" class="active" id="tabLogin">LOG IN</a>
+    <a href="#signup" id="tabSignup">SIGN UP</a>
   </div>
 
-  <form action="dashboard.html" method="get">
-    <label class="field-label" for="email">Email Address</label>
-    <div class="input-wrap">
-      <input type="email" id="email" placeholder="Enter your email">
-    </div>
+  <a class="btn-google" href="onboarding.html"><span class="g-mark">G</span> Continue with Google</a>
+  <div class="divider">or use your email</div>
 
-    <div class="pass-row">
-      <label class="field-label" for="password">Password</label>
-      <a class="forgot" href="login.html">forgot?</a>
-    </div>
-    <div class="input-wrap">
-      <input type="password" id="password" placeholder="••••••••">
-      <svg class="eye" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#9AA1A8" stroke-width="1.9"><path d="M3 12s3.5-6 9-6c2 0 3.7.8 5.1 1.9M21 12s-3.5 6-9 6c-2 0-3.7-.8-5.1-1.9"/><path d="M4 4l16 16"/></svg>
-    </div>
+  <div class="auth-panel on" id="login">
+    <form action="dashboard.html" method="get">
+      <label class="field-label" for="email">Email Address</label>
+      <div class="input-wrap">
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
 
-    <label class="remember"><input type="checkbox"> Remember me</label>
+      <div class="pass-row">
+        <label class="field-label" for="password">Password</label>
+        <a class="forgot" href="login.html">forgot?</a>
+      </div>
+      <div class="input-wrap">
+        <input type="password" id="password" placeholder="••••••••">
+        <svg class="eye" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#9AA1A8" stroke-width="1.9"><path d="M3 12s3.5-6 9-6c2 0 3.7.8 5.1 1.9M21 12s-3.5 6-9 6c-2 0-3.7-.8-5.1-1.9"/><path d="M4 4l16 16"/></svg>
+      </div>
 
-    <a class="btn-login" href="dashboard.html">LOG IN</a>
-  </form>
+      <label class="remember"><input type="checkbox"> Remember me</label>
 
-  <p class="signup-line">Don't have an account? <a href="login.html">Sign Up</a></p>
+      <a class="btn-login" href="dashboard.html">LOG IN</a>
+    </form>
+
+    <p class="signup-line">Don't have an account? <a href="#signup" id="goSignup">Sign Up</a></p>
+  </div>
+
+  <div class="auth-panel" id="signup">
+    <form action="onboarding.html" method="get">
+      <label class="field-label" for="suName">Full Name</label>
+      <div class="input-wrap">
+        <input type="text" id="suName" placeholder="Enter your full name">
+      </div>
+
+      <label class="field-label" for="suEmail">Email Address</label>
+      <div class="input-wrap">
+        <input type="email" id="suEmail" placeholder="Enter your email">
+      </div>
+
+      <label class="field-label" for="suPassword">Password</label>
+      <div class="input-wrap">
+        <input type="password" id="suPassword" placeholder="Create a password">
+        <svg class="eye" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#9AA1A8" stroke-width="1.9"><path d="M3 12s3.5-6 9-6c2 0 3.7.8 5.1 1.9M21 12s-3.5 6-9 6c-2 0-3.7-.8-5.1-1.9"/><path d="M4 4l16 16"/></svg>
+      </div>
+
+      <a class="btn-login" href="onboarding.html">CREATE ACCOUNT</a>
+    </form>
+
+    <p class="signup-line">Already have an account? <a href="#login" id="goLogin">Log In</a></p>
+  </div>
+
   <a class="home-link" href="index.html">Back to Home</a>
 </div>
 
+<script>
+  // Log In / Sign Up tab switching (both panels stay readable when JS is off)
+  (function(){
+    var tabLogin = document.getElementById('tabLogin');
+    var tabSignup = document.getElementById('tabSignup');
+    var panelLogin = document.getElementById('login');
+    var panelSignup = document.getElementById('signup');
+    function show(which){
+      var login = (which === 'login');
+      tabLogin.classList.toggle('active', login);
+      tabSignup.classList.toggle('active', !login);
+      panelLogin.classList.toggle('on', login);
+      panelSignup.classList.toggle('on', !login);
+    }
+    tabLogin.addEventListener('click', function(e){ e.preventDefault(); show('login'); });
+    tabSignup.addEventListener('click', function(e){ e.preventDefault(); show('signup'); });
+    document.getElementById('goSignup').addEventListener('click', function(e){ e.preventDefault(); show('signup'); });
+    document.getElementById('goLogin').addEventListener('click', function(e){ e.preventDefault(); show('login'); });
+    if (window.location.hash === '#signup') show('signup');
+  })();
+</script>
 
 <script>
   // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden

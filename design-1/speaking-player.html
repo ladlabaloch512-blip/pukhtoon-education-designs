@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Test - Pukhtoon Education Online Testing Portal</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#E9ECEE; }
+  a { text-decoration:none; color:inherit; }
+
+  .topbar { background:#1C1E21; color:#fff; display:flex; align-items:center; gap:22px; padding:12px 26px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:20px; }
+  .logo-chip { background:#fff; border-radius:9px; padding:3px 8px; display:inline-block; }
+  .logo-chip img { height:60px; display:block; }
+  .portal { font-size:29px; font-weight:800; letter-spacing:.6px; }
+  .top-right { margin-left:auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .timer-chip { display:flex; border-radius:9px; overflow:hidden; border:2.4px solid #E2231A; }
+  .timer-chip .ic { background:#E2231A; display:flex; align-items:center; padding:8px 13px; }
+  .timer-chip .val { background:#fff; color:#16181D; font-size:27px; font-weight:800; padding:6px 18px; min-width:104px; text-align:center; }
+  .section-chip { background:#fff; color:#16181D; font-size:19.5px; font-weight:700; padding:12px 20px; border-radius:9px; }
+  .btn-submit { background:#E2231A; color:#fff; font-size:19.5px; font-weight:700; padding:12px 22px; border-radius:9px; display:inline-block; }
+  .btn-submit:hover { background:#C41B14; }
+
+  .stage { padding:24px 26px 34px; max-width:880px; margin:0 auto; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 5px 16px rgba(20,24,30,.09); padding:26px 28px; }
+  .card h2 { font-size:25px; margin-bottom:14px; }
+  .card + .card { margin-top:22px; }
+  .check-row { display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #F0F2F4; flex-wrap:wrap; }
+  .check-row:last-child { border-bottom:none; }
+  .check-ic { width:50px; height:50px; flex:0 0 50px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; }
+  .check-info { flex:1; min-width:200px; }
+  .check-info .ct { font-size:18.5px; font-weight:700; }
+  .check-info .cs { font-size:15px; color:#5A6067; margin-top:2px; line-height:1.5; }
+  .btn-check { background:#fff; border:2px solid #E2231A; color:#C0272D; font-size:16px; font-weight:700; padding:11px 22px; border-radius:8px; cursor:pointer; font-family:inherit; }
+  .btn-check:hover { background:#FDECEA; }
+  .mic-status { display:none; align-items:center; gap:14px; margin-top:6px; font-size:16px; font-weight:700; color:#1E7A34; }
+  .mic-status.show { display:flex; }
+  .levels { display:flex; align-items:flex-end; gap:4px; height:26px; }
+  .levels i { width:7px; background:#2FA84F; border-radius:3px; animation:lvl 0.9s ease-in-out infinite; }
+  .levels i:nth-child(1){ height:10px; } .levels i:nth-child(2){ height:20px; animation-delay:.15s; } .levels i:nth-child(3){ height:14px; animation-delay:.3s; } .levels i:nth-child(4){ height:24px; animation-delay:.45s; } .levels i:nth-child(5){ height:12px; animation-delay:.6s; }
+  @keyframes lvl { 0%,100% { transform:scaleY(.55); } 50% { transform:scaleY(1); } }
+
+  .parts { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .part-pill { font-size:16px; font-weight:700; padding:10px 20px; border-radius:999px; background:#EDF0F2; color:#5A6067; }
+  .part-pill small { display:block; font-size:12.5px; font-weight:600; }
+  .part-pill.now { background:#E2231A; color:#fff; }
+  .q-big { font-size:27px; font-weight:800; line-height:1.35; margin:6px 0 8px; }
+  .q-sub { font-size:16px; color:#5A6067; line-height:1.55; }
+  .rec-zone { display:flex; align-items:center; gap:20px; margin-top:24px; flex-wrap:wrap; }
+  .rec-btn { width:76px; height:76px; flex:0 0 76px; border-radius:50%; background:#E2231A; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(226,35,26,.35); }
+  .rec-btn:hover { background:#C41B14; }
+  .rec-btn.recording { animation:recPulse 1.2s ease-in-out infinite; }
+  @keyframes recPulse { 0%,100% { box-shadow:0 0 0 0 rgba(226,35,26,.45); } 50% { box-shadow:0 0 0 16px rgba(226,35,26,0); } }
+  .rec-state { font-size:19px; font-weight:800; }
+  .rec-time { font-size:16px; color:#5A6067; font-weight:600; margin-top:2px; }
+  .save-chip { display:none; background:#E7F4EA; color:#1E7A34; font-weight:700; font-size:15px; padding:8px 15px; border-radius:999px; margin-top:18px; }
+  .save-chip.show { display:inline-block; }
+  .playback { display:none; margin-top:22px; background:#F6F7F8; border:1.6px solid #E1E5E8; border-radius:11px; padding:15px 18px; align-items:center; gap:16px; }
+  .playback.show { display:flex; }
+  .pb-btn { width:46px; height:46px; flex:0 0 46px; border-radius:50%; background:#16181D; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .pb-track { flex:1; height:9px; background:#D9DEE2; border-radius:6px; overflow:hidden; }
+  .pb-track i { display:block; height:100%; width:35%; background:#E2231A; }
+  .pb-time { font-size:15px; font-weight:700; color:#5A6067; white-space:nowrap; }
+  .q-nav { display:flex; gap:14px; margin-top:24px; }
+  .btn-nextq { background:#E2231A; border:2px solid #E2231A; color:#fff; font-family:inherit; font-size:18px; font-weight:700; padding:14px 28px; border-radius:9px; cursor:pointer; margin-left:auto; }
+  .btn-nextq:hover { background:#C41B14; }
+  @keyframes riseIn { from { transform:translateY(16px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .card { animation:riseIn .6s ease both; }
+  @keyframes timerPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+  .timer-chip { animation:timerPulse 2s ease-in-out infinite; }
+
+  @media (max-width:760px){
+    .stage { padding:16px 14px 26px; }
+    .portal { font-size:20px; }
+    .topbar { gap:12px; padding:10px 14px; }
+    .logo-chip img { height:48px; }
+    .timer-chip .val { font-size:21px; min-width:84px; padding:5px 12px; }
+    .section-chip, .btn-submit { font-size:16px; padding:10px 14px; }
+    .card { padding:20px 18px; }
+    .q-big { font-size:22px; }
+    .rec-btn { width:66px; height:66px; flex-basis:66px; }
+  }
+
+  /* Scroll reveal (safe): start state applies only when JS runs; script force-reveals all after 1.5s */
+  html.js .rv { opacity:.85; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  html.js .rv.in { opacity:1; transform:none; }
+  html.js .rv .band-track i { transform:scaleX(0); transform-origin:left center; transition:transform 1.1s ease .15s; }
+  html.js .rv.in .band-track i { transform:scaleX(1); }
+  body { overflow-x:clip; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+    <span class="portal">ONLINE TESTING PORTAL</span>
+  </div>
+  <div class="top-right">
+    <span class="timer-chip">
+      <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></span>
+      <span class="val" id="timerVal">15:00</span>
+    </span>
+    <span class="section-chip">Section: Speaking</span>
+    <a class="btn-submit" href="results.html">Submit</a>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="card rv">
+    <h2>Before You Start: Sound Check</h2>
+    <div class="check-row">
+      <span class="check-ic"><svg width="25" height="25" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.4"><path d="M8 30v-6a16 16 0 0 1 32 0v6"/><rect x="5" y="28" width="9" height="14" rx="4"/><rect x="34" y="28" width="9" height="14" rx="4"/></svg></span>
+      <div class="check-info">
+        <div class="ct">Headphones</div>
+        <div class="cs">Wear headphones so you can hear every question clearly, without room noise.</div>
+      </div>
+      <button class="btn-check" type="button" id="soundBtn">Play Test Sound</button>
+    </div>
+    <div class="check-row">
+      <span class="check-ic"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5" stroke-linecap="round"/></svg></span>
+      <div class="check-info">
+        <div class="ct">Microphone</div>
+        <div class="cs">Test your microphone and speak a few words. Your answers are recorded, so the level must be clear.</div>
+        <div class="mic-status" id="micStatus">
+          <span class="levels"><i></i><i></i><i></i><i></i><i></i></span>
+          Microphone working. Your voice level looks good.
+        </div>
+      </div>
+      <button class="btn-check" type="button" id="micBtn">Test Microphone</button>
+    </div>
+  </div>
+
+  <div class="card rv">
+    <div class="parts">
+      <span class="part-pill now">Part 1<small>Introduction and interview</small></span>
+      <span class="part-pill">Part 2<small>Long turn: cue card</small></span>
+      <span class="part-pill">Part 3<small>Discussion</small></span>
+    </div>
+
+    <div class="q-sub" id="qCount">Part 1 · Question 1 of 3</div>
+    <div class="q-big" id="qText">What do you do for a living?</div>
+    <p class="q-sub">Answer in full sentences. Speak naturally; there is no need to rush. Press the red button when you are ready.</p>
+
+    <div class="rec-zone">
+      <button class="rec-btn" id="recBtn" type="button" aria-label="Start or stop recording">
+        <svg id="micIcon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff" stroke="none"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5" stroke-linecap="round"/></svg>
+        <svg id="stopIcon" width="26" height="26" viewBox="0 0 24 24" fill="#fff" style="display:none;"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>
+      </button>
+      <div>
+        <div class="rec-state" id="recState">Tap to Record</div>
+        <div class="rec-time" id="recTime">Recording time: 0:00</div>
+      </div>
+    </div>
+
+    <span class="save-chip" id="saveChip">Recording is saved to your attempt</span>
+
+    <div class="playback" id="playback">
+      <button class="pb-btn" type="button" aria-label="Play back your answer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg>
+      </button>
+      <div class="pb-track"><i></i></div>
+      <span class="pb-time">0:12 / 0:34</span>
+    </div>
+
+    <div class="q-nav">
+      <button class="btn-nextq" type="button" id="nextQ">Next Question</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Sound check buttons
+  document.getElementById('soundBtn').addEventListener('click', function(){
+    this.textContent = 'Sound Played';
+    var b = this;
+    setTimeout(function(){ b.textContent = 'Play Test Sound'; }, 2200);
+  });
+  document.getElementById('micBtn').addEventListener('click', function(){
+    document.getElementById('micStatus').classList.add('show');
+    this.textContent = 'Microphone OK';
+  });
+
+  // Recording flow: idle -> recording (timer runs) -> stopped (playback + saved chip)
+  var questions = [
+    'What do you do for a living?',
+    'Do you enjoy your work or your studies?',
+    'How do you usually spend your weekends?'
+  ];
+  var qi = 0, recording = false, recSecs = 0, recInt = null;
+  var recBtn = document.getElementById('recBtn');
+  var recState = document.getElementById('recState');
+  var recTime = document.getElementById('recTime');
+  var micIcon = document.getElementById('micIcon');
+  var stopIcon = document.getElementById('stopIcon');
+  var playback = document.getElementById('playback');
+  var saveChip = document.getElementById('saveChip');
+  function fmtR(s){ var m = Math.floor(s/60), r = s % 60; return m + ':' + (r < 10 ? '0' : '') + r; }
+  function drawRec(){ recTime.textContent = 'Recording time: ' + fmtR(recSecs); }
+  recBtn.addEventListener('click', function(){
+    if (!recording) {
+      recording = true;
+      recBtn.classList.add('recording');
+      micIcon.style.display = 'none';
+      stopIcon.style.display = '';
+      recState.textContent = 'Recording... tap to stop';
+      playback.classList.remove('show');
+      saveChip.classList.remove('show');
+      recInt = setInterval(function(){ recSecs++; drawRec(); }, 1000);
+    } else {
+      recording = false;
+      clearInterval(recInt);
+      recBtn.classList.remove('recording');
+      micIcon.style.display = '';
+      stopIcon.style.display = 'none';
+      recState.textContent = 'Answer recorded. Tap the mic to record again.';
+      playback.classList.add('show');
+      saveChip.classList.add('show');
+    }
+  });
+  document.getElementById('nextQ').addEventListener('click', function(){
+    if (recording) recBtn.click();
+    qi = (qi + 1) % questions.length;
+    recSecs = 0;
+    drawRec();
+    recState.textContent = 'Tap to Record';
+    playback.classList.remove('show');
+    saveChip.classList.remove('show');
+    document.getElementById('qText').textContent = questions[qi];
+    document.getElementById('qCount').textContent = 'Part 1 · Question ' + (qi + 1) + ' of 3';
+  });
+  drawRec();
+
+  // Test timer: 15:00 ticking down
+  var remaining = 15 * 60;
+  var timerEl = document.getElementById('timerVal');
+  function fmt(s){ var m = Math.floor(s/60), r = s % 60; return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r; }
+  timerEl.textContent = fmt(remaining);
+  setInterval(function(){ if (remaining > 0){ remaining--; timerEl.textContent = fmt(remaining); } }, 1000);
+</script>
+
+<script>
+  // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden
+  (function(){
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+    function all(){ els.forEach(function(el){ el.classList.add('in'); }); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold:.1, rootMargin:'0px 0px -30px 0px' });
+      els.forEach(function(el){ io.observe(el); });
+    } else { all(); }
+    setTimeout(all, 1500);
+  })();
+</script>
+</body>
+</html>

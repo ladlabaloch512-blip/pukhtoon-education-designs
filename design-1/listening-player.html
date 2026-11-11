@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Test - Pukhtoon Education Online Testing Portal</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#E9ECEE; }
+  a { text-decoration:none; color:inherit; }
+
+  .topbar { background:#1C1E21; color:#fff; display:flex; align-items:center; gap:22px; padding:12px 26px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:20px; }
+  .logo-chip { background:#fff; border-radius:9px; padding:3px 8px; display:inline-block; }
+  .logo-chip img { height:60px; display:block; }
+  .portal { font-size:29px; font-weight:800; letter-spacing:.6px; }
+  .top-right { margin-left:auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .timer-chip { display:flex; border-radius:9px; overflow:hidden; border:2.4px solid #E2231A; }
+  .timer-chip .ic { background:#E2231A; display:flex; align-items:center; padding:8px 13px; }
+  .timer-chip .val { background:#fff; color:#16181D; font-size:27px; font-weight:800; padding:6px 18px; min-width:104px; text-align:center; }
+  .section-chip { background:#fff; color:#16181D; font-size:19.5px; font-weight:700; padding:12px 20px; border-radius:9px; }
+  .btn-pause { background:#fff; color:#16181D; font-size:19.5px; font-weight:700; padding:12px 22px; border-radius:9px; border:none; cursor:pointer; font-family:inherit; }
+  .btn-pause:hover { background:#E3E6E8; }
+  .btn-submit { background:#E2231A; color:#fff; font-size:19.5px; font-weight:700; padding:12px 22px; border-radius:9px; display:inline-block; }
+  .btn-submit:hover { background:#C41B14; }
+
+  .stage { display:grid; grid-template-columns:2fr .92fr; gap:22px; padding:24px 26px 34px; align-items:start; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 5px 16px rgba(20,24,30,.09); padding:26px 28px; }
+  .card h2 { font-size:27px; margin-bottom:18px; }
+  .card + .card { margin-top:22px; }
+
+  .audio-box { background:#1C1E21; border-radius:12px; padding:22px 24px; color:#fff; }
+  .audio-top { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .play-btn { width:64px; height:64px; flex:0 0 64px; border-radius:50%; background:#E2231A; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .play-btn:hover { background:#C41B14; }
+  .audio-meta { flex:1; min-width:180px; }
+  .audio-meta .at { font-size:19.5px; font-weight:800; }
+  .audio-meta .as { font-size:15px; color:#B9BEC4; margin-top:3px; }
+  .audio-time { font-size:19px; font-weight:800; white-space:nowrap; }
+  .audio-track { height:10px; background:#3A3F45; border-radius:6px; margin-top:18px; overflow:hidden; }
+  .audio-track i { display:block; height:100%; width:0%; background:#E2231A; border-radius:6px; }
+  .audio-note { font-size:14.5px; color:#B9BEC4; margin-top:12px; }
+  .sections { display:flex; gap:9px; flex-wrap:wrap; margin-top:20px; }
+  .sec-pill { font-size:15.5px; font-weight:700; padding:9px 16px; border-radius:999px; background:#EDF0F2; color:#5A6067; }
+  .sec-pill.now { background:#E2231A; color:#fff; }
+
+  .q-list { display:flex; flex-direction:column; }
+  .lq { padding:19px 0; border-bottom:1px solid #EDF0F2; }
+  .lq:first-child { padding-top:2px; }
+  .lq:last-child { border-bottom:none; padding-bottom:2px; }
+  .lq .q-head { font-size:18.5px; font-weight:700; line-height:1.45; margin-bottom:10px; }
+  .lq .q-head .qn { color:#C0272D; }
+  .opt { display:flex; align-items:center; gap:13px; padding:9px 6px; cursor:pointer; border-radius:8px; font-size:17.5px; }
+  .opt:hover { background:#F6F7F8; }
+  .opt .radio { width:25px; height:25px; border-radius:50%; border:2.4px solid #9AA1A8; flex:0 0 25px; position:relative; }
+  .opt.selected .radio { border-color:#E2231A; }
+  .opt.selected .radio::after { content:""; position:absolute; inset:4px; border-radius:50%; background:#E2231A; }
+  .blank-line { font-size:17.5px; line-height:1.6; }
+  .blank { border:none; border-bottom:2.2px solid #9AA1A8; background:#F6F7F8; border-radius:6px 6px 0 0; padding:7px 12px; font-size:17px; font-family:inherit; width:190px; outline:none; }
+  .blank:focus { border-bottom-color:#E2231A; }
+  .q-range { font-size:16px; color:#5A6067; font-weight:600; margin-bottom:6px; }
+
+  .palette-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
+  .palette-grid button { font-family:inherit; font-size:17.5px; font-weight:700; padding:12px 0; border:none; border-radius:8px; background:#D3D7DA; color:#3A3F45; cursor:pointer; }
+  .palette-grid button.answered { background:#E2231A; color:#fff; }
+  .palette-grid button.marked { background:#C9CDD1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 L12 -2 M-2 2 L2 -2 M8 12 L12 8' stroke='%238A9096' stroke-width='2'/%3E%3C/svg%3E"); color:#16181D; }
+  .palette-grid button.current { outline:3px solid #16181D; outline-offset:1px; }
+  .legend { margin-top:20px; display:flex; flex-direction:column; gap:11px; font-size:17px; }
+  .legend span { display:flex; align-items:center; gap:11px; }
+  .sw { width:24px; height:24px; border-radius:6px; display:inline-block; }
+  .sw.red { background:#E2231A; }
+  .sw.grey { background:#D3D7DA; }
+  .sw.hatch { background:#C9CDD1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 L12 -2 M-2 2 L2 -2 M8 12 L12 8' stroke='%238A9096' stroke-width='2'/%3E%3C/svg%3E"); }
+  .finish-link { display:block; margin-top:22px; text-align:center; font-weight:700; color:#C0272D; font-size:16.5px; }
+  @keyframes riseIn { from { transform:translateY(16px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .card { animation:riseIn .6s ease both; }
+  @keyframes timerPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+  .timer-chip { animation:timerPulse 2s ease-in-out infinite; }
+  @keyframes recPulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+  .playing-dot { width:11px; height:11px; border-radius:50%; background:#E2231A; display:none; }
+  .playing .playing-dot { display:inline-block; animation:recPulse 1.1s ease-in-out infinite; }
+
+  @media (max-width:1000px){ .stage { grid-template-columns:1fr; } .palette-grid { grid-template-columns:repeat(10,1fr); } }
+  @media (max-width:760px){
+    .stage { padding:16px 14px 26px; }
+    .palette-grid { grid-template-columns:repeat(5,1fr); }
+    .portal { font-size:20px; }
+    .topbar { gap:12px; padding:10px 14px; }
+    .logo-chip img { height:48px; }
+    .timer-chip .val { font-size:21px; min-width:84px; padding:5px 12px; }
+    .section-chip, .btn-pause, .btn-submit { font-size:16px; padding:10px 14px; }
+    .card { padding:20px 18px; }
+    .blank { width:150px; }
+  }
+
+  /* Scroll reveal (safe): start state applies only when JS runs; script force-reveals all after 1.5s */
+  html.js .rv { opacity:.85; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  html.js .rv.in { opacity:1; transform:none; }
+  html.js .rv .band-track i { transform:scaleX(0); transform-origin:left center; transition:transform 1.1s ease .15s; }
+  html.js .rv.in .band-track i { transform:scaleX(1); }
+  body { overflow-x:clip; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+    <span class="portal">ONLINE TESTING PORTAL</span>
+  </div>
+  <div class="top-right">
+    <span class="timer-chip">
+      <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></span>
+      <span class="val" id="timerVal">30:00</span>
+    </span>
+    <span class="section-chip">Section: Listening</span>
+    <button class="btn-pause" id="pauseBtn" type="button">Pause</button>
+    <a class="btn-submit" href="results.html">Submit</a>
+  </div>
+</div>
+
+<div class="stage">
+  <div>
+    <div class="card rv">
+      <h2>Listening Audio</h2>
+      <div class="audio-box" id="audioBox">
+        <div class="audio-top">
+          <button class="play-btn" id="playBtn" type="button" aria-label="Play or pause the recording">
+            <svg id="playIcon" width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg>
+            <svg id="pauseIcon" width="25" height="25" viewBox="0 0 24 24" fill="#fff" style="display:none;"><rect x="5.5" y="4.5" width="4.6" height="15" rx="1"/><rect x="13.9" y="4.5" width="4.6" height="15" rx="1"/></svg>
+          </button>
+          <div class="audio-meta">
+            <div class="at">Section 1 Recording <span class="playing-dot"></span></div>
+            <div class="as">A conversation between a student and a housing officer. Answer Questions 1 to 10 while you listen.</div>
+          </div>
+          <span class="audio-time"><span id="curTime">0:00</span> / 2:00</span>
+        </div>
+        <div class="audio-track"><i id="audioFill"></i></div>
+        <p class="audio-note">In the real IELTS test, every recording plays exactly once. This demo player lets you pause for practice.</p>
+      </div>
+      <div class="sections">
+        <span class="sec-pill now">Section 1 of 4</span>
+        <span class="sec-pill">Section 2</span>
+        <span class="sec-pill">Section 3</span>
+        <span class="sec-pill">Section 4</span>
+      </div>
+    </div>
+
+    <div class="card rv">
+      <h2>Questions</h2>
+      <p class="q-range">Questions 1 to 5 · Section 1 (Questions 6 to 40 follow in Sections 2 to 4)</p>
+      <div class="q-list">
+        <div class="lq">
+          <div class="q-head"><span class="qn">1.</span> Why is the student looking for a new room?</div>
+          <div class="opt-group">
+            <div class="opt"><span class="radio"></span><span>A. His current house is too expensive</span></div>
+            <div class="opt selected"><span class="radio"></span><span>B. His current house is too far from the university</span></div>
+            <div class="opt"><span class="radio"></span><span>C. His current house is too noisy at night</span></div>
+          </div>
+        </div>
+        <div class="lq">
+          <div class="q-head"><span class="qn">2.</span> What is the maximum rent the student can pay each month?</div>
+          <div class="opt-group">
+            <div class="opt"><span class="radio"></span><span>A. 400 pounds</span></div>
+            <div class="opt"><span class="radio"></span><span>B. 450 pounds</span></div>
+            <div class="opt"><span class="radio"></span><span>C. 500 pounds</span></div>
+          </div>
+        </div>
+        <div class="lq">
+          <div class="q-head"><span class="qn">3.</span> Which facility is most important to the student?</div>
+          <div class="opt-group">
+            <div class="opt"><span class="radio"></span><span>A. A shared kitchen</span></div>
+            <div class="opt"><span class="radio"></span><span>B. A quiet study room</span></div>
+            <div class="opt"><span class="radio"></span><span>C. A parking space</span></div>
+          </div>
+        </div>
+        <div class="lq">
+          <div class="q-head"><span class="qn">4.</span> Complete the note. Write ONE WORD only.</div>
+          <p class="blank-line">The student must move in before the <input class="blank" type="text" placeholder="answer"> of the month.</p>
+        </div>
+        <div class="lq">
+          <div class="q-head"><span class="qn">5.</span> Complete the note. Write ONE WORD only.</div>
+          <p class="blank-line">The housing office is next to the main <input class="blank" type="text" placeholder="answer"> on campus.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rv">
+    <h2>Question Palette</h2>
+    <div class="palette-grid" id="palette"></div>
+    <div class="legend">
+      <span><i class="sw red"></i> Answered</span>
+      <span><i class="sw grey"></i> Not Answered</span>
+      <span><i class="sw hatch"></i> Marked for Review</span>
+    </div>
+    <a class="finish-link" href="results.html">Finish and view Results &amp; History</a>
+  </div>
+</div>
+
+<script>
+  // Option selection (one per group)
+  document.querySelectorAll('.opt-group').forEach(function(group){
+    group.querySelectorAll('.opt').forEach(function(opt){
+      opt.addEventListener('click', function(){
+        group.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('selected'); });
+        opt.classList.add('selected');
+      });
+    });
+  });
+
+  // Palette 1 to 40 (static demo states, same pattern as the reading player)
+  var paletteEl = document.getElementById('palette');
+  var answeredSet = {1:true};
+  var markedSet = {7:true};
+  for (var i = 1; i <= 40; i++){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = i;
+    if (answeredSet[i]) b.className = 'answered';
+    else if (markedSet[i]) b.className = 'marked';
+    if (i === 1) b.className += ' current';
+    paletteEl.appendChild(b);
+  }
+  paletteEl.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      paletteEl.querySelectorAll('button').forEach(function(x){ x.classList.remove('current'); });
+      btn.classList.add('current');
+    });
+  });
+
+  // Audio player demo: simulated 2 minute recording with advancing progress
+  var DURATION = 120, elapsed = 0, playing = false;
+  var fill = document.getElementById('audioFill');
+  var curTime = document.getElementById('curTime');
+  var playBtn = document.getElementById('playBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var audioBox = document.getElementById('audioBox');
+  function fmtT(s){ var m = Math.floor(s/60), r = Math.floor(s % 60); return m + ':' + (r < 10 ? '0' : '') + r; }
+  function drawAudio(){
+    fill.style.width = (elapsed / DURATION * 100) + '%';
+    curTime.textContent = fmtT(elapsed);
+    playIcon.style.display = playing ? 'none' : '';
+    pauseIcon.style.display = playing ? '' : 'none';
+    audioBox.classList.toggle('playing', playing);
+  }
+  setInterval(function(){
+    if (playing && elapsed < DURATION){ elapsed += 0.25; if (elapsed >= DURATION){ elapsed = DURATION; playing = false; } drawAudio(); }
+  }, 250);
+  playBtn.addEventListener('click', function(){
+    if (elapsed >= DURATION) elapsed = 0;
+    playing = !playing;
+    drawAudio();
+  });
+  drawAudio();
+
+  // Timer: 30:00 ticking down; Pause button freezes the test timer
+  var remaining = 30 * 60, paused = false;
+  var timerEl = document.getElementById('timerVal');
+  function fmt(s){ var m = Math.floor(s/60), r = s % 60; return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r; }
+  timerEl.textContent = fmt(remaining);
+  setInterval(function(){
+    if (!paused && remaining > 0){ remaining--; timerEl.textContent = fmt(remaining); }
+  }, 1000);
+  var pauseBtn = document.getElementById('pauseBtn');
+  pauseBtn.addEventListener('click', function(){
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Resume' : 'Pause';
+  });
+</script>
+
+<script>
+  // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden
+  (function(){
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+    function all(){ els.forEach(function(el){ el.classList.add('in'); }); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold:.1, rootMargin:'0px 0px -30px 0px' });
+      els.forEach(function(el){ io.observe(el); });
+    } else { all(); }
+    setTimeout(all, 1500);
+  })();
+</script>
+</body>
+</html>
