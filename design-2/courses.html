@@ -16,8 +16,8 @@ img{max-width:100%}
 .logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
 .logo-chip img{height:52px;width:auto;display:block}
 .logo-chip.sm img{height:42px}
-.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center}
-.btn:hover{background:#c71d15;border-color:#c71d15}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
 .btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
 .btn.ghost:hover{border-color:#fff;background:transparent}
 .btn.redtext{background:transparent;color:var(--red)}
@@ -34,7 +34,8 @@ nav.main a:hover{color:var(--red)}
 .burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
 .burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
 .sec{padding:64px 0 8px}
-.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:26px;text-transform:uppercase}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
 footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
 footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
@@ -45,10 +46,29 @@ footer.site a:hover{color:var(--red)}
 .bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
 .bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
 .progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
-.progress i{display:block;height:100%;background:var(--red);border-radius:8px}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
 .tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
 .tag.free{background:#111;color:#fff;border:1px solid #444}
 .tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{content:"-"}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
 @media(max-width:900px){
  .burger{display:block}
  nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
@@ -58,62 +78,91 @@ footer.site a:hover{color:var(--red)}
  nav.main .hbtns{display:flex;margin:12px 0 4px}
  .foot-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-<style>
-.phead{padding:42px 0 6px}
+.phead{padding:46px 0 6px}
 .phead h1{font-size:39px;font-weight:900;letter-spacing:.3px}
-.phead p{color:var(--mut);font-size:18px;margin-top:8px}
-.chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:26px 0 30px}
-.chip{background:#26262C;color:#EDEDF0;border:none;border-radius:999px;padding:11px 22px;font-size:15.5px;cursor:pointer;font-family:inherit}
+.phead p{color:var(--mut);font-size:18px;margin-top:8px;max-width:640px;line-height:1.6}
+.chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:28px 0 32px}
+.chip{background:#26262C;color:#EDEDF0;border:none;border-radius:999px;padding:11px 22px;font-size:15.5px;cursor:pointer;font-family:inherit;transition:background .3s ease,transform .3s ease}
+.chip:hover{background:#33333B;transform:translateY(-2px)}
 .chip.on{background:var(--red);color:#fff;font-weight:700}
 .sort{margin-left:auto;color:#D8D8DE;font-size:16px;display:flex;gap:10px;align-items:center}
 .sort select{background:#1C1C21;color:#fff;border:1px solid #3A3A42;border-radius:9px;padding:10px 14px;font-size:15.5px;font-family:inherit}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .course{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
 .course .thumb{height:178px;position:relative;display:flex;align-items:center;justify-content:center}
-.course .thumb .tag{position:absolute;top:12px;right:12px;font-size:14px;padding:6px 14px}
+.course .thumb .tag{position:absolute;top:12px;right:12px;font-size:14px;padding:6px 14px;z-index:2}
 .course .thumb .cat{position:absolute;left:16px;bottom:12px;font-weight:800;font-size:15px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.course .thumb .play{width:58px;height:58px;border-radius:50%;background:rgba(10,10,12,.72);display:flex;align-items:center;justify-content:center;transition:transform .3s ease,background .3s ease}
+.course:hover .thumb .play{transform:scale(1.12);background:var(--red)}
 .course .cbody{padding:20px 22px 24px}
 .course h3{font-size:21.5px;margin-bottom:8px}
+.course h3 a:hover{color:var(--red)}
 .course .meta{color:#C9C9D1;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.course .desc{color:var(--mut);font-size:14.5px;line-height:1.6;margin-top:12px}
 .course .row{display:flex;gap:14px;align-items:center;margin-top:18px}
 .course .row .btn{flex:1;padding:12px 8px;font-size:16px}
 .course .alt{font-weight:700;font-size:16.5px;white-space:nowrap}
-.pager{display:flex;gap:20px;justify-content:center;align-items:center;padding:38px 0 6px;font-size:17px}
+.course .alt:hover{color:var(--red)}
+.course .price{font-size:19px;font-weight:900}
+.pager{display:flex;gap:20px;justify-content:center;align-items:center;padding:40px 0 6px;font-size:17px}
 .pager b{background:var(--red);color:#fff;width:42px;height:42px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center}
 .pager a{color:#D8D8DE}
-.searchbox{display:flex;align-items:center;gap:9px;background:#26262C;border-radius:10px;padding:10px 16px;margin-left:auto}
-.searchbox input{background:none;border:none;color:#fff;font-size:15.5px;width:130px;outline:none;font-family:inherit}
+.pager a:hover{color:var(--red)}
+.ctaband{margin-top:44px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:34px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.ctaband h3{font-size:24px;margin-bottom:8px}
+.ctaband p{color:var(--mut);font-size:15.5px;line-height:1.65;max-width:640px}
+.ctaband .acts{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}
 @media(max-width:1000px){.cgrid{grid-template-columns:1fr 1fr}.sort{margin-left:0}}
-@media(max-width:620px){.cgrid{grid-template-columns:1fr}.phead h1{font-size:30px}.searchbox{display:none}}
-</style><header class="site"><div class="wrap hbar">
+@media(max-width:620px){.cgrid{grid-template-columns:1fr}.phead h1{font-size:30px}.ctaband{padding:26px 22px}.ctaband .acts{margin-left:0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap hbar">
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
-<span style="font-weight:800;font-size:20px;line-height:1.15">Pukhtoon<br>Education</span>
 <input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
-<nav class="main"><a href="index.html">Home</a><a href="courses.html" class="active">Courses</a><a href="index.html#how">About Us</a><a href="index.html#contact">Contact</a>
-<span class="searchbox"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A7A7B0" stroke-width="2.4"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5.5 5.5"/></svg><input type="text" placeholder="Search..."></span>
-<span class="hbtns"><a class="btn redtext" href="login.html">Sign In</a></span>
+<nav class="main"><a href="index.html">Home</a><a href="mock-tests.html">IELTS Modules</a><a href="courses.html" class="active">Video Courses</a><a href="index.html#how">About</a><a href="index.html#contact">Contact Us</a>
+<span class="hbtns"><a class="btn ghost" href="login.html">Log In</a><a class="btn" href="login.html">Get Started</a></span>
 </nav></div></header>
+
 <main class="wrap">
-<section class="phead"><h1>EXPLORE OUR COURSES</h1><p>Enhance your skills with our top-rated video courses.</p></section>
-<div class="chips"><button class="chip on">All</button><button class="chip">UI/UX Design</button><button class="chip">Graphic Design</button><button class="chip">Web Development</button><button class="chip">Video Editing</button><button class="chip">Business</button>
-<span class="sort">Sort By: <select><option>Popular</option><option>Newest</option><option>Highest Rated</option></select></span></div>
-<div class="cgrid"><div class="course"><div class="thumb" style="background:#3D3D44"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">UI/UX Design</span><span class="tag free" style="background:#0E0E10;border-color:#0E0E10">FREE</span></div>
-<div class="cbody"><h3>UI/UX Design Fundamentals</h3><div class="meta"><span>Ahmad Khan &bull; 12 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#4A3A22"/></svg></span></div>
-<div class="row"><a class="btn redtext" href="packages.html">Enroll Now</a><span class="alt">Watch Free</span></div></div></div><div class="course"><div class="thumb" style="background:#23232B"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">Video Editing</span><span class="tag paid">PAID</span></div>
-<div class="cbody"><h3>Advanced Video Editing</h3><div class="meta"><span>Zarghoon Khan &bull; 18 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#4A3A22"/></svg></span></div>
-<div class="row"><a class="btn" href="packages.html">Enroll Now</a><span class="alt">Buy Course</span><b style="font-size:19px">$15</b></div></div></div><div class="course"><div class="thumb" style="background:#2B3138"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">Web Development</span><span class="tag paid">PAID</span></div>
-<div class="cbody"><h3>Front-End Web Development</h3><div class="meta"><span>Shafique Ahmed &bull; 24 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#4A3A22"/></svg></span></div>
-<div class="row"><a class="btn redtext" href="packages.html">Enroll Now</a><a class="btn ghost" style="flex:1;padding:12px 8px" href="courses.html">Watch Trailer</a></div></div></div><div class="course"><div class="thumb" style="background:#38322B"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">Graphic Design</span><span class="tag paid">PAID</span></div>
-<div class="cbody"><h3>Graphic Design Masterclass</h3><div class="meta"><span>Aisha Khan &bull; 15 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg></span></div>
-<div class="row"><a class="btn redtext" href="packages.html">Enroll Now</a><a class="btn ghost" style="flex:1;padding:12px 8px" href="courses.html">Watch Trailer</a></div></div></div><div class="course"><div class="thumb" style="background:#E8E8EA;color:#141418"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">Logo Design</span><span class="tag paid">PAID</span></div>
-<div class="cbody"><h3>Logo Design with Illustrator</h3><div class="meta"><span>Naveed Afridi &bull; 10 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#4A3A22"/></svg></span></div>
-<div class="row"><a class="btn" href="packages.html">Enroll Now</a><a class="btn ghost" style="flex:1;padding:12px 8px" href="courses.html">Watch Trailer</a></div></div></div><div class="course"><div class="thumb" style="background:#2E3336"><svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(10,10,12,.72)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg><span class="cat">Marketing</span><span class="tag paid">PAID</span></div>
-<div class="cbody"><h3>Digital Marketing Basics</h3><div class="meta"><span>Saba Ali &bull; 14 Lessons &bull;</span><span style="white-space:nowrap"><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg><svg width="19" height="19" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#F6A21E"/></svg></span></div>
-<div class="row"><a class="btn redtext" href="packages.html">Enroll Now</a><a class="btn ghost" style="flex:1;padding:12px 8px" href="courses.html">Watch Trailer</a></div></div></div></div>
-<div class="pager"><b>1</b><a href="courses.html">2</a><a href="courses.html">3</a><span style="color:var(--mut2)">...</span><a href="courses.html">Next</a></div>
+<section class="phead anim"><h1>EXPLORE OUR COURSES</h1><p>Enhance your skills with our top-rated video courses. Open any course to see its lessons, watch the free previews, and enrol when you are ready.</p></section>
+<div class="chips anim"><button class="chip on" type="button">All</button><button class="chip" type="button">UI/UX Design</button><button class="chip" type="button">Graphic Design</button><button class="chip" type="button">Web Development</button><button class="chip" type="button">Video Editing</button><button class="chip" type="button">Business</button>
+<span class="sort">Sort By: <select aria-label="Sort courses"><option>Popular</option><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option></select></span></div>
+<div class="cgrid">
+<article class="course lift anim"><a class="thumb" href="course-detail.html" style="background:#EDEDF0;color:#141418"><span class="tag free">FREE</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">UI/UX Design</span></a>
+<div class="cbody"><h3><a href="course-detail.html">UI/UX Design Fundamentals</a></h3>
+<p class="meta"><span>Ahmad Khan &bull; 12 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">Start design from zero: research, wireframes, prototypes and the tools professionals use every day.</p>
+<div class="row"><a class="btn ghost" href="course-detail.html">Enroll Now</a><a class="alt" href="course-detail.html">Watch Free</a></div></div></article>
+<article class="course lift anim d2"><a class="thumb" href="course-detail.html" style="background:#26262C;color:#E8E8EC"><span class="tag paid">PAID</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">Video Editing</span></a>
+<div class="cbody"><h3><a href="course-detail.html">Advanced Video Editing</a></h3>
+<p class="meta"><span>Zarghoon Khan &bull; 18 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">Cuts, colour, sound and storytelling: edit complete projects from raw footage to final export.</p>
+<div class="row"><a class="btn" href="course-detail.html">Enroll Now</a><a class="alt" href="packages.html">Buy Course</a><span class="price">$15</span></div></div></article>
+<article class="course lift anim d3"><a class="thumb" href="course-detail.html" style="background:#1F2A37;color:#E8E8EC"><span class="tag paid">PAID</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">Web Development</span></a>
+<div class="cbody"><h3><a href="course-detail.html">Front-End Web Development</a></h3>
+<p class="meta"><span>Shafique Ahmed &bull; 24 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">HTML, CSS and JavaScript from the basics to building and publishing your own responsive websites.</p>
+<div class="row"><a class="btn ghost" href="course-detail.html">Enroll Now</a><a class="alt" href="course-detail.html">Watch Trailer</a></div></div></article>
+<article class="course lift anim"><a class="thumb" href="course-detail.html" style="background:#3A2C28;color:#E8E8EC"><span class="tag paid">PAID</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">Graphic Design</span></a>
+<div class="cbody"><h3><a href="course-detail.html">Graphic Design Masterclass</a></h3>
+<p class="meta"><span>Aisha Khan &bull; 15 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">Layout, colour and typography, plus a full brand project you can add to your portfolio.</p>
+<div class="row"><a class="btn ghost" href="course-detail.html">Enroll Now</a><a class="alt" href="course-detail.html">Watch Trailer</a></div></div></article>
+<article class="course lift anim d2"><a class="thumb" href="course-detail.html" style="background:#E8E8EC;color:#141418"><span class="tag paid">PAID</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">Logo Design</span></a>
+<div class="cbody"><h3><a href="course-detail.html">Logo Design with Illustrator</a></h3>
+<p class="meta"><span>Naveed Afridi &bull; 10 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">From sketch to vector: design clean, memorable logos and present them like a professional.</p>
+<div class="row"><a class="btn" href="course-detail.html">Enroll Now</a><a class="alt" href="course-detail.html">Watch Trailer</a></div></div></article>
+<article class="course lift anim d3"><a class="thumb" href="course-detail.html" style="background:#232329;color:#E8E8EC"><span class="tag paid">PAID</span><span class="play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><span class="cat">Digital Marketing</span></a>
+<div class="cbody"><h3><a href="course-detail.html">Digital Marketing Basics</a></h3>
+<p class="meta"><span>Saba Ali &bull; 14 Lessons &bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></p>
+<p class="desc">Social media, ads and content basics to promote a business or your own freelance services.</p>
+<div class="row"><a class="btn ghost" href="course-detail.html">Enroll Now</a><a class="alt" href="course-detail.html">Watch Trailer</a></div></div></article>
+</div>
+<div class="pager anim"><b>1</b><a href="courses.html">2</a><a href="courses.html">3</a><span style="color:var(--mut2)">...</span><a href="courses.html">Next</a></div>
+<div class="ctaband anim"><div><h3>Not sure where to start?</h3><p>Start with a free course, or take a free IELTS mock test to check your level first. When you want everything unlocked, the packages give you all courses and tests in one plan.</p></div>
+<div class="acts"><a class="btn ghost" href="mock-tests.html">Take a Free Mock Test</a><a class="btn" href="packages.html">See Packages</a></div></div>
 </main>
 <footer class="site" id="contact"><div class="wrap"><div class="foot-grid">
 <div><span class="logo-chip"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>

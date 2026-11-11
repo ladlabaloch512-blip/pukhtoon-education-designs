@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Design Fundamentals | Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
+.logo-chip img{height:52px;width:auto;display:block}
+.logo-chip.sm img{height:42px}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
+.btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
+.btn.ghost:hover{border-color:#fff;background:transparent}
+.btn.redtext{background:transparent;color:var(--red)}
+.btn.redtext:hover{background:rgba(226,35,26,.08)}
+header.site{position:sticky;top:0;z-index:50;background:rgba(13,13,16,.97);border-bottom:1px solid #1E1E23}
+.hbar{display:flex;align-items:center;gap:28px;padding:14px 0}
+nav.main{display:flex;gap:30px;margin-left:auto;align-items:center}
+nav.main a{font-size:16.5px;color:#EDEDF0;padding:6px 2px;border-bottom:3px solid transparent}
+nav.main a.active{color:var(--red);border-bottom-color:var(--red)}
+nav.main a:hover{color:var(--red)}
+.hbtns{display:flex;gap:12px;align-items:center;margin-left:8px}
+.hbtns .btn{padding:10px 22px;font-size:15.5px}
+#menu-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
+.burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
+.sec{padding:64px 0 8px}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
+footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
+footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+footer.site li{list-style:none;color:#D8D8DE;margin-bottom:9px;font-size:15.5px}
+footer.site a:hover{color:var(--red)}
+.copy{text-align:center;color:var(--mut2);font-size:14px;padding:18px 0 4px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#3A3A42;border:2px solid #55555F;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
+.bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
+.progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
+.tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
+.tag.free{background:#111;color:#fff;border:1px solid #444}
+.tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{content:"-"}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
+@media(max-width:900px){
+ .burger{display:block}
+ nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
+ nav.main a{padding:12px 2px;border-bottom:1px solid #222228}
+ #menu-toggle:checked ~ nav.main{display:flex}
+ .hbtns{display:none}
+ nav.main .hbtns{display:flex;margin:12px 0 4px}
+ .foot-grid{grid-template-columns:1fr}
+}
+
+.crumb{padding:30px 0 4px;color:var(--mut);font-size:15px}
+.crumb a:hover{color:var(--red)}
+.crumb b{color:#EDEDF0;font-weight:600}
+.cdhead{padding:14px 0 6px}
+.cdhead h1{font-size:37px;font-weight:900;line-height:1.2;max-width:760px}
+.cdmeta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px;color:#C9C9D1;font-size:16px}
+.cdgrid{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:26px;align-items:start}
+.videoblock{background:#101013;border:1px solid #2C2C33;border-radius:16px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden}
+.videoblock .playbig{width:88px;height:88px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.videoblock h3{font-size:21px}
+.videoblock .dur{position:absolute;bottom:16px;right:16px;background:rgba(0,0,0,.7);padding:5px 12px;border-radius:7px;font-size:14px}
+.videoblock .pv{position:absolute;top:16px;left:16px}
+.cdcard{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px}
+.cdcard h3{font-size:21px;margin-bottom:16px}
+.cdcard p{color:var(--mut);font-size:15.5px;line-height:1.7;margin-bottom:14px}
+.learn{display:grid;grid-template-columns:1fr 1fr;gap:13px 20px}
+.learn li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:#EDEDF0}
+.learn li svg{flex:none;margin-top:3px}
+.lesson{display:flex;gap:15px;align-items:center;padding:14px 6px;border-bottom:1px solid #222228}
+.lesson:last-child{border-bottom:none}
+.lesson .no{width:34px;height:34px;flex:none;border-radius:9px;background:#232329;border:1px solid #34343C;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14.5px}
+.lesson .lt{flex:1;font-size:16px}
+.lesson .ld{color:var(--mut);font-size:14.5px;white-space:nowrap}
+.lesson .free{color:var(--green);font-weight:800;font-size:12.5px;letter-spacing:.5px;white-space:nowrap}
+.enroll .price{font-size:36px;font-weight:900;color:var(--green)}
+.enroll .btn{width:100%;margin:16px 0 6px;font-size:17.5px;padding:15px}
+.enroll li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:#EDEDF0;margin-bottom:12px}
+.enroll li svg{flex:none;margin-top:3px}
+.inst{display:flex;gap:18px;align-items:flex-start}
+.inst .avatar{width:64px;height:64px;font-size:20px}
+.inst h4{font-size:19px}
+.inst .role{color:var(--red2);font-weight:700;font-size:14.5px;margin:3px 0 8px}
+.inst p{margin:0}
+@media(max-width:980px){.cdgrid{grid-template-columns:1fr}.cdhead h1{font-size:29px}.learn{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap hbar">
+<a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
+<input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
+<nav class="main"><a href="index.html">Home</a><a href="mock-tests.html">IELTS Modules</a><a href="courses.html" class="active">Video Courses</a><a href="index.html#how">About</a><a href="index.html#contact">Contact Us</a>
+<span class="hbtns"><a class="btn ghost" href="login.html">Log In</a><a class="btn" href="login.html">Get Started</a></span>
+</nav></div></header>
+<main class="wrap">
+<p class="crumb anim"><a href="index.html">Home</a> / <a href="courses.html">Video Courses</a> / <b>UI/UX Design Fundamentals</b></p>
+<section class="cdhead anim"><h1>UI/UX Design Fundamentals</h1><div class="cdmeta"><span class="tag free" style="font-size:14px;padding:6px 14px">FREE</span><span>By Ahmad Khan</span><span>&bull;</span><span>12 Lessons</span><span>&bull;</span><svg width="86" height="15" viewBox="0 0 100 18"><g fill="#F6A21E"><path d="M9 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L9 13.7l-5 2.7 1.1-5.6L1 6.9l5.6-.7z"/><path d="M29 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L29 13.7l-5 2.7 1.1-5.6L21 6.9l5.6-.7z"/><path d="M49 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L49 13.7l-5 2.7 1.1-5.6L41 6.9l5.6-.7z"/><path d="M69 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L69 13.7l-5 2.7 1.1-5.6L61 6.9l5.6-.7z"/><path d="M89 1l2.4 5.2 5.6.7-4.1 3.9 1.1 5.6L89 13.7l-5 2.7 1.1-5.6L81 6.9l5.6-.7z"/></g></svg></div></section>
+<div class="cdgrid"><div>
+<div class="videoblock anim"><span class="tag paid pv">INTRO VIDEO</span><span class="playbig pulse"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span><h3>Course Introduction</h3><span class="dur">Preview: 04:32</span></div>
+<div class="cdcard anim" style="margin-top:24px"><h3>About This Course</h3><p>UI/UX Design Fundamentals takes you from zero to a complete, presentable design project. You start with how users think and what research really means, then move into personas, journeys and information architecture before you draw a single screen.</p><p>From there you wireframe, build a working prototype in Figma, test it with real users and finish with a case study you can show to clients and employers. The first two lessons are free previews, and the full course is free to enrol for every Pukhtoon Education account.</p></div>
+<div class="cdcard anim" style="margin-top:24px"><h3>What You Will Learn</h3><ul class="learn"><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>How user research works and why it matters</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Building personas and user journey maps</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Wireframing screens step by step</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Prototyping in Figma from a blank file</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Running a simple usability test</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Presenting a complete design case study</span></li></ul></div>
+<div class="cdcard anim" style="margin-top:24px"><h3>Course Curriculum</h3><div class="lesson"><span class="no">1</span><svg width="15" height="15" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#C9C9D1"/></svg><span class="lt">Welcome and Course Tour</span><span class="free">FREE PREVIEW</span><span class="ld">04:32</span></div><div class="lesson"><span class="no">2</span><svg width="15" height="15" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#C9C9D1"/></svg><span class="lt">What Is UX Design?</span><span class="free">FREE PREVIEW</span><span class="ld">11:48</span></div><div class="lesson"><span class="no">3</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Understanding Users and Research</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">16:20</span></div><div class="lesson"><span class="no">4</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Personas and User Journeys</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">14:05</span></div><div class="lesson"><span class="no">5</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Information Architecture</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">12:37</span></div><div class="lesson"><span class="no">6</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Wireframing Basics</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">18:44</span></div><div class="lesson"><span class="no">7</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Wireframing Practice Project</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">21:10</span></div><div class="lesson"><span class="no">8</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Introduction to Figma</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">15:26</span></div><div class="lesson"><span class="no">9</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Building Your First Prototype</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">24:58</span></div><div class="lesson"><span class="no">10</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Usability Testing</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">13:41</span></div><div class="lesson"><span class="no">11</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Design Handoff and Feedback</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">10:19</span></div><div class="lesson"><span class="no">12</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="lt">Final Project and Review</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="#7C7C86"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="#7C7C86" stroke-width="2.2"/></svg><span class="ld">19:52</span></div></div>
+</div><div>
+<div class="cdcard enroll anim"><p class="price">FREE</p><p style="margin:0">This course is free for all students. Sign in to enrol and start learning today.</p><a class="btn" href="login.html">Enroll Now</a><ul style="margin-top:14px"><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12 video lessons, about 3 hours total</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2 free preview lessons, no account needed</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Watch on phone, tablet and computer</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Progress saved on your dashboard</span></li></ul></div>
+<div class="cdcard anim d2" style="margin-top:24px"><h3>Your Instructor</h3><div class="inst"><span class="avatar">AK</span><div><h4>Ahmad Khan</h4><p class="role">UI/UX Designer and Instructor</p><p>Ahmad designs apps and websites for local and overseas clients and teaches design in simple, practical steps, with a full project in every course.</p></div></div></div>
+<div class="cdcard anim d3" style="margin-top:24px"><h3>Want Every Course?</h3><p>Packages unlock all paid courses and all IELTS mock tests together, with mentor support and live classes.</p><a class="btn ghost" href="packages.html" style="width:100%">See Packages</a></div>
+</div></div>
+</main>
+<footer class="site" id="contact"><div class="wrap"><div class="foot-grid">
+<div><span class="logo-chip"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
+<p style="color:var(--mut);margin-top:16px;max-width:300px">Expert online IELTS preparation for Listening, Reading, Writing and Speaking.</p></div>
+<div><h4>Resources</h4><ul>
+<li><a href="courses.html">Video Courses</a></li>
+<li><a href="mock-tests.html">Mock Tests</a></li>
+<li><a href="packages.html">Packages</a></li>
+<li><a href="index.html#how">Terms</a></li>
+<li><a href="index.html#how">Privacy</a></li></ul></div>
+<div><h4>Get In Touch</h4><ul>
+<li><svg width="17" height="17" viewBox="0 0 24 24" style="vertical-align:-3px;margin-right:8px"><rect x="2" y="5" width="20" height="14" rx="2" fill="#E2231A"/><path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" fill="none"/></svg>fazalbari665@gmail.com</li>
+<li><svg width="17" height="17" viewBox="0 0 24 24" fill="#E2231A" style="vertical-align:-3px;margin-right:8px"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.3.3.1.5.1.6-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>WhatsApp: 0314-1513815</li>
+</ul></div>
+</div><p class="copy">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></div></footer>
+</body></html>

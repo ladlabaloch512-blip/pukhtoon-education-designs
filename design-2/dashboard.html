@@ -6,6 +6,7 @@
 <title>Student Dashboard | Pukhtoon Education</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
 html{scroll-behavior:smooth}
@@ -16,8 +17,8 @@ img{max-width:100%}
 .logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
 .logo-chip img{height:52px;width:auto;display:block}
 .logo-chip.sm img{height:42px}
-.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center}
-.btn:hover{background:#c71d15;border-color:#c71d15}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
 .btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
 .btn.ghost:hover{border-color:#fff;background:transparent}
 .btn.redtext{background:transparent;color:var(--red)}
@@ -34,7 +35,8 @@ nav.main a:hover{color:var(--red)}
 .burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
 .burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
 .sec{padding:64px 0 8px}
-.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:26px;text-transform:uppercase}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
 footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
 footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
@@ -45,10 +47,29 @@ footer.site a:hover{color:var(--red)}
 .bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
 .bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
 .progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
-.progress i{display:block;height:100%;background:var(--red);border-radius:8px}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
 .tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
 .tag.free{background:#111;color:#fff;border:1px solid #444}
 .tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{content:"-"}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
 @media(max-width:900px){
  .burger{display:block}
  nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
@@ -58,10 +79,7 @@ footer.site a:hover{color:var(--red)}
  nav.main .hbtns{display:flex;margin:12px 0 4px}
  .foot-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-<style>
+
 .dgrid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:24px;padding:34px 0 6px;align-items:start}
 .dcol{display:grid;gap:24px}
 .dcard{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px 28px 30px}
@@ -70,6 +88,8 @@ footer.site a:hover{color:var(--red)}
 .gauge .num{font-size:64px;font-weight:900;color:var(--red);line-height:1;margin-top:-86px}
 .gauge .cap{font-weight:800;letter-spacing:.6px;margin-top:44px;font-size:17px}
 .gauge .est{color:var(--red2);font-size:18px;margin-top:7px}
+.gaugearc{stroke-dasharray:312;stroke-dashoffset:312;animation:gaugeArc 1.6s ease .2s forwards}
+@keyframes gaugeArc{to{stroke-dashoffset:0}}
 .skill{margin-bottom:24px}
 .skill .r1{display:flex;justify-content:space-between;font-size:18.5px;margin-bottom:9px}
 .skill .r2{text-align:right;color:#C9C9D1;font-size:16px;margin-top:7px}
@@ -84,34 +104,42 @@ footer.site a:hover{color:var(--red)}
 .recent b{font-size:19px}
 .recent small{display:block;color:var(--mut);font-size:15px;margin-top:3px}
 .recent .score{color:#FF7A45;font-size:27px;font-weight:800}
+.planrow{display:flex;gap:16px;align-items:center;padding:16px 4px;border-bottom:1px solid #222228;flex-wrap:wrap}
+.planrow:last-child{border-bottom:none}
+.planrow .pi{flex:1;min-width:220px}
+.planrow .pi b{font-size:17px;display:block}
+.planrow .pi span{color:var(--mut);font-size:14.5px}
+.planrow .btn{padding:9px 20px;font-size:14.5px}
 @media(max-width:1020px){.dgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.dgrid{grid-template-columns:1fr}.dcard{padding:22px 18px}}
-</style><header class="site"><div class="wrap hbar">
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap hbar">
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
 <input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
-<nav class="main"><a href="dashboard.html" class=active>Dashboard</a><a href="mock-tests.html">Practice Tests</a><a href="courses.html">Study Materials</a><a href="results.html">Performance</a><a href="dashboard.html">My Account</a>
+<nav class="main"><a href="dashboard.html" class="active">Dashboard</a><a href="mock-tests.html">Practice Tests</a><a href="courses.html">Study Materials</a><a href="results.html">Performance</a><a href="dashboard.html">My Account</a>
 <span class="hbtns"><span class="bell"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.2-1.5 5.2h14S17.5 12.5 17.5 8.5A5.5 5.5 0 0 0 12 3Z" fill="#fff"/><circle cx="12" cy="19" r="2.2" fill="#fff"/></svg><i></i></span><span class="avatar">AK</span><b style="font-size:16.5px">Ahmad K.</b></span>
 </nav></div></header>
-
 <main class="wrap"><div class="dgrid">
 <div class="dcol">
-<div class="dcard"><h3>Target Band Score</h3><div class="gauge"><svg width="190" height="150" viewBox="0 0 190 150"><circle cx="95" cy="88" r="66" fill="none" stroke="#33333B" stroke-width="13"/><path d="M 34 128 A 66 66 0 1 1 150 40" fill="none" stroke="#E2231A" stroke-width="13" stroke-linecap="round"/></svg><div class="num">7.5</div>
+<div class="dcard anim"><h3>Target Band Score</h3><div class="gauge"><svg width="190" height="150" viewBox="0 0 190 150"><circle cx="95" cy="88" r="66" fill="none" stroke="#33333B" stroke-width="13"/><path class="gaugearc" d="M 34 128 A 66 66 0 1 1 150 40" fill="none" stroke="#E2231A" stroke-width="13" stroke-linecap="round"/></svg><div class="num">7.5</div>
 <p class="cap">TARGET BAND SCORE</p><p class="est">Current Est: 6.5</p></div></div>
-<div class="dcard"><h3>Test Countdown</h3><div class="cal"><small>DAYS TO TEST</small>
+<div class="dcard anim d2"><h3>Test Countdown</h3><div class="cal"><small>DAYS TO TEST</small>
 <p class="big">28 Days Remaining</p><p class="date">Scheduled for: Nov 30, 2024</p></div></div>
 </div>
-<div class="dcard"><h3>Skills Progress Tracker</h3><div class="skill"><div class="r1"><span>Listening</span><span style="color:#C9C9D1">80%</span></div>
-<div class="progress"><i style="width:80%"></i></div><div class="r2">Band 7.5</div></div><div class="skill"><div class="r1"><span>Reading</span><span style="color:#C9C9D1">65%</span></div>
-<div class="progress"><i style="width:65%"></i></div><div class="r2">Band 6.5</div></div><div class="skill"><div class="r1"><span>Writing</span><span style="color:#C9C9D1">Band 6.0</span></div>
-<div class="progress"><i style="width:50%"></i></div><div class="r2">Band 6.0</div></div><div class="skill"><div class="r1"><span>Speaking</span><span style="color:#C9C9D1">Band 7.0</span></div>
-<div class="progress"><i style="width:76%"></i></div><div class="r2">Band 7.0</div></div></div>
+<div class="dcard anim d2"><h3>Skills Progress Tracker</h3><div class="skill"><div class="r1"><span>Listening</span><span style="color:#C9C9D1">80%</span></div><div class="progress"><i style="width:80%"></i></div><div class="r2">Band 7.5</div></div><div class="skill"><div class="r1"><span>Reading</span><span style="color:#C9C9D1">65%</span></div><div class="progress"><i style="width:65%"></i></div><div class="r2">Band 6.5</div></div><div class="skill"><div class="r1"><span>Writing</span><span style="color:#C9C9D1">Band 6.0</span></div><div class="progress"><i style="width:50%"></i></div><div class="r2">Band 6.0</div></div><div class="skill"><div class="r1"><span>Speaking</span><span style="color:#C9C9D1">Band 7.0</span></div><div class="progress"><i style="width:76%"></i></div><div class="r2">Band 7.0</div></div></div>
 <div class="dcol">
-<div class="dcard"><h3>Full Mock Test</h3>
+<div class="dcard anim d3"><h3>Full Mock Test</h3>
 <a class="btn fullbtn" href="test-player.html"><svg width="44" height="34" viewBox="0 0 48 36" fill="none"><rect x="2" y="3" width="44" height="30" rx="6" stroke="#fff" stroke-width="3"/><path d="M19 12l11 6.5-11 6.5z" fill="#fff"/><circle cx="39" cy="10" r="1.8" fill="#fff"/><circle cx="39" cy="17" r="1.8" fill="#fff"/><circle cx="39" cy="24" r="1.8" fill="#fff"/></svg>START FULL MOCK TEST</a>
 <p class="fullnote">Test your readiness with a timed 2h 45m simulation.</p></div>
-<div class="dcard"><h3>Recent Practice</h3>
+<div class="dcard anim d4"><h3>Recent Practice</h3>
 <div class="recent"><div><b>Mock Test #4</b><small>2 days ago</small></div><span class="score">6.5</span></div>
-<p style="margin-top:18px"><a href="results.html" style="color:var(--red);font-weight:700">View Results &amp; History &#8594;</a></p></div>
+<p style="margin-top:18px"><a href="attempt-detail.html" style="color:var(--red);font-weight:700">View Attempt Details &#8594;</a></p>
+<p style="margin-top:8px"><a href="results.html" style="color:var(--red);font-weight:700">View Results &amp; History &#8594;</a></p></div>
 </div>
-</div></main>
+</div>
+<div class="dcard anim" style="margin-top:24px"><h3>Your Study Plan This Week</h3><div class="planrow"><div class="pi"><b>Listening Practice Test 2</b><span>40 Questions &bull; Audio-based &bull; About 40 minutes</span></div><a class="btn" href="test-player.html">Practice</a></div><div class="planrow"><div class="pi"><b>Reading: Passage Practice</b><span>3 Passages &bull; 40 Questions &bull; About 60 minutes</span></div><a class="btn" href="test-player.html">Practice</a></div><div class="planrow"><div class="pi"><b>Writing Task 2: Essay Practice</b><span>Checked by a teacher with band score and feedback</span></div><a class="btn ghost" href="mock-tests.html">Open</a></div><div class="planrow"><div class="pi"><b>Speaking Part 2 Practice</b><span>Record your answer and listen back before your next mock</span></div><a class="btn ghost" href="mock-tests.html">Open</a></div></div>
+</main>
 <p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></body></html>

@@ -6,6 +6,7 @@
 <title>Results and History | Pukhtoon Education</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
 html{scroll-behavior:smooth}
@@ -16,8 +17,8 @@ img{max-width:100%}
 .logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
 .logo-chip img{height:52px;width:auto;display:block}
 .logo-chip.sm img{height:42px}
-.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center}
-.btn:hover{background:#c71d15;border-color:#c71d15}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
 .btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
 .btn.ghost:hover{border-color:#fff;background:transparent}
 .btn.redtext{background:transparent;color:var(--red)}
@@ -34,7 +35,8 @@ nav.main a:hover{color:var(--red)}
 .burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
 .burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
 .sec{padding:64px 0 8px}
-.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:26px;text-transform:uppercase}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
 footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
 footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
@@ -45,10 +47,29 @@ footer.site a:hover{color:var(--red)}
 .bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
 .bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
 .progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
-.progress i{display:block;height:100%;background:var(--red);border-radius:8px}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
 .tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
 .tag.free{background:#111;color:#fff;border:1px solid #444}
 .tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{content:"-"}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
 @media(max-width:900px){
  .burger{display:block}
  nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
@@ -58,11 +79,8 @@ footer.site a:hover{color:var(--red)}
  nav.main .hbtns{display:flex;margin:12px 0 4px}
  .foot-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-<style>
-.rhead{padding:40px 0 4px}
+
+.rhead{padding:42px 0 4px}
 .rhead h1{font-size:36px}
 .rhead p{color:var(--mut);font-size:17.5px;margin-top:7px}
 .rgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;margin-top:24px}
@@ -73,6 +91,8 @@ footer.site a:hover{color:var(--red)}
 .bigcircle .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bigcircle .val b{font-size:47px;line-height:1}
 .bigcircle .val small{color:#C9C9D1;font-size:14.5px;margin-top:5px}
+.arc-anim{stroke-dasharray:515;stroke-dashoffset:515;animation:arcAnim 1.6s ease .2s forwards}
+@keyframes arcAnim{to{stroke-dashoffset:105}}
 .mbars{flex:1;min-width:220px}
 .mbar{margin-bottom:17px}
 .mbar .r{display:flex;justify-content:space-between;font-size:16.5px;margin-bottom:7px}
@@ -81,34 +101,36 @@ table{width:100%;border-collapse:collapse;font-size:16px}
 th{text-align:left;padding:13px 14px;color:#EDEDF0;border-bottom:1px solid #2C2C33;font-size:16px}
 td{padding:14px;border-bottom:1px solid #222228;color:#D8D8DE;white-space:nowrap}
 .chip{display:inline-block;background:var(--red);color:#fff;font-weight:800;border-radius:7px;padding:5px 13px;font-size:15.5px}
-.det{background:var(--red);color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;font-size:14.5px;display:inline-block}
+.det{background:var(--red);color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;font-size:14.5px;display:inline-block;transition:transform .3s ease,background .3s ease}
+.det:hover{background:#c71d15;transform:translateY(-2px)}
 .tblwrap{overflow-x:auto}
-@media(max-width:900px){.rgrid{grid-template-columns:1fr}}
-</style><header class="site"><div class="wrap hbar">
+.tipcard{margin-top:24px;background:var(--panel);border:1px solid var(--border);border-left:5px solid var(--red);border-radius:14px;padding:26px 28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.tipcard h3{font-size:20px;margin-bottom:7px}
+.tipcard p{color:var(--mut);font-size:15.5px;line-height:1.65;max-width:680px}
+.tipcard .btn{margin-left:auto}
+@media(max-width:900px){.rgrid{grid-template-columns:1fr}.tipcard .btn{margin-left:0}}
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap hbar">
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
 <input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
-<nav class="main"><a href="dashboard.html">Dashboard</a><a href="mock-tests.html">Practice</a><a href="courses.html">Study Material</a><a href="results.html" class=active>Results &amp; History</a>
-<span class="hbtns"><span class="avatar">AK</span><span class="bell"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.2-1.5 5.2h14S17.5 12.5 17.5 8.5A5.5 5.5 0 0 0 12 3Z" fill="#fff"/><circle cx="12" cy="19" r="2.2" fill="#fff"/></svg><i></i></span></span>
+<nav class="main"><a href="dashboard.html">Dashboard</a><a href="mock-tests.html">Practice Tests</a><a href="courses.html">Study Materials</a><a href="results.html" class="active">Performance</a><a href="dashboard.html">My Account</a>
+<span class="hbtns"><span class="bell"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.2-1.5 5.2h14S17.5 12.5 17.5 8.5A5.5 5.5 0 0 0 12 3Z" fill="#fff"/><circle cx="12" cy="19" r="2.2" fill="#fff"/></svg><i></i></span><span class="avatar">AK</span><b style="font-size:16.5px">Ahmad K.</b></span>
 </nav></div></header>
 <main class="wrap">
-<section class="rhead"><h1>Results &amp; History</h1><p>Track your progress, view past attempts, and analyze your performance.</p></section>
+<section class="rhead anim"><h1>Results &amp; History</h1><p>Track your progress, view past attempts, and analyze your performance.</p></section>
 <div class="rgrid">
-<div class="rcard"><h3>Latest Band Score</h3><div class="score-flex">
-<div class="bigcircle"><svg width="190" height="190" viewBox="0 0 190 190"><circle cx="95" cy="95" r="82" fill="none" stroke="#2E2E35" stroke-width="11"/><circle cx="95" cy="95" r="82" fill="none" stroke="#E2231A" stroke-width="11" stroke-linecap="round" stroke-dasharray="515" stroke-dashoffset="105" transform="rotate(-90 95 95)"/></svg>
+<div class="rcard anim"><h3>Latest Band Score</h3><div class="score-flex">
+<div class="bigcircle"><svg width="190" height="190" viewBox="0 0 190 190"><circle cx="95" cy="95" r="82" fill="none" stroke="#2E2E35" stroke-width="11"/><circle class="arc-anim" cx="95" cy="95" r="82" fill="none" stroke="#E2231A" stroke-width="11" stroke-linecap="round" transform="rotate(-90 95 95)"/></svg>
 <div class="val"><b>7.5</b><small>Overall Band Score</small></div></div>
 <div class="mbars"><div class="mbar"><div class="r"><span>Listening:</span><b>8.0</b></div><div class="progress"><i style="width:84%"></i></div></div><div class="mbar"><div class="r"><span>Reading:</span><b>7.5</b></div><div class="progress"><i style="width:79%"></i></div></div><div class="mbar"><div class="r"><span>Writing:</span><b>6.5</b></div><div class="progress"><i style="width:62%"></i></div></div><div class="mbar"><div class="r"><span>Speaking:</span><b>7.5</b></div><div class="progress"><i style="width:79%"></i></div></div></div></div></div>
-<div class="rcard"><h3>Performance Progression</h3><svg viewBox="0 0 520 250" width="100%" role="img" aria-label="Performance progression chart">
-<g stroke="#2C2C33"><line x1="45" y1="20" x2="45" y2="215"/><line x1="45" y1="215" x2="505" y2="215"/><line x1="45" y1="166" x2="505" y2="166"/><line x1="45" y1="117" x2="505" y2="117"/><line x1="45" y1="68" x2="505" y2="68"/><line x1="45" y1="20" x2="505" y2="20"/></g>
-<g fill="#A7A7B0" font-size="13" font-family="Arial"><text x="8" y="24">9.0</text><text x="8" y="72">8.0</text><text x="8" y="121">7.0</text><text x="8" y="170">6.0</text><text x="8" y="219">5.0</text>
-<text x="45" y="238">Oct 12</text><text x="140" y="238">Oct 26</text><text x="235" y="238">Nov 09</text><text x="330" y="238">Nov 23</text><text x="415" y="238">Dec 07</text><text x="468" y="238">Dec 21</text></g>
-<path d="M55 190 L140 158 L225 140 L310 141 L395 118 L440 105 L492 96 L492 215 L55 215 Z" fill="rgba(226,35,26,.20)"/>
-<polyline points="55,190 140,158 225,140 310,141 395,118 440,105 492,96" fill="none" stroke="#E2231A" stroke-width="2.6"/>
-<g fill="#141418" stroke="#E2231A" stroke-width="2.4"><circle cx="55" cy="190" r="5"/><circle cx="140" cy="158" r="5"/><circle cx="225" cy="140" r="5"/><circle cx="310" cy="141" r="5"/><circle cx="395" cy="118" r="5"/><circle cx="440" cy="105" r="5"/><circle cx="492" cy="96" r="5.5"/></g>
-<rect x="392" y="52" width="118" height="27" rx="6" fill="#E2231A"/><text x="451" y="70" fill="#fff" font-size="13.5" font-weight="bold" text-anchor="middle" font-family="Arial">Dec 21: 7.5 Band</text>
-</svg></div>
+<div class="rcard anim d2"><h3>Performance Progression</h3><svg viewBox="0 0 560 300" width="100%" role="img" aria-label="Performance progression chart"><g stroke="#2C2C33" stroke-width="1"><line x1="40" y1="20" x2="540" y2="20"/><line x1="40" y1="68" x2="540" y2="68"/><line x1="40" y1="116" x2="540" y2="116"/><line x1="40" y1="164" x2="540" y2="164"/><line x1="40" y1="212" x2="540" y2="212"/><line x1="40" y1="260" x2="540" y2="260"/></g><g fill="#A7A7B0" font-size="12.5"><text x="32" y="24" text-anchor="end">9.0</text><text x="32" y="72" text-anchor="end">8.0</text><text x="32" y="120" text-anchor="end">7.0</text><text x="32" y="168" text-anchor="end">6.0</text><text x="32" y="216" text-anchor="end">5.0</text><text x="32" y="264" text-anchor="end">4.0</text></g><path d="M50 231 L140 193 L230 164 L320 150 L410 111 L500 92 L500 260 L50 260 Z" fill="rgba(226,35,26,.16)"/><path d="M50 231 L140 193 L230 164 L320 150 L410 111 L500 92" fill="none" stroke="#E2231A" stroke-width="2.5"/><g fill="#141418" stroke="#E2231A" stroke-width="2.5"><circle cx="50" cy="231" r="4.5"/><circle cx="140" cy="193" r="4.5"/><circle cx="230" cy="164" r="4.5"/><circle cx="320" cy="150" r="4.5"/><circle cx="410" cy="111" r="4.5"/><circle cx="500" cy="92" r="5"/></g><rect x="378" y="46" width="152" height="30" rx="7" fill="#E2231A"/><text x="454" y="66" text-anchor="middle" fill="#fff" font-size="13.5" font-weight="700">Dec 21: 7.5 Band</text><g fill="#A7A7B0" font-size="12.5"><text x="50" y="284" text-anchor="middle">Oct 12</text><text x="140" y="284" text-anchor="middle">Oct 26</text><text x="230" y="284" text-anchor="middle">Nov 09</text><text x="320" y="284" text-anchor="middle">Nov 23</text><text x="410" y="284" text-anchor="middle">Dec 07</text><text x="500" y="284" text-anchor="middle">Dec 21</text></g></svg><p style="color:var(--mut);font-size:14.5px;margin-top:8px">Your overall band has climbed from 4.6 in October to 7.5 in December. Steady weekly practice is working.</p></div>
 </div>
-<div class="rcard" style="margin-top:24px"><h3>Past Attempts</h3><div class="tblwrap"><table>
+<div class="rcard anim" style="margin-top:24px"><h3>Past Attempts</h3><div class="tblwrap"><table>
 <tr><th>Date</th><th>Test Name</th><th>Listening</th><th>Reading</th><th>Writing</th><th>Speaking</th><th>Overall</th><th>Action</th></tr>
-<tr><td>Dec 21, 2024</td><td>Mock Test Test 1</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="results.html">View Details</a></td></tr><tr><td>Dec 07, 2024</td><td>Mock Test Test 2</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="results.html">View Details</a></td></tr><tr><td>Nov 23, 2024</td><td>Mock Test Test 3</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="results.html">View Details</a></td></tr><tr><td>Nov 09, 2024</td><td>Mock Test Test 4</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="results.html">View Details</a></td></tr></table></div></div>
+<tr><td>Dec 21, 2024</td><td>Mock Test Test 1</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Dec 07, 2024</td><td>Mock Test Test 2</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Nov 23, 2024</td><td>Mock Test Test 3</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Nov 09, 2024</td><td>Mock Test Test 4</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr></table></div></div>
+<div class="tipcard anim"><div><h3>Your Next Step: Writing</h3><p>Writing is your lowest module at Band 6.5. One focused Task 2 practice each week, checked by a teacher, is the fastest way to push your overall band toward 8.0.</p></div><a class="btn" href="mock-tests.html">Practise Writing</a></div>
 </main>
 <p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></body></html>

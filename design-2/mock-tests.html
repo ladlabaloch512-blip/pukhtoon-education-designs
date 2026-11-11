@@ -6,6 +6,7 @@
 <title>Mock Tests | Pukhtoon Education</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
 html{scroll-behavior:smooth}
@@ -16,8 +17,8 @@ img{max-width:100%}
 .logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
 .logo-chip img{height:52px;width:auto;display:block}
 .logo-chip.sm img{height:42px}
-.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center}
-.btn:hover{background:#c71d15;border-color:#c71d15}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
 .btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
 .btn.ghost:hover{border-color:#fff;background:transparent}
 .btn.redtext{background:transparent;color:var(--red)}
@@ -34,7 +35,8 @@ nav.main a:hover{color:var(--red)}
 .burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
 .burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
 .sec{padding:64px 0 8px}
-.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:26px;text-transform:uppercase}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
 footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
 .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
 footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
@@ -45,10 +47,29 @@ footer.site a:hover{color:var(--red)}
 .bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
 .bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
 .progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
-.progress i{display:block;height:100%;background:var(--red);border-radius:8px}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
 .tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
 .tag.free{background:#111;color:#fff;border:1px solid #444}
 .tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{content:"-"}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
 @media(max-width:900px){
  .burger{display:block}
  nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
@@ -58,42 +79,61 @@ footer.site a:hover{color:var(--red)}
  nav.main .hbtns{display:flex;margin:12px 0 4px}
  .foot-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-<style>
-.mhead{padding:44px 0 8px}
+
+.mhead{padding:46px 0 8px}
 .mhead h1{font-size:42px;font-weight:900;letter-spacing:.5px}
 .mhead .rule{width:150px;height:6px;background:var(--red);border-radius:3px;margin:14px 0 16px}
-.mhead p{color:var(--mut);font-size:18.5px}
-.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px}
+.mhead p{color:var(--mut);font-size:18.5px;max-width:640px;line-height:1.6}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
 .tcard{background:#1B2027;border:1.5px solid rgba(226,35,26,.55);border-radius:16px;padding:34px 36px;display:flex;gap:30px;align-items:center;position:relative}
-.tcard .tag{position:absolute;top:18px;right:18px;font-size:14px;padding:6px 15px}
+.tcard .tag{position:absolute;top:18px;right:18px;font-size:14px;padding:6px 15px;background:var(--red);color:#fff;border:none}
 .tcard .big{flex:none;width:150px;display:flex;align-items:center;justify-content:center}
 .tcard h3{font-size:27px;margin-bottom:12px}
 .tcard .time{color:#D8D8DE;font-size:20px;font-weight:600}
 .tcard .sub{color:#C9C9D1;font-size:18.5px;margin:7px 0 22px}
 .tcard .btn{display:block;font-size:18px;padding:15px}
-@media(max-width:900px){.tgrid{grid-template-columns:1fr}}
-@media(max-width:560px){.tcard{flex-direction:column;text-align:center;padding:28px 20px}.mhead h1{font-size:32px}}
-</style><header class="site"><div class="wrap hbar">
+.fullcard{margin-top:28px;background:#1B2027;border:2px solid var(--red);border-radius:16px;padding:36px;display:flex;gap:30px;align-items:center;flex-wrap:wrap;box-shadow:0 0 30px rgba(226,35,26,.16)}
+.fullcard h3{font-size:29px;margin-bottom:10px}
+.fullcard p{color:#C9C9D1;font-size:17px;line-height:1.65;max-width:640px}
+.fullcard .btn{margin-left:auto;font-size:18px;padding:16px 34px}
+.howgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:6px}
+.howcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px}
+.howcard .n{font-size:34px;font-weight:900;color:var(--red);line-height:1}
+.howcard h3{font-size:19px;margin:12px 0 8px}
+.howcard p{color:var(--mut);font-size:14.5px;line-height:1.65}
+.noteband{margin-top:26px;background:var(--panel);border:1px solid var(--border);border-left:5px solid var(--red);border-radius:12px;padding:24px 26px;color:#D8D8DE;font-size:16px;line-height:1.7}
+.noteband b{color:#fff}
+@media(max-width:900px){.tgrid{grid-template-columns:1fr}.howgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.tcard{flex-direction:column;text-align:center;padding:28px 20px}.mhead h1{font-size:32px}.fullcard{padding:26px 22px}.fullcard .btn{margin-left:0;width:100%}}
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap hbar">
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
 <input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
-<nav class="main"><a href="dashboard.html">Dashboard</a><a href="mock-tests.html" class=active>Mock Tests</a><a href="results.html">Results</a>
-<span class="hbtns"><span style="font-size:16.5px">Profile</span><span class="avatar">AK</span></span>
+<nav class="main"><a href="index.html">Home</a><a href="mock-tests.html" class="active">IELTS Modules</a><a href="courses.html">Video Courses</a><a href="index.html#how">About</a><a href="index.html#contact">Contact Us</a>
+<span class="hbtns"><a class="btn ghost" href="login.html">Log In</a><a class="btn" href="login.html">Get Started</a></span>
 </nav></div></header>
 <main class="wrap">
-<section class="mhead"><h1>MOCK TESTS</h1><div class="rule"></div>
-<p>Sharpen your skills with timed, high-stakes practice exams.</p></section>
-<div class="tgrid"><div class="tcard"><span class="tag free" style="background:var(--red);border-color:var(--red)">FREE</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><path d="M4 15v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="7" rx="1.8" fill="#FFFFFF" stroke="none"/><rect x="17.5" y="14" width="4" height="7" rx="1.8" fill="#FFFFFF" stroke="none"/></svg></div>
-<div style="flex:1"><h3>Listening Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 40:00 Min</p><p class="sub">40 Questions &bull; Audio-based</p>
-<a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard"><span class="tag free" style="background:var(--red);border-color:var(--red)">FREE</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><path d="M12 5.5C10 3.8 7 3.2 3.5 3.5v14c3.5-.3 6.5.3 8.5 2 2-1.7 5-2.3 8.5-2v-14c-3.5-.3-6.5.3-8.5 2Zm0 0v14"/></svg></div>
-<div style="flex:1"><h3>Reading Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 60:00 Min</p><p class="sub">40 Questions &bull; 3 Passages</p>
-<a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard"><span class="tag paid">PAID</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><path d="M5 4h11l3 3v13H5z"/><path d="M8.5 9h6M8.5 12.5h6"/><path d="M15.8 12.2l2.4 2.4-4.4 1.2 1.2-4.4z" fill="#FFFFFF" stroke="none" transform="translate(-1.4,1.2)"/></svg></div>
-<div style="flex:1"><h3>Writing Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 60:00 Min</p><p class="sub">2 Tasks &bull; Essay &amp; Report</p>
-<a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard"><span class="tag paid">PAID</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><rect x="9" y="2.5" width="6" height="11" rx="3" fill="#FFFFFF" stroke="none"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></div>
-<div style="flex:1"><h3>Speaking Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 15:00 Min</p><p class="sub">3 Parts &bull; Interactive Speech</p>
-<a class="btn" href="test-player.html">START TEST</a></div></div></div>
-<p style="margin-top:30px"><a class="btn ghost" href="dashboard.html">Back to Dashboard</a></p>
+<section class="mhead anim"><h1>MOCK TESTS</h1><div class="rule"></div>
+<p>Sharpen your skills with timed, high-stakes practice exams. Every test follows the real IELTS format, timing and marking, so your practice score is a score you can trust.</p></section>
+<div class="tgrid"><div class="tcard lift anim "><span class="tag">FREE</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><path d="M4 15v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="7" rx="1.8" fill="#FFFFFF" stroke="none"/><rect x="17.5" y="14" width="4" height="7" rx="1.8" fill="#FFFFFF" stroke="none"/></svg></div><div style="flex:1"><h3>Listening Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 40:00 Min</p><p class="sub">40 Questions &bull; Audio-based</p><a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard lift anim d2"><span class="tag">FREE</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.4"><path d="M12 5.5C10 3.8 7 3.2 3.5 3.5v14c3.5-.3 6.5.3 8.5 2 2-1.7 5-2.3 8.5-2v-14c-3.5-.3-6.5.3-8.5 2Zm0 0v14"/><path d="M6 8.5c1.6-.2 3 .1 4.2.8M6 12c1.6-.2 3 .1 4.2.8M18 8.5c-1.6-.2-3 .1-4.2.8M18 12c-1.6-.2-3 .1-4.2.8" stroke-width="1.1"/></svg></div><div style="flex:1"><h3>Reading Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 60:00 Min</p><p class="sub">40 Questions &bull; 3 Passages</p><a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard lift anim d2"><span class="tag">PAID</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.4"><path d="M5 3.5h10L19 7.5V20.5H5z" fill="#FFFFFF" stroke="none"/><path d="M8 9h6.5M8 12.5h6.5M8 16h4" stroke="#1B2027" stroke-width="1.4"/><path d="M15.6 12.4l3.6-1-1 3.6-5.2 5.2-3.6 1 1-3.6z" fill="#E2231A" stroke="none"/></svg></div><div style="flex:1"><h3>Writing Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 60:00 Min</p><p class="sub">2 Tasks &bull; Essay &amp; Report</p><a class="btn" href="test-player.html">START TEST</a></div></div><div class="tcard lift anim d3"><span class="tag">PAID</span><div class="big"><svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"><rect x="9" y="2.5" width="6" height="11" rx="3" fill="#FFFFFF" stroke="none"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></div><div style="flex:1"><h3>Speaking Mock Test</h3><p class="time"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> 15:00 Min</p><p class="sub">3 Parts &bull; Interactive Speech</p><a class="btn" href="test-player.html">START TEST</a></div></div></div>
+<div class="fullcard anim"><div><h3>FULL MOCK TEST</h3><p>All four modules in one sitting, exactly like the real exam day. Listening, Reading, Writing and Speaking back to back in about 2 hours 45 minutes, with one overall band score at the end.</p></div><a class="btn" href="test-player.html">START FULL MOCK TEST</a></div>
+<section class="sec"><h2 class="sec-title anim">How Mock Tests Work</h2><div class="howgrid"><div class="howcard lift anim"><div class="n">01</div><h3>Pick Your Module</h3><p>Choose Listening, Reading, Writing or Speaking, or take the full mock test. Free tests are open to every account, and paid tests unlock with any package.</p></div><div class="howcard lift anim d2"><div class="n">02</div><h3>Sit the Test Under Real Timing</h3><p>The clock starts when you start, and the test submits itself when time runs out. Your answers save as you go, so a slow connection never costs you a test.</p></div><div class="howcard lift anim d3"><div class="n">03</div><h3>Get Your Band Score and Review</h3><p>Listening and Reading are marked instantly with a question by question review. Writing and Speaking are checked by a teacher, and every attempt is saved in your results history.</p></div></div><div class="noteband anim"><b>Before you start:</b> use headphones for Listening, keep a pen and paper ready for notes, and sit somewhere quiet for the full test time. Treat every mock test like the real exam and your real score will follow your practice score.</div></section>
 </main>
-<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></body></html>
+<footer class="site" id="contact"><div class="wrap"><div class="foot-grid">
+<div><span class="logo-chip"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
+<p style="color:var(--mut);margin-top:16px;max-width:300px">Expert online IELTS preparation for Listening, Reading, Writing and Speaking.</p></div>
+<div><h4>Resources</h4><ul>
+<li><a href="courses.html">Video Courses</a></li>
+<li><a href="mock-tests.html">Mock Tests</a></li>
+<li><a href="packages.html">Packages</a></li>
+<li><a href="index.html#how">Terms</a></li>
+<li><a href="index.html#how">Privacy</a></li></ul></div>
+<div><h4>Get In Touch</h4><ul>
+<li><svg width="17" height="17" viewBox="0 0 24 24" style="vertical-align:-3px;margin-right:8px"><rect x="2" y="5" width="20" height="14" rx="2" fill="#E2231A"/><path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" fill="none"/></svg>fazalbari665@gmail.com</li>
+<li><svg width="17" height="17" viewBox="0 0 24 24" fill="#E2231A" style="vertical-align:-3px;margin-right:8px"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.3.3.1.5.1.6-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>WhatsApp: 0314-1513815</li>
+</ul></div>
+</div><p class="copy">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></div></footer>
+</body></html>
