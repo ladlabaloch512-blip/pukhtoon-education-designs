@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Practice | Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
+.logo-chip img{height:52px;width:auto;display:block}
+.logo-chip.sm img{height:42px}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center;transition:transform .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.btn:hover{background:#c71d15;border-color:#c71d15;transform:translateY(-2px);box-shadow:0 10px 24px rgba(226,35,26,.28)}
+.btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
+.btn.ghost:hover{border-color:#fff;background:transparent}
+.btn.redtext{background:transparent;color:var(--red)}
+.btn.redtext:hover{background:rgba(226,35,26,.08)}
+header.site{position:sticky;top:0;z-index:50;background:rgba(13,13,16,.97);border-bottom:1px solid #1E1E23}
+.hbar{display:flex;align-items:center;gap:28px;padding:14px 0}
+nav.main{display:flex;gap:30px;margin-left:auto;align-items:center}
+nav.main a{font-size:16.5px;color:#EDEDF0;padding:6px 2px;border-bottom:3px solid transparent}
+nav.main a.active{color:var(--red);border-bottom-color:var(--red)}
+nav.main a:hover{color:var(--red)}
+.hbtns{display:flex;gap:12px;align-items:center;margin-left:8px}
+.hbtns .btn{padding:10px 22px;font-size:15.5px}
+#menu-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
+.burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
+.sec{padding:64px 0 8px}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:14px;text-transform:uppercase}
+.sec-sub{color:var(--mut);font-size:16.5px;max-width:720px;margin-bottom:28px}
+footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
+footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+footer.site li{list-style:none;color:#D8D8DE;margin-bottom:9px;font-size:15.5px}
+footer.site a:hover{color:var(--red)}
+.copy{text-align:center;color:var(--mut2);font-size:14px;padding:18px 0 4px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#3A3A42;border:2px solid #55555F;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
+.bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
+.progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px;transform-origin:left center;animation:barGrow 1.3s ease .15s both}
+.tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
+.tag.free{background:#111;color:#fff;border:1px solid #444}
+.tag.paid{background:var(--red);color:#fff}
+@keyframes rise{from{opacity:.85;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:rise .7s ease both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 1px rgba(226,35,26,.35),0 24px 60px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 2px rgba(226,35,26,.8),0 0 38px rgba(226,35,26,.38),0 24px 60px rgba(0,0,0,.55)}}
+.pulse{animation:pulseGlow 3.2s ease-in-out infinite}
+.lift{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lift:hover{transform:translateY(-5px);border-color:rgba(226,35,26,.6);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 24px rgba(226,35,26,.16)}
+.marquee{background:#101013;border-top:1px solid #1E1E23;border-bottom:1px solid #1E1E23;overflow:hidden;padding:13px 0;margin-top:26px}
+.mtrack{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.mtrack span{font-weight:800;letter-spacing:1.6px;font-size:14.5px;color:#C9C9D1;padding:0 18px;white-space:nowrap}
+.mtrack b{color:var(--red)}
+details.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+details.faq summary{cursor:pointer;padding:19px 22px;font-size:17px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:800;line-height:1;flex:none}
+details.faq[open ] summary::after{transform:rotate(45deg)}
+details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-height:1.65;animation:rise .45s ease both}
+@media(max-width:900px){
+ .burger{display:block}
+ nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
+ nav.main a{padding:12px 2px;border-bottom:1px solid #222228}
+ #menu-toggle:checked ~ nav.main{display:flex}
+ .hbtns{display:none}
+ nav.main .hbtns{display:flex;margin:12px 0 4px}
+ .foot-grid{grid-template-columns:1fr}
+}
+
+
+.tphead{background:#101013;border-bottom:1px solid #222228}
+.tpbar{display:flex;align-items:center;gap:26px;padding:14px 0;flex-wrap:wrap}
+.tpbar .ttl h2{font-size:23px;letter-spacing:.4px}
+.tpbar .ttl .time{font-size:19px;color:#E8E8EC}
+.tpbar .ttl .time b{color:#FF5A1F}
+.pal{margin-left:auto;text-align:left}
+.pal small{display:block;font-size:16.5px;margin-bottom:7px;color:#E8E8EC}
+.palnums{display:flex;gap:6px;flex-wrap:wrap}
+.palnums button{width:37px;height:37px;border-radius:7px;border:1px solid #3A3A42;background:#26262C;color:#C9C9D1;font-size:15.5px;cursor:pointer;font-family:inherit;transition:transform .2s ease,background .2s ease}
+.palnums button:hover{transform:translateY(-2px)}
+.palnums button.done{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.palnums button.cur{background:#1A1A1E;border:2px solid #fff;color:#fff;font-weight:800}
+.tpgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:22px 0 8px;align-items:stretch}
+.tpanel{background:var(--panel);border:1px solid #222228;border-radius:14px;padding:28px 30px}
+.tpanel h3{font-size:23px;margin-bottom:18px}
+.passage p{font-size:18.5px;color:#EDEDF0;margin-bottom:18px;line-height:1.62}
+.qprog{height:9px;background:#33333B;border-radius:6px;overflow:hidden;flex:1}
+.qprog i{display:block;height:100%;width:26%;background:#fff;transform-origin:left center;animation:barGrow 1.2s ease both}
+.qhead{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.qhead h3{margin:0}
+.qtext{font-size:20px;line-height:1.5;margin-bottom:26px}
+.opt{display:flex;gap:14px;align-items:flex-start;padding:13px 6px;cursor:pointer;font-size:18.5px;border-radius:9px;transition:background .25s ease}
+.opt:hover{background:#1C1C21}
+.opt input{width:23px;height:23px;margin-top:3px;accent-color:var(--red);flex:none;cursor:pointer}
+.tpfoot{display:flex;justify-content:flex-end;gap:14px;padding:14px 0 26px}
+.tpfoot .btn{min-width:150px}
+@media(max-width:860px){.tpgrid{grid-template-columns:1fr}.pal{margin-left:0}.tpanel{padding:22px 18px}.passage p,.qtext{font-size:17px}}
+
+
+
+.zoomrow{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.zoomrow span{color:var(--mut);font-size:14.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-right:2px}
+.zbtn{background:#26262C;color:#EDEDF0;border:1.5px solid #3A3A42;border-radius:9px;padding:9px 18px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color .25s ease,transform .25s ease}
+.zbtn:hover{border-color:#fff;transform:translateY(-2px)}
+.passageText{transition:font-size .25s ease}
+.pq{padding:17px 0;border-bottom:1px solid #222228}
+.pq:last-child{border-bottom:none}
+.pq .qn{color:var(--red);font-weight:800;font-size:13.5px;letter-spacing:.6px}
+.pq .qt{font-size:17.5px;margin:6px 0 10px;line-height:1.55}
+.pq .opt{font-size:16.5px;padding:9px 6px}
+.ppfoot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 0 28px}
+.ppfoot .answered{font-size:17px;color:#EDEDF0}
+.ppfoot .answered b{color:#fff;font-size:19px}
+.qnums{display:flex;gap:6px;flex-wrap:wrap}
+.qnums button{width:37px;height:37px;border-radius:7px;border:1px solid #3A3A42;background:#26262C;color:#C9C9D1;font-size:15.5px;cursor:pointer;font-family:inherit;transition:transform .2s ease,background .2s ease}
+.qnums button:hover{transform:translateY(-2px)}
+.qnums button.done{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.qnums button.cur{background:#1A1A1E;border:2px solid #fff;color:#fff;font-weight:800}
+.checkbtn{background:var(--green);border-color:var(--green);margin-left:auto}
+.checkbtn:hover{background:#248a3f;border-color:#248a3f;box-shadow:0 10px 24px rgba(47,168,79,.3)}
+.ansnote{display:none;background:rgba(246,162,30,.12);border:1px solid rgba(246,162,30,.55);color:#F6C667;border-radius:10px;padding:13px 18px;font-size:15.5px;margin:0 0 18px}
+.ansnote.on{display:block}
+.scorehead{display:none;background:#1C1C21;border:1.5px solid rgba(47,168,79,.55);border-radius:14px;padding:24px 26px;margin-bottom:8px}
+.scorehead.on{display:block;animation:rise .5s ease both}
+.scorehead .big{font-size:40px;font-weight:900;line-height:1.1}
+.scorehead .big span{color:var(--green)}
+.scorehead p{color:var(--mut);font-size:15.5px;margin-top:6px}
+.revcard{border:1px solid #2A2A31;border-left:5px solid var(--green);border-radius:12px;padding:18px 20px;margin-top:14px;background:#1A1A1E}
+.revcard.wrong{border-left-color:var(--red)}
+.revcard .rq{font-size:16.5px;margin-bottom:9px;line-height:1.55}
+.revcard .ra{font-size:15px;color:#C9C9D1;margin:3px 0}
+.revcard .ra b{color:#fff}
+.revcard .ra .correctval{color:#5BD97F;font-weight:700}
+.revcard.wrong .ra .correctval{color:var(--red2)}
+.revcard .expl{color:var(--mut);font-size:14.5px;line-height:1.6;margin-top:9px}
+.revchip{display:inline-block;font-weight:800;border-radius:7px;padding:3px 11px;font-size:13px;margin-left:8px;vertical-align:2px}
+.revchip.ok{background:rgba(47,168,79,.18);color:#4CC36B;border:1px solid rgba(47,168,79,.5)}
+.revchip.bad{background:rgba(226,35,26,.14);color:#F0441F;border:1px solid rgba(226,35,26,.5)}
+.elapsed{font-size:19px;color:#E8E8EC}
+.elapsed b{color:#FF5A1F}
+.resbtns{display:none;gap:14px;flex-wrap:wrap;margin-top:22px}
+.resbtns.on{display:flex}
+
+
+</style>
+<style>
+/* fix round: bigger logo, scroll reveal, animated faq, band bars, clickable cards, mobile compact */
+body{overflow-x:clip}
+.logo-chip{padding:3px 6px}
+.logo-chip img{height:72px}
+.logo-chip.sm img{height:58px}
+.logo-chip.big{padding:4px 7px}
+.logo-chip.big img{height:108px;width:auto}
+html.js .anim:not(.pulse){animation:none;opacity:.85;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+html.js .anim.in{opacity:1;transform:translateY(0)}
+details.faq{transition:height .38s ease}
+details.faq summary::after{transition:transform .35s ease}
+details.faq[open] summary::after,details.faq.is-open summary::after{transform:rotate(45deg)}
+.course{cursor:pointer}
+.tcard[data-href]{cursor:pointer}
+.fchips{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 2px}
+.fchip{background:#26262C;color:#EDEDF0;border:none;border-radius:999px;padding:11px 22px;font-size:15.5px;cursor:pointer;font-family:inherit;transition:background .3s ease,transform .3s ease}
+.fchip:hover{background:#33333B;transform:translateY(-2px)}
+.fchip.on{background:var(--red);color:#fff;font-weight:700}
+.catrow{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:26px}
+.catcard{background:var(--card);border:1.5px solid rgba(226,35,26,.55);border-radius:14px;padding:26px 28px;display:flex;flex-direction:column}
+.catcard .catk{color:var(--red);font-weight:800;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase}
+.catcard h3{font-size:23px;margin:8px 0 9px}
+.catcard p{color:var(--mut);font-size:15px;line-height:1.6;margin-bottom:18px}
+.catcard .go{margin-top:auto;color:var(--red);font-weight:700;font-size:15.5px}
+.modgrid{align-items:stretch}
+.modcard{flex-direction:column;align-items:flex-start;height:100%}
+.modcard .ic{width:60px;height:60px;margin-bottom:18px}
+.modcard .sum{color:var(--mut);font-size:14.5px;line-height:1.55;margin-bottom:13px}
+.modcard ul{list-style:none;margin-bottom:18px}
+.modcard li{color:#D8D8DE;font-size:14.5px;padding:5px 0 5px 22px;position:relative}
+.modcard li:before{content:"";position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.modcard .go{margin-top:auto;color:var(--red);font-weight:700;font-size:15px}
+.bandtxt{flex:1;min-width:0}
+.bandbar{height:10px;background:#2A2A31;border-radius:6px;margin-top:12px;overflow:hidden}
+.bandbar i{display:block;height:100%;background:linear-gradient(90deg,#A81710,var(--red));border-radius:6px}
+html.js .bandrow .bandbar i{transform:scaleX(0);transform-origin:left center;transition:transform 1.1s ease .2s}
+html.js .bandrow.in .bandbar i{transform:scaleX(1)}
+@media(max-width:900px){.catrow{grid-template-columns:1fr}}
+@media(max-width:620px){
+ .wrap{padding:0 16px}
+ .sec{padding:42px 0 4px}
+ .sec-title{font-size:22px}
+ .logo-chip img{height:54px}
+ .logo-chip.big img{height:88px}
+ .modcard{padding:20px 18px}
+ .modcard li{display:none}
+ .modcard ul{margin-bottom:10px}
+ .course .desc{display:none}
+ .rescard p{display:none}
+ .bandrow{gap:12px;padding:14px 16px}
+ .bandrow p{display:none}
+ .bandrow .b{width:60px;font-size:18px}
+ .tcard{padding:24px 18px}
+ .tcard .big svg{width:70px;height:70px}
+ .stat .num{font-size:34px}
+ .pk{padding:28px 22px 26px}
+ .rcard{padding:22px 18px}
+ .authcard .logobox img{height:118px}
+ .catcard{padding:22px 20px}
+}
+
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<header class="tphead"><div class="wrap tpbar">
+<a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
+<div class="ttl"><h2>READING PRACTICE</h2><p class="elapsed"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> Time: <b id="elapsed">00:00</b></p></div>
+<a class="btn ghost" href="practice.html" style="margin-left:auto">Back to Exercises</a>
+</div></header>
+<main class="wrap"><div class="tpgrid">
+<section class="tpanel passage anim"><h3>Passage: The Evolution of Learning</h3>
+<div class="zoomrow"><span>Text size</span><button class="zbtn" id="zoomOut" type="button">Zoom Out</button><button class="zbtn" id="zoomIn" type="button">Zoom In</button></div>
+<div class="passageText" id="passageText" style="font-size:18.5px">
+<p>Education has played a vital role in shaping communities throughout history. Historically, knowledge was passed down through generations orally, emphasizing practical life skills within the family and village. Elders taught children how to farm, build, cook and trade, and almost all of this teaching happened through speech, demonstration and daily practice rather than through books.</p>
+<p>The advent of formal schooling changed how society prepares individuals, shifting focus toward structured learning. Classrooms, timetables and examinations replaced the flexible rhythm of learning at home, and qualifications began to matter for employment.</p>
+<p>Today, modern education must adapt to rapid technological progress while maintaining core cultural values. In many traditional regions, blending informal, communal knowledge with formal schooling offers the best path forward: students gain recognised qualifications without losing the practical wisdom of their communities.</p>
+</div></section>
+<section class="tpanel anim d2" id="qPanel"><div class="qhead"><h3>True / False / Not Given</h3></div>
+<p style="color:var(--mut);font-size:15.5px;margin-bottom:8px">Read the passage and decide whether each statement agrees with the information in the text.</p>
+<div class="pq" id="pq1"><span class="qn">QUESTION 1</span><p class="qt">Education in early communities was mainly delivered through written books.</p><label class="opt"><input type="radio" name="pq1" value="True"> True</label><label class="opt"><input type="radio" name="pq1" value="False"> False</label><label class="opt"><input type="radio" name="pq1" value="Not Given"> Not Given</label></div><div class="pq" id="pq2"><span class="qn">QUESTION 2</span><p class="qt">The primary focus of early education was practical life skills.</p><label class="opt"><input type="radio" name="pq2" value="True"> True</label><label class="opt"><input type="radio" name="pq2" value="False"> False</label><label class="opt"><input type="radio" name="pq2" value="Not Given"> Not Given</label></div><div class="pq" id="pq3"><span class="qn">QUESTION 3</span><p class="qt">Formal schooling began in the nineteenth century.</p><label class="opt"><input type="radio" name="pq3" value="True"> True</label><label class="opt"><input type="radio" name="pq3" value="False"> False</label><label class="opt"><input type="radio" name="pq3" value="Not Given"> Not Given</label></div><div class="pq" id="pq4"><span class="qn">QUESTION 4</span><p class="qt">Formal schooling shifted the focus toward structured learning.</p><label class="opt"><input type="radio" name="pq4" value="True"> True</label><label class="opt"><input type="radio" name="pq4" value="False"> False</label><label class="opt"><input type="radio" name="pq4" value="Not Given"> Not Given</label></div><div class="pq" id="pq5"><span class="qn">QUESTION 5</span><p class="qt">Modern education no longer needs to respect cultural values.</p><label class="opt"><input type="radio" name="pq5" value="True"> True</label><label class="opt"><input type="radio" name="pq5" value="False"> False</label><label class="opt"><input type="radio" name="pq5" value="Not Given"> Not Given</label></div><div class="pq" id="pq6"><span class="qn">QUESTION 6</span><p class="qt">The writer believes technology should replace teachers completely.</p><label class="opt"><input type="radio" name="pq6" value="True"> True</label><label class="opt"><input type="radio" name="pq6" value="False"> False</label><label class="opt"><input type="radio" name="pq6" value="Not Given"> Not Given</label></div><div class="pq" id="pq7"><span class="qn">QUESTION 7</span><p class="qt">In traditional regions, mixing informal and formal learning can work well.</p><label class="opt"><input type="radio" name="pq7" value="True"> True</label><label class="opt"><input type="radio" name="pq7" value="False"> False</label><label class="opt"><input type="radio" name="pq7" value="Not Given"> Not Given</label></div><div class="pq" id="pq8"><span class="qn">QUESTION 8</span><p class="qt">Villages resisted every form of formal schooling.</p><label class="opt"><input type="radio" name="pq8" value="True"> True</label><label class="opt"><input type="radio" name="pq8" value="False"> False</label><label class="opt"><input type="radio" name="pq8" value="Not Given"> Not Given</label></div>
+</section></div>
+<p class="ansnote" id="ansNote">Please answer all 8 questions first, then check your answers.</p>
+<div class="ppfoot"><span class="answered">Answered: <b id="ansCount">0/8</b></span><div class="qnums"><button type="button" data-qn="1">1</button><button type="button" data-qn="2">2</button><button type="button" data-qn="3">3</button><button type="button" data-qn="4">4</button><button type="button" data-qn="5">5</button><button type="button" data-qn="6">6</button><button type="button" data-qn="7">7</button><button type="button" data-qn="8">8</button></div><button class="btn checkbtn" id="checkBtn" type="button">Check Answers</button></div>
+<section id="resultsView" style="padding-bottom:30px"><div class="scorehead" id="scoreHead"><div class="big"><span id="scoreNum">0/8</span> &bull; <span id="scorePct">0%</span></div><p id="scoreMsg"></p></div><div id="reviewList"></div><div class="resbtns" id="resBtns"><button class="btn" id="tryAgain" type="button">Try Again</button><a class="btn ghost" href="practice.html">Back to Exercises</a></div></section>
+</main>
+
+<script>
+var ANSWERS = ['False','True','Not Given','True','False','Not Given','True','Not Given'];
+var EXPL = [
+ 'The passage says knowledge was passed down orally, from elders to children, not through written books.',
+ 'Paragraph 1 states that early education emphasised practical life skills within the family and village.',
+ 'The passage mentions the advent of formal schooling but never gives a century or a date for it.',
+ 'Paragraph 2 says formal schooling changed preparation by shifting the focus toward structured learning.',
+ 'The passage says modern education must adapt to technology while maintaining core cultural values.',
+ 'Technology is mentioned as a pressure to adapt to, but the passage never discusses replacing teachers.',
+ 'The final paragraph says blending informal, communal knowledge with formal schooling offers the best path forward.',
+ 'The passage does not describe villages resisting formal schooling; it speaks about blending the two approaches.'
+];
+var QTXT = [
+ 'Education in early communities was mainly delivered through written books.',
+ 'The primary focus of early education was practical life skills.',
+ 'Formal schooling began in the nineteenth century.',
+ 'Formal schooling shifted the focus toward structured learning.',
+ 'Modern education no longer needs to respect cultural values.',
+ 'The writer believes technology should replace teachers completely.',
+ 'In traditional regions, mixing informal and formal learning can work well.',
+ 'Villages resisted every form of formal schooling.'
+];
+var secs = 0, elEl = document.getElementById('elapsed');
+setInterval(function(){ secs++; var m = Math.floor(secs/60), s = secs%60; elEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; }, 1000);
+var fs = 18.5, ptxt = document.getElementById('passageText');
+document.getElementById('zoomIn').addEventListener('click', function(){ if(fs < 26){ fs += 2; ptxt.style.fontSize = fs + 'px'; } });
+document.getElementById('zoomOut').addEventListener('click', function(){ if(fs > 13){ fs -= 2; ptxt.style.fontSize = fs + 'px'; } });
+function answeredCount(){
+  var c = 0;
+  for(var i = 1; i <= 8; i++){ if(document.querySelector('input[name="pq' + i + '"]:checked')){ c++; } }
+  return c;
+}
+function refreshState(){
+  var c = answeredCount();
+  document.getElementById('ansCount').textContent = c + '/8';
+  document.querySelectorAll('.qnums button').forEach(function(b){
+    var n = +b.dataset.qn;
+    b.classList.toggle('done', !!document.querySelector('input[name="pq' + n + '"]:checked'));
+  });
+}
+document.querySelectorAll('.pq input[type="radio"]').forEach(function(r){ r.addEventListener('change', refreshState); });
+document.querySelectorAll('.qnums button').forEach(function(b){ b.addEventListener('click', function(){
+  document.querySelectorAll('.qnums button').forEach(function(x){ x.classList.remove('cur'); });
+  b.classList.add('cur');
+  var el = document.getElementById('pq' + b.dataset.qn);
+  if(el){ el.scrollIntoView({block:'center', behavior:'smooth'}); }
+}); });
+document.getElementById('checkBtn').addEventListener('click', function(){
+  var note = document.getElementById('ansNote');
+  if(answeredCount() < 8){ note.classList.add('on'); note.scrollIntoView({block:'center', behavior:'smooth'}); return; }
+  note.classList.remove('on');
+  var score = 0, html = '';
+  for(var i = 1; i <= 8; i++){
+    var sel = document.querySelector('input[name="pq' + i + '"]:checked');
+    var yours = sel ? sel.value : '';
+    var correct = ANSWERS[i - 1];
+    var ok = yours === correct;
+    if(ok){ score++; }
+    html += '<div class="revcard' + (ok ? '' : ' wrong') + '"><p class="rq"><b>Q' + i + '.</b> ' + QTXT[i - 1] + '<span class="revchip ' + (ok ? 'ok">Correct' : 'bad">Wrong') + '</span></p>'
+      + '<p class="ra">Your answer: <b>' + yours + '</b></p>'
+      + '<p class="ra">Correct answer: <span class="correctval">' + correct + '</span></p>'
+      + '<p class="expl">' + EXPL[i - 1] + '</p></div>';
+  }
+  var pct = Math.round(score / 8 * 100);
+  document.getElementById('scoreNum').textContent = score + '/8';
+  document.getElementById('scorePct').textContent = pct + '%';
+  document.getElementById('scoreMsg').textContent = score >= 6 ? 'Good job! Your True / False / Not Given accuracy is strong. Review the explanations below and try the next set.' : 'A good start. Read the explanations below carefully, then try again and watch your score climb.';
+  document.getElementById('reviewList').innerHTML = html;
+  document.getElementById('scoreHead').classList.add('on');
+  document.getElementById('resBtns').classList.add('on');
+  document.getElementById('scoreHead').scrollIntoView({block:'center', behavior:'smooth'});
+});
+document.getElementById('tryAgain').addEventListener('click', function(){
+  document.querySelectorAll('.pq input[type="radio"]').forEach(function(r){ r.checked = false; });
+  document.getElementById('scoreHead').classList.remove('on');
+  document.getElementById('resBtns').classList.remove('on');
+  document.getElementById('reviewList').innerHTML = '';
+  refreshState();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+refreshState();
+</script>
+<script>
+(function(){
+  var els = Array.prototype.slice.call(document.querySelectorAll('.anim'));
+  function show(el){ if(!el.classList.contains('in')){ el.classList.add('in'); setTimeout(function(){ el.classList.remove('anim'); }, 900); } }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting){ show(en.target); io.unobserve(en.target); } }); }, {threshold:.05, rootMargin:'0px 0px 60px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(show); }
+  setTimeout(function(){ els.forEach(show); }, 1500);
+  document.querySelectorAll('details.faq').forEach(function(d){
+    var summary = d.querySelector('summary'), body = d.querySelector('.fans');
+    if(!summary || !body) return;
+    summary.addEventListener('click', function(ev){
+      ev.preventDefault();
+      if(d.dataset.busy) return;
+      d.dataset.busy = '1';
+      if(d.open){
+        d.classList.remove('is-open');
+        var h = body.offsetHeight;
+        var a = body.animate([{height:h+'px'},{height:'0px'}], {duration:340, easing:'ease'});
+        a.onfinish = function(){ d.open = false; delete d.dataset.busy; };
+      } else {
+        d.open = true; d.classList.add('is-open');
+        var h2 = body.offsetHeight;
+        var a2 = body.animate([{height:'0px'},{height:h2+'px'}], {duration:340, easing:'ease'});
+        a2.onfinish = function(){ delete d.dataset.busy; };
+      }
+    });
+  });
+  document.querySelectorAll('.course').forEach(function(c){
+    c.addEventListener('click', function(e){ if(e.target.closest('a')) return; window.location.href = 'course-detail.html'; });
+  });
+  document.querySelectorAll('[data-href]').forEach(function(el){
+    el.addEventListener('click', function(e){ if(e.target.closest('a')) return; window.location.href = el.getAttribute('data-href'); });
+  });
+  var fchips = document.querySelectorAll('.fchip');
+  if(fchips.length){
+    var tcards = document.querySelectorAll('.tcard[data-track]');
+    fchips.forEach(function(ch){ ch.addEventListener('click', function(){
+      fchips.forEach(function(c){ c.classList.remove('on'); });
+      ch.classList.add('on');
+      var f = ch.getAttribute('data-f');
+      tcards.forEach(function(card){ card.style.display = (f === 'all' || card.getAttribute('data-track') === f) ? '' : 'none'; });
+    }); });
+  }
+})();
+</script>
+</body></html>

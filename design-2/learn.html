@@ -115,6 +115,28 @@ details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-hei
 .mistrow b{font-size:17.5px}
 .mistrow span{color:var(--mut);font-size:15px;flex:1;min-width:180px}
 .mistrow .tag{background:#26262C;color:#F6A21E;border:1px solid rgba(246,162,30,.5)}
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.stars{display:inline-flex;gap:3px;vertical-align:-3px;margin-left:8px}
+.ttcard{background:var(--panel);border:1.5px solid rgba(226,35,26,.55);border-radius:16px;padding:28px 30px;margin-top:24px}
+.ttcard .wk{color:var(--red);font-weight:800;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase}
+.bigword{font-size:44px;font-weight:900;letter-spacing:6px;margin:14px 0 4px}
+.bigword .blank{color:var(--red);border-bottom:4px solid var(--red);padding:0 2px}
+.ttdef{font-size:17.5px;color:#EDEDF0}
+.ttphon{color:var(--mut);font-size:15.5px;margin-top:4px}
+.statbar{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:22px 0 6px}
+.statbar .sb{background:#1C1C21;border:1px solid #2A2A31;border-radius:11px;padding:13px 10px;text-align:center}
+.statbar .sb b{display:block;font-size:21px;line-height:1.15}
+.statbar .sb span{color:var(--mut2);font-size:11.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.ttrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.ttrow select{background:#26262C;border:1.5px solid #3A3A42;border-radius:11px;color:#fff;font-size:15.5px;padding:12px 14px;font-family:inherit;outline:none;color-scheme:dark;cursor:pointer}
+.ttrow input[type=text]{flex:1;min-width:200px;background:#26262C;border:1.5px solid #3A3A42;border-radius:11px;color:#fff;font-size:16.5px;padding:13px 16px;font-family:inherit;outline:none}
+.ttrow input[type=text]:focus{border-color:#C9C9D1}
+.ttbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.ttbtns .btn{padding:11px 22px;font-size:15px}
+.togbtn.on{background:var(--red);border-color:var(--red);color:#fff}
+@media(max-width:1020px){.toolgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.toolgrid{grid-template-columns:1fr}.statbar{grid-template-columns:repeat(2,1fr)}.bigword{font-size:34px}.ttcard{padding:24px 20px}}
+
 @media(max-width:1020px){.lgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.lgrid{grid-template-columns:1fr}.wordcard{padding:24px 20px}.dictbox{padding:22px 18px}}
 
@@ -181,6 +203,34 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .catcard{padding:22px 20px}
 }
 
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -190,7 +240,7 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <nav class="main"><a href="dashboard.html">Dashboard</a><a href="practice.html">Practice Tests</a><a href="mock-tests.html">Mock Tests</a><a href="learn.html" class="active">Learn</a><a href="leaderboard.html">Leaderboard</a><a href="results.html">Performance</a><a href="profile.html">My Account</a>
 <span class="hbtns"><span class="bell"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.2-1.5 5.2h14S17.5 12.5 17.5 8.5A5.5 5.5 0 0 0 12 3Z" fill="#fff"/><circle cx="12" cy="19" r="2.2" fill="#fff"/></svg><i></i></span><span class="avatar">AK</span><b style="font-size:16.5px">Ahmad K.</b></span>
 </nav></div></header>
-<main class="wrap"><section class="ahead anim"><h1>Learn</h1><div class="rule"></div><p>Train the two skills behind every band score: grammar accuracy with the Tenses Trainer and spelling with the Words Trainer.</p></section><section class="pgroup" style="margin-top:30px"><h2 class="anim" style="font-size:23px">Tenses Trainer</h2><p class="anim" style="color:var(--mut);font-size:15.5px;margin-top:6px">All 12 tenses, one clear formula and one IELTS example each. Open a tense and practise it right away.</p><div class="lgrid"><div class="tcard2 lift anim"><span class="tn">Tense 01</span><h3>Present Simple</h3><p class="form">Subject + base verb</p><p class="ex">&ldquo;She writes an essay every week.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 02</span><h3>Present Continuous</h3><p class="form">am / is / are + verb-ing</p><p class="ex">&ldquo;I am recording my speaking answer now.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 03</span><h3>Present Perfect</h3><p class="form">have / has + past participle</p><p class="ex">&ldquo;We have finished three mock tests.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 04</span><h3>Present Perfect Continuous</h3><p class="form">have / has been + verb-ing</p><p class="ex">&ldquo;He has been studying since morning.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 05</span><h3>Past Simple</h3><p class="form">Subject + past verb</p><p class="ex">&ldquo;They took the IELTS test last month.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 06</span><h3>Past Continuous</h3><p class="form">was / were + verb-ing</p><p class="ex">&ldquo;She was reading when the timer ended.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 07</span><h3>Past Perfect</h3><p class="form">had + past participle</p><p class="ex">&ldquo;I had completed the essay before time ran out.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 08</span><h3>Past Perfect Continuous</h3><p class="form">had been + verb-ing</p><p class="ex">&ldquo;He had been practising for months before the exam.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 09</span><h3>Future Simple</h3><p class="form">will + base verb</p><p class="ex">&ldquo;I will book my test next week.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 10</span><h3>Future Continuous</h3><p class="form">will be + verb-ing</p><p class="ex">&ldquo;This time tomorrow, we will be writing Task 2.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 11</span><h3>Future Perfect</h3><p class="form">will have + past participle</p><p class="ex">&ldquo;By June, she will have reached Band 7.5.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 12</span><h3>Future Perfect Continuous</h3><p class="form">will have been + verb-ing</p><p class="ex">&ldquo;By test day, I will have been preparing for six months.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div></div></section><section style="margin-top:44px"><h2 class="anim" style="font-size:23px">Words Trainer</h2><p class="anim" style="color:var(--mut);font-size:15.5px;margin-top:6px">Learn the word, hear it, then spell it from dictation. Words you miss are saved to your Mistake Book.</p><div class="wordcard anim"><span class="wk">Word of the Day</span><h3>Reluctant</h3><p class="mean">not willing to do something; hesitant</p><p class="ex">&ldquo;Many students are reluctant to speak in front of others, but practice makes it easier.&rdquo;</p><div class="wordrow"><button class="btn ghost" id="listenBtn" type="button">Listen</button><span style="color:var(--mut);font-size:14.5px">Press Listen, then spell the word in the dictation box below.</span></div></div><div class="dictbox anim"><h3>Dictation</h3><p>Type the word from the card above exactly as it is spelled.</p><div class="dictrow"><input type="text" id="dictInput" placeholder="Type the word here" autocomplete="off"><button class="btn" id="dictCheck" type="button">Check</button></div><p class="dictmsg" id="dictMsg"></p></div><h3 class="anim" style="font-size:20px;margin-top:30px">Mistake Book</h3><div class="mistlist"><div class="mistrow anim"><b>Occur</b><span>to happen, especially unexpectedly</span><span class="tag">REVIEW</span></div><div class="mistrow anim"><b>Separate</b><span>divided into different parts; not together</span><span class="tag">REVIEW</span></div><div class="mistrow anim"><b>Emphasise</b><span>to give special importance to something</span><span class="tag">REVIEW</span></div></div></section></main>
+<main class="wrap"><section class="ahead anim"><h1>Learn</h1><div class="rule"></div><p>Train the two skills behind every band score: grammar accuracy with the Tenses Trainer and spelling with the Words Trainer.</p></section><section class="pgroup" style="margin-top:30px"><h2 class="anim" style="font-size:23px">Tenses Trainer</h2><p class="anim" style="color:var(--mut);font-size:15.5px;margin-top:6px">All 12 tenses, one clear formula and one IELTS example each. Open a tense and practise it right away.</p><div class="lgrid"><div class="tcard2 lift anim"><span class="tn">Tense 01</span><h3>Present Simple</h3><p class="form">Subject + base verb</p><p class="ex">&ldquo;She writes an essay every week.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 02</span><h3>Present Continuous</h3><p class="form">am / is / are + verb-ing</p><p class="ex">&ldquo;I am recording my speaking answer now.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 03</span><h3>Present Perfect</h3><p class="form">have / has + past participle</p><p class="ex">&ldquo;We have finished three mock tests.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 04</span><h3>Present Perfect Continuous</h3><p class="form">have / has been + verb-ing</p><p class="ex">&ldquo;He has been studying since morning.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 05</span><h3>Past Simple</h3><p class="form">Subject + past verb</p><p class="ex">&ldquo;They took the IELTS test last month.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 06</span><h3>Past Continuous</h3><p class="form">was / were + verb-ing</p><p class="ex">&ldquo;She was reading when the timer ended.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 07</span><h3>Past Perfect</h3><p class="form">had + past participle</p><p class="ex">&ldquo;I had completed the essay before time ran out.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 08</span><h3>Past Perfect Continuous</h3><p class="form">had been + verb-ing</p><p class="ex">&ldquo;He had been practising for months before the exam.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 09</span><h3>Future Simple</h3><p class="form">will + base verb</p><p class="ex">&ldquo;I will book my test next week.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 10</span><h3>Future Continuous</h3><p class="form">will be + verb-ing</p><p class="ex">&ldquo;This time tomorrow, we will be writing Task 2.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 11</span><h3>Future Perfect</h3><p class="form">will have + past participle</p><p class="ex">&ldquo;By June, she will have reached Band 7.5.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div><div class="tcard2 lift anim"><span class="tn">Tense 12</span><h3>Future Perfect Continuous</h3><p class="form">will have been + verb-ing</p><p class="ex">&ldquo;By test day, I will have been preparing for six months.&rdquo;</p><a class="btn ghost" href="practice.html">Practice</a></div></div><h3 class="anim" style="font-size:20px;margin-top:34px">Tenses Tools</h3><p class="anim" style="color:var(--mut);font-size:15.5px;margin-top:6px">Games and quick tools that make tense practice feel less like homework.</p><div class="toolgrid"><div class="tcard2 lift anim"><span class="tn">Practice Space</span><h3>Playground</h3><p class="ex" style="font-style:normal">A free practice space. Pick any tense, write your own sentences, and check them against the formula as you go.</p><button class="btn ghost" type="button" style="margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:14.5px">Open Playground</button></div><div class="tcard2 lift anim"><span class="tn">Game</span><h3>Sentence Builder</h3><p class="ex" style="font-style:normal">Build correct sentences from mixed up word blocks. Faster rounds unlock as your accuracy improves.</p><button class="btn ghost" type="button" style="margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:14.5px">Play Game</button></div><div class="tcard2 lift anim"><span class="tn">Game</span><h3>Word Rainfall</h3><p class="ex" style="font-style:normal">Catch the falling verbs and tap the correct tense form before they reach the bottom of the screen.</p><button class="btn ghost" type="button" style="margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:14.5px">Play Game</button></div><div class="tcard2 lift anim"><span class="tn">Challenge</span><h3>Quiz Challenge</h3><p class="ex" style="font-style:normal">Work through levels of tense questions and earn up to three stars per level.<span class="stars"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1l-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z" fill="#F6A21E"/></svg><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1l-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z" fill="#F6A21E"/></svg><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1l-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z" fill="#F6A21E"/></svg></span></p><button class="btn ghost" type="button" style="margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:14.5px">Start Quiz</button></div><div class="tcard2 lift anim"><span class="tn">Cheat Sheet</span><h3>Tips and Tricks</h3><p class="ex" style="font-style:normal">A one page cheat sheet of signal words and time markers that tell you which tense a sentence needs.</p><button class="btn ghost" type="button" style="margin-top:auto;align-self:flex-start;padding:9px 20px;font-size:14.5px">View Cheat Sheet</button></div></div></section><section style="margin-top:44px"><h2 class="anim" style="font-size:23px">Words Trainer</h2><p class="anim" style="color:var(--mut);font-size:15.5px;margin-top:6px">Learn the word, hear it, then spell it from dictation. Words you miss are saved to your Mistake Book.</p><div class="ttcard anim"><span class="wk">Typing Trainer</span><div class="bigword">can<span class="blank">c</span>el</div><p class="ttdef">to decide that something that was planned will not happen</p><p class="ttphon">Phonetics: /&#712;k&aelig;n.s&#601;l/ &bull; One letter is missing. Type the full word below.</p><div class="statbar"><div class="sb"><b id="ttTime">0:00</b><span>Time</span></div><div class="sb"><b id="ttInputs">0</b><span>Inputs</span></div><div class="sb"><b id="ttWpm">0</b><span>WPM</span></div><div class="sb"><b id="ttCorrect">0</b><span>Correct</span></div><div class="sb"><b id="ttAcc">0%</b><span>Accuracy</span></div></div><div class="ttrow"><select id="ttDict" aria-label="Dictionary"><option>IELTS Core</option><option>Academic Word List</option><option>Everyday English</option></select><select id="ttChapter" aria-label="Chapter"><option>Chapter 1</option><option>Chapter 2</option><option>Chapter 3</option></select><input type="text" id="ttInput" placeholder="Press Start, then type the word here" autocomplete="off" disabled></div><div class="ttbtns"><button class="btn" id="ttStart" type="button">Start</button><button class="btn ghost" id="ttSkip" type="button">Skip this word</button><button class="btn ghost" type="button">Word list</button><button class="btn ghost togbtn" id="ttDictMode" type="button">Dictation mode</button><a class="btn ghost" href="learn.html#mistakeBook">Mistake Book</a><button class="btn ghost" type="button">Statistics</button></div></div><div class="wordcard anim"><span class="wk">Word of the Day</span><h3>Reluctant</h3><p class="mean">not willing to do something; hesitant</p><p class="ex">&ldquo;Many students are reluctant to speak in front of others, but practice makes it easier.&rdquo;</p><div class="wordrow"><button class="btn ghost" id="listenBtn" type="button">Listen</button><span style="color:var(--mut);font-size:14.5px">Press Listen, then spell the word in the dictation box below.</span></div></div><div class="dictbox anim"><h3>Dictation</h3><p>Type the word from the card above exactly as it is spelled.</p><div class="dictrow"><input type="text" id="dictInput" placeholder="Type the word here" autocomplete="off"><button class="btn" id="dictCheck" type="button">Check</button></div><p class="dictmsg" id="dictMsg"></p></div><h3 class="anim" id="mistakeBook" style="font-size:20px;margin-top:30px">Mistake Book</h3><div class="mistlist"><div class="mistrow anim"><b>Occur</b><span>to happen, especially unexpectedly</span><span class="tag">REVIEW</span></div><div class="mistrow anim"><b>Separate</b><span>divided into different parts; not together</span><span class="tag">REVIEW</span></div><div class="mistrow anim"><b>Emphasise</b><span>to give special importance to something</span><span class="tag">REVIEW</span></div></div></section></main>
 <p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p>
 <script>
 
@@ -213,6 +263,45 @@ if(dictCheck){ dictCheck.addEventListener('click', function(){
   else { msg.textContent = 'Try again. Listen once more and check each letter.'; msg.className = 'dictmsg no'; }
 }); }
 
+
+var ttWord = 'cancel', ttOn = false, ttSecs = 0, ttTimer = null, ttInputs = 0, ttCorrect = 0;
+var ttInput = document.getElementById('ttInput');
+function ttFmt(s){ var m = Math.floor(s / 60), ss = s % 60; return m + ':' + (ss < 10 ? '0' : '') + ss; }
+function ttStats(){
+  document.getElementById('ttInputs').textContent = ttInputs;
+  document.getElementById('ttCorrect').textContent = ttCorrect;
+  document.getElementById('ttAcc').textContent = ttInputs ? Math.round(ttCorrect / ttInputs * 100) + '%' : '0%';
+  document.getElementById('ttWpm').textContent = ttSecs > 4 ? Math.round((ttCorrect / 5) / (ttSecs / 60)) : 0;
+}
+document.getElementById('ttStart').addEventListener('click', function(){
+  if(ttOn){ return; }
+  ttOn = true; this.textContent = 'Running...';
+  ttInput.disabled = false; ttInput.focus();
+  ttTimer = setInterval(function(){ ttSecs++; document.getElementById('ttTime').textContent = ttFmt(ttSecs); ttStats(); }, 1000);
+});
+ttInput.addEventListener('input', function(){
+  var v = ttInput.value.toLowerCase();
+  ttInputs = Math.max(ttInputs, v.length);
+  ttCorrect = 0;
+  for(var i = 0; i < v.length && i < ttWord.length; i++){ if(v[i] === ttWord[i]){ ttCorrect++; } }
+  ttStats();
+  if(v === ttWord){
+    ttInput.style.borderColor = 'var(--green)';
+    document.getElementById('ttStart').textContent = 'Word Complete';
+    clearInterval(ttTimer); ttOn = false;
+  }
+});
+document.getElementById('ttSkip').addEventListener('click', function(){
+  ttInput.value = ''; ttInputs = 0; ttCorrect = 0; ttStats();
+  ttInput.style.borderColor = '';
+});
+var dmBtn = document.getElementById('ttDictMode');
+dmBtn.addEventListener('click', function(){
+  dmBtn.classList.toggle('on');
+  var on = dmBtn.classList.contains('on');
+  document.querySelector('.ttcard .bigword').style.visibility = on ? 'hidden' : '';
+  document.querySelector('.ttcard .ttdef').style.visibility = on ? 'hidden' : '';
+});
 </script>
 <script>
 (function(){

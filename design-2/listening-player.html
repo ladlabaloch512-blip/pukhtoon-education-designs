@@ -129,6 +129,24 @@ details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-hei
 .fillin{background:#26262C;border:1.5px solid #3A3A42;border-radius:9px;color:#fff;font-size:16.5px;padding:10px 14px;font-family:inherit;outline:none;width:220px;max-width:100%}
 .fillin:focus{border-color:#C9C9D1}
 .qitem.hl{background:rgba(226,35,26,.05);border-radius:10px}
+.palnums button.marked{box-shadow:inset 0 0 0 2px var(--gold);border-color:var(--gold);color:#F6C667;font-weight:800}
+.markrow{display:flex;align-items:center;gap:12px;padding:14px 0 0}
+.markrev{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:16px;color:#EDEDF0;background:#1C1C21;border:1px solid #2A2A31;border-radius:10px;padding:11px 18px}
+.markrev input{width:20px;height:20px;accent-color:var(--gold);cursor:pointer}
+.smodal{display:none;position:fixed;inset:0;background:rgba(5,5,7,.82);z-index:200;align-items:center;justify-content:center;padding:20px}
+.smodal.on{display:flex}
+.smbox{background:var(--panel);border:1.5px solid rgba(226,35,26,.6);border-radius:18px;max-width:520px;width:100%;padding:32px 34px;box-shadow:0 30px 80px rgba(0,0,0,.7);animation:rise .5s ease both}
+.smbox h3{font-size:23px;margin-bottom:12px}
+.smbox p{color:#D8D8DE;font-size:16.5px;line-height:1.7}
+.smbox p b{color:#F6C667}
+.smbox .mbtns{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+.volrow{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.volrow .vl{color:var(--mut);font-size:14px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.volrow input[type=range]{flex:1;min-width:140px;accent-color:var(--red);cursor:pointer}
+.mutebtn{background:#26262C;border:1.5px solid #3A3A42;border-radius:9px;width:44px;height:44px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:border-color .25s ease}
+.mutebtn:hover{border-color:#fff}
+.mutebtn.off{opacity:.55;border-color:var(--red)}
+
 @media(max-width:860px){.lgrid2{grid-template-columns:1fr}}
 
 </style>
@@ -194,6 +212,34 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .catcard{padding:22px 20px}
 }
 
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -203,16 +249,17 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <div class="pal"><small>Question Palette</small><div class="palnums"><button type="button" data-q="1" class="cur">1</button><button type="button" data-q="2" class="">2</button><button type="button" data-q="3" class="">3</button><button type="button" data-q="4" class="">4</button><button type="button" data-q="5" class="">5</button><button type="button" data-q="6" class="">6</button><button type="button" data-q="7" class="">7</button><button type="button" data-q="8" class="">8</button><button type="button" data-q="9" class="">9</button><button type="button" data-q="10" class="">10</button><button type="button" data-q="11" class="">11</button><button type="button" data-q="12" class="">12</button><button type="button" data-q="13" class="">13</button><button type="button" data-q="14" class="">14</button><button type="button" data-q="15" class="">15</button><button type="button" data-q="16" class="">16</button><button type="button" data-q="17" class="">17</button><button type="button" data-q="18" class="">18</button><button type="button" data-q="19" class="">19</button><button type="button" data-q="20" class="">20</button><button type="button" data-q="21" class="">21</button><button type="button" data-q="22" class="">22</button><button type="button" data-q="23" class="">23</button><button type="button" data-q="24" class="">24</button><button type="button" data-q="25" class="">25</button><button type="button" data-q="26" class="">26</button><button type="button" data-q="27" class="">27</button><button type="button" data-q="28" class="">28</button><button type="button" data-q="29" class="">29</button><button type="button" data-q="30" class="">30</button><button type="button" data-q="31" class="">31</button><button type="button" data-q="32" class="">32</button><button type="button" data-q="33" class="">33</button><button type="button" data-q="34" class="">34</button><button type="button" data-q="35" class="">35</button><button type="button" data-q="36" class="">36</button><button type="button" data-q="37" class="">37</button><button type="button" data-q="38" class="">38</button><button type="button" data-q="39" class="">39</button><button type="button" data-q="40" class="">40</button></div></div>
 <button class="btn" id="submitBtn" type="button">Submit Test</button>
 </div></header>
-<main class="wrap"><div class="lgrid2"><section class="tpanel anim"><h3>Listening Test</h3><span class="sectag">Section 1 of 4</span><div class="audcard"><div class="audrow"><button class="playbtn" id="playBtn" type="button" aria-label="Play or pause audio"><svg id="playIcon" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></button><div class="audtrack"><i id="audBar"></i></div></div><div class="audtime"><span id="audCur">0:00</span><span>Section 1 Recording</span><span id="audDur">1:30</span></div></div><p class="transnote"><b>Instructions:</b> You will hear a conversation between a student and a course advisor about joining a study group. Listen carefully and answer Questions 1 to 5. In the real test the recording plays once only.</p><p class="transnote" style="margin-top:14px;color:var(--mut)">Use headphones for the best result. You can pause this practice recording, but mock test recordings play without pauses.</p></section><section class="tpanel anim d2"><div class="qhead"><h3>Questions 1 to 5</h3><div class="qprog"><i style="width:12%"></i></div></div><div class="qitem" id="qq1"><span class="qn">QUESTION 1</span><p class="qt">Why does the student visit the advisor?</p><label class="opt"><input type="radio" name="q1" value="A"> A) To change her courses</label><label class="opt"><input type="radio" name="q1" value="B" checked> B) To join a study group</label><label class="opt"><input type="radio" name="q1" value="C"> C) To book a test date</label></div><div class="qitem" id="qq2"><span class="qn">QUESTION 2</span><p class="qt">When does the study group meet?</p><label class="opt"><input type="radio" name="q2" value="A"> A) Monday morning</label><label class="opt"><input type="radio" name="q2" value="B"> B) Tuesday evening</label><label class="opt"><input type="radio" name="q2" value="C"> C) Friday afternoon</label></div><div class="qitem" id="qq3"><span class="qn">QUESTION 3</span><p class="qt">How many students are already in the group?</p><label class="opt"><input type="radio" name="q3" value="A"> A) Four</label><label class="opt"><input type="radio" name="q3" value="B"> B) Six</label><label class="opt"><input type="radio" name="q3" value="C"> C) Nine</label></div><div class="qitem" id="qq4"><span class="qn">QUESTION 4</span><p class="qt">Complete the sentence. The group meets in the <input class="fillin" type="text" placeholder="Type your answer"> building.</p></div><div class="qitem" id="qq5"><span class="qn">QUESTION 5</span><p class="qt">Complete the sentence. Students must bring their <input class="fillin" type="text" placeholder="Type your answer"> card to every session.</p></div></section></div><div class="tpfoot"><button class="btn ghost" id="backBtn" type="button">Back</button><button class="btn" id="nextBtn" type="button">Save &amp; Next</button></div></main>
+<main class="wrap"><div class="lgrid2"><section class="tpanel anim"><h3>Listening Test</h3><span class="sectag">Section 1 of 4</span><div class="audcard"><div class="audrow"><button class="playbtn" id="playBtn" type="button" aria-label="Play or pause audio"><svg id="playIcon" width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></button><div class="audtrack"><i id="audBar"></i></div></div><div class="audtime"><span id="audCur">0:00</span><span>Section 1 Recording</span><span id="audDur">1:30</span></div></div><div class="volrow"><button class="mutebtn" id="muteBtn" type="button" aria-label="Mute or unmute"><svg id="volIcon" width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" fill="#EDEDF0"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4" stroke="#EDEDF0" stroke-width="1.8" stroke-linecap="round"/></svg></button><span class="vl">Volume</span><input type="range" id="volSlider" min="0" max="100" value="80"></div><p class="transnote"><b>Instructions:</b> You will hear a conversation between a student and a course advisor about joining a study group. Listen carefully and answer Questions 1 to 5. In the real test the recording plays once only.</p><p class="transnote" style="margin-top:14px;color:var(--mut)">Use headphones for the best result. You can pause this practice recording, but mock test recordings play without pauses.</p></section><section class="tpanel anim d2"><div class="qhead"><h3>Questions 1 to 5</h3><div class="qprog"><i style="width:12%"></i></div></div><div class="qitem" id="qq1"><span class="qn">QUESTION 1</span><p class="qt">Why does the student visit the advisor?</p><label class="opt"><input type="radio" name="q1" value="A"> A) To change her courses</label><label class="opt"><input type="radio" name="q1" value="B" checked> B) To join a study group</label><label class="opt"><input type="radio" name="q1" value="C"> C) To book a test date</label></div><div class="qitem" id="qq2"><span class="qn">QUESTION 2</span><p class="qt">When does the study group meet?</p><label class="opt"><input type="radio" name="q2" value="A"> A) Monday morning</label><label class="opt"><input type="radio" name="q2" value="B"> B) Tuesday evening</label><label class="opt"><input type="radio" name="q2" value="C"> C) Friday afternoon</label></div><div class="qitem" id="qq3"><span class="qn">QUESTION 3</span><p class="qt">How many students are already in the group?</p><label class="opt"><input type="radio" name="q3" value="A"> A) Four</label><label class="opt"><input type="radio" name="q3" value="B"> B) Six</label><label class="opt"><input type="radio" name="q3" value="C"> C) Nine</label></div><div class="qitem" id="qq4"><span class="qn">QUESTION 4</span><p class="qt">Complete the sentence. The group meets in the <input class="fillin" type="text" placeholder="Type your answer"> building.</p></div><div class="qitem" id="qq5"><span class="qn">QUESTION 5</span><p class="qt">Complete the sentence. Students must bring their <input class="fillin" type="text" placeholder="Type your answer"> card to every session.</p></div></section></div><div class="markrow"><label class="markrev"><input type="checkbox" id="markRev"> Mark for review</label></div><div class="tpfoot"><button class="btn ghost" id="backBtn" type="button">Back</button><button class="btn" id="nextBtn" type="button">Save &amp; Next</button></div><div class="smodal" id="sModal" role="dialog" aria-modal="true" aria-labelledby="sModalTitle"><div class="smbox"><h3 id="sModalTitle">Submit Test?</h3><p id="sModalText"></p><div class="mbtns"><button class="btn ghost" id="sCancel" type="button">Cancel</button><a class="btn" href="results.html">Submit Test</a></div></div></div></main>
 <script>
 var total = 1800, timerEl = document.getElementById('timer');
 setInterval(function(){ if(total>0){ total--; var m = Math.floor(total/60), s = total%60; timerEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; } }, 1000);
-document.getElementById('submitBtn').addEventListener('click', function(){ window.location.href = 'results.html'; });
+
 var cur = 1;
 function setCur(n){
   cur = n;
   document.querySelectorAll('.palnums button').forEach(function(b){ b.classList.toggle('cur', +b.dataset.q === n); });
   document.querySelectorAll('.qitem').forEach(function(q){ q.classList.remove('hl'); });
+  if(typeof syncMark === 'function'){ syncMark(); }
   var el = document.getElementById('qq' + n);
   if(el){ el.classList.add('hl'); el.scrollIntoView({block:'center', behavior:'smooth'}); }
 }
@@ -240,6 +287,38 @@ setInterval(function(){
   }
 }, 250);
 
+
+var marked = {};
+var markRev = document.getElementById('markRev');
+function palBtn(n){ return document.querySelector('.palnums button[data-q="' + n + '"]'); }
+function syncMark(){
+  var b = palBtn(cur);
+  if(markRev){ markRev.checked = !!marked[cur]; }
+  document.querySelectorAll('.palnums button').forEach(function(x){
+    x.classList.toggle('marked', !!marked[+x.dataset.q]);
+  });
+}
+if(markRev){ markRev.addEventListener('change', function(){ marked[cur] = markRev.checked; syncMark(); }); }
+var sModal = document.getElementById('sModal');
+document.getElementById('submitBtn').addEventListener('click', function(){
+  var totalQ = document.querySelectorAll('.palnums button').length;
+  var answered = document.querySelectorAll('.palnums button.done').length;
+  var un = totalQ - answered;
+  document.getElementById('sModalText').innerHTML = 'You have <b>' + un + ' unanswered</b> questions out of ' + totalQ + '. Are you sure you want to submit? This will be recorded as a completed attempt.';
+  sModal.classList.add('on');
+});
+document.getElementById('sCancel').addEventListener('click', function(){ sModal.classList.remove('on'); });
+
+var muted = false;
+document.getElementById('muteBtn').addEventListener('click', function(){
+  muted = !muted;
+  this.classList.toggle('off', muted);
+  document.getElementById('volIcon').style.opacity = muted ? '.45' : '';
+});
+document.getElementById('volSlider').addEventListener('input', function(){
+  if(+this.value === 0){ muted = true; } else if(muted){ muted = false; document.getElementById('muteBtn').classList.remove('off'); document.getElementById('volIcon').style.opacity = ''; }
+});
+syncMark();
 </script>
 <script>
 (function(){

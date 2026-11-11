@@ -119,6 +119,43 @@ body{background:#0D0D10}
 .obnav .sp{flex:1}
 @media(max-width:620px){.obcard{padding:28px 22px 26px}.selrow{grid-template-columns:1fr}.obwrap{padding:26px 16px}}
 
+
+
+select.ofield{appearance:none;-webkit-appearance:none}
+.ofield select{flex:1;background:none;border:none;outline:none;color:#fff;font-size:16.5px;padding:15px 0;font-family:inherit;min-width:0;color-scheme:dark;cursor:pointer}
+.ofield select option{background:#1C1C21;color:#fff}
+.sidwrap{display:none;margin-top:16px}
+.sidwrap.on{display:block;animation:rise .45s ease both}
+.reqnote{color:#F6C667;font-size:13.5px;font-weight:700;margin-top:8px}
+.idlink{display:inline-block;color:var(--red);font-weight:700;font-size:14.5px;margin-top:10px}
+.optcards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.optcard{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:20px 22px;cursor:pointer;transition:border-color .25s ease,transform .25s ease;text-align:left;width:100%;font-family:inherit;color:#fff}
+.optcard:hover{transform:translateY(-3px)}
+.optcard.on{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 22px rgba(226,35,26,.18)}
+.optcard b{font-size:17.5px;display:block;margin-bottom:5px}
+.optcard span{color:var(--mut);font-size:14px;line-height:1.55;display:block}
+.switchrow{display:flex;align-items:center;gap:16px;margin:22px 0 4px}
+.switch{position:relative;width:58px;height:32px;flex:none;background:#33333B;border-radius:999px;border:1.5px solid #3A3A42;cursor:pointer;transition:background .3s ease;padding:0}
+.switch i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#C9C9D1;transition:left .3s ease,background .3s ease}
+.switch.on{background:var(--red);border-color:var(--red)}
+.switch.on i{left:27px;background:#fff}
+.switchrow .sl{font-size:16.5px;font-weight:700}
+.datewrap{display:none}
+.datewrap.on{display:block;animation:rise .45s ease both}
+input[type=range].tslider{width:100%;accent-color:var(--red);height:34px;cursor:pointer;background:none}
+.sliderval{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.sliderval .tv{font-size:30px;font-weight:900;color:var(--red)}
+.sliderval span{color:var(--mut2);font-size:13.5px;font-weight:700;letter-spacing:.5px}
+.sumlist{display:grid;gap:0;margin-top:6px}
+.sumrow{display:flex;justify-content:space-between;gap:18px;padding:14px 2px;border-bottom:1px solid #222228}
+.sumrow:last-child{border-bottom:none}
+.sumrow .sk{color:var(--mut);font-size:15px;flex:none}
+.sumrow .sv{font-weight:700;font-size:15.5px;text-align:right}
+.finishhead{text-align:center;margin-bottom:20px}
+.finishhead .tickbig{width:72px;height:72px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+@media(max-width:620px){.optcards{grid-template-columns:1fr}}
+
+
 </style>
 <style>
 /* fix round: bigger logo, scroll reveal, animated faq, band bars, clickable cards, mobile compact */
@@ -182,39 +219,114 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .catcard{padding:22px 20px}
 }
 
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
 <header class="obhead"><div class="wrap"><a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div></header>
-<main class="obwrap"><div class="gcard anim"><span class="tick"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Account created with Google</b><span>Your Google account is connected. Finish these three quick steps to personalise your dashboard.</span></div></div><div class="obcard anim d2"><h1>Set Up Your Student Profile</h1><p class="sub">Three quick steps and your dashboard is ready.</p><div class="obprog"><i id="obBar"></i></div><div class="obsteps"><span class="on" data-sl="1">1. About You</span><span data-sl="2">2. Your IELTS</span><span data-sl="3">3. Your Goal</span></div><div class="ostep on" data-step="1"><h3>Step 1: About You</h3><p class="hint">Tell us a little about yourself so we can set up the right study plan.</p><span class="flabel">I am a</span><div class="chips" data-single><button type="button" class="selchip on">Student</button><button type="button" class="selchip">Job holder</button><button type="button" class="selchip">Applying abroad</button></div><span class="flabel">Country</span><label class="ofield"><input type="text" value="Pakistan" placeholder="Your country"></label></div><div class="ostep" data-step="2"><h3>Step 2: Your IELTS</h3><p class="hint">Choose the test version you are preparing for and the score you want to reach.</p><span class="flabel">Test version</span><div class="selrow" data-single><div class="selcard on"><b>Academic</b><span>For university admission and professional registration. Reading and Writing use academic topics.</span></div><div class="selcard"><b>General Training</b><span>For immigration, work and training programmes. Reading and Writing use everyday topics.</span></div></div><span class="flabel">Target Band</span><div class="chips" data-single><button type="button" class="selchip">5.0</button><button type="button" class="selchip">5.5</button><button type="button" class="selchip">6.0</button><button type="button" class="selchip">6.5</button><button type="button" class="selchip">7.0</button><button type="button" class="selchip on">7.5</button><button type="button" class="selchip">8.0</button><button type="button" class="selchip">8.5</button><button type="button" class="selchip">9.0</button></div><span class="flabel">Test Date</span><label class="ofield"><input type="date" value="2024-11-30"></label></div><div class="ostep" data-step="3"><h3>Step 3: Your Goal</h3><p class="hint">What is the main reason you are taking IELTS? Your dashboard countdown and study plan will follow this goal.</p><span class="flabel">My goal is</span><div class="chips" data-single><button type="button" class="selchip on">University admission</button><button type="button" class="selchip">Immigration</button><button type="button" class="selchip">Job abroad</button><button type="button" class="selchip">Improve English</button></div><p class="hint" style="margin-top:24px">You can change your track, target band and test date any time from My Account.</p></div><div class="obnav"><button class="btn ghost" id="obBack" type="button" style="visibility:hidden">Back</button><span class="sp"></span><button class="btn" id="obNext" type="button">Next</button><a class="btn" id="obFinish" href="dashboard.html" style="display:none">Finish Setup</a></div></div>
-<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></main>
-<script>
+<main class="obwrap"><div class="gcard anim"><span class="tick"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Account created with Google</b><span>Your Google account is connected. Finish these six quick steps to personalise your dashboard.</span></div></div><div class="obcard anim d2"><h1>Set Up Your Student Profile</h1><p class="sub">Six quick steps and your dashboard is ready.</p><div class="obprog"><i id="obBar"></i></div><div class="obsteps"><span class="on" data-sl="1">1. Student</span><span data-sl="2">2. Source</span><span data-sl="3">3. Country</span><span data-sl="4">4. Experience</span><span data-sl="5">5. Journey</span><span data-sl="6">6. Goal</span></div>
 
-var obStep = 1;
+<div class="ostep on" data-step="1"><h3>Are you a student at Pukhtoon Education?</h3><p class="hint">Tell us how you are connected with us so we can set up the right account for you.</p><div class="optcards" data-single id="studentType"><button type="button" class="optcard" data-val="Registered student" data-sid="1"><b>Yes, I am a registered student</b><span>I already study at Pukhtoon Education and have a Student ID.</span></button><button type="button" class="optcard on" data-val="Trial student"><b>I'm a trial student</b><span>I am trying the platform before joining a full course.</span></button><button type="button" class="optcard" data-val="New student" style="grid-column:1/-1"><b>No, I'm new here</b><span>I found Pukhtoon Education online and want to start preparing.</span></button></div><div class="sidwrap" id="sidWrap"><span class="flabel">Student ID</span><label class="ofield"><input type="text" id="sidInput" placeholder="For example PK-2026-014"><span style="color:#F6C667;font-weight:800;font-size:13px;letter-spacing:.5px">REQUIRED</span></label><a class="idlink" href="onboarding.html">Don't know your Student ID?</a></div></div>
+
+<div class="ostep" data-step="2"><h3>How did you hear about us?</h3><p class="hint">Pick the one that fits best. It helps us reach more students like you.</p><div class="chips" data-single id="sourceChips"><button type="button" class="selchip on">Instagram</button><button type="button" class="selchip">TikTok</button><button type="button" class="selchip">Friends / Family</button><button type="button" class="selchip">Google Search</button><button type="button" class="selchip">Facebook</button><button type="button" class="selchip">YouTube</button><button type="button" class="selchip">University / Institute</button><button type="button" class="selchip">Other</button></div></div>
+
+<div class="ostep" data-step="3"><h3>Where are you from?</h3><p class="hint">Your country helps us show the right test centres, dates and fees.</p><span class="flabel">Country</span><div class="ofield"><select id="countrySel"><option selected>Pakistan</option><option>Afghanistan</option><option>India</option><option>Bangladesh</option><option>Nepal</option><option>Sri Lanka</option><option>United Arab Emirates</option><option>Saudi Arabia</option><option>United Kingdom</option><option>United States</option><option>Canada</option><option>Australia</option><option>Other</option></select></div></div>
+
+<div class="ostep" data-step="4"><h3>First time or retaking?</h3><p class="hint">Your dashboard and study plan are built around your experience level.</p><div class="chips" data-single id="expChips"><button type="button" class="selchip on">My first time</button><button type="button" class="selchip">Writing retake</button><button type="button" class="selchip">Speaking retake</button><button type="button" class="selchip">Listening retake</button><button type="button" class="selchip">Reading retake</button><button type="button" class="selchip">Full test retake</button></div></div>
+
+<div class="ostep" data-step="5"><h3>Your IELTS Journey</h3><p class="hint">Choose your test version, tell us if you already have a test date, and set your target score.</p><span class="flabel">Test version</span><div class="selrow" data-single id="trackCards"><div class="selcard on" data-val="Academic"><b>Academic</b><span>For university admission and professional registration. Reading and Writing use academic topics.</span></div><div class="selcard" data-val="General Training"><b>General Training</b><span>For immigration, work and training programmes. Reading and Writing use everyday topics.</span></div></div><div class="switchrow"><button class="switch" id="dateToggle" type="button" aria-label="Toggle test date"><i></i></button><span class="sl">Do you have a test date?</span></div><div class="datewrap" id="dateWrap"><span class="flabel">Test Date</span><label class="ofield"><input type="date" id="testDate" value="2027-01-11"></label></div><span class="flabel">Target Score</span><input type="range" class="tslider" id="targetSlider" min="1" max="9" step="0.5" value="6.5"><div class="sliderval"><span>1.0</span><span class="tv" id="targetVal">6.5</span><span>9.0</span></div></div>
+
+<div class="ostep" data-step="6"><h3>What's your goal?</h3><p class="hint">Your goal shapes your study plan and your dashboard countdown.</p><div class="optcards" data-single id="goalCards"><button type="button" class="optcard on" data-val="Study Abroad"><b>Study Abroad</b><span>Meet the IELTS requirement of your dream university.</span></button><button type="button" class="optcard" data-val="Immigration"><b>Immigration</b><span>Score the band your visa or residency application needs.</span></button><button type="button" class="optcard" data-val="Job Requirements"><b>Job Requirements</b><span>Prove your English level for a job or professional licence.</span></button><button type="button" class="optcard" data-val="Other"><b>Other</b><span>I have a different reason for taking IELTS.</span></button></div></div>
+
+<div class="ostep" data-step="7"><div class="finishhead"><span class="tickbig"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3 style="font-size:25px">You're all set!</h3><p class="hint" style="margin-bottom:0">Here is your profile. You can change any of it later from My Account.</p></div><div class="sumlist"><div class="sumrow"><span class="sk">Student type</span><span class="sv" id="sumType">Trial student</span></div><div class="sumrow"><span class="sk">Heard about us</span><span class="sv" id="sumSource">Instagram</span></div><div class="sumrow"><span class="sk">Country</span><span class="sv" id="sumCountry">Pakistan</span></div><div class="sumrow"><span class="sk">Experience</span><span class="sv" id="sumExp">My first time</span></div><div class="sumrow"><span class="sk">Test version</span><span class="sv" id="sumTrack">Academic</span></div><div class="sumrow"><span class="sk">Test date</span><span class="sv" id="sumDate">Not booked yet</span></div><div class="sumrow"><span class="sk">Target score</span><span class="sv" id="sumTarget">Band 6.5</span></div><div class="sumrow"><span class="sk">Goal</span><span class="sv" id="sumGoal">Study Abroad</span></div></div></div>
+
+<div class="obnav"><button class="btn ghost" id="obBack" type="button" style="visibility:hidden">Back</button><span class="sp"></span><button class="btn" id="obNext" type="button">Next</button><a class="btn" id="obFinish" href="dashboard.html" style="display:none">Go to Dashboard</a></div></div>
+<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></main>
+
+<script>
+var obStep = 1, OB_TOTAL = 7;
 var obPanels = document.querySelectorAll('.ostep');
 var obBar = document.getElementById('obBar');
 var obBack = document.getElementById('obBack'), obNext = document.getElementById('obNext'), obFinish = document.getElementById('obFinish');
 function obShow(n){
   obStep = n;
   obPanels.forEach(function(p){ p.classList.toggle('on', +p.dataset.step === n); });
-  document.querySelectorAll('[data-sl]').forEach(function(s){ s.classList.toggle('on', +s.dataset.sl === n); });
-  obBar.style.width = (n * 33.33) + '%';
+  document.querySelectorAll('[data-sl]').forEach(function(s){ s.classList.toggle('on', +s.dataset.sl === Math.min(n, 6)); });
+  obBar.style.width = (Math.min(n, 6) / 6 * 100) + '%';
   obBack.style.visibility = n === 1 ? 'hidden' : 'visible';
-  obNext.style.display = n === 3 ? 'none' : '';
-  obFinish.style.display = n === 3 ? '' : 'none';
+  obNext.style.display = n === OB_TOTAL ? 'none' : '';
+  obNext.textContent = n === 6 ? 'See Summary' : 'Next';
+  obFinish.style.display = n === OB_TOTAL ? '' : 'none';
+  if(n === OB_TOTAL){ fillSummary(); }
+}
+function selectedText(groupId, fallback){
+  var g = document.getElementById(groupId);
+  if(!g){ return fallback; }
+  var on = g.querySelector('.on');
+  if(!on){ return fallback; }
+  return on.getAttribute('data-val') || on.textContent.trim();
+}
+function fillSummary(){
+  document.getElementById('sumType').textContent = selectedText('studentType', 'Trial student');
+  document.getElementById('sumSource').textContent = selectedText('sourceChips', 'Instagram');
+  document.getElementById('sumCountry').textContent = document.getElementById('countrySel').value;
+  document.getElementById('sumExp').textContent = selectedText('expChips', 'My first time');
+  document.getElementById('sumTrack').textContent = selectedText('trackCards', 'Academic');
+  var hasDate = document.getElementById('dateToggle').classList.contains('on');
+  document.getElementById('sumDate').textContent = hasDate ? document.getElementById('testDate').value : 'Not booked yet';
+  document.getElementById('sumTarget').textContent = 'Band ' + Number(document.getElementById('targetSlider').value).toFixed(1);
+  document.getElementById('sumGoal').textContent = selectedText('goalCards', 'Study Abroad');
 }
 obBack.addEventListener('click', function(){ if(obStep > 1) obShow(obStep - 1); });
-obNext.addEventListener('click', function(){ if(obStep < 3) obShow(obStep + 1); });
+obNext.addEventListener('click', function(){ if(obStep < OB_TOTAL) obShow(obStep + 1); });
 document.querySelectorAll('[data-single]').forEach(function(group){
   group.addEventListener('click', function(e){
-    var t = e.target.closest('.selchip, .selcard');
+    var t = e.target.closest('.selchip, .selcard, .optcard');
     if(!t || !group.contains(t)) return;
-    group.querySelectorAll('.selchip, .selcard').forEach(function(c){ c.classList.remove('on'); });
+    group.querySelectorAll('.selchip, .selcard, .optcard').forEach(function(c){ c.classList.remove('on'); });
     t.classList.add('on');
+    if(group.id === 'studentType'){
+      document.getElementById('sidWrap').classList.toggle('on', t.getAttribute('data-sid') === '1');
+    }
   });
 });
+var dateToggle = document.getElementById('dateToggle');
+dateToggle.addEventListener('click', function(){
+  dateToggle.classList.toggle('on');
+  document.getElementById('dateWrap').classList.toggle('on', dateToggle.classList.contains('on'));
+});
+var slider = document.getElementById('targetSlider');
+slider.addEventListener('input', function(){
+  document.getElementById('targetVal').textContent = Number(slider.value).toFixed(1);
+});
 obShow(1);
-
 </script>
 <script>
 (function(){

@@ -81,6 +81,7 @@ details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-hei
  .foot-grid{grid-template-columns:1fr}
 }
 
+
 .rhead{padding:42px 0 4px}
 .rhead h1{font-size:36px}
 .rhead p{color:var(--mut);font-size:17.5px;margin-top:7px}
@@ -110,6 +111,30 @@ td{padding:14px;border-bottom:1px solid #222228;color:#D8D8DE;white-space:nowrap
 .tipcard p{color:var(--mut);font-size:15.5px;line-height:1.65;max-width:680px}
 .tipcard .btn{margin-left:auto}
 @media(max-width:900px){.rgrid{grid-template-columns:1fr}.tipcard .btn{margin-left:0}}
+
+
+
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}
+.hstat{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px 24px;text-align:center}
+.hstat .num{font-size:36px;font-weight:900;color:var(--red);line-height:1.1}
+.hstat .lbl{color:var(--mut);font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-top:6px}
+.modchip{display:inline-block;font-weight:800;font-size:12px;padding:5px 12px;border-radius:6px;letter-spacing:.4px;text-transform:uppercase;background:#26262C;color:#EDEDF0;border:1px solid #3A3A42}
+.modchip.full{background:var(--red);color:#fff;border-color:var(--red)}
+.statuspill{display:inline-block;font-weight:800;font-size:12px;padding:5px 13px;border-radius:999px;letter-spacing:.5px;text-transform:uppercase}
+.statuspill.done{background:rgba(47,168,79,.14);color:#5BD97F;border:1px solid rgba(47,168,79,.5)}
+.statuspill.prog{background:rgba(246,162,30,.12);color:#F6C667;border:1px solid rgba(246,162,30,.55)}
+.iconbtn{width:40px;height:40px;border-radius:9px;background:#26262C;border:1.5px solid #3A3A42;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;transition:border-color .25s ease}
+.iconbtn:hover{border-color:var(--red)}
+.contbtn{background:var(--green);color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;font-size:14.5px;display:inline-block;transition:transform .3s ease,background .3s ease}
+.contbtn:hover{background:#248a3f;transform:translateY(-2px)}
+.qtbar{margin-bottom:18px}
+.qtbar .r{display:flex;justify-content:space-between;font-size:16px;margin-bottom:7px}
+.qtbar .r b{font-size:16.5px}
+.legend{display:grid;gap:9px;margin-top:20px;border-top:1px solid #222228;padding-top:18px}
+.legend div{display:flex;gap:11px;align-items:center;color:#D8D8DE;font-size:15px}
+.legend i{width:14px;height:14px;border-radius:4px;flex:none}
+@media(max-width:1020px){.hstats{grid-template-columns:1fr 1fr}}
+
 
 </style>
 <style>
@@ -173,6 +198,35 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .authcard .logobox img{height:118px}
  .catcard{padding:22px 20px}
 }
+
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -183,20 +237,43 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <span class="hbtns"><span class="bell"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.2-1.5 5.2h14S17.5 12.5 17.5 8.5A5.5 5.5 0 0 0 12 3Z" fill="#fff"/><circle cx="12" cy="19" r="2.2" fill="#fff"/></svg><i></i></span><span class="avatar">AK</span><b style="font-size:16.5px">Ahmad K.</b></span>
 </nav></div></header>
 <main class="wrap">
-<section class="rhead anim"><h1>Results &amp; History</h1><p>Track your progress, view past attempts, and analyze your performance.</p></section>
+<section class="rhead anim"><h1>Results &amp; History</h1><p>Every attempt you have made, your scores over time, and the question types that need your attention.</p></section>
+<div class="hstats"><div class="hstat anim"><div class="num">14</div><div class="lbl">Total Attempts</div></div><div class="hstat anim d2"><div class="num">6.9</div><div class="lbl">Average Score</div></div><div class="hstat anim d3"><div class="num">7.5</div><div class="lbl">Best Score</div></div><div class="hstat anim d4"><div class="num">41 min</div><div class="lbl">Average Time</div></div></div>
 <div class="rgrid">
-<div class="rcard anim"><h3>Latest Band Score</h3><div class="score-flex">
-<div class="bigcircle"><svg width="190" height="190" viewBox="0 0 190 190"><circle cx="95" cy="95" r="82" fill="none" stroke="#2E2E35" stroke-width="11"/><circle class="arc-anim" cx="95" cy="95" r="82" fill="none" stroke="#E2231A" stroke-width="11" stroke-linecap="round" transform="rotate(-90 95 95)"/></svg>
-<div class="val"><b>7.5</b><small>Overall Band Score</small></div></div>
-<div class="mbars"><div class="mbar"><div class="r"><span>Listening:</span><b>8.0</b></div><div class="progress"><i style="width:84%"></i></div></div><div class="mbar"><div class="r"><span>Reading:</span><b>7.5</b></div><div class="progress"><i style="width:79%"></i></div></div><div class="mbar"><div class="r"><span>Writing:</span><b>6.5</b></div><div class="progress"><i style="width:62%"></i></div></div><div class="mbar"><div class="r"><span>Speaking:</span><b>7.5</b></div><div class="progress"><i style="width:79%"></i></div></div></div></div></div>
-<div class="rcard anim d2"><h3>Performance Progression</h3><svg viewBox="0 0 560 300" width="100%" role="img" aria-label="Performance progression chart"><g stroke="#2C2C33" stroke-width="1"><line x1="40" y1="20" x2="540" y2="20"/><line x1="40" y1="68" x2="540" y2="68"/><line x1="40" y1="116" x2="540" y2="116"/><line x1="40" y1="164" x2="540" y2="164"/><line x1="40" y1="212" x2="540" y2="212"/><line x1="40" y1="260" x2="540" y2="260"/></g><g fill="#A7A7B0" font-size="12.5"><text x="32" y="24" text-anchor="end">9.0</text><text x="32" y="72" text-anchor="end">8.0</text><text x="32" y="120" text-anchor="end">7.0</text><text x="32" y="168" text-anchor="end">6.0</text><text x="32" y="216" text-anchor="end">5.0</text><text x="32" y="264" text-anchor="end">4.0</text></g><path d="M50 231 L140 193 L230 164 L320 150 L410 111 L500 92 L500 260 L50 260 Z" fill="rgba(226,35,26,.16)"/><path d="M50 231 L140 193 L230 164 L320 150 L410 111 L500 92" fill="none" stroke="#E2231A" stroke-width="2.5"/><g fill="#141418" stroke="#E2231A" stroke-width="2.5"><circle cx="50" cy="231" r="4.5"/><circle cx="140" cy="193" r="4.5"/><circle cx="230" cy="164" r="4.5"/><circle cx="320" cy="150" r="4.5"/><circle cx="410" cy="111" r="4.5"/><circle cx="500" cy="92" r="5"/></g><rect x="378" y="46" width="152" height="30" rx="7" fill="#E2231A"/><text x="454" y="66" text-anchor="middle" fill="#fff" font-size="13.5" font-weight="700">Dec 21: 7.5 Band</text><g fill="#A7A7B0" font-size="12.5"><text x="50" y="284" text-anchor="middle">Oct 12</text><text x="140" y="284" text-anchor="middle">Oct 26</text><text x="230" y="284" text-anchor="middle">Nov 09</text><text x="320" y="284" text-anchor="middle">Nov 23</text><text x="410" y="284" text-anchor="middle">Dec 07</text><text x="500" y="284" text-anchor="middle">Dec 21</text></g></svg><p style="color:var(--mut);font-size:14.5px;margin-top:8px">Your overall band has climbed from 4.6 in October to 7.5 in December. Steady weekly practice is working.</p></div>
-</div>
-<div class="rcard anim" style="margin-top:24px"><h3>Past Attempts</h3><div class="tblwrap"><table>
-<tr><th>Date</th><th>Test Name</th><th>Listening</th><th>Reading</th><th>Writing</th><th>Speaking</th><th>Overall</th><th>Action</th></tr>
-<tr><td>Dec 21, 2024</td><td>Mock Test Test 1</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Dec 07, 2024</td><td>Mock Test Test 2</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.5</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Nov 23, 2024</td><td>Mock Test Test 3</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr><td>Nov 09, 2024</td><td>Mock Test Test 4</td><td>8.0</td><td>7.5</td><td>6.5</td><td>7.5</td><td><span class="chip">7.0</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr></table></div></div>
-<div class="tipcard anim"><div><h3>Your Next Step: Writing</h3><p>Writing is your lowest module at Band 6.5. One focused Task 2 practice each week, checked by a teacher, is the fastest way to push your overall band toward 8.0.</p></div><a class="btn" href="mock-tests.html">Practise Writing</a></div>
+<div class="rcard anim"><h3>Score Progress</h3><svg viewBox="0 0 560 300" width="100%" role="img" aria-label="Score progress chart, band 1 to 9"><g stroke="#2C2C33" stroke-width="1"><line x1="46" y1="268" x2="540" y2="268"/><line x1="46" y1="239" x2="540" y2="239"/><line x1="46" y1="210" x2="540" y2="210"/><line x1="46" y1="181" x2="540" y2="181"/><line x1="46" y1="152" x2="540" y2="152"/><line x1="46" y1="123" x2="540" y2="123"/><line x1="46" y1="94" x2="540" y2="94"/><line x1="46" y1="65" x2="540" y2="65"/><line x1="46" y1="36" x2="540" y2="36"/></g><g fill="#A7A7B0" font-size="12.5"><text x="38" y="272" text-anchor="end">1.0</text><text x="38" y="243" text-anchor="end">2.0</text><text x="38" y="214" text-anchor="end">3.0</text><text x="38" y="185" text-anchor="end">4.0</text><text x="38" y="156" text-anchor="end">5.0</text><text x="38" y="127" text-anchor="end">6.0</text><text x="38" y="98" text-anchor="end">7.0</text><text x="38" y="69" text-anchor="end">8.0</text><text x="38" y="40" text-anchor="end">9.0</text></g><path d="M70 137.5 L160 123 L250 108.5 L340 108.5 L430 94 L510 79.5 L510 268 L70 268 Z" fill="rgba(226,35,26,.16)"/><path d="M70 137.5 L160 123 L250 108.5 L340 108.5 L430 94 L510 79.5" fill="none" stroke="#E2231A" stroke-width="2.5"/><g fill="#141418" stroke="#E2231A" stroke-width="2.5"><circle cx="70" cy="137.5" r="4.5"/><circle cx="160" cy="123" r="4.5"/><circle cx="250" cy="108.5" r="4.5"/><circle cx="340" cy="108.5" r="4.5"/><circle cx="430" cy="94" r="4.5"/><circle cx="510" cy="79.5" r="4.5"/></g><rect x="392" y="36" width="146" height="30" rx="7" fill="#E2231A"/><text x="465" y="56" text-anchor="middle" fill="#fff" font-size="13.5" font-weight="700">Nov 09: 7.5 Band</text><g fill="#A7A7B0" font-size="12.5"><text x="70" y="292" text-anchor="middle">Sep 14</text><text x="160" y="292" text-anchor="middle">Sep 28</text><text x="250" y="292" text-anchor="middle">Oct 12</text><text x="340" y="292" text-anchor="middle">Oct 26</text><text x="430" y="292" text-anchor="middle">Nov 02</text><text x="510" y="292" text-anchor="middle">Nov 09</text></g></svg><p style="color:var(--mut);font-size:14.5px;margin-top:8px">Your overall band has climbed from 5.5 in September to 7.5 in November. You are now level with your target band.</p></div>
+<div class="rcard anim d2"><h3>Question Type Performance</h3>
+<div class="qtbar"><div class="r"><span>Multiple Choice</span><b>84%</b></div><div class="progress"><i style="width:84%;background:var(--green)"></i></div></div>
+<div class="qtbar"><div class="r"><span>Sentence Completion</span><b>71%</b></div><div class="progress"><i style="width:71%;background:#F6A21E"></i></div></div>
+<div class="qtbar"><div class="r"><span>True / False / Not Given</span><b>52%</b></div><div class="progress"><i style="width:52%"></i></div></div>
+<div class="legend"><div><i style="background:var(--green)"></i>80 to 100: Excellent</div><div><i style="background:#F6A21E"></i>60 to 79: Needs Practice</div><div><i style="background:var(--red)"></i>0 to 59: Needs Work</div></div>
+</div></div>
+<div class="fchips anim"><button type="button" class="fchip on" data-mf="all">All</button><button type="button" class="fchip" data-mf="listening">Listening</button><button type="button" class="fchip" data-mf="reading">Reading</button><button type="button" class="fchip" data-mf="writing">Writing</button><button type="button" class="fchip" data-mf="speaking">Speaking</button><button type="button" class="fchip" data-mf="full">Full Mock</button></div>
+<div class="rcard anim" style="margin-top:6px"><h3>Attempt History</h3><div class="tblwrap"><table>
+<tr><th>Date</th><th>Test</th><th>Module</th><th>Band</th><th>Correct</th><th>Time</th><th>Status</th><th>Action</th></tr>
+<tr data-module="full"><td>Nov 09, 2026</td><td style="white-space:normal;min-width:170px">Full Mock Test</td><td><span class="modchip full">Full Mock</span></td><td><span class="chip">7.5</span></td><td>118 / 160</td><td>2h 31m</td><td><span class="statuspill done">Completed</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr data-module="listening"><td>Nov 06, 2026</td><td style="white-space:normal;min-width:170px">Listening Mock Test 01</td><td><span class="modchip">Listening</span></td><td><span class="chip">6.5</span></td><td>26 / 40</td><td>31 min</td><td><span class="statuspill done">Completed</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr data-module="reading"><td>Nov 02, 2026</td><td style="white-space:normal;min-width:170px">Reading Mock Test 03</td><td><span class="modchip">Reading</span></td><td><span class="chip">7.5</span></td><td>31 / 40</td><td>58 min</td><td><span class="statuspill done">Completed</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr data-module="writing"><td>Oct 27, 2026</td><td style="white-space:normal;min-width:170px">Writing Mock Test 02</td><td><span class="modchip">Writing</span></td><td><span class="chip">6.5</span></td><td>Teacher checked</td><td>57 min</td><td><span class="statuspill done">Completed</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr data-module="speaking"><td>Oct 20, 2026</td><td style="white-space:normal;min-width:170px">Speaking Mock Test 01</td><td><span class="modchip">Speaking</span></td><td><span class="chip">7.0</span></td><td>3 parts recorded</td><td>14 min</td><td><span class="statuspill done">Completed</span></td><td><a class="det" href="attempt-detail.html">View Details</a></td></tr><tr data-module="speaking"><td>Today</td><td style="white-space:normal;min-width:170px">Speaking Mock Test 02</td><td><span class="modchip">Speaking</span></td><td>Not scored yet</td><td>Part 1 of 3</td><td>4 min so far</td><td><span class="statuspill prog">In Progress</span></td><td><a class="contbtn" href="speaking-player.html">Continue</a> <button class="iconbtn" type="button" aria-label="Delete this attempt"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9.5 7V4.8A.8.8 0 0 1 10.3 4h3.4a.8.8 0 0 1 .8.8V7M6.5 7l.8 12a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9l.8-12" stroke="#F0441F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td></tr><tr data-module="full"><td>Today</td><td style="white-space:normal;min-width:170px">Full Mock Test</td><td><span class="modchip full">Full Mock</span></td><td>Not scored yet</td><td>Listening in progress</td><td>12 min so far</td><td><span class="statuspill prog">In Progress</span></td><td><a class="contbtn" href="full-mock-run.html">Continue</a> <button class="iconbtn" type="button" aria-label="Delete this attempt"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9.5 7V4.8A.8.8 0 0 1 10.3 4h3.4a.8.8 0 0 1 .8.8V7M6.5 7l.8 12a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9l.8-12" stroke="#F0441F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td></tr></table></div><p id="noRows" style="display:none;color:var(--mut);font-size:15.5px;padding:8px 0 4px">No attempts in this module yet.</p></div>
+<div class="tipcard anim"><div><h3>Your Next Step: True / False / Not Given</h3><p>This question type sits at 52 percent, your weakest area. A short daily practice set is the fastest way to lift it into the green.</p></div><a class="btn" href="practice-player.html">Practise Now</a></div>
 </main>
-<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p><script>
+<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p>
+<script>
+var mchips = document.querySelectorAll('[data-mf]');
+var mrows = document.querySelectorAll('tr[data-module]');
+mchips.forEach(function(ch){ ch.addEventListener('click', function(){
+  mchips.forEach(function(c){ c.classList.remove('on'); });
+  ch.classList.add('on');
+  var f = ch.getAttribute('data-mf'), visible = 0;
+  mrows.forEach(function(r){
+    var showIt = (f === 'all' || r.getAttribute('data-module') === f);
+    r.style.display = showIt ? '' : 'none';
+    if(showIt){ visible++; }
+  });
+  document.getElementById('noRows').style.display = visible ? 'none' : '';
+}); });
+document.querySelectorAll('.iconbtn').forEach(function(b){ b.addEventListener('click', function(){
+  var r = b.closest('tr');
+  if(r){ r.style.display = 'none'; }
+}); });
+</script>
+<script>
 (function(){
   var els = Array.prototype.slice.call(document.querySelectorAll('.anim'));
   function show(el){ if(!el.classList.contains('in')){ el.classList.add('in'); setTimeout(function(){ el.classList.remove('anim'); }, 900); } }

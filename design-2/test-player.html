@@ -108,6 +108,24 @@ details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-hei
 .tpfoot{display:flex;justify-content:flex-end;gap:14px;padding:14px 0 26px}
 .tpfoot .btn{min-width:150px}
 @media(max-width:860px){.tpgrid{grid-template-columns:1fr}.pal{margin-left:0}.tpanel{padding:22px 18px}.passage p,.qtext{font-size:17px}}
+.palnums button.marked{box-shadow:inset 0 0 0 2px var(--gold);border-color:var(--gold);color:#F6C667;font-weight:800}
+.markrow{display:flex;align-items:center;gap:12px;padding:14px 0 0}
+.markrev{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:16px;color:#EDEDF0;background:#1C1C21;border:1px solid #2A2A31;border-radius:10px;padding:11px 18px}
+.markrev input{width:20px;height:20px;accent-color:var(--gold);cursor:pointer}
+.smodal{display:none;position:fixed;inset:0;background:rgba(5,5,7,.82);z-index:200;align-items:center;justify-content:center;padding:20px}
+.smodal.on{display:flex}
+.smbox{background:var(--panel);border:1.5px solid rgba(226,35,26,.6);border-radius:18px;max-width:520px;width:100%;padding:32px 34px;box-shadow:0 30px 80px rgba(0,0,0,.7);animation:rise .5s ease both}
+.smbox h3{font-size:23px;margin-bottom:12px}
+.smbox p{color:#D8D8DE;font-size:16.5px;line-height:1.7}
+.smbox p b{color:#F6C667}
+.smbox .mbtns{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+.volrow{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.volrow .vl{color:var(--mut);font-size:14px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.volrow input[type=range]{flex:1;min-width:140px;accent-color:var(--red);cursor:pointer}
+.mutebtn{background:#26262C;border:1.5px solid #3A3A42;border-radius:9px;width:44px;height:44px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:border-color .25s ease}
+.mutebtn:hover{border-color:#fff}
+.mutebtn.off{opacity:.55;border-color:var(--red)}
+
 
 </style>
 <style>
@@ -171,6 +189,34 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .authcard .logobox img{height:118px}
  .catcard{padding:22px 20px}
 }
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -194,17 +240,40 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <label class="opt"><input type="radio" name="q4" value="D"> D) Standardized exams and testing</label>
 </form>
 </section></div>
-<div class="tpfoot"><button class="btn ghost" id="backBtn" type="button">Back</button><button class="btn" id="nextBtn" type="button">Save &amp; Next</button></div>
-</main>
+<div class="markrow"><label class="markrev"><input type="checkbox" id="markRev"> Mark for review</label></div><div class="tpfoot"><button class="btn ghost" id="backBtn" type="button">Back</button><button class="btn" id="nextBtn" type="button">Save &amp; Next</button></div>
+<div class="smodal" id="sModal" role="dialog" aria-modal="true" aria-labelledby="sModalTitle"><div class="smbox"><h3 id="sModalTitle">Submit Test?</h3><p id="sModalText"></p><div class="mbtns"><button class="btn ghost" id="sCancel" type="button">Cancel</button><a class="btn" href="results.html">Submit Test</a></div></div></div></main>
 <script>
 var total = 59*60 + 45, timerEl = document.getElementById('timer');
 setInterval(function(){ if(total>0){ total--; var m = Math.floor(total/60), s = total%60; timerEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; } }, 1000);
 var cur = 4;
-function setCur(n){ cur = n; document.querySelectorAll('.palnums button').forEach(function(b){ b.classList.toggle('cur', +b.dataset.q === n); }); document.getElementById('qnum').textContent = n; }
+function setCur(n){ cur = n; document.querySelectorAll('.palnums button').forEach(function(b){ b.classList.toggle('cur', +b.dataset.q === n); }); document.getElementById('qnum').textContent = n; if(typeof syncMark === 'function'){ syncMark(); } }
 document.querySelectorAll('.palnums button').forEach(function(b){ b.addEventListener('click', function(){ setCur(+b.dataset.q); }); });
 document.getElementById('nextBtn').addEventListener('click', function(){ var d = document.querySelector('.palnums button[data-q="'+cur+'"]'); if(d){ d.classList.add('done'); } if(cur<15){ setCur(cur+1); } });
 document.getElementById('backBtn').addEventListener('click', function(){ if(cur>1){ setCur(cur-1); } });
-document.getElementById('submitBtn').addEventListener('click', function(){ window.location.href = 'results.html'; });
+
+
+var marked = {};
+var markRev = document.getElementById('markRev');
+function palBtn(n){ return document.querySelector('.palnums button[data-q="' + n + '"]'); }
+function syncMark(){
+  var b = palBtn(cur);
+  if(markRev){ markRev.checked = !!marked[cur]; }
+  document.querySelectorAll('.palnums button').forEach(function(x){
+    x.classList.toggle('marked', !!marked[+x.dataset.q]);
+  });
+}
+if(markRev){ markRev.addEventListener('change', function(){ marked[cur] = markRev.checked; syncMark(); }); }
+var sModal = document.getElementById('sModal');
+document.getElementById('submitBtn').addEventListener('click', function(){
+  var totalQ = document.querySelectorAll('.palnums button').length;
+  var answered = document.querySelectorAll('.palnums button.done').length;
+  var un = totalQ - answered;
+  document.getElementById('sModalText').innerHTML = 'You have <b>' + un + ' unanswered</b> questions out of ' + totalQ + '. Are you sure you want to submit? This will be recorded as a completed attempt.';
+  sModal.classList.add('on');
+});
+document.getElementById('sCancel').addEventListener('click', function(){ sModal.classList.remove('on'); });
+
+syncMark();
 </script>
 <script>
 (function(){

@@ -79,10 +79,21 @@ details.faq .fans{padding:0 22px 20px;color:var(--mut);font-size:15.5px;line-hei
  nav.main .hbtns{display:flex;margin:12px 0 4px}
  .foot-grid{grid-template-columns:1fr}
 }
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:58px 0 30px}
-.hero h1{font-size:44px;line-height:1.14;font-weight:900;letter-spacing:.3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:76px 0 40px}
+.hero h1{font-size:49px;line-height:1.1;font-weight:900;letter-spacing:.3px}
 .hero h1 .r{color:var(--red)}
 .hero p{color:#D9D9DF;font-size:18.5px;margin:20px 0 28px;max-width:520px}
+.heroband{margin-top:34px;max-width:520px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px 14px;box-shadow:0 12px 30px rgba(0,0,0,.38)}
+.heroband .hb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.heroband .hb-head span{color:var(--mut2);font-size:11.5px;font-weight:800;letter-spacing:1px}
+.heroband .hb-head b{color:#fff;font-size:14.5px}
+.heroband .hb-head b em{font-style:normal;color:var(--red)}
+.hb-track{position:relative;height:11px;background:#2A2A31;border-radius:6px}
+.hb-track i{display:block;height:100%;width:72%;background:linear-gradient(90deg,#A81710,var(--red),#F0441F);border-radius:6px}
+.hb-dot{position:absolute;top:50%;left:72%;width:19px;height:19px;border-radius:50%;background:#fff;border:4px solid var(--red);transform:translate(-50%,-50%)}
+.hb-scale{display:flex;justify-content:space-between;color:var(--mut2);font-size:12px;margin-top:9px;font-variant-numeric:tabular-nums}
+@media(max-width:620px){.hero{padding:48px 0 26px}.hero h1{font-size:34px}}
+
 .hero .cta{display:flex;gap:16px;flex-wrap:wrap}
 .mock{background:#F4F4F6;color:#16161A;border-radius:10px;overflow:hidden}
 .mock .mtop{background:#2B2B30;padding:9px 14px;display:flex;gap:7px;align-items:center}
@@ -214,6 +225,34 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
  .authcard .logobox img{height:118px}
  .catcard{padding:22px 20px}
 }
+
+/* design polish pass: typography, depth, consistency */
+body{line-height:1.58;-webkit-font-smoothing:antialiased}
+h1{line-height:1.14;letter-spacing:.3px}
+h2{line-height:1.22}
+h3{line-height:1.28}
+header.site{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+nav.main a{font-weight:600;letter-spacing:.2px}
+.sec{padding:74px 0 10px}
+.sec-title{letter-spacing:.9px;line-height:1.2}
+.sec-sub{line-height:1.7}
+.btn{letter-spacing:.3px;box-shadow:0 5px 16px rgba(0,0,0,.35)}
+.btn.ghost{box-shadow:none}
+.dcard,.rcard,.tcard2,.pcard,.testcard,.bigcard,.statcard,.hstat,.fmcard,.attrow,.mstep,.howcard,.tipbox,.contcard,.tgtcard,.wordcard,.dictbox,.ttcard,.stat,.feat,.course,.pk,.obcard,.gcard{box-shadow:0 12px 32px rgba(0,0,0,.38)}
+.lift{box-shadow:0 10px 28px rgba(0,0,0,.32)}
+.progress{box-shadow:inset 0 1px 3px rgba(0,0,0,.65)}
+.progress i{background-image:linear-gradient(90deg,#A81710,var(--red) 55%,#F0441F)}
+table th{background:#1D1D23;letter-spacing:.4px}
+table td{font-variant-numeric:tabular-nums}
+table tr{transition:background .25s ease}
+table tr:hover td{background:rgba(255,255,255,.035)}
+.palnums button,.qnums button{box-shadow:0 3px 9px rgba(0,0,0,.4);font-weight:600}
+.tpanel{box-shadow:0 14px 36px rgba(0,0,0,.42)}
+.tphead{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+details.faq{box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.fchip,.selchip{box-shadow:0 3px 10px rgba(0,0,0,.3)}
+footer.site{background:#0C0C0F;border-top:1px solid #232329}
+.chip,.tag,.modchip,.trackbadge{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -228,7 +267,7 @@ html.js .bandrow.in .bandbar i{transform:scaleX(1)}
 <section class="hero"><div class="anim">
 <h1>ACHIEVE YOUR <span class="r">IELTS</span> DREAM<br>WITH <span class="r">PUKHTOON EDUCATION</span></h1>
 <p>Expert online preparation for Listening, Reading, Writing, and Speaking to help you get your target band. Learn with video lessons, practise under real exam timing, and track your band score after every test.</p>
-<div class="cta"><a class="btn" href="login.html">Start Free Trial</a><a class="btn ghost" href="courses.html">Explore Courses</a></div>
+<div class="cta"><a class="btn" href="login.html">Start Free Trial</a><a class="btn ghost" href="courses.html">Explore Courses</a></div><div class="heroband"><div class="hb-head"><span>IELTS BAND SCALE</span><b>Demo target: <em>Band 7.5</em></b></div><div class="hb-track"><i></i><span class="hb-dot"></span></div><div class="hb-scale"><span>1.0</span><span>3.0</span><span>5.0</span><span>6.5</span><span>7.5</span><span>9.0</span></div></div>
 </div><div class="mock pulse anim d2"><div class="mtop"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div>
 <div class="mbody"><div class="mside"><b>PUKHTOON EDUCATION</b><span>Home</span><span>Modules</span><span>IELTS Modules</span><span>Video Courses</span><span>About</span><span>Contact Us</span></div>
 <div class="mmain"><h5>Online Student Dashboard</h5>
