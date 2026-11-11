@@ -24,8 +24,12 @@
   .eye { position:absolute; right:14px; top:50%; transform:translateY(-50%); }
   .remember { display:flex; align-items:center; gap:11px; font-size:17px; margin:2px 0 24px; cursor:pointer; }
   .remember input { width:21px; height:21px; accent-color:#E2231A; }
-  .btn-login { display:block; width:100%; background:#E2231A; color:#fff; font-size:20px; font-weight:800; letter-spacing:.8px; text-align:center; padding:16px; border-radius:9px; }
-  .btn-login:hover { background:#C41B14; }
+  .btn-login { display:block; width:100%; background:#E2231A; color:#fff; font-size:20px; font-weight:800; letter-spacing:.8px; text-align:center; padding:16px; border-radius:9px; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
+  .btn-login:hover { background:#C41B14; transform:translateY(-2px); box-shadow:0 10px 22px rgba(20,24,30,.2); }
+  @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .card { animation:riseIn .7s ease both; }
+  input[type=email], input[type=password] { transition:border-color .2s ease, box-shadow .2s ease; }
+  input:focus { box-shadow:0 0 0 3px rgba(226,35,26,.15); }
   .signup-line { text-align:center; font-size:17.5px; margin-top:24px; }
   .signup-line a { color:#C0272D; font-weight:700; }
   .home-link { display:block; text-align:center; margin-top:18px; font-size:15.5px; color:#5A6067; }

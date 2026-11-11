@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attempt Detail - Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#EFF2F4; }
+  a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
+
+  /* App shell (shared, identical on dashboard, results and attempt detail) */
+  .layout { display:grid; grid-template-columns:272px 1fr; min-height:100vh; }
+  aside { background:#fff; border-right:1px solid #E7EAED; padding:22px 14px; display:flex; flex-direction:column; }
+  .side-logo { text-align:center; padding:0 10px 18px; }
+  .side-logo img { height:118px; }
+  .side-nav { display:flex; flex-direction:column; gap:4px; }
+  .side-nav a { display:flex; align-items:center; gap:14px; font-size:18.5px; font-weight:600; color:#22262C; padding:14px 16px; border-radius:9px; transition:background .2s ease; }
+  .side-nav a:hover { background:#F6F8F9; }
+  .side-nav a.active { background:#D9232E; color:#fff; }
+  .side-bottom { margin-top:auto; border-top:1px solid #E7EAED; padding-top:12px; display:flex; flex-direction:column; gap:4px; }
+  .side-bottom a { display:flex; align-items:center; gap:14px; font-size:18px; color:#22262C; padding:12px 16px; border-radius:9px; }
+  .side-bottom a:hover { background:#F6F8F9; }
+  .menu-check { display:none; }
+  .mobile-bar { display:none; }
+  main { padding:0 34px 40px; min-width:0; }
+  .topbar { display:flex; align-items:center; gap:20px; background:#fff; margin:0 -34px; padding:16px 34px; border-bottom:1px solid #E7EAED; }
+  .search-box { display:flex; align-items:center; gap:10px; border:1.6px solid #C4C9CD; border-radius:9px; padding:12px 16px; background:#fff; flex:0 1 560px; }
+  .search-box input { border:none; outline:none; font-size:17px; width:100%; font-family:inherit; }
+  .top-right { margin-left:auto; display:flex; align-items:center; gap:18px; }
+  .user { text-align:right; }
+  .user .name { font-size:19px; font-weight:800; }
+  .user .role { font-size:15.5px; color:#6B7178; }
+  .avatar { width:52px; height:52px; border-radius:50%; background:#5A4632; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; border:3px solid #E2231A; }
+  .card { background:#fff; border:1px solid #E1E5E8; border-radius:14px; padding:26px 28px; box-shadow:0 4px 14px rgba(20,24,30,.05); }
+  .card h2 { font-size:24px; margin-bottom:10px; }
+
+  /* Animations: content is always visible; motion only enhances */
+  @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .anim { animation:riseIn .7s ease both; }
+  @keyframes growBar { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  .bar-anim i { transform-origin:left center; animation:growBar 1.2s ease .2s both; }
+  .btn { display:inline-block; border-radius:8px; font-weight:700; cursor:pointer; text-align:center; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(20,24,30,.16); }
+  .btn-red { background:#E2231A; color:#fff; padding:14px 30px; font-size:17px; }
+  .btn-red:hover { background:#C41B14; }
+
+  .back-link { display:inline-block; margin-top:26px; color:#C0272D; font-weight:700; font-size:16.5px; }
+  h1 { font-size:34px; font-weight:800; margin:12px 0 6px; }
+  .subtitle { font-size:18px; color:#2B2F36; margin-bottom:26px; }
+
+  .summary-grid { display:grid; grid-template-columns:340px 1fr; gap:24px; margin-bottom:26px; }
+  .overall-card { background:#C8102E; color:#fff; border-radius:14px; padding:28px; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .overall-card .num { font-size:76px; font-weight:800; line-height:1; }
+  .overall-card .lbl { font-size:19px; font-weight:700; margin-top:8px; }
+  .overall-card .raw { font-size:16.5px; margin-top:12px; color:#F6D9DC; }
+  .part-row { display:grid; grid-template-columns:190px 1fr 120px 70px; align-items:center; gap:16px; padding:15px 0; border-bottom:1px solid #F0F2F4; }
+  .part-row:last-child { border-bottom:none; }
+  .part-name { font-size:18px; font-weight:700; }
+  .part-name small { display:block; font-weight:400; color:#5A6067; font-size:14.5px; margin-top:2px; }
+  .part-bar { height:13px; background:#E3E6E8; border-radius:7px; overflow:hidden; }
+  .part-bar i { display:block; height:100%; background:#E2231A; }
+  .part-score { font-size:16.5px; color:#2B2F36; text-align:right; }
+  .part-band { background:#F9E3E5; color:#C8102E; font-weight:800; font-size:17.5px; text-align:center; padding:6px 0; border-radius:8px; }
+
+  .table-card { overflow-x:auto; margin-bottom:26px; }
+  .table-card h2 { margin-bottom:8px; }
+  table { width:100%; border-collapse:collapse; min-width:820px; }
+  th { text-align:left; font-size:17px; padding:14px 12px; border-bottom:1px solid #D9DEE2; }
+  td { font-size:16.5px; padding:14px 12px; border-bottom:1px solid #E7EAED; vertical-align:top; }
+  th.c, td.c { text-align:center; }
+  tr.wrong td { background:#FDF3F3; }
+  .qtxt { max-width:340px; line-height:1.45; }
+  .ans-wrong { color:#C0272D; font-weight:700; }
+  .res-ic { display:inline-flex; width:30px; height:30px; border-radius:50%; align-items:center; justify-content:center; }
+  .res-ok { background:#E5F4EA; }
+  .res-no { background:#FDECEA; }
+  .table-note { font-size:15px; color:#5A6067; padding:14px 4px 4px; }
+
+  .actions { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-outline { background:#fff; color:#E2231A; border:2px solid #E2231A; padding:12px 28px; font-size:17px; }
+
+  @media (max-width:1020px){ .summary-grid { grid-template-columns:1fr; } }
+  @media (max-width:820px){
+    .layout { grid-template-columns:1fr; }
+    aside { display:none; border-right:none; border-bottom:1px solid #E7EAED; }
+    .menu-check:checked ~ .layout aside { display:flex; }
+    .mobile-bar { display:flex; align-items:center; justify-content:space-between; background:#fff; padding:8px 16px; border-bottom:1px solid #E7EAED; }
+    .mobile-bar img { height:54px; }
+    .menu-btn { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+    .menu-btn span { display:block; width:26px; height:3px; background:#16181D; border-radius:2px; }
+    main { padding:0 16px 30px; }
+    .topbar { margin:0 -16px; padding:12px 16px; }
+    .user { display:none; }
+    h1 { font-size:26px; }
+    .part-row { grid-template-columns:130px 1fr 60px; }
+    .part-score { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-check">
+<div class="mobile-bar">
+  <a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+  <label for="menuToggle" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
+</div>
+
+<div class="layout">
+  <aside>
+    <div class="side-logo"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a></div>
+    <nav class="side-nav">
+      <a href="dashboard.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.6"/></svg> Dashboard</a>
+      <a href="mock-tests.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M9 13l2 2 4-4.5"/></svg> Mock Tests</a>
+      <a href="mock-tests.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> Practice Modules</a>
+      <a href="courses.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><path d="M6 3h13v18H6zM6 3C4 5 3 8 3 12s1 7 3 9M9 8h7M9 12h7"/></svg> Vocabulary</a>
+      <a href="results.html" class="active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3" stroke-linecap="round"/></svg> Performance Analytics</a>
+    </nav>
+    <div class="side-bottom">
+      <a href="dashboard.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8l1.2 2.7 2.9-.7 1 2.8 2.9.6-.4 3 2.2 2-2 2.2.4 3-2.9.6-1 2.8-2.9-.7L12 21.2l-1.2-2.7-2.9.7-1-2.8-2.9-.6.4-3-2.2-2 2-2.2-.4-3 2.9-.6 1-2.8 2.9.7z" stroke-linejoin="round" transform="scale(.92) translate(1,1)"/></svg> Settings</a>
+      <a href="index.html"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><circle cx="12" cy="12" r="9.2"/><path d="M9.6 9.3A2.6 2.6 0 1 1 12 12.4v1.4"/><circle cx="12" cy="17" r=".6" fill="#16181D"/></svg> Help &amp; Support</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <label class="search-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7178" stroke-width="2.4"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+        <input type="text" placeholder="Search lessons, practice...">
+      </label>
+      <div class="top-right">
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="1.9"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 3h-15z"/><circle cx="17.5" cy="5.5" r="2.6" fill="#E2231A" stroke="none"/></svg>
+        <div class="user"><div class="name">Ahmad Khan</div><div class="role">Student</div></div>
+        <span class="avatar">AK</span>
+      </div>
+    </div>
+
+    <a class="back-link" href="results.html">← Back to Results &amp; History</a>
+    <h1>Attempt Detail: Reading Mock Test 01</h1>
+    <p class="subtitle">Completed on Nov 12, 2023 · Time used: 54 minutes 20 seconds of 60 minutes · Academic</p>
+
+    <div class="summary-grid">
+      <div class="overall-card anim">
+        <span class="num">7.5</span>
+        <span class="lbl">Overall Band Score</span>
+        <span class="raw">Raw score: 31 correct out of 40 questions</span>
+      </div>
+      <div class="card">
+        <h2>Score by Passage</h2>
+        <div class="part-row">
+          <span class="part-name">Passage 1<small>Questions 1 to 13</small></span>
+          <span class="part-bar bar-anim"><i style="width:85%"></i></span>
+          <span class="part-score">11 / 13 correct</span>
+          <span class="part-band">8.0</span>
+        </div>
+        <div class="part-row">
+          <span class="part-name">Passage 2<small>Questions 14 to 26</small></span>
+          <span class="part-bar bar-anim"><i style="width:77%"></i></span>
+          <span class="part-score">10 / 13 correct</span>
+          <span class="part-band">7.5</span>
+        </div>
+        <div class="part-row">
+          <span class="part-name">Passage 3<small>Questions 27 to 40</small></span>
+          <span class="part-bar bar-anim"><i style="width:71%"></i></span>
+          <span class="part-score">10 / 14 correct</span>
+          <span class="part-band">7.0</span>
+        </div>
+        <p style="font-size:15.5px; color:#5A6067; line-height:1.6; margin-top:14px;">Your strongest area is Passage 1 detail questions. Most marks were lost on True False Not Given in Passage 3, so review that lesson before your next attempt.</p>
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <h2>Question by Question Review</h2>
+      <table>
+        <tr><th style="width:52px;">Q</th><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th class="c" style="width:90px;">Result</th></tr>
+        <tr><td>1</td><td class="qtxt">What is the primary theme of the second paragraph?</td><td>B</td><td>B</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>2</td><td class="qtxt">How was knowledge passed on before schools existed?</td><td>Stories and family teaching</td><td>Stories and family teaching</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>3</td><td class="qtxt">Where did some of the first formal schools appear?</td><td>Ancient Egypt and Mesopotamia</td><td>Ancient Egypt and Mesopotamia</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>4</td><td class="qtxt">Who mainly received education in the earliest schools?</td><td>Sons of rulers and priests</td><td>Sons of rulers and priests</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>5</td><td class="qtxt">Early writing was recorded on clay and papyrus. (True / False / Not Given)</td><td>True</td><td>True</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr class="wrong"><td>6</td><td class="qtxt">Education was free for all children in ancient times. (True / False / Not Given)</td><td class="ans-wrong">True</td><td>False</td><td class="c"><span class="res-ic res-no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="3.2"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></span></td></tr>
+        <tr><td>7</td><td class="qtxt">Why did governments build free schools in the nineteenth century?</td><td>Literacy was essential for industry and democracy</td><td>Literacy was essential for industry and democracy</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>8</td><td class="qtxt">What entered the curriculum as universities expanded?</td><td>Science</td><td>Science</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>9</td><td class="qtxt">By the mid-twentieth century, primary education was nearly universal in the developed world. (True / False / Not Given)</td><td>True</td><td>True</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>10</td><td class="qtxt">According to the passage, what is reshaping education today?</td><td>Technology</td><td>Technology</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>11</td><td class="qtxt">The passage states that students can sit standardised tests online. (True / False / Not Given)</td><td>True</td><td>True</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>12</td><td class="qtxt">What does the writer say has never changed about education?</td><td>Its purpose: preparing each new generation</td><td>Its purpose: preparing each new generation</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr><td>13</td><td class="qtxt">Choose the correct heading for Passage 1: Education through the ages</td><td>Education through the ages</td><td>Education through the ages</td><td class="c"><span class="res-ic res-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FA84F" stroke-width="3.2"><path d="M4 12.5l5.5 5.5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td></tr>
+        <tr class="wrong"><td>14</td><td class="qtxt">A student in a small village can attend lessons recorded in the same village. (True / False / Not Given)</td><td class="ans-wrong">True</td><td>False: lessons recorded on another continent</td><td class="c"><span class="res-ic res-no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="3.2"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></span></td></tr>
+      </table>
+      <p class="table-note">Showing questions 1 to 14 of 40. In your student account, the full review covers every question with the passage reference for each answer.</p>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-red" href="test-player.html">Retake Test</a>
+      <a class="btn btn-outline" href="results.html">Back to Results</a>
+      <a class="btn btn-outline" href="mock-tests.html">More Mock Tests</a>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

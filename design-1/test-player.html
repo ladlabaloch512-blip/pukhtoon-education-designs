@@ -57,6 +57,12 @@
   .sw.grey { background:#D3D7DA; }
   .sw.hatch { background:#C9CDD1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 L12 -2 M-2 2 L2 -2 M8 12 L12 8' stroke='%238A9096' stroke-width='2'/%3E%3C/svg%3E"); }
   .finish-link { display:block; margin-top:22px; text-align:center; font-weight:700; color:#C0272D; font-size:16.5px; }
+  @keyframes riseIn { from { transform:translateY(16px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .card { animation:riseIn .6s ease both; }
+  .palette-grid button { transition:transform .15s ease, background .15s ease; }
+  .palette-grid button:hover { transform:translateY(-2px); }
+  @keyframes timerPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+  .timer-chip { animation:timerPulse 2s ease-in-out infinite; }
 
   @media (max-width:1180px){ .stage { grid-template-columns:1fr 1fr; } .palette-card { grid-column:1 / -1; } .palette-grid { grid-template-columns:repeat(10,1fr); } }
   @media (max-width:760px){

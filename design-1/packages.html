@@ -7,32 +7,61 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
   body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#fff; }
   a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
   .wrap { max-width:1240px; margin:0 auto; padding:0 20px; }
 
-  header { background:#fff; border-bottom:1px solid #E7EAED; position:relative; }
-  .header-in { display:flex; align-items:center; gap:20px; padding:10px 0; }
-  .brand { display:flex; align-items:center; gap:16px; }
-  .brand img { height:72px; display:block; }
-  .brand .bname { font-size:27px; font-weight:800; letter-spacing:.5px; }
-  nav.main-nav { display:flex; align-items:center; gap:34px; margin-left:auto; }
-  nav.main-nav a { font-size:18.5px; font-weight:600; }
-  .btn-register { background:#E2231A; color:#fff; font-weight:700; padding:13px 26px; border-radius:8px; }
+  /* Header (shared, identical on all public pages) */
+  header { background:#fff; border-bottom:1px solid #E7EAED; position:relative; z-index:60; }
+  .header-in { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
+  .logo img { height:74px; width:auto; display:block; }
+  nav.main-nav { display:flex; align-items:center; gap:34px; }
+  nav.main-nav a { font-size:17px; font-weight:600; color:#16181D; padding:6px 0; }
+  nav.main-nav a.active { border-bottom:3px solid #E2231A; }
+  .btn { display:inline-block; border-radius:8px; font-weight:700; cursor:pointer; text-align:center; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(20,24,30,.16); }
+  .btn-red { background:#E2231A; color:#fff; padding:13px 30px; font-size:16px; }
+  .btn-red:hover { background:#C41B14; }
+  .btn-outline { background:#fff; color:#E2231A; border:2px solid #E2231A; padding:11px 28px; font-size:16px; }
+  .btn-dark { background:#16181D; color:#fff; padding:13px 30px; font-size:16px; }
   .menu-check { display:none; }
-  .menu-btn { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; margin-left:auto; }
+  .menu-btn { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
   .menu-btn span { display:block; width:26px; height:3px; background:#16181D; border-radius:2px; }
+
+  /* Footer (shared, identical on all public pages) */
+  footer { background:#1E2429; color:#E8EBED; margin-top:20px; }
+  .footer-in { display:grid; grid-template-columns:1.3fr 1.6fr 1.2fr; gap:30px; padding:44px 0 30px; }
+  .footer-logo { background:#fff; border-radius:10px; display:inline-block; padding:6px 12px; }
+  .footer-logo img { height:64px; display:block; }
+  .foot-name { font-size:20px; font-weight:800; margin-top:14px; color:#fff; }
+  .foot-tag { color:#9AA1A8; font-size:15px; margin-top:6px; line-height:1.5; max-width:300px; }
+  footer h4 { color:#fff; font-size:19px; margin-bottom:16px; }
+  .quick { display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+  .quick a { font-size:16px; color:#C9CED3; }
+  .quick a:hover { color:#fff; }
+  .contact-row { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:16px; color:#E8EBED; }
+  .contact-row .lbl { color:#9AA1A8; font-size:14px; display:block; }
+  .copyright { border-top:1px solid #333B42; padding:16px 0 20px; font-size:14.5px; color:#9AA1A8; }
+
+  /* Animations: content is always visible; motion only enhances */
+  @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .anim { animation:riseIn .7s ease both; }
+  .lift { transition:transform .25s ease, box-shadow .25s ease; }
+  .lift:hover { transform:translateY(-5px); box-shadow:0 14px 28px rgba(20,24,30,.13); }
 
   .hero { text-align:center; padding:52px 0 10px; }
   .hero h1 { font-size:46px; font-weight:800; margin-bottom:14px; }
-  .hero p { font-size:21px; color:#2B2F36; }
+  .hero p { font-size:21px; color:#2B2F36; max-width:760px; margin:0 auto; line-height:1.55; }
 
   .notice { max-width:1180px; margin:36px auto 0; border:3px solid #E2231A; border-radius:14px; padding:20px 26px; display:flex; align-items:center; gap:16px; font-size:21px; background:#fff; }
   .notice b { font-weight:800; }
   .notice .num { color:#C8102E; font-weight:800; }
 
-  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; max-width:1180px; margin:44px auto 70px; }
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; max-width:1180px; margin:44px auto 10px; }
   .plan { border:1.6px solid #C9CDD1; border-radius:14px; padding:32px 30px 30px; position:relative; background:#fff; display:flex; flex-direction:column; }
+  .plan.featured { border-color:#E2231A; border-width:2.4px; }
   .plan h2 { font-size:26px; margin-bottom:10px; }
   .price { font-size:44px; font-weight:800; }
   .once { font-size:18.5px; color:#22262C; margin:6px 0 20px; }
@@ -45,24 +74,36 @@
   .plan-btn.dark { background:#16181D; color:#fff; }
   .plan-btn.red { background:#E2231A; color:#fff; }
 
-  footer { background:#1D1F22; color:#E8EBED; }
-  .footer-in { display:flex; align-items:center; gap:20px; padding:30px 0; flex-wrap:wrap; }
-  .footer-logo { background:#fff; border-radius:9px; padding:4px 10px; display:inline-block; }
-  .footer-logo img { height:56px; display:block; }
-  .foot-text .fname { font-size:21px; font-weight:800; color:#fff; }
-  .foot-text .copy { font-size:15.5px; color:#C9CED3; margin-top:3px; }
-  .foot-email { margin-left:auto; font-size:17px; }
+  h2.sec-title { text-align:center; font-size:32px; font-weight:800; letter-spacing:.3px; margin:64px 0 12px; text-transform:uppercase; }
+  .sec-sub { text-align:center; font-size:18px; color:#3A3F45; max-width:720px; margin:0 auto 32px; line-height:1.55; }
+
+  .compare { max-width:1180px; margin:0 auto; overflow-x:auto; }
+  table.cmp { width:100%; border-collapse:collapse; min-width:720px; border:1px solid #E1E5E8; border-radius:12px; overflow:hidden; background:#fff; }
+  table.cmp th, table.cmp td { padding:16px 20px; font-size:17px; text-align:center; border-bottom:1px solid #EDF0F2; }
+  table.cmp th { background:#16181D; color:#fff; font-size:18px; }
+  table.cmp th:first-child, table.cmp td:first-child { text-align:left; font-weight:600; }
+  table.cmp tr:last-child td { border-bottom:none; }
+  table.cmp .yes { color:#C0272D; font-weight:800; }
+  table.cmp .no { color:#9AA1A8; }
+  table.cmp .hl { background:#FDECEA; font-weight:700; }
+
+  .faq { max-width:860px; margin:0 auto; padding-bottom:60px; }
+  details.faq-item { background:#fff; border:1px solid #E1E5E8; border-radius:10px; margin-bottom:12px; overflow:hidden; }
+  details.faq-item summary { cursor:pointer; font-size:18px; font-weight:700; padding:18px 22px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:14px; }
+  details.faq-item summary::-webkit-details-marker { display:none; }
+  details.faq-item summary .plus { color:#E2231A; font-size:24px; font-weight:800; transition:transform .3s ease; }
+  details.faq-item[open ] summary .plus { transform:rotate(45deg); }
+  details.faq-item .faq-body { padding:0 22px 20px; font-size:16.5px; line-height:1.65; color:#2B2F36; }
 
   @media (max-width:900px){ .plans { grid-template-columns:1fr; max-width:520px; } .hero h1 { font-size:34px; } }
   @media (max-width:768px){
     .menu-btn { display:flex; }
-    nav.main-nav { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; align-items:flex-start; gap:0; padding:12px 20px 18px; border-bottom:1px solid #E7EAED; box-shadow:0 12px 20px rgba(0,0,0,.08); z-index:60; }
-    nav.main-nav a { padding:10px 0; }
+    nav.main-nav { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; align-items:flex-start; gap:0; padding:10px 20px 16px; border-bottom:1px solid #E7EAED; box-shadow:0 12px 20px rgba(0,0,0,.08); z-index:50; }
+    nav.main-nav a { padding:10px 0; width:100%; }
     .menu-check:checked ~ nav.main-nav { display:flex; }
-    .brand .bname { font-size:20px; }
-    .brand img { height:56px; }
+    .header-cta { display:none; }
+    .footer-in { grid-template-columns:1fr; }
     .notice { font-size:17px; }
-    .foot-email { margin-left:0; }
   }
 </style>
 </head>
@@ -70,32 +111,33 @@
 
 <header>
   <div class="wrap header-in">
-    <a class="brand" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"><span class="bname">PUKHTOON EDUCATION</span></a>
+    <a class="logo" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
     <input type="checkbox" id="menuToggle" class="menu-check">
     <label for="menuToggle" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
     <nav class="main-nav">
       <a href="index.html">Home</a>
-      <a href="courses.html">Courses</a>
-      <a href="packages.html">Pricing</a>
-      <a href="index.html">Contact</a>
-      <a class="btn-register" href="login.html">Register Now</a>
+      <a href="courses.html">All Courses</a>
+      <a href="mock-tests.html">IELTS Modules</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#contact">Contact Us</a>
     </nav>
+    <a class="btn btn-red header-cta" href="packages.html">Enroll Now</a>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="hero">
+  <div class="hero anim">
     <h1>IELTS Course Packages</h1>
-    <p>Choose the best plan to boost your IELTS score and achieve your dream band.</p>
+    <p>Choose the best plan to boost your IELTS score and achieve your dream band. Every package is a single one-time payment with no monthly bills.</p>
   </div>
 
   <div class="notice">
-    <svg width="34" height="34" viewBox="0 0 24 24" fill="#E2231A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.8-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.2 3.9a11.6 11.6 0 0 0 4.5 4.2c1.7.8 2.4.9 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#E2231A" style="flex:0 0 34px;"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.8-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.5-.6c.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.2 3.9a11.6 11.6 0 0 0 4.5 4.2c1.7.8 2.4.9 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
     <span><b>NOTICE:</b> Payment is confirmed on WhatsApp (<span class="num">0314-1513815</span>) and access is activated by admin.</span>
   </div>
 
   <div class="plans">
-    <div class="plan">
+    <div class="plan lift">
       <h2>IELTS Basic</h2>
       <div class="price">Rs 5,000</div>
       <div class="once">One-time payment</div>
@@ -106,10 +148,10 @@
         <li>5 mock tests</li>
         <li>WhatsApp support</li>
       </ul>
-      <a class="plan-btn dark" href="login.html">Enroll via WhatsApp</a>
+      <a class="btn plan-btn dark" href="login.html">Enroll via WhatsApp</a>
     </div>
 
-    <div class="plan">
+    <div class="plan featured lift">
       <span class="ribbon">MOST POPULAR</span>
       <h2>IELTS Premium</h2>
       <div class="price">Rs 10,000</div>
@@ -122,10 +164,10 @@
         <li>Essay grading</li>
         <li>WhatsApp support</li>
       </ul>
-      <a class="plan-btn red" href="login.html">Enroll via WhatsApp</a>
+      <a class="btn plan-btn red" href="login.html">Enroll via WhatsApp</a>
     </div>
 
-    <div class="plan">
+    <div class="plan lift">
       <h2>IELTS Ultimate</h2>
       <div class="price">Rs 18,000</div>
       <div class="once">One-time payment</div>
@@ -137,20 +179,84 @@
         <li>Daily speaking practice</li>
         <li>VIP support</li>
       </ul>
-      <a class="plan-btn dark" href="login.html">Enroll via WhatsApp</a>
+      <a class="btn plan-btn dark" href="login.html">Enroll via WhatsApp</a>
     </div>
+  </div>
+
+  <h2 class="sec-title">Compare Packages</h2>
+  <p class="sec-sub">See exactly what each package includes, side by side.</p>
+  <div class="compare">
+    <table class="cmp">
+      <tr><th>Feature</th><th>IELTS Basic<br>Rs 5,000</th><th>IELTS Premium<br>Rs 10,000</th><th>IELTS Ultimate<br>Rs 18,000</th></tr>
+      <tr><td>Access period</td><td>30 days</td><td class="hl">60 days</td><td>90 days</td></tr>
+      <tr><td>Video course library</td><td class="yes">Included</td><td class="hl yes">Included</td><td class="yes">Included</td></tr>
+      <tr><td>Study materials</td><td>Basic</td><td class="hl">Full</td><td>Full</td></tr>
+      <tr><td>Mock tests</td><td>5</td><td class="hl">10</td><td>15</td></tr>
+      <tr><td>Live interactive sessions</td><td class="no">Not included</td><td class="hl yes">Included</td><td class="yes">Included</td></tr>
+      <tr><td>Essay grading</td><td class="no">Not included</td><td class="hl yes">Included</td><td class="yes">Included</td></tr>
+      <tr><td>Daily speaking practice</td><td class="no">Not included</td><td class="hl no">Not included</td><td class="yes">Included</td></tr>
+      <tr><td>1-on-1 personal mentorship</td><td class="no">Not included</td><td class="hl no">Not included</td><td class="yes">Included</td></tr>
+      <tr><td>Support</td><td>WhatsApp</td><td class="hl">WhatsApp</td><td>VIP support</td></tr>
+    </table>
+  </div>
+
+  <h2 class="sec-title">Package Questions</h2>
+  <p class="sec-sub">How enrollment, payment and access work.</p>
+  <div class="faq">
+    <details class="faq-item">
+      <summary>How do I pay for a package?<span class="plus">+</span></summary>
+      <div class="faq-body">Tap Enroll via WhatsApp on the package you want and message us. We confirm your payment on WhatsApp (0314-1513815) and the admin activates your package on your student account. There is no online checkout and no card details are ever asked for on the website.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When does my access start and end?<span class="plus">+</span></summary>
+      <div class="faq-body">Your access period starts on the day the admin activates your package: 30 days for Basic, 60 days for Premium and 90 days for Ultimate. Your dashboard always shows your test countdown, and we recommend choosing a package that covers the weeks up to your official test date.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What happens when my access ends?<span class="plus">+</span></summary>
+      <div class="faq-body">Your account, results history and progress records stay saved. Paid courses and mock tests simply lock again until you renew or upgrade. Message us on WhatsApp to reactivate at any time.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Can I upgrade from Basic to Premium later?<span class="plus">+</span></summary>
+      <div class="faq-body">Yes. Many students start with Basic and upgrade when they get closer to their test date and want live sessions and essay grading. Contact us on WhatsApp and we will guide you through the upgrade.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is anything free before I buy?<span class="plus">+</span></summary>
+      <div class="faq-body">Yes. A free account includes free video courses, a free Listening mock test and a free Writing mock test, so you can experience the full platform and see your starting band score before spending anything.</div>
+    </details>
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="wrap footer-in">
-    <span class="footer-logo"><img src="logo.jpg" alt="Pukhtoon Education"></span>
-    <div class="foot-text">
-      <div class="fname">Pukhtoon Education</div>
-      <div class="copy">© 2024 Pukhtoon Education. All rights reserved.</div>
+    <div>
+      <span class="footer-logo"><img src="logo.jpg" alt="Pukhtoon Education"></span>
+      <div class="foot-name">Pukhtoon Education</div>
+      <p class="foot-tag">Expert online IELTS preparation for students in Pakistan and around the world.</p>
     </div>
-    <div class="foot-email">Email: fazalbari665@gmail.com</div>
+    <div>
+      <h4>Quick Links</h4>
+      <div class="quick">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="index.html">About</a>
+        <a href="courses.html">Writing</a>
+        <a href="courses.html">All Courses</a>
+        <a href="packages.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#2FA84F"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.1z"/></svg>
+        <span><span class="lbl">WhatsApp</span>0314-1513815</span>
+      </div>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="#fff"/><path d="M2 7l10 6 10-6" stroke="#E2231A" stroke-width="2" fill="none"/></svg>
+        <span><span class="lbl">Email</span>fazalbari665@gmail.com</span>
+      </div>
+    </div>
   </div>
+  <div class="wrap copyright">© 2024 Pukhtoon Education. All rights reserved.</div>
 </footer>
 
 </body>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Academic Writing Task 2 - Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#EFF2F4; }
+  a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
+  .wrap { max-width:1240px; margin:0 auto; padding:0 20px; }
+
+  /* Header (shared, identical on all public pages) */
+  header { background:#fff; border-bottom:1px solid #E7EAED; position:relative; z-index:60; }
+  .header-in { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
+  .logo img { height:74px; width:auto; display:block; }
+  nav.main-nav { display:flex; align-items:center; gap:34px; }
+  nav.main-nav a { font-size:17px; font-weight:600; color:#16181D; padding:6px 0; }
+  nav.main-nav a.active { border-bottom:3px solid #E2231A; }
+  .btn { display:inline-block; border-radius:8px; font-weight:700; cursor:pointer; text-align:center; transition:transform .25s ease, box-shadow .25s ease, background .25s ease; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(20,24,30,.16); }
+  .btn-red { background:#E2231A; color:#fff; padding:13px 30px; font-size:16px; }
+  .btn-red:hover { background:#C41B14; }
+  .btn-outline { background:#fff; color:#E2231A; border:2px solid #E2231A; padding:11px 28px; font-size:16px; }
+  .btn-dark { background:#16181D; color:#fff; padding:13px 30px; font-size:16px; }
+  .menu-check { display:none; }
+  .menu-btn { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+  .menu-btn span { display:block; width:26px; height:3px; background:#16181D; border-radius:2px; }
+
+  /* Footer (shared, identical on all public pages) */
+  footer { background:#1E2429; color:#E8EBED; margin-top:20px; }
+  .footer-in { display:grid; grid-template-columns:1.3fr 1.6fr 1.2fr; gap:30px; padding:44px 0 30px; }
+  .footer-logo { background:#fff; border-radius:10px; display:inline-block; padding:6px 12px; }
+  .footer-logo img { height:64px; display:block; }
+  .foot-name { font-size:20px; font-weight:800; margin-top:14px; color:#fff; }
+  .foot-tag { color:#9AA1A8; font-size:15px; margin-top:6px; line-height:1.5; max-width:300px; }
+  footer h4 { color:#fff; font-size:19px; margin-bottom:16px; }
+  .quick { display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+  .quick a { font-size:16px; color:#C9CED3; }
+  .quick a:hover { color:#fff; }
+  .contact-row { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:16px; color:#E8EBED; }
+  .contact-row .lbl { color:#9AA1A8; font-size:14px; display:block; }
+  .copyright { border-top:1px solid #333B42; padding:16px 0 20px; font-size:14.5px; color:#9AA1A8; }
+
+  /* Animations: content is always visible; motion only enhances */
+  @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .anim { animation:riseIn .7s ease both; }
+  @keyframes pulsePlay { 0%,100% { transform:scale(1); } 50% { transform:scale(1.07); } }
+  .lift { transition:transform .25s ease, box-shadow .25s ease; }
+  .lift:hover { transform:translateY(-5px); box-shadow:0 14px 28px rgba(20,24,30,.13); }
+
+  .crumb { padding:24px 0 6px; font-size:17.5px; color:#6B7178; }
+  .crumb b { color:#16181D; font-weight:600; }
+
+  .detail-grid { display:grid; grid-template-columns:1fr 380px; gap:28px; align-items:start; padding-bottom:20px; }
+  .panel { background:#fff; border:1px solid #E1E5E8; border-radius:14px; padding:30px 32px; box-shadow:0 4px 14px rgba(20,24,30,.05); margin-bottom:26px; }
+  .title-row { display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+  h1.course-title { font-size:38px; font-weight:800; line-height:1.2; flex:1; min-width:260px; }
+  .paid-badge { background:#E2231A; color:#fff; font-weight:800; font-size:16px; padding:7px 16px; border-radius:7px; letter-spacing:.4px; }
+  .price-line { font-size:24px; font-weight:800; color:#C0272D; margin-top:12px; }
+  .price-line small { font-size:16px; color:#3A3F45; font-weight:600; }
+  .meta-line { display:flex; gap:22px; flex-wrap:wrap; margin-top:14px; color:#2B2F36; font-size:16.5px; }
+  .meta-line .star { color:#F5A623; font-weight:700; }
+  .course-intro { font-size:17.5px; line-height:1.7; color:#22262C; margin-top:18px; }
+
+  .video-block { position:relative; border-radius:12px; overflow:hidden; background:#16181D; aspect-ratio:16/8.2; display:flex; align-items:center; justify-content:center; margin-top:24px; }
+  .video-block .vtext { position:absolute; left:26px; bottom:22px; color:#fff; }
+  .video-block .vtext .vt { font-size:26px; font-weight:800; }
+  .video-block .vtext .vs { font-size:15.5px; color:#C9CED3; margin-top:4px; }
+  .play-btn { width:84px; height:84px; border-radius:50%; background:#E2231A; display:flex; align-items:center; justify-content:center; animation:pulsePlay 2.4s ease-in-out infinite; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+  .locked-note { display:flex; gap:12px; align-items:flex-start; background:#FDECEA; border:1px solid #F6C9C5; border-radius:10px; padding:16px 18px; margin-top:18px; font-size:16px; line-height:1.6; color:#5A2320; }
+
+  .panel h2 { font-size:25px; margin-bottom:18px; }
+  .learn-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px 26px; }
+  .learn-grid li { list-style:none; font-size:16.5px; line-height:1.55; color:#22262C; display:flex; gap:11px; }
+  .learn-grid li::before { content:"✓"; color:#E2231A; font-weight:800; }
+
+  .lesson { display:flex; align-items:center; gap:14px; padding:15px 6px; border-bottom:1px solid #EEF1F3; }
+  .lesson:last-child { border-bottom:none; }
+  .lesson .lplay { width:38px; height:38px; flex:0 0 38px; border-radius:50%; background:#FDECEA; display:flex; align-items:center; justify-content:center; }
+  .lesson .lt { flex:1; font-size:17px; font-weight:600; }
+  .lesson .lt small { display:block; font-weight:400; color:#6B7178; font-size:14.5px; margin-top:2px; }
+  .lesson .ldur { font-size:15.5px; color:#3A3F45; white-space:nowrap; }
+  .tag-free { background:#2FA84F; color:#fff; font-size:13px; font-weight:800; padding:4px 10px; border-radius:5px; letter-spacing:.3px; white-space:nowrap; }
+  .section-head { font-size:18px; font-weight:800; padding:18px 6px 4px; color:#16181D; text-transform:uppercase; letter-spacing:.4px; }
+
+  .instructor { display:flex; gap:20px; align-items:flex-start; }
+  .inst-av { width:78px; height:78px; flex:0 0 78px; border-radius:50%; background:#16181D; color:#fff; display:flex; align-items:center; justify-content:center; font-size:25px; font-weight:800; border:3px solid #E2231A; }
+  .instructor h3 { font-size:20.5px; margin-bottom:4px; }
+  .instructor .role { color:#C0272D; font-weight:700; font-size:15.5px; margin-bottom:10px; }
+  .instructor p { font-size:16px; line-height:1.65; color:#2B2F36; }
+
+  .buy-card { background:#fff; border:2px solid #E2231A; border-radius:14px; padding:28px; box-shadow:0 10px 26px rgba(20,24,30,.1); position:sticky; top:16px; }
+  .buy-card .bp { font-size:36px; font-weight:800; }
+  .buy-card .bp small { font-size:16px; color:#3A3F45; font-weight:600; }
+  .buy-card ul { list-style:none; margin:18px 0 22px; }
+  .buy-card li { font-size:16.5px; padding:7px 0; display:flex; gap:11px; align-items:baseline; color:#22262C; }
+  .buy-card li::before { content:"✓"; color:#E2231A; font-weight:800; }
+  .buy-card .btn { display:block; }
+  .buy-note { font-size:14.5px; color:#5A6067; line-height:1.55; margin-top:14px; text-align:center; }
+
+  @media (max-width:1020px){ .detail-grid { grid-template-columns:1fr; } .buy-card { position:static; } }
+  @media (max-width:768px){
+    .menu-btn { display:flex; }
+    nav.main-nav { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; align-items:flex-start; gap:0; padding:10px 20px 16px; border-bottom:1px solid #E7EAED; box-shadow:0 12px 20px rgba(0,0,0,.08); z-index:50; }
+    nav.main-nav a { padding:10px 0; width:100%; }
+    .menu-check:checked ~ nav.main-nav { display:flex; }
+    .header-cta { display:none; }
+    .footer-in { grid-template-columns:1fr; }
+    h1.course-title { font-size:29px; }
+    .panel { padding:24px 20px; }
+    .learn-grid { grid-template-columns:1fr; }
+    .instructor { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <a class="logo" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+    <input type="checkbox" id="menuToggle" class="menu-check">
+    <label for="menuToggle" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">All Courses</a>
+      <a href="mock-tests.html">IELTS Modules</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+    <a class="btn btn-red header-cta" href="packages.html">Enroll Now</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; <a href="courses.html">Courses</a> &nbsp;›&nbsp; <b>IELTS Academic Writing Task 2</b></div>
+
+  <div class="detail-grid">
+    <div>
+      <div class="panel anim">
+        <div class="title-row">
+          <h1 class="course-title">IELTS Academic Writing Task 2</h1>
+          <span class="paid-badge">PAID</span>
+        </div>
+        <div class="price-line">$29.99 <small>one-time, or included in the IELTS Premium and Ultimate packages</small></div>
+        <div class="meta-line">
+          <span>By Sir Khan</span>
+          <span><span class="star">★</span> 4.8 Rating</span>
+          <span>◷ 12 hours of video</span>
+          <span>▤ 24 Lessons</span>
+          <span>Level: Intermediate to Advanced</span>
+        </div>
+        <p class="course-intro">Writing Task 2 is worth more of your writing score than Task 1, yet it is where most students lose marks. This course gives you a complete, repeatable system for the essay: how to read the question properly, decide your position, plan in five minutes, and write four clean paragraphs that answer the question fully. You will study real band 6, band 7 and band 8+ essays side by side, so you can see exactly what the examiner rewards and what to stop doing.</p>
+
+        <div class="video-block">
+          <span class="play-btn"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+          <div class="vtext">
+            <div class="vt">Course Introduction</div>
+            <div class="vs">Watch the free intro lesson: how Task 2 is scored</div>
+          </div>
+        </div>
+        <div class="locked-note">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2.2" style="flex:0 0 22px;margin-top:2px;"><rect x="5" y="10" width="14" height="10" rx="2" fill="#C0272D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <span><b>Paid course:</b> the first two lessons are free to preview. The remaining lessons unlock when you enroll. Payment is confirmed on WhatsApp and access is activated by the admin, usually within a short time.</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>What You Will Learn</h2>
+        <ul class="learn-grid">
+          <li>How the four marking criteria really work, and where students lose marks without knowing it</li>
+          <li>How to identify all five Task 2 question types in seconds</li>
+          <li>A five minute planning method that works for any topic</li>
+          <li>Introductions that paraphrase correctly and state a clear position</li>
+          <li>Body paragraphs with topic sentences, explanations and strong examples</li>
+          <li>Conclusions that close the essay without adding new ideas</li>
+          <li>Topic vocabulary for education, technology, environment, health and crime</li>
+          <li>The grammar range examiners look for at Band 7 and above</li>
+          <li>How to check your essay in the final five minutes</li>
+          <li>A complete timed practice routine for the full Writing test</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h2>Course Curriculum</h2>
+        <div class="section-head">Section 1: Foundations</div>
+        <div class="lesson"><span class="lplay"><svg width="15" height="15" viewBox="0 0 24 24" fill="#E2231A"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lt">Welcome and how Task 2 is scored<small>The four criteria explained with a real marked essay</small></span><span class="tag-free">FREE PREVIEW</span><span class="ldur">08:24</span></div>
+        <div class="lesson"><span class="lplay"><svg width="15" height="15" viewBox="0 0 24 24" fill="#E2231A"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lt">The five question types<small>Opinion, discussion, problem solution, advantages and two-part questions</small></span><span class="tag-free">FREE PREVIEW</span><span class="ldur">12:10</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Reading the question and deciding your position<small>Never answer the wrong question again</small></span><span class="ldur">14:36</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">The five minute plan<small>Brainstorming, selecting ideas and ordering them</small></span><span class="ldur">11:48</span></div>
+        <div class="section-head">Section 2: Building the Essay</div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Introductions that score<small>Paraphrasing and the opinion sentence</small></span><span class="ldur">16:05</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Body paragraph structure<small>Topic sentence, explanation, example, result</small></span><span class="ldur">18:42</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Linking words without overusing them<small>Cohesion that sounds natural, not memorised</small></span><span class="ldur">13:27</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Conclusions and final checking<small>Close cleanly and catch your own errors</small></span><span class="ldur">09:51</span></div>
+        <div class="section-head">Section 3: Band 7+ Skills</div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Topic vocabulary masterclass<small>High value collocations for the ten common topics</small></span><span class="ldur">21:14</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Complex sentences that work<small>Conditionals, relative clauses and concession</small></span><span class="ldur">17:33</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Band 6 vs Band 8: full essay comparison<small>The same question answered at two levels, line by line</small></span><span class="ldur">24:09</span></div>
+        <div class="lesson"><span class="lplay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lt">Timed practice: full Task 2 in 40 minutes<small>Write along with the timer, then compare and grade</small></span><span class="ldur">42:00</span></div>
+      </div>
+
+      <div class="panel">
+        <h2>Your Instructor</h2>
+        <div class="instructor">
+          <span class="inst-av">SK</span>
+          <div>
+            <h3>Sir Khan</h3>
+            <div class="role">IELTS Writing Instructor</div>
+            <p>Sir Khan specialises in IELTS Writing and has built this course around the patterns he sees in student essays every week: unclear positions, memorised phrases and unfinished conclusions. His lessons are direct and practical, and every technique in this course is demonstrated on a real style essay before you practise it yourself.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="buy-card">
+      <div class="bp">$29.99 <small>one-time payment</small></div>
+      <ul>
+        <li>12 hours of on-demand video</li>
+        <li>24 structured lessons</li>
+        <li>2 free preview lessons included</li>
+        <li>Practice essays with model answers</li>
+        <li>Study on phone, tablet or computer</li>
+        <li>Certificate of completion</li>
+        <li>WhatsApp support from the team</li>
+      </ul>
+      <a class="btn btn-red" href="packages.html">Enroll via WhatsApp</a>
+      <p class="buy-note">Or get this course inside the IELTS Premium package (Rs 10,000) with live sessions and essay grading. See all packages for details.</p>
+    </aside>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="wrap footer-in">
+    <div>
+      <span class="footer-logo"><img src="logo.jpg" alt="Pukhtoon Education"></span>
+      <div class="foot-name">Pukhtoon Education</div>
+      <p class="foot-tag">Expert online IELTS preparation for students in Pakistan and around the world.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <div class="quick">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="index.html">About</a>
+        <a href="courses.html">Writing</a>
+        <a href="courses.html">All Courses</a>
+        <a href="packages.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#2FA84F"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.1z"/></svg>
+        <span><span class="lbl">WhatsApp</span>0314-1513815</span>
+      </div>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="#fff"/><path d="M2 7l10 6 10-6" stroke="#E2231A" stroke-width="2" fill="none"/></svg>
+        <span><span class="lbl">Email</span>fazalbari665@gmail.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap copyright">© 2024 Pukhtoon Education. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
