@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packages | Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0B0D;--bg2:#101013;--panel:#141418;--card:#18181D;--card2:#1E1E24;--border:#28282F;--red:#E2231A;--red2:#F0441F;--txt:#FFFFFF;--mut:#A7A7B0;--mut2:#7C7C86;--gold:#F6A21E;--green:#2FA84F}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.logo-chip{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:5px 9px;line-height:0}
+.logo-chip img{height:52px;width:auto;display:block}
+.logo-chip.sm img{height:42px}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:700;border:2px solid var(--red);border-radius:9px;padding:12px 26px;font-size:16px;cursor:pointer;text-align:center}
+.btn:hover{background:#c71d15;border-color:#c71d15}
+.btn.ghost{background:transparent;color:#fff;border-color:#4A4A52}
+.btn.ghost:hover{border-color:#fff;background:transparent}
+.btn.redtext{background:transparent;color:var(--red)}
+.btn.redtext:hover{background:rgba(226,35,26,.08)}
+header.site{position:sticky;top:0;z-index:50;background:rgba(13,13,16,.97);border-bottom:1px solid #1E1E23}
+.hbar{display:flex;align-items:center;gap:28px;padding:14px 0}
+nav.main{display:flex;gap:30px;margin-left:auto;align-items:center}
+nav.main a{font-size:16.5px;color:#EDEDF0;padding:6px 2px;border-bottom:3px solid transparent}
+nav.main a.active{color:var(--red);border-bottom-color:var(--red)}
+nav.main a:hover{color:var(--red)}
+.hbtns{display:flex;gap:12px;align-items:center;margin-left:8px}
+.hbtns .btn{padding:10px 22px;font-size:15.5px}
+#menu-toggle{position:absolute;opacity:0;pointer-events:none}
+.burger{display:none;margin-left:auto;cursor:pointer;padding:10px}
+.burger span{display:block;width:26px;height:3px;background:#fff;margin:5px 0;border-radius:2px}
+.sec{padding:64px 0 8px}
+.sec-title{font-size:27px;font-weight:800;letter-spacing:.4px;margin-bottom:26px;text-transform:uppercase}
+footer.site{margin-top:70px;background:#0E0E11;border-top:1px solid #1E1E23;padding:44px 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.3fr;gap:34px;align-items:start}
+footer.site h4{color:var(--red);font-size:19px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+footer.site li{list-style:none;color:#D8D8DE;margin-bottom:9px;font-size:15.5px}
+footer.site a:hover{color:var(--red)}
+.copy{text-align:center;color:var(--mut2);font-size:14px;padding:18px 0 4px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#3A3A42;border:2px solid #55555F;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.bell{width:44px;height:44px;border-radius:11px;background:var(--red);display:inline-flex;align-items:center;justify-content:center;position:relative;flex:none}
+.bell i{position:absolute;top:-4px;right:-4px;width:13px;height:13px;background:#FF5A1F;border-radius:50%;border:2px solid #0D0D10}
+.progress{height:13px;background:#33333B;border-radius:8px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--red);border-radius:8px}
+.tag{display:inline-block;font-weight:800;font-size:12.5px;padding:4px 11px;border-radius:6px;letter-spacing:.4px}
+.tag.free{background:#111;color:#fff;border:1px solid #444}
+.tag.paid{background:var(--red);color:#fff}
+@media(max-width:900px){
+ .burger{display:block}
+ nav.main{position:absolute;top:100%;left:0;right:0;background:#111114;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;display:none;border-bottom:1px solid #26262C}
+ nav.main a{padding:12px 2px;border-bottom:1px solid #222228}
+ #menu-toggle:checked ~ nav.main{display:flex}
+ .hbtns{display:none}
+ nav.main .hbtns{display:flex;margin:12px 0 4px}
+ .foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<style>
+.pkhead{background:#101013;border-bottom:1px solid #222228}
+.pkhead .hbar nav.main a{text-transform:uppercase;font-size:15.5px;letter-spacing:.4px}
+.pkhero{text-align:center;padding:48px 0 6px}
+.pkhero h1{font-size:43px;font-weight:900;letter-spacing:.6px}
+.pkhero p{color:#D8D8DE;font-size:18.5px;margin-top:10px}
+.pkgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px;align-items:stretch}
+.pk{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:38px 34px 34px;display:flex;flex-direction:column;position:relative}
+.pk.pop{border:2.5px solid var(--red);box-shadow:0 0 34px rgba(226,35,26,.28)}
+.pk .pop-tag{position:absolute;top:-17px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-weight:800;padding:7px 22px;border-radius:999px;font-size:14.5px;letter-spacing:.5px;white-space:nowrap}
+.pk h3{text-align:center;font-size:22px;letter-spacing:.6px}
+.pk .price{text-align:center;font-size:35px;font-weight:900;margin:16px 0 4px}
+.pk .price small{font-size:17px;color:var(--mut);font-weight:400}
+.pk hr{border:none;border-top:1px solid #2C2C33;margin:20px 0 24px}
+.pk li{list-style:none;font-size:16.5px;color:#EDEDF0;margin-bottom:14px;display:flex;gap:11px;align-items:flex-start}
+.pk li svg{flex:none;margin-top:3px}
+.pk .btn{margin-top:auto;width:100%}
+.notice{margin-top:46px;background:#2A0E0C;border:2.5px solid var(--red);border-radius:18px;padding:30px 34px;display:flex;gap:22px;align-items:center;box-shadow:0 0 34px rgba(226,35,26,.22)}
+.notice .bang{width:52px;height:52px;flex:none;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900}
+.notice p{font-size:24px;font-weight:800;line-height:1.4}
+.notice .r{color:var(--red2)}
+@media(max-width:920px){.pkgrid{grid-template-columns:1fr}.notice p{font-size:19px}.pkhero h1{font-size:33px}}
+</style><header class="site pkhead"><div class="wrap hbar">
+<a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
+<input type="checkbox" id="menu-toggle"><label class="burger" for="menu-toggle"><span></span><span></span><span></span></label>
+<nav class="main"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="packages.html" class="active">Packages</a><a href="index.html#how">About Us</a><a href="index.html#contact">Contact</a>
+<span class="hbtns"><span style="font-size:15.5px">fazalbari665@gmail.com</span><a class="btn redtext" href="login.html" style="padding:9px 20px">Sign In</a></span>
+</nav></div></header>
+<main class="wrap">
+<section class="pkhero"><h1>OUR PACKAGES</h1><p>Choose the best plan to start your learning journey with us.</p></section>
+<div class="pkgrid"><div class="pk"><h3>BASIC PLAN</h3>
+<p class="price">1,500 PKR <small>/ Month</small></p><hr><ul><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Access to Basic Courses</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly Quizzes</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Online Support</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Community Access</span></li></ul>
+<a class="btn redtext" href="packages.html">SELECT PLAN</a></div><div class="pk pop"><span class="pop-tag">MOST POPULAR</span><h3>PREMIUM PLAN</h3>
+<p class="price">3,000 PKR <small>/ Month</small></p><hr><ul><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Access to All Courses</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Certification of Completion</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>24/7 Mentor Support</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>WhatsApp Group Access</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly Live Classes</span></li></ul>
+<a class="btn" href="packages.html">GET STARTED NOW</a></div><div class="pk"><h3>ULTIMATE PLAN</h3>
+<p class="price">5,000 PKR <small>/ One-Time</small></p><hr><ul><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lifetime Access</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1-on-1 Mentorship</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Career Counseling</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Job Placement Support</span></li><li><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.2 5L20 6.5" stroke="#E2231A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All Premium Resources</span></li></ul>
+<a class="btn redtext" href="packages.html">SELECT PLAN</a></div></div>
+<div class="notice"><span class="bang">!</span>
+<svg width="46" height="46" viewBox="0 0 24 24" fill="#fff" style="flex:none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.3.3.1.5.1.6-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+<p>Payment is confirmed on <span class="r">WhatsApp (0314-1513815)</span> and access is <span class="r">activated</span> by admin.</p></div>
+</main>
+<p class="copy" style="padding:26px 0 20px">&copy; 2024 Pukhtoon Education. All Rights Reserved.</p></body></html>
