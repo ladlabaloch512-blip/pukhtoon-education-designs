@@ -138,6 +138,25 @@
   /* Fix round: mobile logo size and tighter page fit */
   @media (max-width:768px){ .logo img { height:54px; } }
   @media (max-width:560px){ .wrap { padding:0 14px; } }
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: public chrome */
+  header { box-shadow:0 8px 24px rgba(20,24,30,.06); }
+  nav.main-nav a:hover { color:#C0272D; }
+  footer h4 { letter-spacing:.01em; }
+  footer a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+  .copyright { letter-spacing:.01em; }
 </style>
 </head>
 <body>

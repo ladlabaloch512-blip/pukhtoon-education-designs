@@ -122,6 +122,54 @@
     .word-big { font-size:34px; }
   }
 
+
+  .tool-row { display:grid; grid-template-columns:repeat(5,1fr); gap:13px; margin:18px 0 4px; }
+  .tool-card { border:1.6px solid #E1E5E8; border-radius:11px; padding:16px; background:#fff; display:flex; flex-direction:column; gap:7px; }
+  .tool-card .tt { font-size:16.5px; font-weight:800; line-height:1.3; }
+  .tool-card .td { font-size:14px; line-height:1.5; color:#5A6067; flex:1; }
+  .tool-card .tl { font-size:14.5px; font-weight:800; color:#C0272D; }
+  .typing-panel { border-top:1px solid #F0F2F4; margin-top:20px; padding-top:18px; }
+  .target-line { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; font-size:15px; font-weight:700; color:#5A6067; }
+  .target-line strong { font-size:27px; letter-spacing:2px; color:#16181D; }
+  .trainer-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; margin-top:15px; }
+  .trainer-stat { background:#16181D; color:#fff; border-radius:9px; padding:10px 8px; text-align:center; }
+  .trainer-stat b { display:block; font-size:17px; }
+  .trainer-stat span { font-size:11.5px; color:#C9CED3; font-weight:700; text-transform:uppercase; letter-spacing:.4px; }
+  .select-row { display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:14px; }
+  .select-row label { font-size:13.5px; font-weight:800; color:#5A6067; display:flex; flex-direction:column; gap:6px; }
+  .select-row select { border:1.6px solid #C4C9CD; border-radius:8px; padding:11px 12px; font-size:15.5px; font-family:inherit; background:#fff; }
+  .trainer-actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
+  .trainer-actions button, .trainer-actions a { font-family:inherit; font-size:14.5px; font-weight:800; padding:10px 15px; border-radius:8px; cursor:pointer; border:2px solid #E2231A; background:#fff; color:#C0272D; display:inline-block; }
+  .trainer-actions .start { background:#E2231A; color:#fff; }
+  .trainer-status { display:block; margin-top:11px; font-size:14.5px; color:#5A6067; min-height:20px; }
+  @media(max-width:1180px){ .tool-row{grid-template-columns:repeat(3,1fr);} }
+  @media(max-width:760px){ .tool-row{grid-template-columns:1fr 1fr;} .trainer-stats{grid-template-columns:repeat(3,1fr);} .select-row{grid-template-columns:1fr;} }
+  @media(max-width:480px){ .tool-row{grid-template-columns:1fr;} }
+
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: app shell */
+  aside { box-shadow:8px 0 24px rgba(20,24,30,.04); }
+  .side-nav a { border-radius:11px; }
+  .side-nav a.active { box-shadow:0 8px 18px rgba(226,35,26,.28); }
+  .side-nav a:not(.active):hover { color:#C0272D; }
+  .topbar { box-shadow:0 6px 18px rgba(20,24,30,.05); }
+  .search-box:focus-within { border-color:#E2231A; box-shadow:0 0 0 3px rgba(226,35,26,.13); }
+  .avatar { box-shadow:0 6px 14px rgba(20,24,30,.18); }
+  .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
+  .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
+  .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
 </style>
 </head>
 <body>
@@ -166,6 +214,13 @@
     <div class="card rv" id="tenses">
       <h2>Tenses Trainer</h2>
       <p style="font-size:16.5px; color:#5A6067; line-height:1.55;">All twelve English tenses with the formula and an IELTS style example. Pick any tense and practise it in short rounds.</p>
+      <div class="tool-row">
+        <div class="tool-card"><span class="tt">Playground</span><span class="td">The 12 tenses with formulas and examples, ready below.</span><a class="tl" href="#tenses">Open Playground</a></div>
+        <div class="tool-card"><span class="tt">Sentence Builder</span><span class="td">Game: arrange words in the correct order to build a sentence.</span><a class="tl" href="#tenses">Play</a></div>
+        <div class="tool-card"><span class="tt">Word Rainfall</span><span class="td">Game: catch falling words in the right order before they land.</span><a class="tl" href="#words">Play</a></div>
+        <div class="tool-card"><span class="tt">Quiz Challenge</span><span class="td">Level based quizzes with stars for every level you clear.</span><a class="tl" href="#tenses">Start a Level</a></div>
+        <div class="tool-card"><span class="tt">Tips and Tricks</span><span class="td">A formula cheat sheet for all 12 tenses on one screen.</span><a class="tl" href="#tenses">View Cheat Sheet</a></div>
+      </div>
       <div class="tense-grid">
         <div class="tense lift">
           <span class="tn">Present Simple</span>
@@ -245,12 +300,35 @@
     <div class="learn-grid" id="words">
       <div class="card rv">
         <h2>Words Trainer</h2>
-        <div class="word-big">Reluctant</div>
-        <div class="word-phon">/r&#618;&#712;l&#652;kt&#601;nt/ &middot; adjective</div>
-        <p class="word-mean">Not willing to do something; hesitant.</p>
-        <p class="word-ex">"He was reluctant to speak in front of the class, but he practised every day."</p>
+        <div class="word-big">can<span style="color:#E2231A;">_</span>el</div>
+        <div class="word-phon">/&#712;k&aelig;n.s&#601;l/ &middot; verb</div>
+        <p class="word-mean">To decide that something planned will not happen.</p>
+        <p class="word-ex">"They had to cancel the lesson because the teacher was ill."</p>
         <button class="listen-btn" type="button" id="listenBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg> Listen</button>
         <span class="listen-status" id="listenStatus"></span>
+        <div class="typing-panel">
+          <div class="target-line"><span>Typing Trainer Target</span><strong>can_el</strong></div>
+          <div class="trainer-stats">
+            <div class="trainer-stat"><b>01:25</b><span>Time</span></div>
+            <div class="trainer-stat"><b>128</b><span>Inputs</span></div>
+            <div class="trainer-stat"><b>32</b><span>WPM</span></div>
+            <div class="trainer-stat"><b>116</b><span>Correct</span></div>
+            <div class="trainer-stat"><b>91%</b><span>Accuracy</span></div>
+          </div>
+          <div class="select-row">
+            <label>Dictionary <select><option selected>IELTS Core</option><option>IELTS Academic</option><option>Everyday English</option></select></label>
+            <label>Chapter <select><option selected>Chapter 1</option><option>Chapter 2</option><option>Chapter 3</option></select></label>
+          </div>
+          <div class="trainer-actions">
+            <button class="start" type="button" id="trainerStart">Start</button>
+            <button type="button" data-trainer-msg="Word skipped. A new word will appear in the full trainer.">Skip this word</button>
+            <button type="button" data-trainer-msg="Word list: IELTS Core, Chapter 1 has 40 words.">Word list</button>
+            <button type="button" id="dictModeToggle">Dictation mode: Off</button>
+            <a href="#mistakeBook">Mistake Book</a>
+            <button type="button" data-trainer-msg="Statistics: 91% accuracy at 32 WPM in this session.">Statistics</button>
+          </div>
+          <span class="trainer-status" id="trainerStatus"></span>
+        </div>
       </div>
 
       <div>
@@ -264,7 +342,7 @@
           <div class="dict-result" id="dictResult"></div>
         </div>
 
-        <div class="card rv" style="margin-top:24px;">
+        <div class="card rv" style="margin-top:24px;" id="mistakeBook">
           <h2>Mistake Book</h2>
           <p style="font-size:16.5px; color:#5A6067; line-height:1.55; margin-bottom:6px;">Words you got wrong are saved here so you can fix them for good.</p>
           <div class="mb-row"><span class="mb-word">Significant</span><span class="mb-mean">Important or noticeable</span><a class="mb-link" href="#words">Practice</a></div>
@@ -282,13 +360,13 @@
   (function(){
     var status = document.getElementById('listenStatus');
     document.getElementById('listenBtn').addEventListener('click', function(){
-      status.textContent = 'Playing pronunciation: re-luc-tant';
+      status.textContent = 'Playing pronunciation: can-cel';
     });
     var input = document.getElementById('dictInput');
     var result = document.getElementById('dictResult');
     document.getElementById('dictCheck').addEventListener('click', function(){
       var v = input.value.trim().toLowerCase();
-      if (v === 'reluctant') {
+      if (v === 'cancel') {
         result.textContent = 'Correct. Well done.';
         result.className = 'dict-result good';
       } else if (v === '') {
@@ -298,6 +376,24 @@
         result.textContent = 'Try again. Listen once more and watch the ending letters.';
         result.className = 'dict-result bad';
       }
+    });
+  })();
+</script>
+
+<script>
+  (function(){
+    var status = document.getElementById('trainerStatus');
+    document.getElementById('trainerStart').addEventListener('click', function(){
+      status.textContent = 'Trainer started. Find the missing letter in can_el, then try the dictation check.';
+    });
+    document.querySelectorAll('[data-trainer-msg]').forEach(function(btn){
+      btn.addEventListener('click', function(){ status.textContent = btn.getAttribute('data-trainer-msg'); });
+    });
+    var toggle = document.getElementById('dictModeToggle');
+    toggle.addEventListener('click', function(){
+      var on = toggle.textContent.indexOf('Off') !== -1;
+      toggle.textContent = 'Dictation mode: ' + (on ? 'On' : 'Off');
+      status.textContent = on ? 'Dictation mode is on. Use the Listen button, then type the word in the Dictation card.' : 'Dictation mode is off.';
     });
   })();
 </script>

@@ -234,6 +234,41 @@
     .why-card, .res-card { padding:20px 18px; }
     .stat .num { font-size:34px; }
   }
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: public chrome */
+  header { box-shadow:0 8px 24px rgba(20,24,30,.06); }
+  nav.main-nav a:hover { color:#C0272D; }
+  footer h4 { letter-spacing:.01em; }
+  footer a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+  .copyright { letter-spacing:.01em; }
+
+  /* Design polish pass: premium home hero */
+  .hero { background:linear-gradient(135deg, #F4F7F9 0%, #EDF1F4 55%, #FDECEA 100%); }
+  .hero-in { padding:72px 0 78px; gap:44px; }
+  .hero-text h1 { font-size:56px; line-height:1.08; }
+  .hero-text p { line-height:1.6; }
+  .hero-btns .btn { padding:16px 34px; font-size:17px; box-shadow:0 12px 24px rgba(20,24,30,.12); }
+  .hero-band { margin-top:30px; max-width:540px; background:rgba(255,255,255,.78); border:1px solid #E1E5E8; border-radius:12px; padding:14px 16px; }
+  .hero-band-head { display:flex; justify-content:space-between; font-size:13.5px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; color:#5A6067; margin-bottom:9px; }
+  .hero-band-track { position:relative; height:11px; background:#16181D; border-radius:7px; }
+  .hero-band-track i { position:absolute; left:0; top:0; bottom:0; width:78%; background:#E2231A; border-radius:7px; }
+  .hero-band-dot { position:absolute; left:78%; top:50%; width:19px; height:19px; border-radius:50%; background:#fff; border:4px solid #E2231A; transform:translate(-50%,-50%); }
+  .hero-band-scale { display:flex; justify-content:space-between; font-size:13px; font-weight:700; color:#5A6067; margin-top:8px; }
+  .hero-art svg { filter:drop-shadow(0 18px 28px rgba(20,24,30,.14)); }
+  @media (max-width:900px){ .hero-text h1 { font-size:40px; } }
+  @media (max-width:768px){ .hero-in { padding:42px 0 48px; } .hero-text h1 { font-size:34px; } }
 </style>
 </head>
 <body>
@@ -262,6 +297,11 @@
       <div class="hero-btns">
         <a class="btn btn-red" href="login.html">Get Started</a>
         <a class="btn btn-outline" href="courses.html">Explore Courses</a>
+      </div>
+      <div class="hero-band" aria-label="IELTS band scale from 0 to 9">
+        <div class="hero-band-head"><span>IELTS Band Scale</span><span>0 to 9</span></div>
+        <div class="hero-band-track"><i></i><span class="hero-band-dot"></span></div>
+        <div class="hero-band-scale"><span>5.0 Modest</span><span>7.0 Good</span><span>9.0 Expert</span></div>
       </div>
     </div>
     <div class="hero-art anim anim-d1">

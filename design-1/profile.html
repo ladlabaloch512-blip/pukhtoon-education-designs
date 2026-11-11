@@ -106,6 +106,30 @@
   .saved-note { font-size:16px; font-weight:700; color:#1E7A34; }
   @media (max-width:900px){ .pgrid { grid-template-columns:1fr; } }
 
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: app shell */
+  aside { box-shadow:8px 0 24px rgba(20,24,30,.04); }
+  .side-nav a { border-radius:11px; }
+  .side-nav a.active { box-shadow:0 8px 18px rgba(226,35,26,.28); }
+  .side-nav a:not(.active):hover { color:#C0272D; }
+  .topbar { box-shadow:0 6px 18px rgba(20,24,30,.05); }
+  .search-box:focus-within { border-color:#E2231A; box-shadow:0 0 0 3px rgba(226,35,26,.13); }
+  .avatar { box-shadow:0 6px 14px rgba(20,24,30,.18); }
+  .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
+  .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
+  .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
 </style>
 </head>
 <body>

@@ -131,6 +131,58 @@
     .topbar { flex-wrap:wrap; }
     .search-box { flex:1 1 100%; }
   }
+
+  .exam-card { margin-top:24px; }
+  .exam-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:26px; align-items:center; }
+  .exam-label { font-size:14px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:#6B7178; }
+  .exam-target { font-size:54px; font-weight:800; line-height:1.05; margin:7px 0 14px; }
+  .exam-target span { color:#C8102E; }
+  .exam-date { font-size:19px; font-weight:800; }
+  .exam-date small { display:block; font-size:13.5px; letter-spacing:.6px; color:#6B7178; margin-bottom:4px; }
+  .count-units { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .count-unit { background:#16181D; color:#fff; border-radius:12px; padding:17px 10px; text-align:center; }
+  .count-unit b { display:block; font-size:31px; line-height:1; }
+  .count-unit span { display:block; font-size:13px; font-weight:700; color:#C9CED3; margin-top:6px; text-transform:uppercase; letter-spacing:.5px; }
+  .video-list { display:flex; flex-direction:column; }
+  .video-row { display:flex; align-items:center; gap:16px; padding:15px 0; border-bottom:1px solid #F0F2F4; flex-wrap:wrap; }
+  .video-row:last-child { border-bottom:none; }
+  .video-row:hover .video-title { color:#C0272D; }
+  .video-ic { width:50px; height:50px; flex:0 0 50px; border-radius:10px; background:#16181D; display:flex; align-items:center; justify-content:center; }
+  .video-info { flex:1; min-width:210px; }
+  .video-title { font-size:18px; font-weight:750; transition:color .15s ease; }
+  .video-sub { font-size:14.5px; color:#5A6067; margin-top:2px; }
+  .video-count { background:#FDECEA; color:#C0272D; font-weight:800; font-size:14.5px; padding:6px 12px; border-radius:999px; white-space:nowrap; }
+  .video-open { font-weight:800; color:#C0272D; font-size:15.5px; white-space:nowrap; }
+  @media(max-width:900px){ .exam-grid{grid-template-columns:1fr;} }
+  @media(max-width:560px){ .count-units{grid-template-columns:repeat(2,1fr);} .exam-target{font-size:42px;} }
+
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: app shell */
+  aside { box-shadow:8px 0 24px rgba(20,24,30,.04); }
+  .side-nav a { border-radius:11px; }
+  .side-nav a.active { box-shadow:0 8px 18px rgba(226,35,26,.28); }
+  .side-nav a:not(.active):hover { color:#C0272D; }
+  .topbar { box-shadow:0 6px 18px rgba(20,24,30,.05); }
+  .search-box:focus-within { border-color:#E2231A; box-shadow:0 0 0 3px rgba(226,35,26,.13); }
+  .avatar { box-shadow:0 6px 14px rgba(20,24,30,.18); }
+  .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
+  .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
+  .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
+
+  .card h2 { display:flex; align-items:center; gap:11px; }
+  .h2-ic { width:38px; height:38px; flex:0 0 38px; border-radius:10px; background:#FDECEA; display:inline-flex; align-items:center; justify-content:center; }
 </style>
 </head>
 <body>
@@ -173,7 +225,7 @@
 
     <div class="grid">
       <div class="card anim rv">
-        <h2>Target Band Score</h2>
+        <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="#C0272D" stroke="none"/></svg></span>Target Band Score</h2>
         <div class="target-flex">
           <div>
             <div class="big-score">7.5</div>
@@ -189,7 +241,7 @@
 
       <div class="card anim rv">
         <div class="count-head">
-          <h2>Test Countdown</h2>
+          <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Test Countdown</h2>
           <span class="date-pill">Official Test: Nov 25, 2024</span>
         </div>
         <div class="days"><span class="count" data-count="14">14</span> Days Remaining</div>
@@ -199,7 +251,7 @@
 
       <div class="card rv">
         <div class="skill-head">
-          <h2>Skill Progress</h2>
+          <h2><span class="h2-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V11M10 20V4M16 20v-7M3 20h18"/></svg></span>Skill Progress</h2>
           <span class="target">Target: 7.5</span>
         </div>
         <div class="skill-row">
@@ -237,8 +289,33 @@
       </div>
     </div>
 
+    <div class="card exam-card rv">
+      <div class="exam-grid">
+        <div>
+          <div class="exam-label">Your Target</div>
+          <div class="exam-target"><span>7.5</span> / 9</div>
+          <div class="exam-date"><small>Test Date</small>11 January 2027</div>
+        </div>
+        <div>
+          <div class="exam-label" style="margin-bottom:10px;">Live Countdown</div>
+          <div class="count-units">
+            <div class="count-unit"><b id="cdDays">0</b><span>Days</span></div>
+            <div class="count-unit"><b id="cdHours">0</b><span>Hours</span></div>
+            <div class="count-unit"><b id="cdMinutes">0</b><span>Minutes</span></div>
+            <div class="count-unit"><b id="cdSeconds">0</b><span>Seconds</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card wide-row rv">
-      <h2>Continue Learning</h2>
+      <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="#C0272D"><path d="M7 4.5v15l13-7.5z"/></svg></span>Video Lessons</h2>
+      <p style="font-size:16.5px; color:#5A6067; line-height:1.55; margin-bottom:8px;">Tips, lessons and full courses from our channel</p>
+      <div class="video-list"><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Reading Module</span><span class="video-sub" style="display:block;">Passages, question types and timing strategies</span></span><span class="video-count">18 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Speaking Module</span><span class="video-sub" style="display:block;">Part 1, Part 2 and Part 3 practice lessons</span></span><span class="video-count">16 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Writing Task 1</span><span class="video-sub" style="display:block;">Charts, processes, maps and letter structure</span></span><span class="video-count">12 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Writing Task 2</span><span class="video-sub" style="display:block;">Essay planning, structure and band 7 language</span></span><span class="video-count">14 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Listening Complete Course</span><span class="video-sub" style="display:block;">All four sections with worked practice</span></span><span class="video-count">24 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">All 12 Tenses</span><span class="video-sub" style="display:block;">The complete tenses course from the Learn section</span></span><span class="video-count">12 videos</span><span class="video-open">Watch</span></a></div>
+    </div>
+
+    <div class="card wide-row rv">
+      <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><path d="M12 6C10 4.3 7 3.7 4 4v14c3-.3 6 .3 8 2 2-1.7 5-2.3 8-2V4c-3-.3-6 .3-8 2z"/><path d="M12 6v14"/></svg></span>Continue Learning</h2>
       <div class="cont-item">
         <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg></span>
         <div class="cont-info"><div class="ct">IELTS Academic Writing Task 2</div><div class="cs">Next lesson: Body paragraph structure</div></div>
@@ -263,7 +340,7 @@
     </div>
 
     <div class="card wide-row rv">
-      <h2>Recent Test Attempts</h2>
+      <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></span>Recent Test Attempts</h2>
       <div class="att-row">
         <span class="an">Mock Test #5</span>
         <span class="ad">Nov 12, 2023</span>
@@ -302,6 +379,27 @@
   });
 </script>
 
+
+<script>
+  // Live countdown to the IELTS test date: 11 January 2027, 9:00 AM Pakistan time
+  (function(){
+    var target = new Date('2027-01-11T09:00:00+05:00').getTime();
+    function pad(n){ return (n < 10 ? '0' : '') + n; }
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor(diff % 86400000 / 3600000);
+      var m = Math.floor(diff % 3600000 / 60000);
+      var sec = Math.floor(diff % 60000 / 1000);
+      document.getElementById('cdDays').textContent = d;
+      document.getElementById('cdHours').textContent = pad(h);
+      document.getElementById('cdMinutes').textContent = pad(m);
+      document.getElementById('cdSeconds').textContent = pad(sec);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
 
 <script>
   // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden

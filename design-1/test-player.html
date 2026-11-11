@@ -84,6 +84,43 @@
   html.js .rv .band-track i { transform:scaleX(0); transform-origin:left center; transition:transform 1.1s ease .15s; }
   html.js .rv.in .band-track i { transform:scaleX(1); }
   body { overflow-x:clip; }
+
+  .dialog-backdrop { display:none; position:fixed; inset:0; z-index:60; background:rgba(10,12,15,.66); align-items:center; justify-content:center; padding:18px; }
+  .dialog-backdrop.open { display:flex; }
+  .dialog-card { background:#fff; color:#16181D; border-radius:16px; max-width:560px; width:100%; padding:29px 31px; box-shadow:0 24px 60px rgba(0,0,0,.3); }
+  .dialog-card h2 { font-size:26px; margin-bottom:12px; }
+  .dialog-card p { font-size:17px; line-height:1.6; color:#2B2F36; }
+  .dialog-actions { display:flex; gap:13px; flex-wrap:wrap; margin-top:24px; }
+  .dialog-cancel { background:#fff; border:2px solid #16181D; color:#16181D; font-family:inherit; font-size:16px; font-weight:800; padding:12px 23px; border-radius:9px; cursor:pointer; }
+  .dialog-submit { background:#E2231A; color:#fff; font-size:16px; font-weight:800; padding:14px 23px; border-radius:9px; display:inline-block; }
+  .mark-row { display:flex; align-items:center; gap:10px; margin-top:18px; font-size:16.5px; font-weight:700; cursor:pointer; }
+  .mark-row input { width:21px; height:21px; accent-color:#E2231A; }
+  .palette-grid button.answered.marked { background:#E2231A repeating-linear-gradient(45deg, rgba(22,24,29,.28) 0 5px, transparent 5px 10px); color:#fff; }
+  button.finish-link { background:none; border:none; width:100%; font-family:inherit; cursor:pointer; }
+
+  .btn-submit { background:#E2231A; color:#fff; font-size:19.5px; font-weight:700; padding:12px 22px; border-radius:9px; border:none; cursor:pointer; font-family:inherit; }
+  .btn-submit:hover { background:#C41B14; }
+  @media (max-width:760px){ .btn-submit{font-size:16px; padding:10px 14px;} }
+
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: player chrome */
+  .topbar { box-shadow:0 10px 26px rgba(0,0,0,.28); border-bottom:3px solid #E2231A; }
+  .logo-chip { box-shadow:0 6px 16px rgba(0,0,0,.25); }
+  .timer-chip { box-shadow:0 8px 20px rgba(226,35,26,.25); }
+  .palette-grid button { border-radius:10px; box-shadow:inset 0 -2px 0 rgba(20,24,30,.12); }
+  .palette-grid button:hover { transform:translateY(-2px); }
 </style>
 </head>
 <body>
@@ -99,7 +136,8 @@
       <span class="val" id="timerVal">58:45</span>
     </span>
     <span class="section-chip">Section: Reading</span>
-    <button class="btn-pause" id="pauseBtn" type="button">Pause / Submit</button>
+    <button class="btn-pause" id="pauseBtn" type="button">Pause</button>
+    <button class="btn-submit submit-trigger" type="button">Submit</button>
   </div>
 </div>
 
@@ -136,12 +174,24 @@
   <div class="card palette-card rv">
     <h2>Question Palette</h2>
     <div class="palette-grid" id="palette"></div>
+    <label class="mark-row"><input type="checkbox" id="markReview"> Mark for review</label>
     <div class="legend">
       <span><i class="sw red"></i> Answered</span>
       <span><i class="sw grey"></i> Not Answered</span>
       <span><i class="sw hatch"></i> Marked for Review</span>
     </div>
-    <a class="finish-link" href="results.html">Finish and view Results &amp; History</a>
+    <button class="finish-link submit-trigger" type="button">Finish and view Results &amp; History</button>
+  </div>
+</div>
+
+<div class="dialog-backdrop" id="submitDialog" role="dialog" aria-modal="true" aria-labelledby="submitDialogTitle">
+  <div class="dialog-card">
+    <h2 id="submitDialogTitle">Submit Test?</h2>
+    <p id="submitMessage">You have unanswered questions. Are you sure you want to submit?</p>
+    <div class="dialog-actions">
+      <button class="dialog-cancel" type="button" id="cancelSubmit">Cancel</button>
+      <a class="dialog-submit" href="results.html">Submit Test</a>
+    </div>
   </div>
 </div>
 
@@ -183,6 +233,8 @@
       b.onclick = function(){ goTo(parseInt(this.getAttribute('data-q'), 10)); };
       paletteEl.appendChild(b);
     }
+    var markEl = document.getElementById('markReview');
+    if (markEl) markEl.checked = !!markedSet[current];
   }
   function renderQuestion(){
     qCountEl.textContent = 'Question ' + current + ' of ' + total;
@@ -209,6 +261,11 @@
     current = n;
     renderQuestion();
   }
+  document.getElementById('markReview').addEventListener('change', function(){
+    if (this.checked) markedSet[current] = true;
+    else delete markedSet[current];
+    renderPalette();
+  });
   document.getElementById('nextBtn').onclick = function(){
     if (selected >= 0){
       answers[current] = selected;
@@ -236,12 +293,30 @@
   var pauseBtn = document.getElementById('pauseBtn');
   pauseBtn.onclick = function(){
     paused = !paused;
-    pauseBtn.textContent = paused ? 'Resume / Submit' : 'Pause / Submit';
+    pauseBtn.textContent = paused ? 'Resume' : 'Pause';
   };
 
   renderQuestion();
 </script>
 
+
+
+<script>
+  (function(){
+    var dialog = document.getElementById('submitDialog');
+    var message = document.getElementById('submitMessage');
+    document.querySelectorAll('.submit-trigger').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var count = Object.keys(answeredSet).length;
+        if (selected >= 0 && !answeredSet[current]) count++;
+        var unanswered = total - count;
+        message.textContent = 'You have ' + unanswered + ' unanswered questions out of 40. Are you sure you want to submit? This will be recorded as a completed attempt.';
+        dialog.classList.add('open');
+      });
+    });
+    document.getElementById('cancelSubmit').addEventListener('click', function(){ dialog.classList.remove('open'); });
+  })();
+</script>
 
 <script>
   // Scroll reveal: IntersectionObserver plus a hard 1.5s failsafe so nothing can ever stay hidden

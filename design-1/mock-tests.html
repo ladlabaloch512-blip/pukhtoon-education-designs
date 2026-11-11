@@ -150,6 +150,30 @@
   /* Fix round: mobile logo size and tighter page fit */
   @media (max-width:768px){ .logo img { height:54px; } }
   @media (max-width:560px){ .wrap { padding:0 14px; } }
+
+  .hub-links { display:flex; flex-wrap:wrap; gap:11px; margin-bottom:24px; }
+  .hub-links a { background:#16181D; color:#fff; font-weight:800; font-size:16px; padding:12px 21px; border-radius:9px; }
+  .hub-links a:hover { background:#E2231A; }
+
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: public chrome */
+  header { box-shadow:0 8px 24px rgba(20,24,30,.06); }
+  nav.main-nav a:hover { color:#C0272D; }
+  footer h4 { letter-spacing:.01em; }
+  footer a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+  .copyright { letter-spacing:.01em; }
 </style>
 </head>
 <body>
@@ -175,13 +199,14 @@
   <p class="subtitle">Practice with our realistic test modules to improve your band score.</p>
   <p class="intro">Every mock test runs under real exam conditions: the official time limit, a live countdown, a question palette to track your progress, and an instant band score with a full answer review the moment you finish. Free tests are open to every registered student. Paid tests unlock with any package.</p>
 
+  <div class="hub-links"><a href="listening.html">Open Listening</a><a href="reading.html">Open Reading</a><a href="writing.html">Open Writing</a><a href="speaking.html">Open Speaking</a></div>
   <div class="layout">
     <aside class="filters">
       <a class="item active" href="mock-tests.html">All Modules</a>
-      <a class="item" href="mock-tests.html">Listening</a>
-      <a class="item" href="mock-tests.html">Reading</a>
-      <a class="item" href="mock-tests.html">Writing</a>
-      <a class="item" href="mock-tests.html">Speaking</a>
+      <a class="item" href="listening.html">Listening</a>
+      <a class="item" href="reading.html">Reading</a>
+      <a class="item" href="writing.html">Writing</a>
+      <a class="item" href="speaking.html">Speaking</a>
       <div class="divider"></div>
       <h3>Test Type</h3>
       <a class="sub-item" href="modules.html#academic">Academic</a>

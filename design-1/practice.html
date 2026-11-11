@@ -112,6 +112,30 @@
     .pbtn { padding:9px 18px; font-size:15px; }
   }
 
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: app shell */
+  aside { box-shadow:8px 0 24px rgba(20,24,30,.04); }
+  .side-nav a { border-radius:11px; }
+  .side-nav a.active { box-shadow:0 8px 18px rgba(226,35,26,.28); }
+  .side-nav a:not(.active):hover { color:#C0272D; }
+  .topbar { box-shadow:0 6px 18px rgba(20,24,30,.05); }
+  .search-box:focus-within { border-color:#E2231A; box-shadow:0 0 0 3px rgba(226,35,26,.13); }
+  .avatar { box-shadow:0 6px 14px rgba(20,24,30,.18); }
+  .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
+  .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
+  .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
 </style>
 </head>
 <body>
@@ -188,19 +212,19 @@
         <span class="p-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.2"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z"/><path d="M24 10 v32"/></svg></span>
         <div class="p-info"><div class="p-title">True False Not Given</div><div class="p-meta">13 Questions · About 15 mins</div><div class="p-score">Last score: 10 / 13</div></div>
         <span class="badge done">Attempted</span>
-        <a class="btn pbtn pbtn-retake" href="test-player.html">Retake</a>
+        <a class="btn pbtn pbtn-retake" href="practice-player.html">Retake</a>
       </div>
       <div class="pcard" data-state="new">
         <span class="p-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.2"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z"/><path d="M24 10 v32"/></svg></span>
         <div class="p-info"><div class="p-title">Matching Headings</div><div class="p-meta">7 Questions · About 12 mins</div></div>
         <span class="badge fresh">Not Attempted</span>
-        <a class="btn pbtn pbtn-start" href="test-player.html">Start</a>
+        <a class="btn pbtn pbtn-start" href="practice-player.html">Start</a>
       </div>
       <div class="pcard" data-state="attempted">
         <span class="p-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.2"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z"/><path d="M24 10 v32"/></svg></span>
         <div class="p-info"><div class="p-title">Sentence Completion</div><div class="p-meta">10 Questions · About 12 mins</div><div class="p-score">Last score: 6 / 10</div></div>
         <span class="badge done">Attempted</span>
-        <a class="btn pbtn pbtn-retake" href="test-player.html">Retake</a>
+        <a class="btn pbtn pbtn-retake" href="practice-player.html">Retake</a>
       </div>
       <p class="empty-note">No sets in this group match the selected filter.</p>
     </div>
@@ -228,13 +252,13 @@
         <span class="p-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5" stroke-linecap="round"/></svg></span>
         <div class="p-info"><div class="p-title">Part 1 Topics</div><div class="p-meta">10 Questions · About 5 mins</div><div class="p-score">Last attempt completed</div></div>
         <span class="badge done">Attempted</span>
-        <a class="btn pbtn pbtn-retake" href="speaking-player.html">Retake</a>
+        <a class="btn pbtn pbtn-retake" href="speaking-check.html">Retake</a>
       </div>
       <div class="pcard" data-state="new">
         <span class="p-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5" stroke-linecap="round"/></svg></span>
         <div class="p-info"><div class="p-title">Part 2 Cue Cards</div><div class="p-meta">5 Cue Cards · About 10 mins</div></div>
         <span class="badge fresh">Not Attempted</span>
-        <a class="btn pbtn pbtn-start" href="speaking-player.html">Start</a>
+        <a class="btn pbtn pbtn-start" href="speaking-check.html">Start</a>
       </div>
       <p class="empty-note">No sets in this group match the selected filter.</p>
     </div>

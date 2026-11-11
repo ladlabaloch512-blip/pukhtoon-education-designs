@@ -59,6 +59,31 @@
   .btn-next:hover { background:#C41B14; }
   .skip-line { text-align:center; margin-top:20px; font-size:15.5px; color:#5A6067; }
   .skip-line a { color:#C0272D; font-weight:700; }
+
+  .option-list { display:flex; flex-direction:column; gap:11px; }
+  .option-btn, .goal-card { font-family:inherit; width:100%; text-align:left; border:1.8px solid #C4C9CD; background:#fff; color:#22262C; border-radius:11px; padding:15px 18px; font-size:17px; font-weight:700; cursor:pointer; transition:border-color .15s ease, background .15s ease, box-shadow .15s ease; }
+  .option-btn:hover, .goal-card:hover { border-color:#E2231A; }
+  .option-btn.sel, .goal-card.sel { border-color:#E2231A; background:#FFF7F7; box-shadow:0 0 0 3px rgba(226,35,26,.12); }
+  html.js .conditional { display:none; }
+  html.js .conditional.show { display:block; }
+  .help-link { display:inline-block; margin-top:9px; color:#C0272D; font-weight:700; font-size:15px; }
+  .goal-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+  .goal-card .gt { display:block; font-size:18.5px; font-weight:800; margin-bottom:5px; }
+  .goal-card .gs { display:block; font-size:15px; font-weight:500; color:#5A6067; line-height:1.45; }
+  .toggle-row { display:flex; align-items:center; justify-content:space-between; gap:16px; border:1.6px solid #D9DEE2; border-radius:10px; padding:14px 16px; margin-top:20px; }
+  .toggle-row span { font-size:16.5px; font-weight:700; }
+  .toggle-row input { width:24px; height:24px; accent-color:#E2231A; }
+  input[type=range] { width:100%; accent-color:#E2231A; margin-top:8px; }
+  .range-head { display:flex; justify-content:space-between; align-items:center; gap:14px; }
+  .range-value { background:#E2231A; color:#fff; border-radius:999px; padding:6px 14px; font-weight:800; }
+  .range-scale { display:flex; justify-content:space-between; color:#6B7178; font-size:14px; margin-top:5px; }
+  .summary-list { border:1px solid #E1E5E8; border-radius:12px; overflow:hidden; }
+  .summary-row { display:grid; grid-template-columns:190px 1fr; gap:16px; padding:14px 17px; border-bottom:1px solid #F0F2F4; font-size:16.5px; }
+  .summary-row:last-child { border-bottom:none; }
+  .summary-row dt { color:#5A6067; font-weight:700; }
+  .summary-row dd { font-weight:800; }
+  @media (max-width:560px){ .goal-grid{grid-template-columns:1fr;} .summary-row{grid-template-columns:1fr; gap:3px;} }
+
   @keyframes riseIn { from { transform:translateY(20px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
   .card { animation:riseIn .7s ease both; }
   @media (max-width:560px){
@@ -78,6 +103,21 @@
   html.js .rv .band-track i { transform:scaleX(0); transform-origin:left center; transition:transform 1.1s ease .15s; }
   html.js .rv.in .band-track i { transform:scaleX(1); }
   body { overflow-x:clip; }
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: standalone cards */
+  .card { box-shadow:0 24px 60px rgba(20,24,30,.20); }
 </style>
 </head>
 <body>
@@ -86,7 +126,7 @@
 
 <div class="card rv">
   <h1>Welcome to Pukhtoon Education</h1>
-  <p class="sub">Answer three quick steps so your dashboard, mock tests and study plan match your real IELTS goal. You can change everything later in your Profile.</p>
+  <p class="sub">Answer six quick steps so your dashboard, mock tests and study plan match your real IELTS goal. You can change everything later in your Profile.</p>
 
   <div class="google-note">
     <span class="g-mark">G</span>
@@ -97,77 +137,111 @@
     <span class="ok">Connected</span>
   </div>
 
-  <div class="progress"><i class="done" id="seg1"></i><i id="seg2"></i><i id="seg3"></i></div>
-  <div class="step-meta"><span class="now" id="stepLabel">Step 1 of 3: About You</span><span id="stepPct">33%</span></div>
+  <div class="progress"><i class="done" id="seg1"></i><i id="seg2"></i><i id="seg3"></i><i id="seg4"></i><i id="seg5"></i><i id="seg6"></i></div>
+  <div class="step-meta"><span class="now" id="stepLabel">Step 1 of 6: Student Status</span><span id="stepPct">17%</span></div>
 
   <form id="wizard" action="dashboard.html" method="get">
     <section class="step on" data-step="1">
-      <h2>About You</h2>
-      <p class="hint">Tell us where you are starting from, so we can suggest the right courses first.</p>
-
-      <span class="q-label">What best describes you?</span>
-      <div class="chips" data-group>
-        <button type="button" class="chip sel">Student</button>
-        <button type="button" class="chip">Job holder</button>
-        <button type="button" class="chip">Applying abroad</button>
+      <h2>Are you a student at Pukhtoon Education?</h2>
+      <p class="hint">Choose the option that matches how you joined us.</p>
+      <div class="option-list" data-group id="statusGroup">
+        <button type="button" class="option-btn sel" data-value="Yes, registered student">Yes, I'm a registered student</button>
+        <button type="button" class="option-btn" data-value="Trial student">I'm a trial student</button>
+        <button type="button" class="option-btn" data-value="New here">No, I'm new here</button>
       </div>
-
-      <label class="q-label" for="country">Your country</label>
-      <input type="text" id="country" value="Pakistan" placeholder="Enter your country">
+      <div class="conditional show" id="studentIdWrap">
+        <label class="q-label" for="studentId">Student ID</label>
+        <input type="text" id="studentId" required placeholder="Enter your Student ID">
+        <a class="help-link" href="#studentId">Don't know your Student ID?</a>
+      </div>
     </section>
 
     <section class="step" data-step="2">
-      <h2>Your IELTS</h2>
-      <p class="hint">Choose your test type and the band score you are aiming for.</p>
-
-      <span class="q-label">Which IELTS are you taking?</span>
-      <div class="track-grid" data-group>
-        <button type="button" class="track-card sel">
-          <span class="tt">Academic</span>
-          <span class="ts">For university admission and professional registration abroad.</span>
-        </button>
-        <button type="button" class="track-card">
-          <span class="tt">General Training</span>
-          <span class="ts">For work experience, training programmes and immigration.</span>
-        </button>
+      <h2>How did you hear about us?</h2>
+      <p class="hint">Pick the place where you first found Pukhtoon Education.</p>
+      <div class="chips" data-group id="sourceGroup">
+        <button type="button" class="chip sel" data-value="Instagram">Instagram</button>
+        <button type="button" class="chip" data-value="TikTok">TikTok</button>
+        <button type="button" class="chip" data-value="Friends / Family">Friends / Family</button>
+        <button type="button" class="chip" data-value="Google Search">Google Search</button>
+        <button type="button" class="chip" data-value="Facebook">Facebook</button>
+        <button type="button" class="chip" data-value="YouTube">YouTube</button>
+        <button type="button" class="chip" data-value="University / Institute">University / Institute</button>
+        <button type="button" class="chip" data-value="Other">Other</button>
       </div>
-
-      <span class="q-label">Target band score</span>
-      <div class="band-grid" data-group>
-        <button type="button" class="band-btn">5.0</button>
-        <button type="button" class="band-btn">5.5</button>
-        <button type="button" class="band-btn">6.0</button>
-        <button type="button" class="band-btn">6.5</button>
-        <button type="button" class="band-btn">7.0</button>
-        <button type="button" class="band-btn sel">7.5</button>
-        <button type="button" class="band-btn">8.0</button>
-        <button type="button" class="band-btn">8.5</button>
-        <button type="button" class="band-btn">9.0</button>
-      </div>
-
-      <label class="q-label" for="testDate">Planned test date</label>
-      <input type="date" id="testDate" value="2024-11-25">
     </section>
 
     <section class="step" data-step="3">
-      <h2>Your Goal</h2>
-      <p class="hint">Pick your main goal. Your dashboard countdown and practice plan are built around it.</p>
+      <h2>Where are you from?</h2>
+      <p class="hint">Your country helps us show the right test information and study support.</p>
+      <label class="q-label" for="country">Country</label>
+      <select id="country">
+        <option selected>Pakistan</option><option>Afghanistan</option><option>Bangladesh</option><option>India</option><option>United Arab Emirates</option><option>Saudi Arabia</option><option>United Kingdom</option><option>United States</option><option>Canada</option><option>Australia</option><option>Other</option>
+      </select>
+    </section>
 
-      <span class="q-label">Why are you taking IELTS?</span>
-      <div class="chips" data-group>
-        <button type="button" class="chip sel">University admission</button>
-        <button type="button" class="chip">Immigration</button>
-        <button type="button" class="chip">Job abroad</button>
-        <button type="button" class="chip">Improve English</button>
+    <section class="step" data-step="4">
+      <h2>First time or retaking?</h2>
+      <p class="hint">Tell us whether this is your first IELTS test or a retake.</p>
+      <div class="option-list" data-group id="attemptGroup">
+        <button type="button" class="option-btn sel" data-value="My first time">My first time</button>
+        <button type="button" class="option-btn" data-value="Writing retake">Writing retake</button>
+        <button type="button" class="option-btn" data-value="Speaking retake">Speaking retake</button>
+        <button type="button" class="option-btn" data-value="Listening retake">Listening retake</button>
+        <button type="button" class="option-btn" data-value="Reading retake">Reading retake</button>
+        <button type="button" class="option-btn" data-value="Full test retake">Full test retake</button>
       </div>
+    </section>
 
-      <p class="hint" style="margin-top:22px;">That is everything. Your personal dashboard is ready with your target band, your test countdown and your first free mock tests.</p>
+    <section class="step" data-step="5">
+      <h2>Your IELTS Journey</h2>
+      <p class="hint">Choose your test type, test date if you have one, and the score you are aiming for.</p>
+      <span class="q-label">Which IELTS are you taking?</span>
+      <div class="track-grid" data-group id="trackGroup">
+        <button type="button" class="track-card sel" data-value="Academic"><span class="tt">Academic</span><span class="ts">For university admission and professional registration abroad.</span></button>
+        <button type="button" class="track-card" data-value="General Training"><span class="tt">General Training</span><span class="ts">For work experience, training programmes and immigration.</span></button>
+      </div>
+      <div class="toggle-row"><span>Do you have a test date?</span><input type="checkbox" id="dateToggle" aria-label="I have a test date"></div>
+      <div class="conditional" id="testDateWrap">
+        <label class="q-label" for="testDate">Test date</label>
+        <input type="date" id="testDate" value="2027-01-11">
+      </div>
+      <span class="q-label">What score are you aiming for?</span>
+      <div class="range-head"><span>Target band</span><span class="range-value" id="targetValue">6.5</span></div>
+      <input type="range" id="targetRange" min="1" max="9" step="0.5" value="6.5" aria-label="Target band score">
+      <div class="range-scale"><span>1.0</span><span>9.0</span></div>
+    </section>
+
+    <section class="step" data-step="6">
+      <h2>What's your goal?</h2>
+      <p class="hint">Pick the main reason you are preparing for IELTS.</p>
+      <div class="goal-grid" data-group id="goalGroup">
+        <button type="button" class="goal-card sel" data-value="Study Abroad"><span class="gt">Study Abroad</span><span class="gs">Meet the English requirement for a university place overseas.</span></button>
+        <button type="button" class="goal-card" data-value="Immigration"><span class="gt">Immigration</span><span class="gs">Support a visa or permanent residence application.</span></button>
+        <button type="button" class="goal-card" data-value="Job Requirements"><span class="gt">Job Requirements</span><span class="gs">Meet an employer's English language requirement.</span></button>
+        <button type="button" class="goal-card" data-value="Other"><span class="gt">Other</span><span class="gs">Build stronger English for a personal or professional goal.</span></button>
+      </div>
+    </section>
+
+    <section class="step" data-step="7">
+      <h2>You're all set!</h2>
+      <p class="hint">Here is a summary of your setup. You can change these details later in your Profile.</p>
+      <dl class="summary-list">
+        <div class="summary-row"><dt>Student status</dt><dd id="sumStatus">Yes, registered student</dd></div>
+        <div class="summary-row"><dt>Heard about us</dt><dd id="sumSource">Instagram</dd></div>
+        <div class="summary-row"><dt>Country</dt><dd id="sumCountry">Pakistan</dd></div>
+        <div class="summary-row"><dt>Test experience</dt><dd id="sumAttempt">My first time</dd></div>
+        <div class="summary-row"><dt>IELTS type</dt><dd id="sumTrack">Academic</dd></div>
+        <div class="summary-row"><dt>Test date</dt><dd id="sumDate">No date set</dd></div>
+        <div class="summary-row"><dt>Target score</dt><dd id="sumTarget">Band 6.5</dd></div>
+        <div class="summary-row"><dt>Goal</dt><dd id="sumGoal">Study Abroad</dd></div>
+      </dl>
     </section>
 
     <div class="wizard-nav">
       <button type="button" class="btn btn-back" id="backBtn" style="visibility:hidden;">Back</button>
       <button type="button" class="btn btn-next" id="nextBtn">Next</button>
-      <a class="btn btn-next" id="finishBtn" href="dashboard.html" style="display:none;">Finish and Go to Dashboard</a>
+      <a class="btn btn-next" id="finishBtn" href="dashboard.html" style="display:none;">Go to Dashboard</a>
     </div>
   </form>
 
@@ -175,36 +249,66 @@
 </div>
 
 <script>
-  // Onboarding wizard: 3 steps, progress bar, single-select chip groups
   (function(){
-    var current = 1, total = 3;
+    var current = 1, total = 6, summaryStep = 7;
     var steps = document.querySelectorAll('.step');
-    var segs = [document.getElementById('seg1'), document.getElementById('seg2'), document.getElementById('seg3')];
+    var segs = [1,2,3,4,5,6].map(function(n){ return document.getElementById('seg' + n); });
     var label = document.getElementById('stepLabel');
     var pct = document.getElementById('stepPct');
     var backBtn = document.getElementById('backBtn');
     var nextBtn = document.getElementById('nextBtn');
     var finishBtn = document.getElementById('finishBtn');
-    var names = { 1:'About You', 2:'Your IELTS', 3:'Your Goal' };
-    function render(){
-      steps.forEach(function(s){ s.classList.toggle('on', parseInt(s.getAttribute('data-step'), 10) === current); });
-      segs.forEach(function(seg, i){ seg.classList.toggle('done', i < current); });
-      label.textContent = 'Step ' + current + ' of ' + total + ': ' + names[current];
-      pct.textContent = Math.round(current / total * 100) + '%';
-      backBtn.style.visibility = current === 1 ? 'hidden' : 'visible';
-      nextBtn.style.display = current === total ? 'none' : '';
-      finishBtn.style.display = current === total ? '' : 'none';
+    var names = { 1:'Student Status', 2:'How You Found Us', 3:'Your Country', 4:'First Time or Retake', 5:'Your IELTS Journey', 6:"What's Your Goal", 7:'Summary' };
+    function selectedValue(id){
+      var el = document.querySelector('#' + id + ' .sel');
+      return el ? (el.getAttribute('data-value') || el.textContent.trim()) : '';
     }
-    nextBtn.addEventListener('click', function(){ if (current < total) { current++; render(); } });
+    function updateSummary(){
+      document.getElementById('sumStatus').textContent = selectedValue('statusGroup');
+      document.getElementById('sumSource').textContent = selectedValue('sourceGroup');
+      document.getElementById('sumCountry').textContent = document.getElementById('country').value;
+      document.getElementById('sumAttempt').textContent = selectedValue('attemptGroup');
+      document.getElementById('sumTrack').textContent = selectedValue('trackGroup');
+      var hasDate = document.getElementById('dateToggle').checked;
+      document.getElementById('sumDate').textContent = hasDate ? document.getElementById('testDate').value : 'No date set';
+      document.getElementById('sumTarget').textContent = 'Band ' + parseFloat(document.getElementById('targetRange').value).toFixed(1);
+      document.getElementById('sumGoal').textContent = selectedValue('goalGroup');
+    }
+    function render(){
+      steps.forEach(function(step){ step.classList.toggle('on', parseInt(step.getAttribute('data-step'), 10) === current); });
+      var shown = Math.min(current, total);
+      segs.forEach(function(seg, i){ seg.classList.toggle('done', i < shown); });
+      label.textContent = current === summaryStep ? 'Summary: You are ready' : 'Step ' + current + ' of ' + total + ': ' + names[current];
+      pct.textContent = current === summaryStep ? '100%' : Math.round(current / total * 100) + '%';
+      backBtn.style.visibility = current === 1 ? 'hidden' : 'visible';
+      nextBtn.style.display = current === summaryStep ? 'none' : '';
+      finishBtn.style.display = current === summaryStep ? '' : 'none';
+      if (current === summaryStep) updateSummary();
+    }
+    nextBtn.addEventListener('click', function(){ if (current < summaryStep) { current++; render(); } });
     backBtn.addEventListener('click', function(){ if (current > 1) { current--; render(); } });
     document.querySelectorAll('[data-group]').forEach(function(group){
       group.querySelectorAll('button').forEach(function(btn){
         btn.addEventListener('click', function(){
           group.querySelectorAll('button').forEach(function(b){ b.classList.remove('sel'); });
           btn.classList.add('sel');
+          if (group.id === 'statusGroup') {
+            document.getElementById('studentIdWrap').classList.toggle('show', btn.getAttribute('data-value') === 'Yes, registered student');
+          }
+          if (current === summaryStep) updateSummary();
         });
       });
     });
+    document.getElementById('dateToggle').addEventListener('change', function(){
+      document.getElementById('testDateWrap').classList.toggle('show', this.checked);
+      if (current === summaryStep) updateSummary();
+    });
+    document.getElementById('targetRange').addEventListener('input', function(){
+      document.getElementById('targetValue').textContent = parseFloat(this.value).toFixed(1);
+      if (current === summaryStep) updateSummary();
+    });
+    document.getElementById('country').addEventListener('change', function(){ if (current === summaryStep) updateSummary(); });
+    document.getElementById('testDate').addEventListener('change', function(){ if (current === summaryStep) updateSummary(); });
     render();
   })();
 </script>

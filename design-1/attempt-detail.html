@@ -115,6 +115,55 @@
     .topbar { flex-wrap:wrap; }
     .search-box { flex:1 1 100%; }
   }
+
+  .analysis-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:16px; }
+  .analysis-box { border:1px solid #E1E5E8; border-radius:12px; padding:18px; background:#FDFDFE; }
+  .analysis-box .label { font-size:13.5px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; color:#6B7178; }
+  .analysis-box .type { font-size:19px; font-weight:800; margin-top:8px; line-height:1.35; }
+  .analysis-box .note { font-size:15px; color:#5A6067; margin-top:5px; line-height:1.5; }
+  .breakdown-row { display:grid; grid-template-columns:210px 1fr 58px 145px; gap:15px; align-items:center; padding:13px 0; border-bottom:1px solid #F0F2F4; }
+  .breakdown-row:last-child { border-bottom:none; }
+  .breakdown-name { font-size:16.5px; font-weight:700; }
+  .breakdown-track { height:13px; background:#E3E6E8; border-radius:7px; overflow:hidden; }
+  .breakdown-track i { display:block; height:100%; background:#E2231A; }
+  .breakdown-pct { font-weight:800; text-align:right; }
+  .level-label { font-size:14px; font-weight:800; padding:6px 10px; border-radius:999px; text-align:center; }
+  .level-label.excellent { background:#E7F4EA; color:#1E7A34; }
+  .level-label.practice { background:#FFF3D6; color:#8A5A00; }
+  .level-label.work { background:#FDECEA; color:#C0272D; }
+  .accuracy-note { font-size:15.5px; color:#5A6067; line-height:1.55; margin-top:14px; }
+  .time-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:16px; }
+  .time-box { background:#F8F9FA; border:1px solid #E7EAED; border-radius:11px; padding:17px; }
+  .time-box b { display:block; font-size:17px; margin-bottom:6px; }
+  .time-box span { font-size:20px; font-weight:800; color:#C0272D; }
+  .section-stack { display:flex; flex-direction:column; gap:24px; margin-bottom:26px; }
+  @media(max-width:1080px){ .analysis-grid,.time-grid{grid-template-columns:repeat(2,1fr);} .breakdown-row{grid-template-columns:170px 1fr 52px 125px;} }
+  @media(max-width:620px){ .analysis-grid,.time-grid{grid-template-columns:1fr;} .breakdown-row{grid-template-columns:1fr 52px;} .breakdown-track{grid-column:1/-1;} .level-label{justify-self:start;} }
+
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: app shell */
+  aside { box-shadow:8px 0 24px rgba(20,24,30,.04); }
+  .side-nav a { border-radius:11px; }
+  .side-nav a.active { box-shadow:0 8px 18px rgba(226,35,26,.28); }
+  .side-nav a:not(.active):hover { color:#C0272D; }
+  .topbar { box-shadow:0 6px 18px rgba(20,24,30,.05); }
+  .search-box:focus-within { border-color:#E2231A; box-shadow:0 0 0 3px rgba(226,35,26,.13); }
+  .avatar { box-shadow:0 6px 14px rgba(20,24,30,.18); }
+  .side-logo img { filter:drop-shadow(0 4px 8px rgba(20,24,30,.12)); }
+  .fchip.on { box-shadow:0 6px 14px rgba(226,35,26,.25); }
+  .stat-ic { width:36px; height:36px; border-radius:10px; background:#FDECEA; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
 </style>
 </head>
 <body>
@@ -184,6 +233,39 @@
           <span class="part-band">7.0</span>
         </div>
         <p style="font-size:15.5px; color:#5A6067; line-height:1.6; margin-top:14px;">Your strongest area is Passage 1 detail questions. Most marks were lost on True False Not Given in Passage 3, so review that lesson before your next attempt.</p>
+      </div>
+    </div>
+
+
+    <div class="section-stack">
+      <div class="card rv">
+        <h2>Performance Analysis</h2>
+        <div class="analysis-grid">
+          <div class="analysis-box"><div class="label">Weak Area</div><div class="type">True False Not Given</div><div class="note">58% accuracy. Review how to spot Not Given statements.</div></div>
+          <div class="analysis-box"><div class="label">Best Area</div><div class="type">Matching Headings</div><div class="note">92% accuracy. Your paragraph level reading is strong.</div></div>
+          <div class="analysis-box"><div class="label">Fastest Area</div><div class="type">Sentence Completion</div><div class="note">Average 42 seconds per question.</div></div>
+          <div class="analysis-box"><div class="label">Slowest Area</div><div class="type">Matching Information</div><div class="note">Average 96 seconds per question.</div></div>
+        </div>
+      </div>
+
+      <div class="card rv">
+        <h2>Question Type Performance Breakdown</h2>
+        <div class="breakdown-row"><span class="breakdown-name">Matching Headings</span><span class="breakdown-track"><i style="width:92%"></i></span><span class="breakdown-pct">92%</span><span class="level-label excellent">Excellent</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">Multiple Choice</span><span class="breakdown-track"><i style="width:84%"></i></span><span class="breakdown-pct">84%</span><span class="level-label excellent">Excellent</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">Sentence Completion</span><span class="breakdown-track"><i style="width:76%"></i></span><span class="breakdown-pct">76%</span><span class="level-label practice">Needs Practice</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">Summary Completion</span><span class="breakdown-track"><i style="width:68%"></i></span><span class="breakdown-pct">68%</span><span class="level-label practice">Needs Practice</span></div>
+        <div class="breakdown-row"><span class="breakdown-name">True False Not Given</span><span class="breakdown-track"><i style="width:58%"></i></span><span class="breakdown-pct">58%</span><span class="level-label work">Needs Work</span></div>
+        <p class="accuracy-note">Accuracy is based on all 40 questions in this attempt. Focus first on question types below 60%, then build speed in the types marked Needs Practice.</p>
+      </div>
+
+      <div class="card rv">
+        <h2>Time Breakdown</h2>
+        <div class="time-grid">
+          <div class="time-box"><b>Part 1</b><span>14 mins 20 secs</span></div>
+          <div class="time-box"><b>Part 2</b><span>16 mins 40 secs</span></div>
+          <div class="time-box"><b>Part 3</b><span>19 mins 10 secs</span></div>
+          <div class="time-box"><b>Part 4: Review</b><span>4 mins 10 secs</span></div>
+        </div>
       </div>
     </div>
 

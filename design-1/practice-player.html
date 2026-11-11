@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Practice - Pukhtoon Education Online Testing Portal</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#E9ECEE; }
+  a { text-decoration:none; color:inherit; }
+  .topbar { background:#1C1E21; color:#fff; display:flex; align-items:center; gap:22px; padding:12px 26px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:20px; }
+  .logo-chip { background:#fff; border-radius:9px; padding:3px 8px; display:inline-block; }
+  .logo-chip img { height:60px; display:block; }
+  .portal { font-size:29px; font-weight:800; letter-spacing:.6px; }
+  .top-right { margin-left:auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .chip { background:#fff; color:#16181D; font-size:17px; font-weight:700; padding:11px 17px; border-radius:9px; }
+  .chip b { color:#C0272D; }
+  .stage { padding:24px 26px 10px; max-width:1500px; margin:0 auto; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 5px 16px rgba(20,24,30,.09); padding:26px 28px; }
+  .card h2 { font-size:26px; margin-bottom:15px; }
+  .passage-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+  .zoom-btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .zoom-btns button, .num-btn, .check-btn, .again-btn { font-family:inherit; cursor:pointer; }
+  .zoom-btns button { border:none; background:#EDF0F2; border-radius:8px; padding:10px 14px; font-weight:800; font-size:15px; }
+  .passage { font-size:18px; line-height:1.65; color:#22262C; }
+  .passage p { margin-bottom:16px; }
+  .practice-note { background:#FDECEA; border-radius:9px; padding:12px 14px; font-size:15px; line-height:1.5; margin-bottom:17px; }
+  .question { border:none; border-bottom:1px solid #E7EAED; padding:16px 0 18px; }
+  .question:first-of-type { padding-top:2px; }
+  .question legend { font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:#C0272D; padding-top:16px; }
+  .question p { font-size:17.5px; line-height:1.5; font-weight:650; margin-bottom:11px; }
+  .options { display:flex; gap:9px; flex-wrap:wrap; }
+  .opt { display:flex; align-items:center; gap:8px; border:1.5px solid #D9DEE2; border-radius:999px; padding:9px 14px; cursor:pointer; font-size:15.5px; font-weight:650; }
+  .opt input { accent-color:#E2231A; width:17px; height:17px; }
+  .practice-bottom { position:sticky; bottom:0; z-index:5; background:#1C1E21; color:#fff; margin:22px -26px 0; padding:15px 26px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .answered-count { font-size:18px; font-weight:800; white-space:nowrap; }
+  .num-row { display:flex; gap:7px; flex-wrap:wrap; flex:1; }
+  .num-btn { width:40px; height:40px; border:none; border-radius:8px; background:#3A3F45; color:#fff; font-weight:800; font-size:16px; }
+  .num-btn.answered { background:#E2231A; }
+  .num-btn.current { outline:3px solid #fff; outline-offset:1px; }
+  .check-btn { background:#1E7A34; color:#fff; border:none; border-radius:9px; padding:13px 24px; font-size:17px; font-weight:800; }
+  .check-note { display:none; width:100%; color:#FFD7D7; font-weight:700; font-size:15.5px; }
+  .check-note.show { display:block; }
+  html.js .results-view { display:none; }
+  html.js .results-view.show { display:block; }
+  .score-head { background:#16181D; color:#fff; border-radius:14px; padding:28px; text-align:center; margin-bottom:22px; }
+  .score-head .score { font-size:58px; font-weight:800; line-height:1; }
+  .score-head .pct { font-size:24px; font-weight:800; color:#FFB3B3; margin-top:7px; }
+  .score-head p { font-size:19px; margin-top:8px; }
+  .review-card { background:#fff; border:1px solid #E1E5E8; border-radius:12px; padding:20px 22px; margin-bottom:14px; }
+  .review-card.wrong { border-color:#E7A7A7; background:#FFF9F9; }
+  .review-card h3 { font-size:18px; margin-bottom:9px; line-height:1.45; }
+  .answer-line { font-size:16px; line-height:1.6; }
+  .correct-answer { font-weight:800; color:#1E7A34; }
+  .review-card.wrong .correct-answer { color:#C0272D; }
+  .your-answer { font-weight:800; }
+  .explanation { color:#5A6067; font-size:15.5px; line-height:1.55; margin-top:8px; }
+  .result-actions { display:flex; gap:13px; flex-wrap:wrap; margin:22px 0 34px; }
+  .again-btn { background:#E2231A; color:#fff; border:none; border-radius:9px; padding:13px 24px; font-size:16.5px; font-weight:800; }
+  .back-btn { background:#16181D; color:#fff; border-radius:9px; padding:13px 24px; font-size:16.5px; font-weight:800; display:inline-block; }
+  @keyframes riseIn { from { transform:translateY(16px); opacity:.85; } to { transform:translateY(0); opacity:1; } }
+  .card, .score-head { animation:riseIn .6s ease both; }
+  html.js .rv { opacity:.85; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  html.js .rv.in { opacity:1; transform:none; }
+  body { overflow-x:clip; }
+  @media(max-width:950px){ .split{grid-template-columns:1fr;} }
+  @media(max-width:760px){ .stage{padding:16px 14px 0;} .practice-bottom{margin:18px -14px 0; padding:13px 14px;} .portal{font-size:20px;} .topbar{gap:12px;padding:10px 14px;} .logo-chip img{height:48px;} .card{padding:20px 18px;} }
+
+  /* Design polish pass: typography, cards, buttons, tables */
+  body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  h1 { letter-spacing:-.02em; line-height:1.12; }
+  h2 { letter-spacing:-.01em; line-height:1.22; }
+  .card { border-color:#DDE2E6; border-radius:16px; box-shadow:0 10px 30px rgba(20,24,30,.07); }
+  .btn { border-radius:10px; letter-spacing:.01em; }
+  .btn:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid rgba(226,35,26,.35); outline-offset:2px; }
+  ::selection { background:#F9D2D2; }
+  table { font-variant-numeric:tabular-nums; }
+  table th { background:#F7F8F9; }
+  table tr:hover td { background:#FFF7F7; }
+
+  /* Design polish pass: player chrome */
+  .topbar { box-shadow:0 10px 26px rgba(0,0,0,.28); border-bottom:3px solid #E2231A; }
+  .logo-chip { box-shadow:0 6px 16px rgba(0,0,0,.25); }
+  .timer-chip { box-shadow:0 8px 20px rgba(226,35,26,.25); }
+  .palette-grid button { border-radius:10px; box-shadow:inset 0 -2px 0 rgba(20,24,30,.12); }
+  .palette-grid button:hover { transform:translateY(-2px); }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a><span class="portal">ONLINE TESTING PORTAL</span></div>
+  <div class="top-right"><span class="chip">Reading Practice</span><span class="chip">Elapsed <b id="elapsed">00:00</b></span><a class="chip" href="practice.html">Exit Practice</a></div>
+</div>
+<div class="stage">
+  <div id="practiceView">
+    <div class="split">
+      <div class="card rv">
+        <div class="passage-head"><h2>The Town Library</h2><div class="zoom-btns"><button type="button" id="zoomOut">Zoom Out</button><button type="button" id="zoomIn">Zoom In</button></div></div>
+        <div class="passage" id="passageText">
+          <p>The town's public library first opened in 1962 as a single reading room with fewer than two thousand books. Today it occupies two floors and serves students, families and researchers from across the district. Membership is free for people who live in the town. Visitors from other places may also join, but they pay a small fee.</p>
+          <p>The main reading room opens at eight in the morning and closes at nine in the evening. The children's area opens one hour later, at nine, so staff can prepare activities before families arrive. The library lends books, magazines and films, but it does not sell them. Anyone who needs a quiet place to study can book a desk beside the large windows.</p>
+          <p>Evening classes are held on Tuesday and Thursday. They include computer skills, English conversation and help with school homework. On Saturday mornings, volunteers repair damaged books and cover new arrivals before they are placed on the shelves.</p>
+          <p>Demand for computers has grown quickly in recent years. Last year, the library added twenty new computers and created a small training room. Staff say the next goal is to extend the opening hours on Sundays, although no final decision has been made.</p>
+        </div>
+      </div>
+      <div class="card rv">
+        <h2>True / False / Not Given</h2>
+        <div class="practice-note">Read each statement carefully. Choose True if the passage confirms it, False if the passage contradicts it, or Not Given if the passage does not provide the information.</div>
+        <fieldset class="question" data-question="1"><legend><span>Question 1</span></legend><p>Public library membership is free for local residents.</p><div class="options"><label class="opt"><input type="radio" name="q1" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q1" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q1" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="2"><legend><span>Question 2</span></legend><p>Visitors from outside the town can join without paying a fee.</p><div class="options"><label class="opt"><input type="radio" name="q2" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q2" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q2" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="3"><legend><span>Question 3</span></legend><p>The main reading room opens at nine in the morning.</p><div class="options"><label class="opt"><input type="radio" name="q3" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q3" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q3" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="4"><legend><span>Question 4</span></legend><p>Evening classes are held three times each week.</p><div class="options"><label class="opt"><input type="radio" name="q4" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q4" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q4" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="5"><legend><span>Question 5</span></legend><p>The town's public library first opened in 1962.</p><div class="options"><label class="opt"><input type="radio" name="q5" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q5" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q5" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="6"><legend><span>Question 6</span></legend><p>The library has a cafe on the ground floor.</p><div class="options"><label class="opt"><input type="radio" name="q6" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q6" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q6" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="7"><legend><span>Question 7</span></legend><p>The library sells new and used books to visitors.</p><div class="options"><label class="opt"><input type="radio" name="q7" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q7" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q7" value="Not Given"><span>Not Given</span></label></div></fieldset><fieldset class="question" data-question="8"><legend><span>Question 8</span></legend><p>Twenty new computers were added last year.</p><div class="options"><label class="opt"><input type="radio" name="q8" value="True"><span>True</span></label><label class="opt"><input type="radio" name="q8" value="False"><span>False</span></label><label class="opt"><input type="radio" name="q8" value="Not Given"><span>Not Given</span></label></div></fieldset>
+      </div>
+    </div>
+    <div class="practice-bottom" id="practiceBottom">
+      <span class="answered-count"><span id="answeredCount">0/8</span> answered</span>
+      <div class="num-row"><button class="num-btn" type="button" data-goto="1">1</button><button class="num-btn" type="button" data-goto="2">2</button><button class="num-btn" type="button" data-goto="3">3</button><button class="num-btn" type="button" data-goto="4">4</button><button class="num-btn" type="button" data-goto="5">5</button><button class="num-btn" type="button" data-goto="6">6</button><button class="num-btn" type="button" data-goto="7">7</button><button class="num-btn" type="button" data-goto="8">8</button></div>
+      <button class="check-btn" type="button" id="checkAnswers">Check Answers</button>
+      <div class="check-note" id="checkNote">Please answer all 8 questions before checking your answers.</div>
+    </div>
+  </div>
+  <div class="results-view" id="resultsView">
+    <div class="score-head"><div class="score" id="scoreText">0/8</div><div class="pct" id="scorePct">0%</div><p id="scoreMessage">Good job!</p></div>
+    <div id="reviewList"></div>
+    <div class="result-actions"><button class="again-btn" type="button" onclick="location.reload()">Try Again</button><a class="back-btn" href="practice.html">Back to Exercises</a></div>
+  </div>
+</div>
+<script>
+  var correctAnswers = ['True', 'False', 'False', 'False', 'True', 'Not Given', 'False', 'True'];
+  var explanations = ['The passage says membership is free for people who live in the town.', 'The passage says visitors pay a small fee to join.', "The main reading room opens at eight, while the children's area opens at nine.", 'Evening classes are held on Tuesday and Thursday, which is twice each week.', 'The first paragraph gives 1962 as the year the library opened.', 'The passage does not mention a cafe anywhere in the library.', 'The passage clearly says the library lends books but does not sell them.', 'The final paragraph says twenty new computers were added last year.'];
+  var questionTexts = ['Public library membership is free for local residents.', 'Visitors from outside the town can join without paying a fee.', 'The main reading room opens at nine in the morning.', 'Evening classes are held three times each week.', "The town's public library first opened in 1962.", 'The library has a cafe on the ground floor.', 'The library sells new and used books to visitors.', 'Twenty new computers were added last year.'];
+  var elapsedSeconds = 0;
+  setInterval(function(){ elapsedSeconds++; var m = Math.floor(elapsedSeconds/60), s = elapsedSeconds%60; document.getElementById('elapsed').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; }, 1000);
+  var passageSize = 18;
+  document.getElementById('zoomIn').addEventListener('click', function(){ if (passageSize < 24) { passageSize += 1; document.getElementById('passageText').style.fontSize = passageSize + 'px'; } });
+  document.getElementById('zoomOut').addEventListener('click', function(){ if (passageSize > 14) { passageSize -= 1; document.getElementById('passageText').style.fontSize = passageSize + 'px'; } });
+  function selectedAnswer(n){ var el = document.querySelector('input[name="q'+n+'"]:checked'); return el ? el.value : ''; }
+  function updateProgress(){
+    var count = 0;
+    for (var i=1;i<=8;i++){ var done = !!selectedAnswer(i); if(done) count++; var btn=document.querySelector('[data-goto="'+i+'"]'); if(btn) btn.classList.toggle('answered', done); }
+    document.getElementById('answeredCount').textContent = count + '/8';
+    return count;
+  }
+  document.querySelectorAll('input[type="radio"]').forEach(function(input){ input.addEventListener('change', function(){ document.getElementById('checkNote').classList.remove('show'); updateProgress(); }); });
+  document.querySelectorAll('[data-goto]').forEach(function(btn){ btn.addEventListener('click', function(){ var n=btn.getAttribute('data-goto'); document.querySelectorAll('[data-goto]').forEach(function(b){b.classList.remove('current');}); btn.classList.add('current'); var q=document.querySelector('[data-question="'+n+'"]'); if(q) q.scrollIntoView({behavior:'smooth', block:'center'}); }); });
+  document.getElementById('checkAnswers').addEventListener('click', function(){
+    if (updateProgress() < 8) { document.getElementById('checkNote').classList.add('show'); return; }
+    var score = 0, html = '';
+    for (var i=1;i<=8;i++){
+      var yours = selectedAnswer(i), correct = correctAnswers[i-1], ok = yours === correct;
+      if(ok) score++;
+      html += '<div class="review-card '+(ok?'':'wrong')+'"><h3>'+i+'. '+questionTexts[i-1]+'</h3><div class="answer-line">Your answer: <span class="your-answer">'+yours+'</span></div><div class="answer-line">Correct answer: <span class="correct-answer">'+correct+'</span></div><p class="explanation">'+explanations[i-1]+'</p></div>';
+    }
+    document.getElementById('scoreText').textContent = score + '/8';
+    var pct = Math.round(score/8*100);
+    document.getElementById('scorePct').textContent = pct + '%';
+    document.getElementById('scoreMessage').textContent = score >= 7 ? 'Good job!' : (score >= 5 ? 'Good effort. Review the explanations and try again.' : 'Keep practising. Review the passage clues and try again.');
+    document.getElementById('reviewList').innerHTML = html;
+    document.getElementById('practiceView').style.display = 'none';
+    document.getElementById('resultsView').classList.add('show');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  updateProgress();
+</script>
+<script>
+  (function(){ var els=document.querySelectorAll('.rv'); if(!els.length) return; function all(){els.forEach(function(el){el.classList.add('in');});} if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -30px 0px'}); els.forEach(function(el){io.observe(el);}); } else { all(); } setTimeout(all,1500); })();
+</script>
+</body>
+</html>
