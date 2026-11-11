@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results &amp; History - Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#EFF2F4; }
+  a { text-decoration:none; color:inherit; }
+  .wrap { max-width:1380px; margin:0 auto; padding:0 22px; }
+
+  header { background:#fff; border-bottom:1px solid #E1E5E8; position:relative; }
+  .header-in { display:flex; align-items:center; gap:22px; padding:8px 0; }
+  .brand { display:flex; align-items:center; gap:16px; }
+  .brand img { height:70px; display:block; }
+  .brand .prep { font-size:24px; font-weight:800; border-left:2px solid #C9CDD1; padding-left:16px; letter-spacing:.4px; }
+  nav.main-nav { display:flex; gap:32px; margin-left:auto; align-items:center; }
+  nav.main-nav a { font-size:18.5px; font-weight:600; padding:10px 0; }
+  nav.main-nav a.active { color:#C8102E; font-weight:800; border-bottom:4px solid #C8102E; }
+  .avatar { width:46px; height:46px; border-radius:50%; background:#5A4632; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; vertical-align:middle; }
+  .menu-check { display:none; }
+  .menu-btn { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; margin-left:auto; }
+  .menu-btn span { display:block; width:26px; height:3px; background:#16181D; border-radius:2px; }
+
+  h1 { font-size:38px; font-weight:800; margin:30px 0 6px; }
+  .subtitle { font-size:19px; color:#2B2F36; margin-bottom:26px; }
+
+  .top-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:26px; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 6px 18px rgba(20,24,30,.09); padding:26px 28px; }
+  .card h2 { font-size:23px; margin-bottom:20px; }
+  .breakdown { display:flex; gap:26px; align-items:stretch; }
+  .overall-box { background:#C8102E; color:#fff; border-radius:14px; width:186px; flex:0 0 186px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:22px 10px; text-align:center; }
+  .overall-box .num { font-size:64px; font-weight:800; line-height:1; }
+  .overall-box .lbl { font-size:19px; font-weight:700; margin-top:8px; line-height:1.3; }
+  .bars { flex:1; display:flex; flex-direction:column; justify-content:space-between; gap:14px; }
+  .bar-row .bar-head { display:flex; justify-content:space-between; font-size:18.5px; margin-bottom:6px; }
+  .bar-row .bar-head b { font-size:19px; }
+  .bar-track { height:15px; background:#3A3F45; border-radius:8px; overflow:hidden; }
+  .bar-track i { display:block; height:100%; background:#D9232E; border-radius:8px; }
+
+  .table-card { background:#fff; border-radius:14px; box-shadow:0 6px 18px rgba(20,24,30,.09); padding:26px 28px 18px; margin-bottom:44px; overflow-x:auto; }
+  .table-card h2 { font-size:23px; margin-bottom:8px; }
+  table { width:100%; border-collapse:collapse; min-width:880px; }
+  th { text-align:left; font-size:18px; padding:15px 12px; border-bottom:1px solid #D9DEE2; }
+  td { font-size:17.5px; padding:16px 12px; border-bottom:1px solid #E7EAED; }
+  th.c, td.c { text-align:center; }
+  tr.alt td { background:#F4F5F6; }
+  .overall-chip { background:#C8102E; color:#fff; font-weight:800; padding:5px 13px; border-radius:7px; }
+  .btn { display:inline-block; font-size:16px; font-weight:700; padding:9px 17px; border-radius:8px; white-space:nowrap; }
+  .btn-dark { background:#16181D; color:#fff; }
+  .btn-red { background:#C8102E; color:#fff; margin-left:8px; }
+  .pager { display:flex; justify-content:flex-end; align-items:center; gap:20px; padding:16px 4px 8px; font-size:17px; }
+  .pager .cur { color:#C8102E; font-weight:800; border-bottom:3px solid #C8102E; padding-bottom:2px; }
+  .pager .dim { color:#9AA1A8; }
+
+  @media (max-width:1020px){ .top-grid { grid-template-columns:1fr; } }
+  @media (max-width:820px){
+    .menu-btn { display:flex; }
+    nav.main-nav { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; align-items:flex-start; padding:12px 22px 18px; gap:4px; border-bottom:1px solid #E1E5E8; box-shadow:0 12px 20px rgba(0,0,0,.08); z-index:60; }
+    nav.main-nav a { padding:10px 0; }
+    .menu-check:checked ~ nav.main-nav { display:flex; }
+    .brand .prep { display:none; }
+    h1 { font-size:29px; }
+    .breakdown { flex-direction:column; }
+    .overall-box { width:100%; flex:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <a class="brand" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"><span class="prep">IELTS PREP</span></a>
+    <input type="checkbox" id="menuToggle" class="menu-check">
+    <label for="menuToggle" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="mock-tests.html">Practice Tests</a>
+      <a href="courses.html">Study Materials</a>
+      <a href="results.html" class="active">Results &amp; History</a>
+      <a href="dashboard.html">My Profile <span class="avatar">AK</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1>Results &amp; History</h1>
+  <p class="subtitle">Track your IELTS performance and progress.</p>
+
+  <div class="top-grid">
+    <div class="card">
+      <h2>Latest Band Score Breakdown</h2>
+      <div class="breakdown">
+        <div class="overall-box">
+          <span class="num">7.5</span>
+          <span class="lbl">Overall Band<br>Score</span>
+        </div>
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-head"><span>Listening</span><b>8.0</b></div>
+            <div class="bar-track"><i style="width:82%"></i></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-head"><span>Reading</span><b>7.5</b></div>
+            <div class="bar-track"><i style="width:72%"></i></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-head"><span>Writing</span><b>6.5</b></div>
+            <div class="bar-track"><i style="width:58%"></i></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-head"><span>Speaking</span><b>7.0</b></div>
+            <div class="bar-track"><i style="width:64%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Overall Progress Chart</h2>
+      <svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Progress chart rising from band 6.0 to band 7.4">
+        <!-- gridlines and y labels: 5.0 at y=255, each band = 55px -->
+        <g font-size="15" fill="#5A6067">
+          <text x="8" y="40">9.0</text><line x1="46" y1="35" x2="624" y2="35" stroke="#E7EAED"/>
+          <text x="8" y="95">8.0</text><line x1="46" y1="90" x2="624" y2="90" stroke="#E7EAED"/>
+          <text x="8" y="150">7.0</text><line x1="46" y1="145" x2="624" y2="145" stroke="#E7EAED"/>
+          <text x="8" y="205">6.0</text><line x1="46" y1="200" x2="624" y2="200" stroke="#E7EAED"/>
+          <text x="8" y="260">5.0</text><line x1="46" y1="255" x2="624" y2="255" stroke="#D9DEE2"/>
+        </g>
+        <!-- target line at band 8.0 -->
+        <line x1="46" y1="90" x2="624" y2="90" stroke="#16181D" stroke-width="1.6" stroke-dasharray="7 6"/>
+        <text x="66" y="80" font-size="16" fill="#16181D">Target: 8.0</text>
+        <!-- area and line: 6.0, 6.6, 6.5, 7.0, 7.4 -->
+        <path d="M70 200 L200 167 L330 173 L460 145 L600 123 L600 255 L70 255 Z" fill="#E2231A" opacity="0.08"/>
+        <path d="M70 200 L200 167 L330 173 L460 145 L600 123" fill="none" stroke="#C8102E" stroke-width="3.4" stroke-linecap="round"/>
+        <g fill="#C8102E">
+          <circle cx="70" cy="200" r="6.5"/>
+          <circle cx="200" cy="167" r="6.5"/>
+          <circle cx="330" cy="173" r="6.5"/>
+          <circle cx="460" cy="145" r="6.5"/>
+          <circle cx="600" cy="123" r="6.5"/>
+        </g>
+        <g font-size="15.5" fill="#16181D" text-anchor="middle">
+          <text x="70" y="282">Aug 15</text>
+          <text x="200" y="282">Sep 01</text>
+          <text x="330" y="282">Sep 18</text>
+          <text x="460" y="282">Oct 05</text>
+          <text x="600" y="282">Nov 12</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>Past Test Attempts</h2>
+    <table>
+      <tr>
+        <th>Date</th><th>Test Name</th><th class="c">Listening</th><th class="c">Reading</th><th class="c">Writing</th><th class="c">Speaking</th><th class="c">Overall</th><th class="c">Actions</th>
+      </tr>
+      <tr>
+        <td>Nov 12, 2023</td><td>Mock Test #5</td><td class="c">8.0</td><td class="c">7.5</td><td class="c">6.5</td><td class="c">7.0</td>
+        <td class="c"><span class="overall-chip">7.5</span></td>
+        <td class="c"><a class="btn btn-dark" href="results.html">View Details</a><a class="btn btn-red" href="results.html">Download</a></td>
+      </tr>
+      <tr class="alt">
+        <td>Oct 28, 2023</td><td>Practice Test #4</td><td class="c">7.5</td><td class="c">7.0</td><td class="c">6.5</td><td class="c">7.0</td>
+        <td class="c">7.0</td>
+        <td class="c"><a class="btn btn-dark" href="results.html">View Details</a><a class="btn btn-red" href="results.html">Download</a></td>
+      </tr>
+      <tr>
+        <td>Oct 12, 2023</td><td>Practice Test #3</td><td class="c">7.0</td><td class="c">7.0</td><td class="c">6.0</td><td class="c">6.5</td>
+        <td class="c">6.5</td>
+        <td class="c"><a class="btn btn-dark" href="results.html">View Details</a><a class="btn btn-red" href="results.html">Download</a></td>
+      </tr>
+      <tr class="alt">
+        <td>Sep 28, 2023</td><td>Mock Test #4</td><td class="c">6.5</td><td class="c">6.5</td><td class="c">6.0</td><td class="c">6.5</td>
+        <td class="c">6.5</td>
+        <td class="c"><a class="btn btn-dark" href="results.html">View Details</a><a class="btn btn-red" href="results.html">Download</a></td>
+      </tr>
+      <tr>
+        <td>Sep 15, 2023</td><td>Practice Test #2</td><td class="c">6.0</td><td class="c">6.0</td><td class="c">5.5</td><td class="c">6.0</td>
+        <td class="c">6.0</td>
+        <td class="c"><a class="btn btn-dark" href="results.html">View Details</a><a class="btn btn-red" href="results.html">Download</a></td>
+      </tr>
+    </table>
+    <div class="pager">
+      <span class="dim">← Previous</span>
+      <span class="cur">1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>Next →</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pukhtoon Education - Master Your IELTS Preparation</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#fff; }
+  a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
+  .wrap { max-width:1240px; margin:0 auto; padding:0 20px; }
+
+  /* Header */
+  header { background:#fff; border-bottom:1px solid #E7EAED; position:relative; }
+  .header-in { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
+  .logo img { height:74px; width:auto; display:block; }
+  nav.main-nav { display:flex; align-items:center; gap:34px; }
+  nav.main-nav a { font-size:17px; font-weight:600; color:#16181D; padding:6px 0; }
+  nav.main-nav a.active { border-bottom:3px solid #E2231A; }
+  .btn { display:inline-block; border-radius:8px; font-weight:700; cursor:pointer; text-align:center; }
+  .btn-red { background:#E2231A; color:#fff; padding:13px 30px; font-size:16px; }
+  .btn-red:hover { background:#C41B14; }
+  .btn-outline { background:#fff; color:#E2231A; border:2px solid #E2231A; padding:11px 28px; font-size:16px; }
+  .menu-check { display:none; }
+  .menu-btn { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+  .menu-btn span { display:block; width:26px; height:3px; background:#16181D; border-radius:2px; }
+
+  /* Hero */
+  .hero { background:#EDF1F4; }
+  .hero-in { display:flex; align-items:center; gap:30px; padding:56px 0 64px; }
+  .hero-text { flex:1 1 52%; }
+  .hero-text h1 { font-size:52px; line-height:1.12; font-weight:800; letter-spacing:.2px; }
+  .hero-text h1 .red { color:#E2231A; }
+  .hero-text p { font-size:20px; color:#2B2F36; margin:20px 0 28px; max-width:520px; line-height:1.45; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-art { flex:1 1 48%; text-align:center; }
+  .hero-art svg { max-width:520px; width:100%; height:auto; }
+
+  /* Sections */
+  section { padding:56px 0 8px; }
+  h2.sec-title { text-align:center; font-size:34px; font-weight:800; letter-spacing:.4px; margin-bottom:34px; text-transform:uppercase; }
+  .modules { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .mod-card { background:#fff; border:1px solid #ECEFF1; border-radius:12px; box-shadow:0 6px 18px rgba(20,24,30,.08); padding:26px 24px 30px; }
+  .mod-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .mod-head h3 { font-size:23px; font-weight:700; }
+  .mod-card p { font-size:16.5px; line-height:1.45; color:#22262C; }
+
+  .courses { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .course-card { background:#fff; border:1px solid #ECEFF1; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(20,24,30,.08); }
+  .course-banner { position:relative; height:172px; padding:18px; color:#fff; }
+  .banner-light { background:#F2F5F6; color:#16181D; }
+  .banner-grey { background:#5A5E63; }
+  .banner-red { background:#A51F24; }
+  .course-banner .big { font-size:30px; font-weight:800; line-height:1.15; max-width:62%; }
+  .course-banner .big .red { color:#E2231A; }
+  .banner-light .big .red { color:#E2231A; }
+  .badge { position:absolute; top:14px; right:14px; background:#E2231A; color:#fff; font-weight:800; font-size:14px; padding:5px 12px; border-radius:6px; letter-spacing:.4px; }
+  .badge.green { background:#2FA84F; }
+  .lock-ic { position:absolute; left:50%; top:56%; transform:translate(-50%,-50%); background:rgba(255,255,255,.92); border-radius:50%; width:58px; height:58px; display:flex; align-items:center; justify-content:center; }
+  .rating { position:absolute; right:14px; bottom:12px; background:rgba(0,0,0,.55); color:#FFC531; font-weight:700; font-size:14px; padding:3px 9px; border-radius:5px; }
+  .course-body { padding:16px 18px 20px; }
+  .course-body h3 { font-size:19px; margin-bottom:10px; }
+  .course-meta { display:flex; justify-content:space-between; color:#33373D; font-size:15px; }
+  .course-meta .star { color:#F5A623; font-weight:700; }
+
+  /* How it works */
+  .steps { display:flex; align-items:center; justify-content:center; gap:26px; flex-wrap:wrap; padding-bottom:58px; }
+  .steps .step { font-size:22px; font-weight:700; }
+  .steps .arrow { font-size:30px; color:#16181D; }
+
+  /* Footer */
+  footer { background:#1E2429; color:#E8EBED; margin-top:20px; }
+  .footer-in { display:grid; grid-template-columns:1.3fr 1.6fr 1.2fr; gap:30px; padding:44px 0 30px; }
+  .footer-logo { background:#fff; border-radius:10px; display:inline-block; padding:6px 12px; }
+  .footer-logo img { height:64px; display:block; }
+  .foot-name { font-size:20px; font-weight:800; margin-top:14px; color:#fff; }
+  footer h4 { color:#fff; font-size:19px; margin-bottom:16px; }
+  .quick { display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+  .quick a { font-size:16px; color:#C9CED3; }
+  .contact-row { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:16px; color:#E8EBED; }
+  .contact-row .lbl { color:#9AA1A8; font-size:14px; display:block; }
+  .copyright { border-top:1px solid #333B42; padding:16px 0 20px; font-size:14.5px; color:#9AA1A8; }
+
+  @media (max-width:900px){
+    .modules { grid-template-columns:repeat(2,1fr); }
+    .courses { grid-template-columns:1fr 1fr; }
+    .hero-text h1 { font-size:38px; }
+  }
+  @media (max-width:768px){
+    .menu-btn { display:flex; }
+    nav.main-nav { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; align-items:flex-start; gap:0; padding:10px 20px 16px; border-bottom:1px solid #E7EAED; box-shadow:0 12px 20px rgba(0,0,0,.08); z-index:50; }
+    nav.main-nav a { padding:10px 0; width:100%; }
+    .menu-check:checked ~ nav.main-nav { display:flex; }
+    .header-cta { display:none; }
+    .hero-in { flex-direction:column; padding:36px 0 44px; }
+    .footer-in { grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .modules, .courses { grid-template-columns:1fr; }
+    .hero-text h1 { font-size:32px; }
+    .steps { flex-direction:column; gap:12px; }
+    .steps .arrow { transform:rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <a class="logo" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+    <input type="checkbox" id="menuToggle" class="menu-check">
+    <label for="menuToggle" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="courses.html">All Courses</a>
+      <a href="mock-tests.html">IELTS Modules</a>
+      <a href="packages.html">How It Works</a>
+      <a href="packages.html">Contact Us</a>
+    </nav>
+    <a class="btn btn-red header-cta" href="packages.html">Enroll Now</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <h1>MASTER YOUR <span class="red">IELTS</span> PREPARATION</h1>
+      <p>Get your desired band score with expert-led online video courses and interactive practice materials.</p>
+      <div class="hero-btns">
+        <a class="btn btn-red" href="login.html">Get Started</a>
+        <a class="btn btn-outline" href="courses.html">Explore Courses</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 520 360" role="img" aria-label="Student preparing for IELTS with a laptop">
+        <!-- document -->
+        <g transform="translate(392,18)">
+          <rect x="0" y="0" width="86" height="108" rx="6" fill="#ffffff" stroke="#C8CDD2" stroke-width="2"/>
+          <rect x="14" y="16" width="30" height="24" fill="#E2231A"/>
+          <rect x="14" y="52" width="58" height="6" fill="#9AA1A8"/>
+          <rect x="14" y="66" width="58" height="6" fill="#C8CDD2"/>
+          <rect x="14" y="80" width="42" height="6" fill="#C8CDD2"/>
+        </g>
+        <!-- badge -->
+        <g transform="translate(52,64)">
+          <circle cx="52" cy="52" r="50" fill="#16181D"/>
+          <circle cx="52" cy="52" r="41" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 5"/>
+          <text x="52" y="44" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Band</text>
+          <text x="52" y="76" text-anchor="middle" fill="#ffffff" font-size="30" font-weight="800">8+</text>
+        </g>
+        <!-- chair -->
+        <rect x="330" y="150" width="70" height="130" rx="14" fill="#E2231A"/>
+        <!-- body -->
+        <path d="M268 205 q60 -34 108 0 l18 84 q-70 16 -140 0 z" fill="#23262B"/>
+        <!-- head -->
+        <circle cx="322" cy="128" r="42" fill="#F2C09A"/>
+        <path d="M280 124 a42 42 0 0 1 84 0 l0 -14 a42 34 0 0 0 -84 0 z" fill="#16181D"/>
+        <!-- headphones -->
+        <path d="M278 128 a44 44 0 0 1 88 0" fill="none" stroke="#E2231A" stroke-width="9"/>
+        <rect x="268" y="120" width="18" height="34" rx="8" fill="#E2231A"/>
+        <rect x="358" y="120" width="18" height="34" rx="8" fill="#E2231A"/>
+        <!-- arm and pen -->
+        <path d="M356 218 q40 26 22 52 l-52 4 q-6 -30 30 -56z" fill="#23262B"/>
+        <rect x="356" y="238" width="34" height="7" rx="3" fill="#E2231A" transform="rotate(38 356 238)"/>
+        <!-- desk -->
+        <rect x="120" y="286" width="330" height="10" rx="4" fill="#8A929A"/>
+        <!-- laptop -->
+        <g transform="translate(168,196)">
+          <rect x="0" y="0" width="112" height="76" rx="8" fill="#7C848C"/>
+          <circle cx="56" cy="38" r="10" fill="#EDF1F4"/>
+          <path d="M-14 84 L126 84 L112 76 L0 76 Z" fill="#9AA1A8"/>
+        </g>
+        <!-- notebook -->
+        <g transform="translate(300,268)">
+          <rect x="0" y="0" width="86" height="26" rx="4" fill="#ffffff" stroke="#C8CDD2" stroke-width="2"/>
+          <rect x="10" y="8" width="64" height="4" fill="#C8CDD2"/>
+          <rect x="10" y="16" width="48" height="4" fill="#C8CDD2"/>
+        </g>
+        <!-- books stack -->
+        <g transform="translate(398,238)">
+          <rect x="0" y="40" width="82" height="15" rx="3" fill="#23262B"/>
+          <rect x="4" y="24" width="76" height="15" rx="3" fill="#ffffff" stroke="#9AA1A8" stroke-width="2"/>
+          <rect x="0" y="6" width="82" height="17" rx="3" fill="#E2231A"/>
+        </g>
+        <!-- cup -->
+        <g transform="translate(96,238)">
+          <path d="M0 10 L34 10 L29 48 L5 48 Z" fill="#B07B4F"/>
+          <rect x="0" y="4" width="34" height="7" rx="3" fill="#8A5A34"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Our IELTS Modules</h2>
+    <div class="modules">
+      <div class="mod-card">
+        <div class="mod-head">
+          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#16181D" stroke-width="3.4"><path d="M8 30v-6a16 16 0 0 1 32 0v6"/><rect x="5" y="28" width="9" height="14" rx="4" fill="#E2231A" stroke="none"/><rect x="34" y="28" width="9" height="14" rx="4" fill="#E2231A" stroke="none"/></svg>
+          <h3>Listening</h3>
+        </div>
+        <p>Realistic practice audio tests and strategies.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-head">
+          <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z" fill="#E2231A"/><path d="M24 10 v32" stroke="#fff" stroke-width="3"/></svg>
+          <h3>Reading</h3>
+        </div>
+        <p>Time-saving techniques and practice exercises.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-head">
+          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#16181D" stroke-width="3.2"><rect x="7" y="7" width="27" height="34" rx="3"/><path d="M14 17h13M14 25h13M14 33h8" stroke-linecap="round"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" style="margin-left:-24px;margin-top:-16px;"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z" fill="#E2231A"/></svg>
+          <h3>Writing</h3>
+        </div>
+        <p>Detailed task analyses and writing templates.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-head">
+          <svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M6 8 a6 6 0 0 1 6-6h14a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H16l-8 7v-7a6 6 0 0 1-2-6z" fill="#E2231A" transform="translate(2,4)"/><circle cx="14" cy="15" r="2.2" fill="#fff"/><circle cx="22" cy="15" r="2.2" fill="#fff"/><circle cx="30" cy="15" r="2.2" fill="#fff"/></svg>
+          <h3>Speaking</h3>
+        </div>
+        <p>Pronunciation guides and mock test practices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Featured Video Courses</h2>
+    <div class="courses">
+      <div class="course-card">
+        <div class="course-banner banner-light">
+          <span class="badge green">FREE</span>
+          <div class="big"><span class="red">IELTS</span><br>Speaking<br>Masterclass</div>
+          <span class="rating">★ 4.8</span>
+        </div>
+        <div class="course-body">
+          <h3>IELTS Speaking Masterclass</h3>
+          <div class="course-meta"><span><span class="star">★</span> 4.8 Rating</span><span>◷ 110 min</span></div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-banner banner-grey">
+          <span class="badge">LOCKED</span>
+          <div class="big">Academic<br>Writing<br>Task 2</div>
+          <span class="lock-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+          <span class="rating">★ 4.8</span>
+        </div>
+        <div class="course-body">
+          <h3>Academic Writing Task 2</h3>
+          <div class="course-meta"><span><span class="star">★</span> 4.8 Rating</span><span>◷ 100 min</span></div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-banner banner-red">
+          <span class="badge">LOCKED</span>
+          <div class="big">IELTS<br>Practice<br>Tests &amp; Tips</div>
+          <span class="lock-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2"><rect x="5" y="10" width="14" height="10" rx="2" fill="#16181D"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+          <span class="rating">★ 4.8</span>
+        </div>
+        <div class="course-body">
+          <h3>IELTS Practice Tests &amp; Tips</h3>
+          <div class="course-meta"><span><span class="star">★</span> 4.8 Rating</span><span>◷ 100 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">How It Works</h2>
+    <div class="steps">
+      <span class="step">1. Register An Account</span>
+      <span class="arrow">→</span>
+      <span class="step">2. Access Videos</span>
+      <span class="arrow">→</span>
+      <span class="step">3. Pass IELTS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-in">
+    <div>
+      <span class="footer-logo"><img src="logo.jpg" alt="Pukhtoon Education"></span>
+      <div class="foot-name">Pukhtoon Education</div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <div class="quick">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="index.html">About</a>
+        <a href="courses.html">Writing</a>
+        <a href="courses.html">All Courses</a>
+        <a href="packages.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#2FA84F"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .1 0 .7-.2 1.1z"/></svg>
+        <span><span class="lbl">WhatsApp</span>0314-1513815</span>
+      </div>
+      <div class="contact-row">
+        <svg width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="#fff"/><path d="M2 7l10 6 10-6" stroke="#E2231A" stroke-width="2" fill="none"/></svg>
+        <span><span class="lbl">Email</span>fazalbari665@gmail.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap copyright">© 2024 Pukhtoon Education. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In - Pukhtoon Education</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#D8DCDF; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:30px 16px; }
+  a { text-decoration:none; color:inherit; }
+  .card { background:#fff; border-radius:16px; box-shadow:0 18px 46px rgba(20,24,30,.18); width:100%; max-width:472px; padding:42px 44px 38px; }
+  .logo { text-align:center; margin-bottom:26px; }
+  .logo img { height:158px; width:auto; }
+  .tabs { display:flex; border-bottom:1.6px solid #E1E5E8; margin-bottom:28px; }
+  .tabs a { flex:1; text-align:center; font-size:21px; font-weight:800; letter-spacing:.6px; padding:12px 0; color:#9AA1A8; }
+  .tabs a.active { color:#16181D; border-bottom:4px solid #E2231A; margin-bottom:-1.6px; }
+  label.field-label { display:block; font-size:17.5px; font-weight:600; margin-bottom:9px; }
+  .pass-row { display:flex; justify-content:space-between; align-items:baseline; }
+  .forgot { color:#C0272D; font-size:16.5px; font-weight:600; }
+  .input-wrap { position:relative; margin-bottom:22px; }
+  input[type=email], input[type=password] { width:100%; border:1.6px solid #C4C9CD; border-radius:8px; padding:15px 16px; font-size:17px; outline:none; color:#16181D; background:#fff; }
+  input:focus { border-color:#E2231A; }
+  .eye { position:absolute; right:14px; top:50%; transform:translateY(-50%); }
+  .remember { display:flex; align-items:center; gap:11px; font-size:17px; margin:2px 0 24px; cursor:pointer; }
+  .remember input { width:21px; height:21px; accent-color:#E2231A; }
+  .btn-login { display:block; width:100%; background:#E2231A; color:#fff; font-size:20px; font-weight:800; letter-spacing:.8px; text-align:center; padding:16px; border-radius:9px; }
+  .btn-login:hover { background:#C41B14; }
+  .signup-line { text-align:center; font-size:17.5px; margin-top:24px; }
+  .signup-line a { color:#C0272D; font-weight:700; }
+  .home-link { display:block; text-align:center; margin-top:18px; font-size:15.5px; color:#5A6067; }
+  @media (max-width:520px){
+    .card { padding:30px 22px 28px; }
+    .logo img { height:128px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a></div>
+
+  <div class="tabs">
+    <a href="login.html" class="active">LOG IN</a>
+    <a href="login.html">SIGN UP</a>
+  </div>
+
+  <form action="dashboard.html" method="get">
+    <label class="field-label" for="email">Email Address</label>
+    <div class="input-wrap">
+      <input type="email" id="email" placeholder="Enter your email">
+    </div>
+
+    <div class="pass-row">
+      <label class="field-label" for="password">Password</label>
+      <a class="forgot" href="login.html">forgot?</a>
+    </div>
+    <div class="input-wrap">
+      <input type="password" id="password" placeholder="••••••••">
+      <svg class="eye" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#9AA1A8" stroke-width="1.9"><path d="M3 12s3.5-6 9-6c2 0 3.7.8 5.1 1.9M21 12s-3.5 6-9 6c-2 0-3.7-.8-5.1-1.9"/><path d="M4 4l16 16"/></svg>
+    </div>
+
+    <label class="remember"><input type="checkbox"> Remember me</label>
+
+    <a class="btn-login" href="dashboard.html">LOG IN</a>
+  </form>
+
+  <p class="signup-line">Don't have an account? <a href="login.html">Sign Up</a></p>
+  <a class="home-link" href="index.html">Back to Home</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Test - Pukhtoon Education Online Testing Portal</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Segoe UI", Arial, Helvetica, sans-serif; color:#16181D; background:#E9ECEE; }
+  a { text-decoration:none; color:inherit; }
+
+  .topbar { background:#1C1E21; color:#fff; display:flex; align-items:center; gap:22px; padding:12px 26px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:20px; }
+  .logo-chip { background:#fff; border-radius:9px; padding:4px 10px; display:inline-block; }
+  .logo-chip img { height:56px; display:block; }
+  .portal { font-size:29px; font-weight:800; letter-spacing:.6px; }
+  .top-right { margin-left:auto; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .timer-chip { display:flex; border-radius:9px; overflow:hidden; border:2.4px solid #E2231A; }
+  .timer-chip .ic { background:#E2231A; display:flex; align-items:center; padding:8px 13px; }
+  .timer-chip .val { background:#fff; color:#16181D; font-size:27px; font-weight:800; padding:6px 18px; min-width:104px; text-align:center; }
+  .section-chip { background:#fff; color:#16181D; font-size:19.5px; font-weight:700; padding:12px 20px; border-radius:9px; }
+  .btn-pause { background:#E2231A; color:#fff; font-size:19.5px; font-weight:700; padding:12px 22px; border-radius:9px; border:none; cursor:pointer; font-family:inherit; }
+  .btn-pause:hover { background:#C41B14; }
+
+  .stage { display:grid; grid-template-columns:1.85fr 1fr .92fr; gap:22px; padding:24px 26px 34px; align-items:start; }
+  .card { background:#fff; border-radius:14px; box-shadow:0 5px 16px rgba(20,24,30,.09); padding:26px 28px; }
+  .card h2 { font-size:27px; margin-bottom:18px; }
+  .passage-head { display:flex; justify-content:space-between; align-items:flex-start; }
+  .font-btns { display:flex; gap:9px; }
+  .font-btns button { background:#EFF1F2; border:none; border-radius:7px; font-size:16.5px; font-weight:700; padding:8px 14px; cursor:pointer; font-family:inherit; color:#33373D; }
+  .passage { font-size:18.5px; line-height:1.62; color:#1D2025; max-height:640px; overflow-y:auto; padding-right:10px; }
+  .passage p { margin-bottom:20px; }
+
+  .q-box { border:1.6px solid #D9DEE2; border-radius:12px; padding:22px 22px 10px; }
+  .q-count { font-size:20px; font-weight:800; margin-bottom:14px; }
+  .q-text { font-size:19.5px; line-height:1.45; padding-bottom:16px; border-bottom:1px solid #E7EAED; margin-bottom:8px; }
+  .opt { display:flex; align-items:center; gap:14px; padding:11px 6px; cursor:pointer; border-radius:8px; font-size:19px; }
+  .opt:hover { background:#F6F7F8; }
+  .opt .radio { width:27px; height:27px; border-radius:50%; border:2.4px solid #9AA1A8; flex:0 0 27px; position:relative; }
+  .opt.selected .radio { border-color:#E2231A; }
+  .opt.selected .radio::after { content:""; position:absolute; inset:4.5px; border-radius:50%; background:#E2231A; }
+  .q-nav { display:flex; gap:14px; margin-top:22px; }
+  .q-nav button { flex:1; font-family:inherit; font-size:18.5px; font-weight:700; padding:14px 10px; border-radius:9px; cursor:pointer; }
+  .btn-prev { background:#fff; border:2px solid #16181D; color:#16181D; }
+  .btn-next { background:#E2231A; border:2px solid #E2231A; color:#fff; }
+
+  .palette-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
+  .palette-grid button { font-family:inherit; font-size:17.5px; font-weight:700; padding:12px 0; border:none; border-radius:8px; background:#D3D7DA; color:#3A3F45; cursor:pointer; }
+  .palette-grid button.answered { background:#E2231A; color:#fff; }
+  .palette-grid button.marked { background:#C9CDD1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 L12 -2 M-2 2 L2 -2 M8 12 L12 8' stroke='%238A9096' stroke-width='2'/%3E%3C/svg%3E"); color:#16181D; }
+  .palette-grid button.current { outline:3px solid #16181D; outline-offset:1px; }
+  .legend { margin-top:20px; display:flex; flex-direction:column; gap:11px; font-size:17px; }
+  .legend span { display:flex; align-items:center; gap:11px; }
+  .sw { width:24px; height:24px; border-radius:6px; display:inline-block; }
+  .sw.red { background:#E2231A; }
+  .sw.grey { background:#D3D7DA; }
+  .sw.hatch { background:#C9CDD1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 L12 -2 M-2 2 L2 -2 M8 12 L12 8' stroke='%238A9096' stroke-width='2'/%3E%3C/svg%3E"); }
+  .finish-link { display:block; margin-top:22px; text-align:center; font-weight:700; color:#C0272D; font-size:16.5px; }
+
+  @media (max-width:1180px){ .stage { grid-template-columns:1fr 1fr; } .palette-card { grid-column:1 / -1; } .palette-grid { grid-template-columns:repeat(10,1fr); } }
+  @media (max-width:760px){
+    .stage { grid-template-columns:1fr; padding:16px 14px 26px; }
+    .palette-grid { grid-template-columns:repeat(5,1fr); }
+    .portal { font-size:20px; }
+    .topbar { gap:12px; padding:10px 14px; }
+    .logo-chip img { height:44px; }
+    .timer-chip .val { font-size:21px; min-width:84px; padding:5px 12px; }
+    .section-chip, .btn-pause { font-size:16px; padding:10px 14px; }
+    .passage { max-height:none; }
+    .card { padding:20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education"></a>
+    <span class="portal">ONLINE TESTING PORTAL</span>
+  </div>
+  <div class="top-right">
+    <span class="timer-chip">
+      <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></span>
+      <span class="val" id="timerVal">58:45</span>
+    </span>
+    <span class="section-chip">Section: Reading</span>
+    <button class="btn-pause" id="pauseBtn" type="button">Pause / Submit</button>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="card">
+    <div class="passage-head">
+      <h2>Reading Passage 1</h2>
+      <div class="font-btns">
+        <button type="button" id="fontMinus">A-</button>
+        <button type="button" id="fontPlus">A+</button>
+      </div>
+    </div>
+    <div class="passage" id="passageText">
+      <p>The history of education is, in many ways, the history of civilisation itself. Long before schools existed, knowledge was passed from one generation to the next through stories, songs and direct instruction within the family. Elders taught the young how to farm, hunt, build and live within their community, and this informal education was enough for societies that changed only slowly over hundreds of years.</p>
+      <p>The second stage in this long story began when writing was invented. Once knowledge could be recorded on clay, papyrus and later paper, it no longer depended on memory alone. The first formal schools appeared in ancient Egypt, Mesopotamia, China and India, where small groups of students gathered around a teacher to learn reading, writing and mathematics. Education was still a privilege of the few, reserved mainly for the sons of rulers, priests and wealthy merchants, but the basic pattern of the classroom had been established.</p>
+      <p>The modern period transformed education from a privilege into a public right. During the nineteenth century, governments in Europe and North America began to build free schools for all children, believing that a literate population was essential for industry and democracy. Universities expanded, science entered the curriculum, and teaching became a trained profession. By the middle of the twentieth century, primary education was nearly universal in the developed world and was spreading quickly through Asia and Africa.</p>
+      <p>Today, education is being reshaped once again, this time by technology. A student in a small village can now attend lessons recorded on another continent, practise with interactive materials and sit standardised tests such as IELTS entirely online. Yet the central purpose has not changed since the earliest times: education exists to prepare each new generation to understand its world and to improve it.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Questions</h2>
+    <div class="q-box">
+      <div class="q-count" id="qCount">Question 1 of 40</div>
+      <div class="q-text" id="qText">What is the primary theme of the second paragraph?</div>
+      <div id="options"></div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" id="prevBtn" type="button">Previous</button>
+      <button class="btn-next" id="nextBtn" type="button">Save &amp; Next</button>
+    </div>
+  </div>
+
+  <div class="card palette-card">
+    <h2>Question Palette</h2>
+    <div class="palette-grid" id="palette"></div>
+    <div class="legend">
+      <span><i class="sw red"></i> Answered</span>
+      <span><i class="sw grey"></i> Not Answered</span>
+      <span><i class="sw hatch"></i> Marked for Review</span>
+    </div>
+    <a class="finish-link" href="results.html">Finish and view Results &amp; History</a>
+  </div>
+</div>
+
+<script>
+  var questions = [
+    "What is the primary theme of the second paragraph?",
+    "How was knowledge passed on before schools existed?",
+    "Where did some of the first formal schools appear?",
+    "Who mainly received education in the earliest schools?",
+    "Why did governments build free schools in the nineteenth century?",
+    "What entered the curriculum as universities expanded?",
+    "According to the passage, what is reshaping education today?",
+    "What does the writer say has never changed about education?"
+  ];
+  var genericQ = "Read the passage and choose the correct answer.";
+  var total = 40, current = 1;
+  var answers = {};        // question number : selected letter index
+  var answeredSet = {1:true, 2:true, 6:true};
+  var markedSet = {8:true};
+  answers[1] = 1;          // option B selected for question 1, as in the reference
+  var selected = 1;
+
+  var paletteEl = document.getElementById('palette');
+  var optionsEl = document.getElementById('options');
+  var qCountEl = document.getElementById('qCount');
+  var qTextEl = document.getElementById('qText');
+  var letters = ['A','B','C','D'];
+
+  function renderPalette(){
+    paletteEl.innerHTML = '';
+    for (var i = 1; i <= total; i++){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = i;
+      if (answeredSet[i]) b.className = 'answered';
+      else if (markedSet[i]) b.className = 'marked';
+      if (i === current) b.className += ' current';
+      b.setAttribute('data-q', i);
+      b.onclick = function(){ goTo(parseInt(this.getAttribute('data-q'), 10)); };
+      paletteEl.appendChild(b);
+    }
+  }
+  function renderQuestion(){
+    qCountEl.textContent = 'Question ' + current + ' of ' + total;
+    qTextEl.textContent = current <= questions.length ? questions[current-1] : genericQ;
+    selected = (typeof answers[current] !== 'undefined') ? answers[current] : -1;
+    optionsEl.innerHTML = '';
+    letters.forEach(function(letter, idx){
+      var row = document.createElement('div');
+      row.className = 'opt' + (selected === idx ? ' selected' : '');
+      row.innerHTML = '<span class="radio"></span><span>' + letter + '</span>';
+      row.onclick = function(){
+        selected = idx;
+        var rows = optionsEl.querySelectorAll('.opt');
+        rows.forEach(function(r){ r.classList.remove('selected'); });
+        row.classList.add('selected');
+      };
+      optionsEl.appendChild(row);
+    });
+    renderPalette();
+  }
+  function goTo(n){
+    if (n < 1) n = 1;
+    if (n > total) n = total;
+    current = n;
+    renderQuestion();
+  }
+  document.getElementById('nextBtn').onclick = function(){
+    if (selected >= 0){
+      answers[current] = selected;
+      answeredSet[current] = true;
+      delete markedSet[current];
+    }
+    goTo(current + 1);
+  };
+  document.getElementById('prevBtn').onclick = function(){ goTo(current - 1); };
+
+  // Font size controls for the passage
+  var pSize = 18.5;
+  var passageEl = document.getElementById('passageText');
+  document.getElementById('fontPlus').onclick = function(){ if (pSize < 23){ pSize += 1.5; passageEl.style.fontSize = pSize + 'px'; } };
+  document.getElementById('fontMinus').onclick = function(){ if (pSize > 14){ pSize -= 1.5; passageEl.style.fontSize = pSize + 'px'; } };
+
+  // Timer: starts at 58:45 and ticks down
+  var remaining = 58 * 60 + 45, paused = false;
+  var timerEl = document.getElementById('timerVal');
+  function fmt(s){ var m = Math.floor(s/60), r = s % 60; return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r; }
+  timerEl.textContent = fmt(remaining);
+  setInterval(function(){
+    if (!paused && remaining > 0){ remaining--; timerEl.textContent = fmt(remaining); }
+  }, 1000);
+  var pauseBtn = document.getElementById('pauseBtn');
+  pauseBtn.onclick = function(){
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Resume / Submit' : 'Pause / Submit';
+  };
+
+  renderQuestion();
+</script>
+
+</body>
+</html>
