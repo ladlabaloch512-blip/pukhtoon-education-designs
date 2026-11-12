@@ -221,6 +221,40 @@ footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
 .copy{padding:16px 6px 2px}
 .tblwrap{max-width:100%;-webkit-overflow-scrolling:touch}
 }
+
+/* ==== MOBILE REFINEMENT ROUND: slim buttons, card rhythm, clarity ==== */
+@media (max-width:620px){
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;font-size:15px;font-weight:600;line-height:1.3;border-radius:10px;min-height:0}
+.hbtns .btn{flex:1 1 0;padding:9px 8px}
+.fchip,.chip,.selchip{padding:8px 15px;font-size:13.5px;line-height:1.25;min-height:0}
+.fchips,.chips,.filters{gap:8px}
+.backlink{display:inline-flex!important;align-items:center;gap:7px;font-size:14.5px;font-weight:700;color:#EDEDF0;padding:14px 2px 0;text-decoration:none}
+
+.tgrid{gap:12px}
+.tcard{flex-direction:column;align-items:flex-start;text-align:left;padding:16px;gap:8px}
+.tcard .big svg{width:54px;height:54px}
+.tcard h3{margin:0}
+.tcard .btn{display:flex;width:100%;padding:9px 18px;font-size:15px}
+.fullcard{padding:20px 16px}
+.howgrid{gap:12px}
+.howcard{padding:16px}
+}
+
+/* ==== MOBILE REFINEMENT PATCH ==== */
+@media (max-width:620px){
+.fchip{white-space:nowrap}
+}
+
+/* ==== REFINEMENT PATCH 2: tcard stretch ==== */
+@media (max-width:620px){
+.tcard{align-items:stretch}
+.tcard .big{width:auto;justify-content:flex-start}
+}
+
+/* ==== REFINEMENT PATCH 3: single-line slim buttons ==== */
+@media (max-width:620px){
+.fullcard .btn{padding:10px 18px;font-size:15px}
+}
 </style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>

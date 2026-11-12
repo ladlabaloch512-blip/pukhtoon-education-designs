@@ -279,11 +279,30 @@ footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
 .chips{gap:8px}
 input[type=range]{width:100%}
 }
+
+/* ==== MOBILE REFINEMENT ROUND: slim buttons, card rhythm, clarity ==== */
+@media (max-width:620px){
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;font-size:15px;font-weight:600;line-height:1.3;border-radius:10px;min-height:0}
+.hbtns .btn{flex:1 1 0;padding:9px 8px}
+.fchip,.chip,.selchip{padding:8px 15px;font-size:13.5px;line-height:1.25;min-height:0}
+.fchips,.chips,.filters{gap:8px}
+.backlink{display:inline-flex!important;align-items:center;gap:7px;font-size:14.5px;font-weight:700;color:#EDEDF0;padding:14px 2px 0;text-decoration:none}
+
+.obcard{padding:20px 16px}
+.optcard{padding:14px 16px}
+.obnav{gap:10px}
+.obnav .btn{flex:1 1 0}
+}
+
+/* ==== MOBILE REFINEMENT PATCH ==== */
+@media (max-width:620px){
+.selchip{white-space:nowrap}
+}
 </style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 <header class="obhead"><div class="wrap"><a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div></header>
-<main class="obwrap"><div class="gcard anim"><span class="tick"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Account created with Google</b><span>Your Google account is connected. Finish these six quick steps to personalise your dashboard.</span></div></div><div class="obcard anim d2"><h1>Set Up Your Student Profile</h1><p class="sub">Six quick steps and your dashboard is ready.</p><div class="obprog"><i id="obBar"></i></div><div class="obsteps"><span class="on" data-sl="1">1. Student</span><span data-sl="2">2. Source</span><span data-sl="3">3. Country</span><span data-sl="4">4. Experience</span><span data-sl="5">5. Journey</span><span data-sl="6">6. Goal</span></div>
+<main class="obwrap"><div class="gcard anim"><span class="tick"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Account created with Google</b><span>Your Google account is connected. Finish these six quick steps to personalise your dashboard.</span></div></div><div class="obcard anim d2"><h1>Set Up Your Student Profile</h1><p class="sub">Six quick steps and your dashboard is ready.</p><div class="obprog"><i id="obBar"></i></div><p id="obCount" style="margin:12px 0 0;font-size:14px;color:#A7A7B0;font-weight:600">Step 1 of 6</p><div class="obsteps"><span class="on" data-sl="1">1. Student</span><span data-sl="2">2. Source</span><span data-sl="3">3. Country</span><span data-sl="4">4. Experience</span><span data-sl="5">5. Journey</span><span data-sl="6">6. Goal</span></div>
 
 <div class="ostep on" data-step="1"><h3>Are you a student at Pukhtoon Education?</h3><p class="hint">Tell us how you are connected with us so we can set up the right account for you.</p><div class="optcards" data-single id="studentType"><button type="button" class="optcard" data-val="Registered student" data-sid="1"><b>Yes, I am a registered student</b><span>I already study at Pukhtoon Education and have a Student ID.</span></button><button type="button" class="optcard on" data-val="Trial student"><b>I'm a trial student</b><span>I am trying the platform before joining a full course.</span></button><button type="button" class="optcard" data-val="New student" style="grid-column:1/-1"><b>No, I'm new here</b><span>I found Pukhtoon Education online and want to start preparing.</span></button></div><div class="sidwrap" id="sidWrap"><span class="flabel">Student ID</span><label class="ofield"><input type="text" id="sidInput" placeholder="For example PK-2026-014"><span style="color:#F6C667;font-weight:800;font-size:13px;letter-spacing:.5px">REQUIRED</span></label><a class="idlink" href="onboarding.html">Don't know your Student ID?</a></div></div>
 
@@ -311,7 +330,7 @@ function obShow(n){
   obStep = n;
   obPanels.forEach(function(p){ p.classList.toggle('on', +p.dataset.step === n); });
   document.querySelectorAll('[data-sl]').forEach(function(s){ s.classList.toggle('on', +s.dataset.sl === Math.min(n, 6)); });
-  obBar.style.width = (Math.min(n, 6) / 6 * 100) + '%';
+  obBar.style.width = (Math.min(n, 6) / 6 * 100) + '%'; var oc = document.getElementById('obCount'); if(oc){ oc.textContent = n >= 7 ? 'All done' : 'Step ' + n + ' of 6'; }
   obBack.style.visibility = n === 1 ? 'hidden' : 'visible';
   obNext.style.display = n === OB_TOTAL ? 'none' : '';
   obNext.textContent = n === 6 ? 'See Summary' : 'Next';

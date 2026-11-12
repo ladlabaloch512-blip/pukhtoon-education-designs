@@ -265,6 +265,22 @@ footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
 .partsteps{gap:8px}
 .pstep{padding:9px 16px}
 }
+
+/* ==== MOBILE REFINEMENT ROUND: slim buttons, card rhythm, clarity ==== */
+@media (max-width:620px){
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;font-size:15px;font-weight:600;line-height:1.3;border-radius:10px;min-height:0}
+.hbtns .btn{flex:1 1 0;padding:9px 8px}
+.fchip,.chip,.selchip{padding:8px 15px;font-size:13.5px;line-height:1.25;min-height:0}
+.fchips,.chips,.filters{gap:8px}
+.backlink{display:inline-flex!important;align-items:center;gap:7px;font-size:14.5px;font-weight:700;color:#EDEDF0;padding:14px 2px 0;text-decoration:none}
+
+.tpanel{padding:18px 16px}
+.pstep{padding:7px 13px;font-size:13.5px}
+.tpfoot{gap:10px}
+.tpfoot .btn{flex:1 1 0;min-width:0}
+.submitrow{padding-top:0}
+.miclist li{line-height:1.5}
+}
 </style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
@@ -272,9 +288,10 @@ footer.site li,footer.site p,footer.site a{overflow-wrap:break-word}
 <a class="logo-chip" href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a>
 <div class="ttl"><h2>SPEAKING TEST</h2><p class="time"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align:-4px"><circle cx="12" cy="12" r="9" fill="#8E8E96"/><path d="M12 7v5l3.5 2" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/></svg> Time Left: <b id="timer">15:00</b></p></div>
 
-<button class="btn" id="submitBtn" type="button">Submit Test</button>
+
 </div></header>
-<main class="wrap"><div class="tpgrid"><section class="tpanel anim"><h3>Before You Start</h3><p style="color:#EDEDF0;font-size:17px;margin-bottom:14px">Check your microphone and headphones before the speaking test begins.</p><ul class="miclist"><li>Headphones connected and volume up</li><li>Microphone close to your mouth</li><li>A quiet room with no background noise</li></ul><button class="btn" id="micBtn" type="button">Test Microphone</button><div class="eq" id="eqBars"><i></i><i></i><i></i><i></i><i></i></div><p class="micstatus" id="micStatus">Press Test Microphone and say a few words.</p></section><section class="tpanel anim d2"><div class="partsteps"><span class="pstep on" data-part="1">Part 1</span><span class="pstep" data-part="2">Part 2</span><span class="pstep" data-part="3">Part 3</span></div><div class="qhead"><h3>Question <span id="sqNum">1</span> of 3</h3><div class="qprog"><i id="sqProg" style="width:33%"></i></div></div><div id="sqBody"></div><div class="recrow"><button class="recbtn" id="recBtn" type="button" aria-label="Record or stop"><svg id="recIcon" width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="9" y="2.5" width="6" height="11" rx="3" fill="#fff"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" stroke="#fff" stroke-width="1.6"/></svg></button><span class="recdot" id="recDot"></span><span class="recstatus" id="recStatus">Tap the microphone to record your answer.</span></div><div class="playback" id="playback"><button class="pbplay" id="pbBtn" type="button" aria-label="Play recording"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#141418"/></svg></button><div class="pbtrack"><i id="pbBar"></i></div><span style="color:#C9C9D1;font-size:14.5px">Your recording</span></div><span class="savedchip" id="savedChip">Recording is saved to your attempt</span></section></div><div class="tpfoot"><button class="btn" id="nextQ" type="button">Next Question</button></div></main>
+<main class="wrap"><a class="backlink" style="display:none" href="speaking.html">&larr; Back to Speaking</a><div class="tpgrid"><section class="tpanel anim"><h3>Before You Start</h3><p style="color:#EDEDF0;font-size:17px;margin-bottom:14px">Check your microphone and headphones before the speaking test begins.</p><ul class="miclist"><li>Headphones connected and volume up</li><li>Microphone close to your mouth</li><li>A quiet room with no background noise</li></ul><button class="btn" id="micBtn" type="button">Test Microphone</button><div class="eq" id="eqBars"><i></i><i></i><i></i><i></i><i></i></div><p class="micstatus" id="micStatus">Press Test Microphone and say a few words.</p></section><section class="tpanel anim d2"><div class="partsteps"><span class="pstep on" data-part="1">Part 1</span><span class="pstep" data-part="2">Part 2</span><span class="pstep" data-part="3">Part 3</span></div><div class="qhead"><h3>Question <span id="sqNum">1</span> of 3</h3><div class="qprog"><i id="sqProg" style="width:33%"></i></div></div><div id="sqBody"></div><div class="recrow"><button class="recbtn" id="recBtn" type="button" aria-label="Record or stop"><svg id="recIcon" width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="9" y="2.5" width="6" height="11" rx="3" fill="#fff"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" stroke="#fff" stroke-width="1.6"/></svg></button><span class="recdot" id="recDot"></span><span class="recstatus" id="recStatus">Tap the microphone to record your answer.</span></div><div class="playback" id="playback"><button class="pbplay" id="pbBtn" type="button" aria-label="Play recording"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#141418"/></svg></button><div class="pbtrack"><i id="pbBar"></i></div><span style="color:#C9C9D1;font-size:14.5px">Your recording</span></div><span class="savedchip" id="savedChip">Recording is saved to your attempt</span></section></div><div class="tpfoot"><button class="btn" id="nextQ" type="button">Next Question</button></div>
+<div class="tpfoot submitrow"><button class="btn" id="submitBtn" type="button">Submit Test</button></div></main>
 <script>
 var total = 900, timerEl = document.getElementById('timer');
 setInterval(function(){ if(total>0){ total--; var m = Math.floor(total/60), s = total%60; timerEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s; } }, 1000);
