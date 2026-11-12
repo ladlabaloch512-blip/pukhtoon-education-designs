@@ -226,6 +226,27 @@ th,td{padding:10px 12px}
 .side-nav a{min-height:44px}
 }
 </style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND (slim buttons + card alignment, 760px and below only) ===== */
+@media (max-width:760px){
+.card{padding:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;font-size:15px;font-weight:600;line-height:1.25;min-height:0;border-radius:10px}
+.btn-start{display:inline-flex;align-items:center;justify-content:center;padding:11px 22px;font-size:15.5px;font-weight:700;line-height:1.25;min-height:0;border-radius:10px}
+.btn-cont{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;font-size:14.5px;line-height:1.25;min-height:0}
+.menu-btn{width:40px;height:40px;min-height:0;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.att-chip{padding:4px 10px;font-size:12px;line-height:1.25;display:inline-flex;align-items:center;border-radius:999px}
+.band-chip{padding:4px 10px;font-size:12px;line-height:1.25;display:inline-flex;align-items:center;border-radius:999px}
+.skill-row{align-items:center}
+.video-row{align-items:center;gap:10px}
+.video-ic{flex:0 0 42px;width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+.video-open{margin-left:auto;min-width:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+.att-row{align-items:center;gap:12px}
+.att-link{display:inline-flex;align-items:center;min-height:40px;padding:4px 2px}
+.cont-item{align-items:center;gap:12px}
+.cont-bar{width:100%}
+.btn-start{width:100%}
+}
+</style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 
@@ -281,16 +302,32 @@ th,td{padding:10px 12px}
         </div>
       </div>
 
-      <div class="card anim rv">
-        <div class="count-head">
-          <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Test Countdown</h2>
-          <span class="date-pill">Official Test: Nov 25, 2024</span>
-        </div>
-        <div class="days"><span class="count" data-count="14">14</span> Days Remaining</div>
-        <div class="count-sub">Official Test: Nov 25, 2024</div>
-        <div class="count-bar bar-anim"><i></i><span class="tick"></span></div>
-      </div>
+      
 
+      <div class="card wide-row rv">
+      <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><path d="M12 6C10 4.3 7 3.7 4 4v14c3-.3 6 .3 8 2 2-1.7 5-2.3 8-2V4c-3-.3-6 .3-8 2z"/><path d="M12 6v14"/></svg></span>Continue Learning</h2>
+      <div class="cont-item">
+        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg></span>
+        <div class="cont-info"><div class="ct">IELTS Academic Writing Task 2</div><div class="cs">Next lesson: Body paragraph structure</div></div>
+        <span class="cont-bar bar-anim"><i style="width:45%"></i></span>
+        <span class="cont-pct">45%</span>
+        <a class="btn btn-cont" href="course-detail.html">Continue</a>
+      </div>
+      <div class="cont-item">
+        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.4"><path d="M8 30v-6a16 16 0 0 1 32 0v6"/><rect x="5" y="28" width="9" height="14" rx="4"/><rect x="34" y="28" width="9" height="14" rx="4"/></svg></span>
+        <div class="cont-info"><div class="ct">IELTS Listening Masterclass</div><div class="cs">Next lesson: Map labelling strategies</div></div>
+        <span class="cont-bar bar-anim"><i style="width:70%"></i></span>
+        <span class="cont-pct">70%</span>
+        <a class="btn btn-cont" href="course-detail.html">Continue</a>
+      </div>
+      <div class="cont-item">
+        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.2"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z"/><path d="M24 10 v32"/></svg></span>
+        <div class="cont-info"><div class="ct">IELTS Reading Strategies</div><div class="cs">Next lesson: Matching headings, worked example</div></div>
+        <span class="cont-bar bar-anim"><i style="width:25%"></i></span>
+        <span class="cont-pct">25%</span>
+        <a class="btn btn-cont" href="course-detail.html">Continue</a>
+      </div>
+    </div>
       <div class="card rv">
         <div class="skill-head">
           <h2><span class="h2-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V11M10 20V4M16 20v-7M3 20h18"/></svg></span>Skill Progress</h2>
@@ -356,30 +393,7 @@ th,td{padding:10px 12px}
       <div class="video-list"><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Reading Module</span><span class="video-sub" style="display:block;">Passages, question types and timing strategies</span></span><span class="video-count">18 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Speaking Module</span><span class="video-sub" style="display:block;">Part 1, Part 2 and Part 3 practice lessons</span></span><span class="video-count">16 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Writing Task 1</span><span class="video-sub" style="display:block;">Charts, processes, maps and letter structure</span></span><span class="video-count">12 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Writing Task 2</span><span class="video-sub" style="display:block;">Essay planning, structure and band 7 language</span></span><span class="video-count">14 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">IELTS Listening Complete Course</span><span class="video-sub" style="display:block;">All four sections with worked practice</span></span><span class="video-count">24 videos</span><span class="video-open">Watch</span></a><a class="video-row" href="courses.html"><span class="video-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="video-info"><span class="video-title">All 12 Tenses</span><span class="video-sub" style="display:block;">The complete tenses course from the Learn section</span></span><span class="video-count">12 videos</span><span class="video-open">Watch</span></a></div>
     </div>
 
-    <div class="card wide-row rv">
-      <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><path d="M12 6C10 4.3 7 3.7 4 4v14c3-.3 6 .3 8 2 2-1.7 5-2.3 8-2V4c-3-.3-6 .3-8 2z"/><path d="M12 6v14"/></svg></span>Continue Learning</h2>
-      <div class="cont-item">
-        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E2231A" stroke-width="2"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg></span>
-        <div class="cont-info"><div class="ct">IELTS Academic Writing Task 2</div><div class="cs">Next lesson: Body paragraph structure</div></div>
-        <span class="cont-bar bar-anim"><i style="width:45%"></i></span>
-        <span class="cont-pct">45%</span>
-        <a class="btn btn-cont" href="course-detail.html">Continue</a>
-      </div>
-      <div class="cont-item">
-        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.4"><path d="M8 30v-6a16 16 0 0 1 32 0v6"/><rect x="5" y="28" width="9" height="14" rx="4"/><rect x="34" y="28" width="9" height="14" rx="4"/></svg></span>
-        <div class="cont-info"><div class="ct">IELTS Listening Masterclass</div><div class="cs">Next lesson: Map labelling strategies</div></div>
-        <span class="cont-bar bar-anim"><i style="width:70%"></i></span>
-        <span class="cont-pct">70%</span>
-        <a class="btn btn-cont" href="course-detail.html">Continue</a>
-      </div>
-      <div class="cont-item">
-        <span class="cont-ic"><svg width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#E2231A" stroke-width="3.2"><path d="M24 10 C19 5 10 4 5 6 v32 c5 -2 14 -1 19 4 c5 -5 14 -6 19 -4 V6 c-5 -2 -14 -1 -19 4z"/><path d="M24 10 v32"/></svg></span>
-        <div class="cont-info"><div class="ct">IELTS Reading Strategies</div><div class="cs">Next lesson: Matching headings, worked example</div></div>
-        <span class="cont-bar bar-anim"><i style="width:25%"></i></span>
-        <span class="cont-pct">25%</span>
-        <a class="btn btn-cont" href="course-detail.html">Continue</a>
-      </div>
-    </div>
+    
 
     <div class="card wide-row rv">
       <h2><span class="h2-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></span>Recent Test Attempts</h2>

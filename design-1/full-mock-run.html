@@ -208,6 +208,21 @@ th,td{padding:10px 12px}
 .side-nav a{min-height:44px}
 }
 </style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND (slim buttons + card alignment, 760px and below only) ===== */
+@media (max-width:760px){
+.card{padding:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;font-size:15px;font-weight:600;line-height:1.25;min-height:0;border-radius:10px}
+.btn-continue{display:flex;align-items:center;justify-content:center;width:100%;padding:11px 22px;font-size:15.5px;line-height:1.25;min-height:0}
+.btn-resume{display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;font-size:14px;line-height:1.25;min-height:0}
+.menu-btn{width:40px;height:40px;min-height:0;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.delete-btn{width:40px;height:40px;min-width:40px;min-height:0;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.status-pill{padding:4px 10px;font-size:12px;line-height:1.25;display:inline-flex;align-items:center;border-radius:999px}
+.step-box{display:flex;align-items:center;gap:12px}
+.step-icon{flex:0 0 44px;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.attempt-row{align-items:center;gap:12px}
+}
+</style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 

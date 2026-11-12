@@ -221,6 +221,48 @@ th,td{padding:10px 12px}
 .side-nav a{min-height:44px}
 }
 </style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND (slim buttons + card alignment, 760px and below only) ===== */
+@media (max-width:760px){
+.card{padding:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;font-size:15px;font-weight:600;line-height:1.25;min-height:0;border-radius:10px}
+.btn-main,.btn-practice{padding:10px 20px;font-size:15px;line-height:1.25;min-height:0}
+.btn-test,.btn-review,.btn-new{display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;font-size:14.5px;line-height:1.25;min-height:0}
+.btn-new{padding:8px 16px}
+.fchip{min-height:0;padding:9px 14px;font-size:13.5px;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+.menu-btn{width:40px;height:40px;min-height:0;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.state-badge{padding:4px 10px;font-size:12px;line-height:1.25;display:inline-flex;align-items:center;border-radius:999px}
+.test-card{padding:16px;gap:10px}
+.test-top{gap:10px;align-items:center}
+.test-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.test-actions{display:flex;gap:10px}
+.test-actions .btn{flex:1 1 0}
+.stat-card{padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
+.stats-grid,.history-stats{gap:10px}
+}
+</style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND part 2 (measured fixes, 760px and below only) ===== */
+@media (max-width:760px){
+.test-card{padding:14px}
+.test-actions .btn{padding:9px 10px;font-size:13.5px}
+}
+</style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND part 3 (measured fixes, 760px and below only) ===== */
+@media (max-width:760px){
+.test-actions .btn{padding:9px 8px;font-size:12.5px}
+}
+@media (max-width:380px){
+.test-actions .btn{font-size:12px;letter-spacing:-.3px;padding:9px 6px}
+}
+</style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND part 4 (paired card actions fit, 760px and below only) ===== */
+@media (max-width:760px){
+.test-actions:has(> :nth-child(2)) .btn{font-size:12px;padding:9px 6px}
+}
+</style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 
@@ -265,12 +307,12 @@ th,td{padding:10px 12px}
       <div class="card mode-card rv"><h2>Mock Test</h2><p>Four sections, 40 questions and recordings played once. Build the exam habit of reading ahead, listening for key words and moving on quickly.</p><div class="mode-meta"><span>40 Questions</span><span>30 Minutes</span><span>Timed</span></div><a class="btn btn-main" href="listening-player.html">Start Mock Test</a></div>
       <div class="card mode-card rv"><h2>Practice Mode</h2><p>Work on one question type at a time without the pressure of a full test. Short sets help you fix a weak area before your next mock.</p><div class="mode-meta"><span>Question types</span><span>Untimed sets</span><span>Instant review</span></div><a class="btn btn-practice" href="practice.html">Open Practice Mode</a></div>
     </div>
-    <div class="card rv"><h2>Listening Tips</h2><div class="tips-grid"><div class="tip"><b>Read ahead</b><p>Use the preparation time to read the questions and predict the type of answer needed.</p></div><div class="tip"><b>Follow signposts</b><p>Words such as first, next and finally help you track where the recording has reached.</p></div><div class="tip"><b>Do not get stuck</b><p>If you miss an answer, keep listening. One missed answer should not cost you the next three.</p></div></div></div>
-    <div class="card rv" style="margin-top:24px;">
+    <div class="card rv">
       <div class="section-head"><div><h2>Listening Test Library</h2><p>Choose a test by track. Attempted tests keep your best score.</p></div>
       <div class="chips-row" style="margin:0;"><button class="fchip on" type="button" data-filter="all">All</button><button class="fchip" type="button" data-filter="academic">Academic</button><button class="fchip" type="button" data-filter="general">General Training</button></div></div>
       <div class="test-grid"><article class="test-card lift" data-track="academic"><div class="test-top"><h3>Listening Mock Test 01</h3><span class="track-badge">Academic</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge">Not attempted</span><div class="test-actions"><a class="btn btn-test" href="listening-player.html">Start Test</a></div></article><article class="test-card lift" data-track="academic"><div class="test-top"><h3>Listening Mock Test 02</h3><span class="track-badge">Academic</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge done">Attempted</span><div class="attempt-note">Attempted 1 time<br><b>Best Score: 6.5 / 9.0</b></div><div class="test-actions"><a class="btn btn-review" href="attempt-detail.html">Review Last Attempt</a><a class="btn btn-new" href="listening-player.html">Start New</a></div></article><article class="test-card lift" data-track="general"><div class="test-top"><h3>Listening Mock Test GT 01</h3><span class="track-badge gt">General Training</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge">Not attempted</span><div class="test-actions"><a class="btn btn-test" href="listening-player.html">Start Test</a></div></article><article class="test-card lift" data-track="academic"><div class="test-top"><h3>Listening Mock Test 03</h3><span class="track-badge">Academic</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge">Not attempted</span><div class="test-actions"><a class="btn btn-test" href="listening-player.html">Start Test</a></div></article><article class="test-card lift" data-track="general"><div class="test-top"><h3>Listening Mock Test GT 02</h3><span class="track-badge gt">General Training</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge">Not attempted</span><div class="test-actions"><a class="btn btn-test" href="listening-player.html">Start Test</a></div></article><article class="test-card lift" data-track="academic"><div class="test-top"><h3>Listening Mock Test 04</h3><span class="track-badge">Academic</span></div><div class="test-meta">40 Questions · 30 Minutes</div><span class="state-badge">Not attempted</span><div class="test-actions"><a class="btn btn-test" href="listening-player.html">Start Test</a></div></article></div>
     </div>
+    <div class="card rv" style="margin-top:24px;"><h2>Listening Tips</h2><div class="tips-grid"><div class="tip"><b>Read ahead</b><p>Use the preparation time to read the questions and predict the type of answer needed.</p></div><div class="tip"><b>Follow signposts</b><p>Words such as first, next and finally help you track where the recording has reached.</p></div><div class="tip"><b>Do not get stuck</b><p>If you miss an answer, keep listening. One missed answer should not cost you the next three.</p></div></div></div>
   </main>
 </div>
 

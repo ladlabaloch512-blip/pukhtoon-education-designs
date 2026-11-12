@@ -138,7 +138,19 @@ textarea{min-height:240px}
 .chart-box{overflow-x:auto}
 }
 </style>
-<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
+<style>
+/* ===== MOBILE REFINEMENT ROUND (slim buttons + card alignment, 760px and below only) ===== */
+@media (max-width:760px){
+.card{padding:16px}
+.btn-submit{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;font-size:15px;line-height:1.25;min-height:0}
+.btn-cancel,.btn-start-test{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;font-size:15px;line-height:1.25;min-height:0}
+.task-tab{padding:9px 16px;font-size:14.5px;line-height:1.25;min-height:0}
+.task-switch{min-width:0;padding:10px 14px;font-size:14.5px;line-height:1.25}
+.dialog-actions{display:flex;gap:10px;flex-wrap:wrap}
+.dialog-actions>*{flex:1 1 0}
+}
+</style>
+<style>.player-back{display:none}@media (max-width:760px){.player-back{display:inline-flex;align-items:center;gap:8px;min-height:40px;margin:12px 16px 0;font-weight:700;color:#C0272D;font-size:15px;text-decoration:none}}</style><style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 
 <div class="topbar">
@@ -173,6 +185,7 @@ textarea{min-height:240px}
   </div>
 </div>
 
+<a class="player-back" href="writing.html">← Back to Writing</a>
 <div class="stage">
   <div class="task-tabs">
     <button class="task-tab on" type="button" data-task="1">Task 1 <span class="mins">· 20 min</span></button>

@@ -122,6 +122,17 @@ img,video,iframe,svg{max-width:100%}
 .num-btn{flex:1 1 0;width:auto;height:40px;font-size:15px}
 }
 </style>
+<style>
+/* ===== MOBILE REFINEMENT ROUND (slim buttons + card alignment, 760px and below only) ===== */
+@media (max-width:760px){
+.card{padding:16px}
+.chip{min-height:0;padding:9px 14px;font-size:13.5px;line-height:1.2;display:inline-flex;align-items:center;justify-content:center}
+.zoom-btns button{min-height:0;height:40px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center}
+.check-btn{min-height:0;height:40px;padding:0 18px;font-size:15px;display:inline-flex;align-items:center;justify-content:center}
+.num-btn{height:40px;font-size:14.5px}
+.back-link,.back-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:6px 2px;font-weight:700}
+}
+</style>
 <style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}@media (max-width:860px){input,select,textarea{font-size:16px}}</style></head>
 <body>
 <div class="topbar">
