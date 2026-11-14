@@ -525,6 +525,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .sidebar:hover::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22)}
 .sidebar::-webkit-scrollbar-thumb:active{background:rgba(255,255,255,.38)}
 </style>
+<style>
+/* main scrollbar: thin and subtle, matches sidebar treatment */
+html{scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.30) transparent}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(17,17,17,.30);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(17,17,17,.48)}
+::-webkit-scrollbar-thumb:active{background:rgba(17,17,17,.62)}
+::-webkit-scrollbar-corner{background:transparent}
+</style>
 </head>
 <body>
 
