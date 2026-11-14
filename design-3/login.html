@@ -722,9 +722,93 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .login-label{display:block;font-size:13.5px;font-weight:600;color:#2b3138;margin:0 0 6px;text-align:left}
 }
 </style>
+<style>
+/* ===== LOGIN FIT + SWITCH ANIMATION ROUND ===== */
+/* The whole login page fits the viewport height on desktop: no scrolling, nothing hidden */
+@media (min-width:861px){
+ .login-wrap{height:100vh;height:100dvh}
+}
+@media (min-width:861px) and (max-height:940px){
+ .login-left{padding:38px 40px}
+ .login-left .brandplate{margin-bottom:24px}
+ .login-left .brandplate img{width:238px}
+ .login-left h1{font-size:35px}
+ .login-feats{margin-top:24px}
+ .login-feats li{padding:6px 0}
+ .login-right{padding:20px 40px}
+ .auth-tabs{margin-bottom:24px}
+ .login-form h2{font-size:30px}
+ .login-form .sub{margin-bottom:20px}
+ .field{margin-bottom:15px}
+ .field input{padding:13px 16px}
+ .form-row{margin-bottom:18px}
+ .or-row{margin:19px 0 15px}
+ .social-row{margin-bottom:20px}
+}
+@media (min-width:861px) and (max-height:800px){
+ .login-left{padding:26px 38px}
+ .login-left .brandplate{padding:10px;margin-bottom:18px}
+ .login-left .brandplate img{width:205px}
+ .login-left h1{font-size:31px}
+ .login-left p{font-size:17px}
+ .login-feats{margin-top:18px}
+ .login-feats li{padding:5px 0;font-size:15.5px}
+ .login-right{padding:14px 38px}
+ .lang-chip{padding:7px 13px}
+ .auth-tabs{margin-bottom:18px}
+ .auth-tabs a{font-size:18px;padding-bottom:10px}
+ .login-form h2{font-size:27px}
+ .login-form .sub{font-size:15.5px;margin-bottom:15px}
+ .field{margin-bottom:12px}
+ .field input{padding:12px 15px}
+ .form-row{margin:2px 0 15px;font-size:14.5px}
+ .login-form .btn-block{padding-top:12px!important;padding-bottom:12px!important;font-size:16px!important}
+ #google-btn{margin-top:14px!important}
+ .or-row{margin:15px 0 12px}
+ .social-btn{width:54px;height:47px}
+ .social-row{margin-bottom:16px}
+ .switch-line{font-size:15px}
+}
+@media (min-width:861px) and (max-height:730px){
+ .login-left{padding:18px 36px}
+ .login-left .brandplate{padding:8px;margin-bottom:13px}
+ .login-left .brandplate img{width:172px}
+ .login-left h1{font-size:27px;margin-bottom:10px}
+ .login-left p{font-size:16px}
+ .login-feats{margin-top:13px}
+ .login-feats li{padding:4px 0;font-size:14.5px}
+ .login-right{padding:10px 36px}
+ .auth-tabs{margin-bottom:13px}
+ .auth-tabs a{padding-bottom:8px}
+ .login-form h2{font-size:24px;margin-bottom:6px}
+ .login-form .sub{font-size:15px;margin-bottom:11px}
+ .field{margin-bottom:9px}
+ .field input{padding:10px 14px;font-size:15px}
+ .form-row{margin:0 0 11px}
+ .login-form .btn-block{padding-top:11px!important;padding-bottom:11px!important}
+ #google-btn{margin-top:11px!important;padding-top:11px!important;padding-bottom:11px!important}
+ .or-row{margin:11px 0 9px;font-size:14px}
+ .social-btn{width:50px;height:42px;font-size:19px}
+ .social-row{margin-bottom:11px}
+ .switch-line{font-size:14.5px}
+}
+/* Stacked layout: brand block compacted so the form starts within the first screenful */
+@media (max-width:860px){
+ .login-left{padding:26px 24px}
+ .login-feats{margin-top:20px}
+ .login-feats li{padding:5px 0}
+}
+/* Form switch animations: slide in plus a staggered fade-and-rise (never reduced-motion gated) */
+@keyframes authSlideR{from{opacity:0;transform:translateX(56px)}to{opacity:1;transform:translateX(0)}}
+@keyframes authSlideL{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:translateX(0)}}
+@keyframes authRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.auth-slide-r{animation:authSlideR .45s ease both}
+.auth-slide-l{animation:authSlideL .45s ease both}
+.auth-rise{animation:authRise .4s ease both}
+</style>
 </head>
 <body>
-<div class="login-wrap"><div class="login-left anim"><div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div><h1>Welcome to<br>Pukhtoon Education</h1><p>Empowering communities through<br>knowledge and heritage.</p><ul class="login-feats"><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Timed IELTS mock tests with instant band scores</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Video courses you can watch anytime</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Full results history and progress tracking</li></ul></div><div class="login-right"><div class="lang-row">Language <span class="lang-chip">English / Pashto &#9662;</span><a class="lang-x" href="index.html" aria-label="Close">&times;</a></div><div class="login-form anim" style="animation-delay:.1s"><div class="auth-tabs"><a href="login.html" class="on" id="tab-in">Sign In</a><a href="login.html#signup" id="tab-up">Sign Up</a></div><h2 id="auth-title">Welcome back<br>Login to your account</h2><p class="sub" id="auth-sub">Enter your credentials to continue</p><form id="form-in" action="dashboard.html"><div class="field"><label class="login-label" for="li-user">Email or Username</label><input id="li-user" type="text" placeholder="Email or Username" required></div><div class="field"><label class="login-label" for="li-pass">Password</label><input id="li-pass" type="password" placeholder="Password" required></div><div class="form-row"><label><input type="checkbox"> Remember me</label><a href="login.html">Forgot Password?</a></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Sign In</button></form><form id="form-up" action="onboarding.html" style="display:none"><div class="field"><label class="login-label" for="su-name">Full Name</label><input id="su-name" type="text" placeholder="Full Name" required></div><div class="field"><label class="login-label" for="su-email">Email Address</label><input id="su-email" type="email" placeholder="Email Address" required></div><div class="field"><label class="login-label" for="su-pass">Password</label><input id="su-pass" type="password" placeholder="Create a password" required></div><div class="field"><label class="login-label" for="su-pass2">Confirm Password</label><input id="su-pass2" type="password" placeholder="Repeat your password" required></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Create Free Account</button></form><a href="dashboard.html" id="google-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #c9ced6;border-radius:10px;padding:13px;font-size:16px;font-weight:600;margin-top:18px;background:#fff;color:#14181d"><span style="color:#4285F4;font-weight:800;font-size:19px">G</span> Continue with Google</a><div class="or-row">or continue with</div><div class="social-row"><a class="social-btn" href="onboarding.html" style="color:#4285F4">G</a><button class="social-btn" type="button" style="color:#1877f2">f</button><button class="social-btn" type="button" style="color:#14181d">&#63743;</button></div><p class="switch-line" id="switch-line">Don't have an account? <a href="login.html#signup" id="switch-link">Sign Up</a></p></div></div></div>
+<div class="login-wrap"><div class="login-left anim"><div class="brandplate"><img src="logo.jpg" alt="Pukhtoon Education logo"></div><h1>Welcome to<br>Pukhtoon Education</h1><p>Empowering communities through<br>knowledge and heritage.</p><ul class="login-feats"><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Timed IELTS mock tests with instant band scores</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Video courses you can watch anytime</li><li><span class="ck"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Full results history and progress tracking</li></ul></div><div class="login-right"><div class="lang-row">Language <span class="lang-chip">English / Pashto &#9662;</span><!-- DEMO ONLY: this close button bypasses login for the demo. Remove it in the production build. --><a class="lang-x" href="dashboard.html" onclick="try{localStorage.setItem('pe_auth','1')}catch(e){}" aria-label="Close">&times;</a></div><div class="login-form anim" style="animation-delay:.1s"><div class="auth-tabs"><a href="login.html" class="on" id="tab-in">Sign In</a><a href="login.html#signup" id="tab-up">Sign Up</a></div><h2 id="auth-title">Welcome back<br>Login to your account</h2><p class="sub" id="auth-sub">Enter your credentials to continue</p><form id="form-in" action="dashboard.html"><div class="field"><label class="login-label" for="li-user">Email or Username</label><input id="li-user" type="text" placeholder="Email or Username" required></div><div class="field"><label class="login-label" for="li-pass">Password</label><input id="li-pass" type="password" placeholder="Password" required></div><div class="form-row"><label><input type="checkbox"> Remember me</label><a href="login.html">Forgot Password?</a></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Sign In</button></form><form id="form-up" action="onboarding.html" style="display:none"><div class="field"><label class="login-label" for="su-name">Full Name</label><input id="su-name" type="text" placeholder="Full Name" required></div><div class="field"><label class="login-label" for="su-email">Email Address</label><input id="su-email" type="email" placeholder="Email Address" required></div><div class="field"><label class="login-label" for="su-pass">Password</label><input id="su-pass" type="password" placeholder="Create a password" required></div><div class="field"><label class="login-label" for="su-pass2">Confirm Password</label><input id="su-pass2" type="password" placeholder="Repeat your password" required></div><button class="btn btn-red btn-block" type="submit" style="padding:15px;font-size:17px">Create Free Account</button></form><a href="dashboard.html" id="google-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #c9ced6;border-radius:10px;padding:13px;font-size:16px;font-weight:600;margin-top:18px;background:#fff;color:#14181d"><span style="color:#4285F4;font-weight:800;font-size:19px">G</span> Continue with Google</a><div class="or-row">or continue with</div><div class="social-row"><a class="social-btn" href="onboarding.html" style="color:#4285F4">G</a><button class="social-btn" type="button" style="color:#1877f2">f</button><button class="social-btn" type="button" style="color:#14181d">&#63743;</button></div><p class="switch-line" id="switch-line">Don't have an account? <a href="login.html#signup" id="switch-link">Sign Up</a></p></div></div></div>
 <script>
 (function(){
   var tabIn=document.getElementById('tab-in'),tabUp=document.getElementById('tab-up'),
@@ -733,8 +817,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       sw=document.getElementById('switch-line');
   function setAuth(){try{localStorage.setItem('pe_auth','1');}catch(e){}}
   function bindSwitch(){var l=document.getElementById('switch-link');if(l){l.addEventListener('click',function(e){e.preventDefault();if(fUp.style.display==='none'){showUp();try{history.replaceState(null,'','#signup');}catch(err){}}else{showIn();try{history.replaceState(null,'','login.html');}catch(err){}}});}}
-  function showUp(){fIn.style.display='none';fUp.style.display='';tabIn.classList.remove('on');tabUp.classList.add('on');title.textContent='Create your account';sub.textContent='Sign up free and take your first mock test today';sw.innerHTML='Already have an account? <a href="login.html" id="switch-link">Sign In</a>';bindSwitch();}
-  function showIn(){fUp.style.display='none';fIn.style.display='';tabUp.classList.remove('on');tabIn.classList.add('on');title.innerHTML='Welcome back<br>Login to your account';sub.textContent='Enter your credentials to continue';sw.innerHTML='Don\'t have an account? <a href="login.html#signup" id="switch-link">Sign Up</a>';bindSwitch();}
+  function clearAnim(){[fIn,fUp].forEach(function(f){f.classList.remove('auth-slide-r');f.classList.remove('auth-slide-l');Array.prototype.forEach.call(f.children,function(el){el.classList.remove('auth-rise');el.style.animationDelay='';});});[title,sub].forEach(function(el){el.classList.remove('auth-rise');el.style.animationDelay='';});}
+  function animateIn(form,dir){clearAnim();void form.offsetWidth;form.classList.add(dir==='r'?'auth-slide-r':'auth-slide-l');var parts=[title,sub].concat(Array.prototype.slice.call(form.children));parts.forEach(function(el,i){el.style.animationDelay=(i*45)+'ms';el.classList.add('auth-rise');});}
+  function showUp(){fIn.style.display='none';fUp.style.display='';tabIn.classList.remove('on');tabUp.classList.add('on');title.textContent='Create your account';sub.textContent='Sign up free and take your first mock test today';sw.innerHTML='Already have an account? <a href="login.html" id="switch-link">Sign In</a>';bindSwitch();animateIn(fUp,'r');}
+  function showIn(){fUp.style.display='none';fIn.style.display='';tabUp.classList.remove('on');tabIn.classList.add('on');title.innerHTML='Welcome back<br>Login to your account';sub.textContent='Enter your credentials to continue';sw.innerHTML='Don\'t have an account? <a href="login.html#signup" id="switch-link">Sign Up</a>';bindSwitch();animateIn(fIn,'l');}
   tabIn.addEventListener('click',function(e){e.preventDefault();showIn();});
   tabUp.addEventListener('click',function(e){e.preventDefault();showUp();});
   fIn.addEventListener('submit',function(e){e.preventDefault();setAuth();window.location.href='dashboard.html';});
