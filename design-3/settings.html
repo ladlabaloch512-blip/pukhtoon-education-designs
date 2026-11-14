@@ -758,7 +758,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .btn-wa:hover{background:#178a46;color:#fff}
 .sent-note{display:none;margin-top:10px;font-size:13.5px;color:#177245;font-weight:600}
 .sent-note.show{display:block}
-</style></head>
+</style><style>
+/* sidebar scrollbar: invisible at rest, subtle on hover (app-style) */
+.sidebar{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:transparent;border-radius:3px}
+.sidebar:hover::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22)}
+.sidebar::-webkit-scrollbar-thumb:active{background:rgba(255,255,255,.38)}
+</style>
+</head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
 <div class="brandplate"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div>

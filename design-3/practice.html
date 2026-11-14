@@ -561,6 +561,8 @@ html.js .bandx.in .bandx-bar i{transform:scaleX(1)}
 .prac-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:0 1px 3px rgba(16,24,40,.05);display:flex;flex-direction:column;height:100%}
 .prac-card h3{margin:0;font-size:18.5px}
 .prac-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.prac-top h3{flex:1;min-width:0}
+.prac-top .badge{flex-shrink:0;white-space:nowrap}
 .prac-meta{color:var(--mut);font-size:14px;margin-bottom:12px}
 .prac-card .progress{margin-bottom:14px}
 .prac-best{font-size:14px;color:#2b3138;margin-bottom:14px}
@@ -739,7 +741,16 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 </style>
 <style>/* sidebar logo size (improvement round) */
-.sidebar .brandplate{padding:10px}.sidebar .brandplate img{width:118px}</style></head>
+.sidebar .brandplate{padding:10px}.sidebar .brandplate img{width:118px}</style><style>
+/* sidebar scrollbar: invisible at rest, subtle on hover (app-style) */
+.sidebar{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:transparent;border-radius:3px}
+.sidebar:hover::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22)}
+.sidebar::-webkit-scrollbar-thumb:active{background:rgba(255,255,255,.38)}
+</style>
+</head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
 <div class="brandplate"><a href="index.html"><img src="logo.jpg" alt="Pukhtoon Education logo"></a></div>
