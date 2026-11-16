@@ -549,6 +549,28 @@ a.view{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px}
 .mod-card .btn{min-height:44px}
 }
 </style>
+<style id="readingfix">
+/* Reading player fixes (2026-11-17): on wide screens the player fills the viewport and the
+   passage and questions panes scroll independently; below 861px the panes stack and the
+   page scrolls as before. Also the passage highlighter styles. */
+@media (min-width:861px){
+ body{overflow:hidden}
+ .tp-shell{height:100vh;height:100dvh;min-height:0}
+ .tp-main{height:100%;min-height:0;overflow:hidden}
+ .tp-body{flex:1;min-height:0;align-items:stretch}
+ .tp-body .passage-card{max-height:none;height:100%;overflow-y:auto}
+ .tp-right{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden}
+ .tp-body .passage-card,.tp-right{scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.30) transparent}
+ .tp-body .passage-card::-webkit-scrollbar,.tp-right::-webkit-scrollbar{width:6px}
+ .tp-body .passage-card::-webkit-scrollbar-track,.tp-right::-webkit-scrollbar-track{background:transparent}
+ .tp-body .passage-card::-webkit-scrollbar-thumb,.tp-right::-webkit-scrollbar-thumb{background:rgba(17,17,17,.30);border-radius:3px}
+ .tp-body .passage-card::-webkit-scrollbar-thumb:hover,.tp-right::-webkit-scrollbar-thumb:hover{background:rgba(17,17,17,.48)}
+}
+mark.hl{background:#ffef8a;color:#23282f;border-radius:2px;padding:0 1px;cursor:pointer}
+.hl-btn{position:fixed;z-index:400;display:none;background:#15161d;color:#fff;border:0;border-radius:9px;padding:9px 16px;font-family:inherit;font-size:13.5px;font-weight:700;letter-spacing:.2px;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.30)}
+.hl-btn.show{display:block}
+.hl-btn:hover{background:#23242c}
+</style>
 </head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="tp-shell">
@@ -611,4 +633,123 @@ a.view{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px}
   });
   refresh();
 })();</script>
+<script>
+/* Passage highlighter (2026-11-17): select passage text and click Highlight, or right-click a
+   selection inside the passage for the same option. Click an existing highlight to remove it.
+   Highlights live only for this session. */
+(function(){
+  var pane = document.getElementById('passageText') || document.querySelector('.passage-card');
+  if(!pane) return;
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'hl-btn';
+  btn.textContent = 'Highlight';
+  btn.setAttribute('aria-label', 'Highlight selected text');
+  document.body.appendChild(btn);
+  var savedRange = null;
+
+  function hideBtn(){ btn.classList.remove('show'); }
+  function currentRange(){
+    var sel = window.getSelection();
+    if(!sel || sel.rangeCount === 0 || sel.isCollapsed) return null;
+    var r = sel.getRangeAt(0);
+    if(!pane.contains(r.commonAncestorContainer)) return null;
+    return r;
+  }
+  function placeAbove(rect){
+    btn.classList.add('show');
+    var bw = btn.offsetWidth, bh = btn.offsetHeight;
+    var left = Math.min(Math.max(rect.left, 8), window.innerWidth - bw - 8);
+    var top = rect.top - bh - 8;
+    if(top < 8) top = rect.bottom + 8;
+    btn.style.left = left + 'px';
+    btn.style.top = top + 'px';
+  }
+  function showForSelection(){
+    var r = currentRange();
+    if(!r){ hideBtn(); return; }
+    savedRange = r.cloneRange();
+    var rects = r.getClientRects();
+    if(!rects.length){ hideBtn(); return; }
+    placeAbove(rects[rects.length - 1]);
+  }
+  function showAtPoint(x, y){
+    var r = currentRange();
+    if(!r){ hideBtn(); return; }
+    savedRange = r.cloneRange();
+    btn.classList.add('show');
+    var bw = btn.offsetWidth, bh = btn.offsetHeight;
+    var left = Math.min(Math.max(x - Math.round(bw / 2), 8), window.innerWidth - bw - 8);
+    var top = y - bh - 10;
+    if(top < 8) top = y + 14;
+    btn.style.left = left + 'px';
+    btn.style.top = top + 'px';
+  }
+  function wrapTextNodes(range){
+    var walker = document.createTreeWalker(pane, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if(!n.nodeValue || !n.nodeValue.replace(/\s/g, '')) return NodeFilter.FILTER_REJECT;
+        return range.intersectsNode(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [], n;
+    while((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      var nr = document.createRange();
+      nr.selectNodeContents(node);
+      if(node === range.startContainer) nr.setStart(node, range.startOffset);
+      if(node === range.endContainer) nr.setEnd(node, range.endOffset);
+      if(nr.collapsed) return;
+      var m = document.createElement('mark');
+      m.className = 'hl';
+      try { nr.surroundContents(m); } catch(e) {}
+    });
+  }
+  function applyHighlight(){
+    var r = savedRange || currentRange();
+    if(!r){ hideBtn(); return; }
+    var mark = document.createElement('mark');
+    mark.className = 'hl';
+    try { r.surroundContents(mark); }
+    catch(e) { wrapTextNodes(r); }
+    var sel = window.getSelection();
+    if(sel) sel.removeAllRanges();
+    savedRange = null;
+    hideBtn();
+  }
+  btn.addEventListener('mousedown', function(e){ e.preventDefault(); e.stopPropagation(); });
+  btn.addEventListener('click', function(e){ e.preventDefault(); applyHighlight(); });
+  document.addEventListener('mouseup', function(e){ if(e.target !== btn) setTimeout(showForSelection, 0); });
+  document.addEventListener('keyup', function(e){ if(e.shiftKey) showForSelection(); });
+  var selTimer = null;
+  document.addEventListener('selectionchange', function(){
+    clearTimeout(selTimer);
+    selTimer = setTimeout(function(){
+      var sel = window.getSelection();
+      if(!sel || sel.isCollapsed) hideBtn(); else showForSelection();
+    }, 60);
+  });
+  pane.addEventListener('contextmenu', function(e){
+    var sel = window.getSelection();
+    if(sel && !sel.isCollapsed && pane.contains(sel.anchorNode)){
+      e.preventDefault();
+      showAtPoint(e.clientX, e.clientY);
+    }
+  });
+  pane.addEventListener('click', function(e){
+    var t = e.target;
+    var m = (t && t.closest) ? t.closest('mark.hl') : null;
+    if(m && pane.contains(m)){
+      var parent = m.parentNode;
+      while(m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+      hideBtn();
+    }
+  });
+  document.addEventListener('scroll', hideBtn, true);
+  window.addEventListener('resize', hideBtn);
+  document.addEventListener('mousedown', function(e){ if(e.target !== btn) hideBtn(); });
+})();
+</script>
 </body></html>
