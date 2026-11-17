@@ -42,8 +42,8 @@ img{max-width:100%}
 .topbar .spacer{flex:1}
 .searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
 .searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
-.bell{position:relative;color:#3c434c;display:flex}
-.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.bell{position:relative;color:#3c434c;display:flex;padding:10px;margin:-10px}
+.bell .dot{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
 .userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
 h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
 .page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
@@ -588,16 +588,16 @@ el.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s; }, 1000);
   if(nextB){ nextB.addEventListener('click', function(){ if(cur < 40){ cur++; } paint(); }); }
   if(prevB){ prevB.addEventListener('click', function(){ if(cur > 1){ cur--; } paint(); }); }
   var markB = document.getElementById('markBtn');
-  if(markB){ markB.addEventListener('click', function(){ btns[cur-1].classList.add('marked'); btns[cur-1].classList.remove('done'); }); }
+  if(markB){ markB.addEventListener('click', function(){ var b = btns[cur-1]; if(!b){ return; } if(b.classList.contains('marked')){ b.classList.remove('marked'); } else { b.classList.add('marked'); b.classList.remove('done'); } }); }
   var clearB = document.getElementById('clearBtn');
   if(clearB){ clearB.addEventListener('click', function(){ document.querySelectorAll('.q-card input').forEach(function(i){ i.checked = false; if(i.type === 'text'){ i.value = ''; } }); btns[cur-1].classList.remove('done'); }); }
   paint();
 
   var DUR = 204, pos = 0, playing = false, tick = null;
-  var fill = document.getElementById('aprogFill'), cur = document.getElementById('acur');
+  var fill = document.getElementById('aprogFill'), acurEl = document.getElementById('acur');
   var ip = document.getElementById('icoPlay'), ipa = document.getElementById('icoPause');
   function fmt(s){ var m = Math.floor(s/60), ss = s%60; return m + ':' + (ss<10?'0':'') + ss; }
-  function draw(){ fill.style.width = (pos / DUR * 100) + '%'; cur.textContent = fmt(pos); }
+  function draw(){ fill.style.width = (pos / DUR * 100) + '%'; acurEl.textContent = fmt(pos); }
   document.getElementById('playBtn').addEventListener('click', function(){
     playing = !playing;
     ip.style.display = playing ? 'none' : '';
