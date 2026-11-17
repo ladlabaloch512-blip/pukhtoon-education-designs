@@ -42,8 +42,8 @@ img{max-width:100%}
 .topbar .spacer{flex:1}
 .searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
 .searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
-.bell{position:relative;color:#3c434c;display:flex}
-.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.bell{position:relative;color:#3c434c;display:flex;padding:10px;margin:-10px}
+.bell .dot{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
 .userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
 h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
 .page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
@@ -570,6 +570,15 @@ mark.hl{background:#ffef8a;color:#23282f;border-radius:2px;padding:0 1px;cursor:
 .hl-btn{position:fixed;z-index:400;display:none;background:#15161d;color:#fff;border:0;border-radius:9px;padding:9px 16px;font-family:inherit;font-size:13.5px;font-weight:700;letter-spacing:.2px;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.30)}
 .hl-btn.show{display:block}
 .hl-btn:hover{background:#23242c}
+</style>
+<style id="auditfix">
+/* Audit fix round (2026-11-17): on small screens the text-size row puts its label on its own line
+   and the two zoom buttons side by side at equal width under it. */
+@media (max-width:640px){
+ .zoom-row{gap:8px}
+ .zoom-row>span{flex:1 1 100%}
+ .zoom-row .zbtn{flex:1 1 0;justify-content:center}
+}
 </style>
 </head>
 <body>

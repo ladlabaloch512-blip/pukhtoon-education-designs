@@ -42,8 +42,8 @@ img{max-width:100%}
 .topbar .spacer{flex:1}
 .searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
 .searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
-.bell{position:relative;color:#3c434c;display:flex}
-.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.bell{position:relative;color:#3c434c;display:flex;padding:10px;margin:-10px}
+.bell .dot{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
 .userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
 h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
 .page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
@@ -557,6 +557,17 @@ mark.hl{background:#ffef8a;color:#23282f;border-radius:2px;padding:0 1px;cursor:
 .hl-btn.show{display:block}
 .hl-btn:hover{background:#23242c}
 </style>
+<style id="auditfix">
+/* Audit fix round (2026-11-17): text-size control for the reading passage, same control as the practice player. */
+.zoom-row{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.zbtn{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 15px;font-size:14.5px;font-weight:600;cursor:pointer}
+.zbtn:hover{background:#f5f6f8}
+@media (max-width:640px){
+ .zoom-row{gap:8px}
+ .zoom-row>span{flex:1 1 100%}
+ .zoom-row .zbtn{flex:1 1 0;justify-content:center;min-height:40px}
+}
+</style>
 </head>
 <body>
 
@@ -573,7 +584,7 @@ mark.hl{background:#ffef8a;color:#23282f;border-radius:2px;padding:0 1px;cursor:
 <div class="mobilebar" style="padding:14px 16px 0"><label class="burger" for="navtoggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></label><span class="mplogo"><img src="logo.jpg" alt="Pukhtoon Education logo"></span>
 <a class="btn btn-red" href="mock-tests.html" style="padding:9px 16px">All Tests</a></div>
 <div class="tp-body">
-<article class="passage-card anim"><h2>Section 1: The Evolution of Modern Education</h2>
+<article class="passage-card anim"><h2>Section 1: The Evolution of Modern Education</h2><div class="zoom-row"><span style="font-weight:700;font-size:14.5px">Text size:</span><button class="zbtn" type="button" id="zoomOut">A- Zoom Out</button><button class="zbtn" type="button" id="zoomIn">A+ Zoom In</button></div>
 <p>For most of human history, education took place within the family and the local community. Children learned practical skills by watching their elders, and knowledge was passed from one generation to the next through spoken stories, songs and everyday work. Formal schools existed only in a few places, and they served a small number of students, usually from wealthy families.</p>
 <p>The arrival of printed books began to change this pattern. Reading material became cheaper and more widely available, so learning was no longer limited to those who could employ a private teacher. In the nineteenth and twentieth centuries, governments in many countries introduced free public schooling, and education slowly became a right for every child rather than a privilege for a few.</p>
 <p>The most rapid change, however, has come with digital technology. Affordable internet access and low cost mobile devices have carried lessons far beyond the classroom wall. A student in a small village can now attend the same lecture as a student in a large city, practise questions online, and receive a score within seconds. According to many teachers, this instant feedback is the primary driver of the digital transition, because it helps learners correct their mistakes while the lesson is still fresh in their minds.</p>
@@ -781,4 +792,13 @@ mark.hl{background:#ffef8a;color:#23282f;border-radius:2px;padding:0 1px;cursor:
   document.addEventListener('mousedown', function(e){ if(e.target !== btn) hideBtn(); });
 })();
 </script>
+<script>(function(){
+  var paras = Array.prototype.slice.call(document.querySelectorAll('.passage-card p'));
+  var zi = document.getElementById('zoomIn'), zo = document.getElementById('zoomOut');
+  if(!paras.length || !zi || !zo){ return; }
+  var size = parseFloat(window.getComputedStyle(paras[0]).fontSize) || 16.5;
+  function applyZoom(){ paras.forEach(function(p){ p.style.fontSize = size + 'px'; }); }
+  zi.addEventListener('click', function(){ size = Math.min(24, size + 1.5); applyZoom(); });
+  zo.addEventListener('click', function(){ size = Math.max(13, size - 1.5); applyZoom(); });
+})();</script>
 </body></html>

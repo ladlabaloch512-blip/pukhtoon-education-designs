@@ -42,8 +42,8 @@ img{max-width:100%}
 .topbar .spacer{flex:1}
 .searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
 .searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
-.bell{position:relative;color:#3c434c;display:flex}
-.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.bell{position:relative;color:#3c434c;display:flex;padding:10px;margin:-10px}
+.bell .dot{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
 .userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
 h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
 .page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
@@ -335,7 +335,7 @@ html.js .faq details.open .faq-body{padding-bottom:18px}
 .act-row .grow{flex:1;min-width:0}
 .act-row .grow b{display:block;font-size:16px}
 .act-row .grow span{color:var(--mut);font-size:13.5px}
-.band-chip{background:var(--red-soft);color:var(--red);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
+.band-chip{background:var(--red-soft);color:var(--red-d);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
 .act-row .view{color:var(--red);font-weight:700;flex:0 0 auto}
 .tip{display:flex;gap:12px;padding:10px 0;border-top:1px solid #eef0f2;font-size:15px;line-height:1.55;color:#2b3138}
 .tip:first-of-type{border-top:0}
@@ -820,6 +820,19 @@ a.view{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px}
 .pm-empty{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:15.5px;color:#2b3138}
 @media (max-width:860px){.prac-mod-grid{grid-template-columns:1fr}.pm-head h1{font-size:24px}}
 @media (max-width:640px){.prac-mod-card{padding:18px}.type-card{padding:16px 18px}.set-row{flex-wrap:wrap}.set-row .btn{min-height:44px}.pm-tab{min-height:44px}}
+</style>
+<style id="auditfix">
+/* Audit fix round (2026-11-17): on small screens the module header puts the icon, title and Band chip
+   on the first row and the counts line on its own full-width row; set names take the full row width. */
+@media (max-width:640px){
+ .pm-head{gap:12px}
+ .pm-head>div{display:contents}
+ .pm-head .ic{order:0}
+ .pm-head h1{order:1;flex:1 1 auto;min-width:0}
+ .pm-head .band-chip{order:2}
+ .pm-head .pm-sub{order:3;flex:0 0 100%}
+ .set-row .set-grow{flex:1 1 100%}
+}
 </style>
 </head>
 <body>

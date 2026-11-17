@@ -42,8 +42,8 @@ img{max-width:100%}
 .topbar .spacer{flex:1}
 .searchbox{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;width:340px;color:#9aa3ad}
 .searchbox input{border:0;outline:0;font-size:15px;width:100%;color:var(--ink);background:transparent}
-.bell{position:relative;color:#3c434c;display:flex}
-.bell .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.bell{position:relative;color:#3c434c;display:flex;padding:10px;margin:-10px}
+.bell .dot{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
 .userchip{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
 h1.page-title{font-size:34px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
 .page-sub{color:#3f4750;font-size:17px;margin:0 0 22px}
@@ -335,7 +335,7 @@ html.js .faq details.open .faq-body{padding-bottom:18px}
 .act-row .grow{flex:1;min-width:0}
 .act-row .grow b{display:block;font-size:16px}
 .act-row .grow span{color:var(--mut);font-size:13.5px}
-.band-chip{background:var(--red-soft);color:var(--red);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
+.band-chip{background:var(--red-soft);color:var(--red-d);font-weight:800;border-radius:8px;padding:5px 12px;font-size:15px;flex:0 0 auto}
 .act-row .view{color:var(--red);font-weight:700;flex:0 0 auto}
 .tip{display:flex;gap:12px;padding:10px 0;border-top:1px solid #eef0f2;font-size:15px;line-height:1.55;color:#2b3138}
 .tip:first-of-type{border-top:0}
@@ -808,6 +808,15 @@ table.attempts th:nth-child(8){width:14%}
 table.attempts td:nth-child(2){white-space:nowrap}
 }
 </style>
+<style id="auditfix">
+/* Audit fix round (2026-11-17): delete-attempt confirm dialog, same dialog style as the test players. */
+.dlg-wrap{position:fixed;inset:0;background:rgba(10,10,14,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.dlg-wrap.open{display:flex}
+.dlg{background:#fff;border-radius:16px;max-width:470px;width:100%;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.dlg h3{margin:0 0 10px;font-size:22px}
+.dlg p{font-size:15.5px;line-height:1.6;color:#2b3138;margin:0 0 20px}
+.dlg-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+</style>
 </head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
@@ -929,5 +938,33 @@ table.attempts td:nth-child(2){white-space:nowrap}
       window.location.href = 'courses.html?q=' + encodeURIComponent(raw);
     });
   }
+})();</script>
+<div class="dlg-wrap" id="delDlg"><div class="dlg"><h3>Delete this attempt?</h3><p>This cannot be undone.</p><div class="dlg-actions"><button class="btn btn-outline" type="button" id="delCancel">Cancel</button><button class="btn btn-red" type="button" id="delConfirm">Delete</button></div></div></div>
+<script>(function(){
+  var dlg = document.getElementById('delDlg');
+  if(!dlg){ return; }
+  var target = null;
+  function closeDlg(){ dlg.classList.remove('open'); target = null; }
+  function syncStat(){
+    var n = document.querySelectorAll('table.attempts tr[data-module]:not(.hide)').length;
+    document.querySelectorAll('.stat').forEach(function(st){
+      var lab = st.querySelector('span'), b = st.querySelector('b');
+      if(lab && b && lab.textContent.trim() === 'Total Attempts'){
+        b.textContent = n;
+        b.setAttribute('data-count', n);
+      }
+    });
+  }
+  document.querySelectorAll('.del-btn').forEach(function(b){
+    b.addEventListener('click', function(){ target = b.closest('tr'); dlg.classList.add('open'); });
+  });
+  document.getElementById('delCancel').addEventListener('click', closeDlg);
+  dlg.addEventListener('click', function(e){ if(e.target === dlg){ closeDlg(); } });
+  document.getElementById('delConfirm').addEventListener('click', function(){
+    if(target){ target.remove(); }
+    closeDlg();
+    syncStat();
+    setTimeout(syncStat, 1400);
+  });
 })();</script>
 </body></html>
