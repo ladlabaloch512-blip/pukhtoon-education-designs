@@ -808,6 +808,16 @@ a.view{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px}
 .feat-card{min-width:0}
 @media (max-width:1180px){.feat-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 </style>
+<style id="badgefix">
+/* Badge fix (2026-11-19): at phone widths the featured-card badge takes its own top row
+   (in flow, top right) and the play/lock icon sits in flow at the bottom right, so the
+   card title can never run under the badge or under the icon. Wider layouts untouched. */
+@media (max-width:640px){
+.feat-card .badge{position:static;align-self:flex-end}
+.feat-card h4{margin:8px 0 10px;max-width:none}
+.feat-card .play,.feat-card .lock{position:static;transform:none;align-self:flex-end;margin-top:auto}
+}
+</style>
 </head>
 <body>
 <input type="checkbox" id="navtoggle"><label class="scrim" for="navtoggle"></label><div class="app"><aside class="sidebar">
